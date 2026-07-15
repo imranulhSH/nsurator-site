@@ -41,8 +41,22 @@
       background: var(--panel);
     }
     a.button.primary { background: var(--accent); border-color: var(--accent); color: white; }
-    footer { margin-top: 72px; color: var(--muted); font-size: 14px; }
+    footer {
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      margin-top: 72px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
     footer a { color: inherit; }
+    .record-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
@@ -54,7 +68,13 @@
       <a class="button primary" href="./support.html">Support</a>
       <a class="button" href="./privacy.html">Privacy Policy</a>
     </div>
-    <footer>Contact: <a href="mailto:852310683@qq.com">852310683@qq.com</a></footer>
+    <footer>
+      <div>Contact: <a href="mailto:852310683@qq.com">852310683@qq.com</a></div>
+      <div class="record-links">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a>
+        <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a>
+      </div>
+    </footer>
   </main>
 </body>
 </html>
