@@ -3,23 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nsurator Privacy Policy</title>
-  <meta name="description" content="Privacy policy for Nsurator.">
+  <title>Nsurator Privacy Policy / 隐私政策</title>
+  <meta name="description" content="Privacy policy for Nsurator / Nsurator 隐私政策。">
   <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 780px;
-      margin: 56px auto;
-      padding: 0 24px;
-      line-height: 1.65;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      line-height: 1.7;
       color: #18181b;
       background: #ffffff;
     }
-    h1 { font-size: 40px; line-height: 1.1; margin-bottom: 8px; }
-    h2 { margin-top: 32px; }
-    p, li { font-size: 17px; color: #3f3f46; }
+    h1 { font-size: clamp(34px, 7vw, 44px); line-height: 1.12; margin: 0 0 8px; }
+    h2 { margin-top: 36px; line-height: 1.3; }
+    h3 { margin-top: 26px; line-height: 1.35; }
+    p, li { font-size: 16px; color: #3f3f46; }
+    li + li { margin-top: 8px; }
     a { color: #2563eb; }
-    .nav { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .muted { color: #71717a; }
+    .language-nav, .page-nav { display: flex; gap: 16px; flex-wrap: wrap; }
+    .language-nav { margin: 22px 0 36px; }
+    .policy { scroll-margin-top: 24px; }
+    .policy + .policy { margin-top: 64px; padding-top: 48px; border-top: 1px solid #e4e4e7; }
+    .page-nav { margin-top: 44px; }
     .site-footer {
       display: grid;
       gap: 8px;
@@ -31,42 +40,105 @@
       font-size: 14px;
       text-align: center;
     }
-    .record-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
+    .record-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    @media (prefers-color-scheme: dark) {
+      body { color: #f4f4f5; background: #101114; }
+      p, li { color: #d4d4d8; }
+      .muted, .site-footer { color: #a1a1aa; }
+      a { color: #60a5fa; }
+      .policy + .policy, .site-footer { border-color: #3f3f46; }
     }
   </style>
 </head>
 <body>
   <h1>Nsurator Privacy Policy</h1>
-  <p>Last updated: April 25, 2026</p>
+  <p class="muted">Effective and last updated: August 10, 2026</p>
+  <nav class="language-nav" aria-label="Language">
+    <a href="#english">English</a>
+    <a href="#zh-hans" lang="zh-CN">简体中文</a>
+  </nav>
 
-  <p>Nsurator is designed as a local-first macOS video library manager.</p>
+  <article id="english" class="policy" lang="en">
+    <h2>English</h2>
+    <p>Nsurator is a local-first macOS video library manager. You do not need a Nsurator account to manage a local library. This policy explains what data the app and its optional online features process.</p>
 
-  <h2>Data Storage</h2>
-  <p>Nsurator stores your video library metadata locally on your Mac. Your video files are not uploaded to Nsurator servers.</p>
+    <h3>1. Local library data</h3>
+    <p>Nsurator stores library information on your Mac, including file paths, titles and other metadata, people, collections, tags, ratings, favorites, playback history, thumbnails, caches, security-scoped bookmarks, and app settings. Your video files are not uploaded to Nsurator-operated servers by default.</p>
+    <p>Private Space is available only for files archived into the movie library. Private files are moved into the hidden <code>.nsurator-private</code> area of that library. This area is hidden but <strong>not encrypted</strong>. When Private Space is locked, the app removes private titles, artwork, and related accessibility elements from the interface.</p>
 
-  <h2>Personal Data</h2>
-  <p>Nsurator does not sell personal data and does not use third-party advertising trackers.</p>
+    <h3>2. Files and permissions</h3>
+    <p>The app accesses only folders and files that you select or otherwise authorize through macOS. It uses that access to scan, play, organize, rename, move, archive, or delete files when you request those actions. A file move or deletion does not occur merely because a folder was scanned.</p>
 
-  <h2>Files and Permissions</h2>
-  <p>The app may request access to folders you choose so it can scan, organize, and manage local video files.</p>
+    <h3>3. Optional network features and third parties</h3>
+    <ul>
+      <li><strong>Nearby playback.</strong> When you choose AirPlay, Chromecast, DLNA, Roku, or another supported receiver, the selected media bytes, media metadata, and playback-control messages may be sent over your network to the device you selected. Temporary local-server URLs or in-memory access tokens may be used during that session and expire when the session ends.</li>
+      <li><strong>Remote media sources.</strong> If you add WebDAV, mounted SMB, Emby, Jellyfin, or another supported source, Nsurator connects directly to the server you configure. Connection settings are stored locally; passwords and access tokens are stored in the macOS Keychain where supported. The operator of that source processes your requests under its own privacy policy.</li>
+      <li><strong>Baidu Netdisk authorization.</strong> If you choose Baidu Netdisk, authorization takes place in your browser using Baidu's official OAuth flow. Nsurator's authorization broker processes a one-time transaction identifier and challenge and temporarily holds the encrypted authorization result, which may include Baidu access and refresh tokens. These results are normally retained only for delivery and retry, for no more than 24 hours, after which secret token payloads are cleared. The broker's strictly necessary cookie supports the authorization transaction and is not used for tracking. Delivered tokens are stored in your macOS Keychain. See <a href="https://privacy.baidu.com/policy.html" target="_blank" rel="noopener noreferrer">Baidu's Privacy Policy</a>.</li>
+      <li><strong>Purchases.</strong> App Store purchases and subscriptions are processed by Apple. Nsurator receives transaction and entitlement status and stores entitlement state locally; it does not receive your full payment-card details. See <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's Privacy Policy</a>.</li>
+      <li><strong>Optional model downloads.</strong> If you start a supported model download, the file may be requested from providers such as Hugging Face, GitHub, or Microsoft. Those providers receive ordinary network information such as your IP address and request metadata under their own policies.</li>
+      <li><strong>Agent integration.</strong> Agent access is off by default and its built-in service is limited to the local loopback interface. If you connect a third-party AI or automation client, only the data and actions you authorize are made available to that client. Nsurator does not automatically upload your library database to an AI service.</li>
+    </ul>
 
-  <h2>Network Access</h2>
-  <p>Nsurator does not require an account to manage your local library. If future versions add online services, this policy will be updated before those services are used.</p>
+    <h3>4. Collection, tracking, and legacy trial builds</h3>
+    <p>Nsurator does not sell personal data, show behavioral advertising, or include third-party advertising trackers. The current Mac App Store app does not use a self-managed trial server. Nsurator-operated web hosting and reverse proxies may process ordinary request data, such as IP address, timestamp, and user-agent, for security, abuse prevention, and service reliability.</p>
+    <p>Some older direct-distribution or China-region trial builds may send a randomly generated persistent device identifier, a device-fingerprint hash, platform and app version, and a trial token to a Nsurator authorization server solely to determine trial eligibility and prevent repeated-trial abuse.</p>
 
-  <h2>Contact</h2>
-  <p>For privacy questions, contact: <a href="mailto:852310683@qq.com">852310683@qq.com</a></p>
+    <h3>5. Retention and security</h3>
+    <p>Local data remains on your Mac until you delete it. Removing the app may not remove media files, library folders, backups, or Keychain entries. OAuth authorization results are retained only for their short delivery and retry window, up to 24 hours, and secret payloads are then cleared. Minimal terminal transaction records and security logs may be retained briefly for reliability and abuse prevention. Information you voluntarily send for support is retained as needed to resolve the request and meet legal obligations.</p>
+    <p>We use measures such as HTTPS, the macOS Keychain, sandboxed helper processes, and encrypted OAuth result delivery where applicable. No security measure is absolute, and the hidden Private Space area is not encryption.</p>
 
-  <div class="nav">
-    <a href="./index.html">Home</a>
-    <a href="./support.html">Support</a>
-  </div>
+    <h3>6. Your choices and rights</h3>
+    <p>You can use the local library without enabling optional network services. You may remove a configured source, revoke third-party authorization, delete local library data, clear history and caches in the app where available, or delete files through Finder. Depending on where you live, you may have rights to request access, correction, deletion, restriction, or information about data processed by Nsurator-operated services.</p>
+
+    <h3>7. Children, changes, and contact</h3>
+    <p>Nsurator is a general-audience media utility and is not directed to children. We do not knowingly collect children's personal information through Nsurator-operated services. We may update this policy when app features or legal requirements change and will update the date above.</p>
+    <p>For privacy questions or requests, email <a href="mailto:852310683@qq.com">852310683@qq.com</a> or visit the <a href="./support.html">Support page</a>.</p>
+  </article>
+
+  <article id="zh-hans" class="policy" lang="zh-CN">
+    <h2>简体中文</h2>
+    <p>Nsurator 是一款以本地处理为主的 macOS 影片库管理工具。管理本地影片库不需要注册 Nsurator 账户。本政策说明 App 及其可选在线功能会处理哪些数据。</p>
+
+    <h3>1. 本地影片库数据</h3>
+    <p>Nsurator 会在你的 Mac 上保存影片库信息，包括文件路径、标题及其他元数据、人物、合集、标签、评分、收藏、播放历史、缩略图、缓存、安全作用域书签和 App 设置。默认情况下，你的视频文件不会上传到 Nsurator 运营的服务器。</p>
+    <p>私密空间仅支持已归档到影片库的文件。私密文件会被移动到该影片库的 <code>.nsurator-private</code> 隐藏区域。该区域只是隐藏，<strong>没有加密</strong>。私密空间锁定后，App 会从界面中移除私密标题、封面以及相关无障碍元素。</p>
+
+    <h3>2. 文件与权限</h3>
+    <p>App 只访问你通过 macOS 选择或明确授权的文件夹和文件，并按你的操作进行扫描、播放、整理、重命名、移动、归档或删除。扫描文件夹本身不会触发文件移动或删除。</p>
+
+    <h3>3. 可选网络功能与第三方服务</h3>
+    <ul>
+      <li><strong>附近设备播放。</strong>当你选择 AirPlay、Chromecast、DLNA、Roku 或其他受支持的接收设备时，所选媒体数据、媒体元数据和播放控制消息可能通过你的网络发送到你选择的设备。播放期间可能使用临时本地服务器地址或内存访问令牌，并在会话结束后失效。</li>
+      <li><strong>远程媒体源。</strong>如果你添加 WebDAV、已挂载的 SMB、Emby、Jellyfin 或其他受支持的媒体源，Nsurator 会直接连接到你配置的服务器。连接配置保存在本地；在支持的情况下，密码和访问令牌存储在 macOS 钥匙串中。媒体源运营方会根据其自身隐私政策处理请求。</li>
+      <li><strong>百度网盘授权。</strong>如果你选择百度网盘，App 会通过浏览器使用百度官方 OAuth 流程完成授权。Nsurator 的授权中转服务会处理一次性交易标识和校验信息，并临时保存加密的授权结果，其中可能包含百度访问令牌和刷新令牌。结果仅用于交付和重试，通常不超过 24 小时；到期后会清除其中的机密令牌内容。中转服务使用的严格必要 Cookie 仅用于完成授权交易，不用于跟踪。交付到 App 的令牌保存在 macOS 钥匙串中。请参阅<a href="https://privacy.baidu.com/policy.html" target="_blank" rel="noopener noreferrer">《百度隐私权保护声明》</a>。</li>
+      <li><strong>购买。</strong>App Store 购买和订阅由 Apple 处理。Nsurator 只接收交易和权益状态并在本地保存权益信息，不会收到你的完整银行卡资料。请参阅<a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">《Apple 隐私政策》</a>。</li>
+      <li><strong>可选模型下载。</strong>当你主动下载受支持的模型时，文件可能来自 Hugging Face、GitHub 或 Microsoft 等提供方。提供方会依据其政策接收正常网络请求信息，例如 IP 地址和请求元数据。</li>
+      <li><strong>Agent 集成。</strong>Agent 访问默认关闭，内置服务仅限本机回环地址。如果你连接第三方 AI 或自动化客户端，只有你授权的数据和操作会提供给该客户端。Nsurator 不会自动把影片库数据库上传到 AI 服务。</li>
+    </ul>
+
+    <h3>4. 数据收集、跟踪与旧版试用</h3>
+    <p>Nsurator 不出售个人数据，不展示行为广告，也不包含第三方广告跟踪器。当前 Mac App Store 版本不使用自建试用服务器。Nsurator 运营的网站和反向代理可能出于安全、防滥用和服务稳定性处理常规请求数据，例如 IP 地址、时间戳和浏览器标识。</p>
+    <p>部分较早的独立分发版本或中国区试用版本可能会把随机生成的持久设备标识、设备指纹哈希、平台与 App 版本以及试用令牌发送到 Nsurator 授权服务器，仅用于判断试用资格和防止重复试用滥用。</p>
+
+    <h3>5. 保存期限与安全</h3>
+    <p>本地数据会保留在你的 Mac 上，直到你将其删除。卸载 App 不一定会删除媒体文件、影片库文件夹、备份或钥匙串项目。OAuth 授权结果仅在短期交付和重试窗口内保存，最长不超过 24 小时，之后会清除机密内容。为保证可靠性和防止滥用，最少量的终态交易记录和安全日志可能被短期保留。你主动发送给支持团队的信息会在解决问题和履行法律义务所需的期间内保存。</p>
+    <p>在适用场景下，我们使用 HTTPS、macOS 钥匙串、沙盒辅助进程和加密的 OAuth 结果交付等措施。任何安全措施都无法保证绝对安全，私密空间的隐藏区域也不属于加密存储。</p>
+
+    <h3>6. 你的选择与权利</h3>
+    <p>你可以在不启用任何可选网络服务的情况下使用本地影片库。你可以移除已配置的媒体源、撤销第三方授权、删除本地影片库数据、在 App 提供相关功能时清除历史和缓存，或通过 Finder 删除文件。根据你所在地区的法律，你还可能有权请求访问、更正、删除或限制由 Nsurator 运营服务处理的数据，并了解相关处理情况。</p>
+
+    <h3>7. 未成年人、政策变更与联系</h3>
+    <p>Nsurator 是面向普通用户的媒体工具，并非专门面向未成年人。我们不会故意通过 Nsurator 运营的服务收集儿童个人信息。当 App 功能或法律要求发生变化时，我们可能更新本政策，并同步更新页面顶部日期。</p>
+    <p>如有隐私问题或权利请求，请发送邮件至 <a href="mailto:852310683@qq.com">852310683@qq.com</a>，或访问<a href="./support.html">支持页面</a>。</p>
+  </article>
+
+  <nav class="page-nav" aria-label="Site navigation">
+    <a href="./index.html">Home / 首页</a>
+    <a href="./support.html">Support / 支持</a>
+  </nav>
 
   <footer class="site-footer">
-    <div>Contact: <a href="mailto:852310683@qq.com">852310683@qq.com</a></div>
+    <div>Contact / 联系：<a href="mailto:852310683@qq.com">852310683@qq.com</a></div>
     <div class="record-links">
       <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a>
       <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a>
