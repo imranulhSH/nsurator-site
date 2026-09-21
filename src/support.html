@@ -377,8 +377,8 @@ a{color:inherit;text-decoration:none}a:hover{opacity:.8}
 
   <div style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:#24211f;color:var(--color-neutral-100)">
     <div style="display:flex;align-items:center;gap:20px;height:64px;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
-      <a href="index.html" style="display:flex;align-items:center;gap:10px;flex:none"><span style="width:26px;height:26px;border-radius:7px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat;box-shadow:0 2px 6px rgba(0,0,0,.35)"></span><span class="cap" style="font-size:19px;line-height:1">Nsurator</span></a>
-      <div class="m-hide" style="flex:1;display:flex;justify-content:center;gap:26px;font-size:14px;font-weight:600;color:var(--color-neutral-400)"><a href="index.html#top">{{ t.navProduct }}</a><span style="color:var(--color-neutral-100)">{{ t.navSupport }}</span></div>
+      <a href="index.html?lang={{ lang }}" style="display:flex;align-items:center;gap:10px;flex:none"><span style="width:26px;height:26px;border-radius:7px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat;box-shadow:0 2px 6px rgba(0,0,0,.35)"></span><span class="cap" style="font-size:19px;line-height:1">Nsurator</span></a>
+      <div class="m-hide" style="flex:1;display:flex;justify-content:center;gap:26px;font-size:14px;font-weight:600;color:var(--color-neutral-400)"><a href="index.html?lang={{ lang }}#top">{{ t.navProduct }}</a><span style="color:var(--color-neutral-100)">{{ t.navSupport }}</span></div>
       <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
         <div style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><span sc-camel-on-click="{{ setZh }}" style="{{ zhStyle }}">中</span><span sc-camel-on-click="{{ setEn }}" style="{{ enStyle }}">EN</span></div>
         <a class="m-hide" href="https://apps.apple.com/app/id6763750134?mt=12" style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;background:var(--color-neutral-100);color:var(--color-text);font-size:13px;font-weight:700;transition:transform .2s" style-active="transform:scale(.97)">{{ t.navCta }}</a>
@@ -520,9 +520,18 @@ a{color:inherit;text-decoration:none}a:hover{opacity:.8}
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;support&quot;,&quot;guide&quot;,&quot;privacy&quot;,&quot;terms&quot;,&quot;oss&quot;],&quot;default&quot;:&quot;support&quot;,&quot;tsType&quot;:&quot;'support' | 'guide' | 'privacy' | 'terms' | 'oss'&quot;,&quot;section&quot;:&quot;页面&quot;,&quot;label&quot;:&quot;当前页&quot;},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;zh&quot;,&quot;en&quot;],&quot;default&quot;:&quot;zh&quot;,&quot;tsType&quot;:&quot;'zh' | 'en'&quot;,&quot;section&quot;:&quot;页面&quot;,&quot;label&quot;:&quot;语言&quot;},&quot;updated&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-09-15&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;法律页&quot;,&quot;label&quot;:&quot;更新日期&quot;},&quot;version&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;6.0.0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;法律页&quot;,&quot;label&quot;:&quot;对应版本&quot;}}">
 class Component extends DCLogic {
-  state = { page: null, active: "", lang: null };
+  state = { page: null, active: "", lang: this.initialLanguage() };
+  initialLanguage() {
+    // App links take precedence over a language previously chosen in this browser.
+    const requested = new URLSearchParams(location.search).get("lang");
+    if (requested === "zh" || requested === "en") {
+      try { localStorage.setItem("nsurator-site-lang", requested); } catch (e) {}
+      return requested;
+    }
+    try { const saved = localStorage.getItem("nsurator-site-lang"); if (saved === "zh" || saved === "en") return saved; } catch (e) {}
+    return null;
+  }
   componentDidMount() {
-    try { const v = localStorage.getItem("nsurator-site-lang"); if (v === "zh" || v === "en") this.setState({ lang: v }); } catch (e) {}
     const PAGES = ["support", "guide", "privacy", "terms", "oss"];
     this.onHash = () => { const h = (location.hash || "").slice(1); if (PAGES.includes(h) && h !== (this.state.page ?? this.props.page ?? "support")) this.setState({ page: h, active: "" }); };
     window.addEventListener("hashchange", this.onHash);
@@ -538,14 +547,20 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener("hashchange", this.onHash); }
   go(p) { this.setState({ page: p, active: "" }); try { history.replaceState(null, "", "#" + p); } catch (e) {} window.scrollTo({ top: 0 }); }
-  setLang(l) { this.setState({ lang: l }); try { localStorage.setItem("nsurator-site-lang", l); } catch (e) {} }
+  setLang(l) {
+    if (l !== "zh" && l !== "en") return;
+    this.setState({ lang: l });
+    try { localStorage.setItem("nsurator-site-lang", l); } catch (e) {}
+    // Keep refreshes and copied links consistent with a manual language change.
+    try { const url = new URL(location.href); url.searchParams.set("lang", l); history.replaceState(null, "", url); } catch (e) {}
+  }
   renderVals() {
     const page = this.state.page ?? this.props.page ?? "support";
     const lang = this.state.lang ?? this.props.lang ?? "zh";
     const en = lang === "en";
     const updated = this.props.updated ?? "2026-09-15";
     const version = this.props.version ?? "6.0.0";
-    const SITE = "index.html";
+    const SITE = "index.html?lang=" + lang;
     const nav = (t, k) => ({ t, href: "#", go: (e) => { if (e) e.preventDefault(); this.go(k); } });
     const site = (t, h) => ({ t, href: SITE + h, go: () => {} });
 

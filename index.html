@@ -388,7 +388,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit;opacity:.8}
   <header class="site-header" data-site-header="">
     <div style="display:flex;align-items:center;gap:20px;height:64px;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
       <a href="#top" style="display:flex;align-items:center;gap:10px;flex:none"><span style="width:26px;height:26px;border-radius:7px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat;box-shadow:0 2px 6px rgba(0,0,0,.35)"></span><span class="cap" style="font-size:19px;line-height:1">Nsurator</span></a>
-      <div class="m-hide" style="flex:1;display:flex;justify-content:center;gap:26px;font-size:14px;font-weight:600;color:#C0B6A5"><a href="#top" style="color:#F9F4ED">{{ s.navProduct }}</a><a href="support.html#support">{{ s.navSupport }}</a></div>
+      <div class="m-hide" style="flex:1;display:flex;justify-content:center;gap:26px;font-size:14px;font-weight:600;color:#C0B6A5"><a href="#top" style="color:#F9F4ED">{{ s.navProduct }}</a><a href="support.html?lang={{ lang }}#support">{{ s.navSupport }}</a></div>
       <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
         <div style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><span sc-camel-on-click="{{ setZh }}" style="{{ zhStyle }}">中</span><span sc-camel-on-click="{{ setEn }}" style="{{ enStyle }}">EN</span></div>
         <a class="m-hide" href="https://apps.apple.com/app/id6763750134?mt=12" style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;background:#F9F4ED;color:#201e1d;font-size:13px;font-weight:700;transition:transform .2s" style-active="transform:scale(.97)">{{ s.navCta }}</a>
@@ -481,9 +481,18 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit;opacity:.8}
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;zh&quot;,&quot;en&quot;],&quot;default&quot;:&quot;zh&quot;,&quot;tsType&quot;:&quot;'zh' | 'en'&quot;,&quot;section&quot;:&quot;官网&quot;}}">
 class Component extends DCLogic {
-  state = { lang: null, faqOpen: 0 };
+  state = { lang: this.initialLanguage(), faqOpen: 0 };
+  initialLanguage() {
+    // App links take precedence over a language previously chosen in this browser.
+    const requested = new URLSearchParams(location.search).get("lang");
+    if (requested === "zh" || requested === "en") {
+      try { localStorage.setItem("nsurator-site-lang", requested); } catch (e) {}
+      return requested;
+    }
+    try { const saved = localStorage.getItem("nsurator-site-lang"); if (saved === "zh" || saved === "en") return saved; } catch (e) {}
+    return null;
+  }
   componentDidMount() {
-    try { const v = localStorage.getItem("nsurator-site-lang"); if (v === "zh" || v === "en") this.setState({ lang: v }); } catch (e) {}
     this.syncTitle();
     window.NsuratorMotion?.mount();
   }
@@ -493,7 +502,13 @@ class Component extends DCLogic {
     document.title = lang === "en" ? "Nsurator — Your films finally have a home." : "Nsurator — 你的影片，终于有了个家。";
     document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
   }
-  setLang(l) { this.setState({ lang: l }); try { localStorage.setItem("nsurator-site-lang", l); } catch (e) {} }
+  setLang(l) {
+    if (l !== "zh" && l !== "en") return;
+    this.setState({ lang: l });
+    try { localStorage.setItem("nsurator-site-lang", l); } catch (e) {}
+    // Keep refreshes and copied links consistent with a manual language change.
+    try { const url = new URL(location.href); url.searchParams.set("lang", l); history.replaceState(null, "", url); } catch (e) {}
+  }
   renderVals() {
     const lang = this.state.lang ?? this.props.lang ?? "zh";
     const S = {
@@ -551,7 +566,7 @@ class Component extends DCLogic {
         aStyle: `margin:12px 0 0;font-size:15.5px;line-height:1.65;color:#645c50;max-width:62ch;opacity:${open ? 1 : 0};transition:opacity .25s ${open ? ".08s" : "0s"}`,
         chevStyle: `flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:${open ? "#F9F4ED" : "#EEE7DB"};color:#474238;transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s;transform:rotate(${open ? 180 : 0}deg)` };
     });
-    const SUP = "support.html#";
+    const SUP = "support.html?lang=" + lang + "#";
     const fcols = (lang === "en"
       ? [["Product", [["Features", "#features"], ["Formats", "#formats"], ["Release notes", "#log"], ["Download", "#top"]]], ["Support", [["FAQ", "#faq"], ["Contact", SUP + "support"], ["User guide", SUP + "guide"]]], ["Legal", [["Privacy", SUP + "privacy"], ["Terms", SUP + "terms"], ["Open source", SUP + "oss"]]]]
       : [["产品", [["功能", "#features"], ["格式与要求", "#formats"], ["更新记录", "#log"], ["下载", "#top"]]], ["支持", [["常见问题", "#faq"], ["联系支持", SUP + "support"], ["使用说明", SUP + "guide"]]], ["法律", [["隐私政策", SUP + "privacy"], ["使用条款", SUP + "terms"], ["开源许可", SUP + "oss"]]]]
