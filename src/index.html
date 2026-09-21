@@ -416,14 +416,14 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit;opacity:.8}
 
   <section id="features" class="feature-stack">
     <sc-for list="{{ steps }}" as="f" hint-placeholder-count="4">
-      <article class="feature-card" style="{{ f.surface }}" data-alternate="{{ f.alternate }}">
-        <div class="feature-copy" data-reveal="">
+      <article class="feature-card" style="{{ f.surface }}" data-alternate="{{ f.alternate }}" data-reveal="feature">
+        <div class="feature-copy">
           <div class="feature-name"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#D9523F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><sc-for list="{{ f.icon }}" as="p" hint-placeholder-count="1"><path d="{{ p }}"></path></sc-for></svg><span>{{ f.name }}</span></div>
           <h2 class="hd feature-title">{{ f.title }}</h2>
           <p class="feature-description">{{ f.copy }}</p>
           <ul class="feature-points"><sc-for list="{{ f.pts }}" as="c" hint-placeholder-count="3"><li><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#D9523F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span>{{ c }}</span></li></sc-for></ul>
         </div>
-        <figure class="feature-visual" data-reveal="" data-reveal-delay="90">
+        <figure class="feature-visual">
           <img src="{{ f.image.src }}" width="{{ f.image.width }}" height="{{ f.image.height }}" alt="{{ f.name }}" loading="lazy" decoding="async">
         </figure>
       </article>
