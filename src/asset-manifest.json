@@ -296,6 +296,175 @@
         }
       ],
       "sha256": "f49652ec8b75a74a88b141cc759567165cc0337a9867a37267979eb6ecb21156"
+    },
+    "6a3538499a611ad1e73f4e6ae75aba83148dc9ac246c276a4292016e4b52c680.webp": {
+      "bytes": 124488,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/zh/清单.png"
+        }
+      ],
+      "sha256": "6a3538499a611ad1e73f4e6ae75aba83148dc9ac246c276a4292016e4b52c680"
+    },
+    "db61ebbc650c02c8a762e4b4740ade2add7e506be7da255e824b0727e3c023d4.webp": {
+      "bytes": 119686,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/zh/收件箱.png"
+        }
+      ],
+      "sha256": "db61ebbc650c02c8a762e4b4740ade2add7e506be7da255e824b0727e3c023d4"
+    },
+    "37606bae594a26daf7cd1101c20e2445e13e0823c5f1f740714c5c6cd75bcec8.webp": {
+      "bytes": 156856,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/zh/合集.png"
+        }
+      ],
+      "sha256": "37606bae594a26daf7cd1101c20e2445e13e0823c5f1f740714c5c6cd75bcec8"
+    },
+    "84311852c6a8f6da46ef7093b36a414177da5ed9d30383d835557f7bdf9bfc53.webp": {
+      "bytes": 101488,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/zh/私密空间.png"
+        }
+      ],
+      "sha256": "84311852c6a8f6da46ef7093b36a414177da5ed9d30383d835557f7bdf9bfc53"
+    },
+    "05bd6eec4d098f57a5e2f64ebc621d6fd8b3074282fb75207708edea56f9dfca.webp": {
+      "bytes": 144264,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/zh/播放诊断.png"
+        }
+      ],
+      "sha256": "05bd6eec4d098f57a5e2f64ebc621d6fd8b3074282fb75207708edea56f9dfca"
+    },
+    "be7232c1210d2bff60a7957be278ceb0f16c0e55e34c6dce332f564ef3e5ea3f.svg": {
+      "bytes": 700731,
+      "mime_types": [
+        "image/svg+xml"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "src/screenshots/ai-agents.zh.svg"
+        }
+      ],
+      "sha256": "be7232c1210d2bff60a7957be278ceb0f16c0e55e34c6dce332f564ef3e5ea3f"
+    },
+    "fcef8c809af71f9e41a2fc228ee809354a50a6cbccb95c4b16f8543dd23808e3.webp": {
+      "bytes": 123080,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/en/list.png"
+        }
+      ],
+      "sha256": "fcef8c809af71f9e41a2fc228ee809354a50a6cbccb95c4b16f8543dd23808e3"
+    },
+    "973df467493d9e49b1547cd1eec537201f72eb8585029410f26ac0255fa26826.webp": {
+      "bytes": 123590,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/en/inbox.png"
+        }
+      ],
+      "sha256": "973df467493d9e49b1547cd1eec537201f72eb8585029410f26ac0255fa26826"
+    },
+    "4a79671a22555b6eba9d3aed7ff8d5a11893ed86c22f208908ac6340028f4360.webp": {
+      "bytes": 159782,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/en/collections.png"
+        }
+      ],
+      "sha256": "4a79671a22555b6eba9d3aed7ff8d5a11893ed86c22f208908ac6340028f4360"
+    },
+    "d6ea82edd3cb4c01c032827eb213db8c84d734a4ff46279a23b3058f783b09f3.webp": {
+      "bytes": 101718,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/en/private-space.png"
+        }
+      ],
+      "sha256": "d6ea82edd3cb4c01c032827eb213db8c84d734a4ff46279a23b3058f783b09f3"
+    },
+    "ac0ae6480d41c82bc14a37ec35962df372eb79f8c8b6a4f0d8171b52b7bc0362.webp": {
+      "bytes": 154726,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "1111.zip/screenshots/en/playback-diagnostics.png"
+        }
+      ],
+      "sha256": "ac0ae6480d41c82bc14a37ec35962df372eb79f8c8b6a4f0d8171b52b7bc0362"
+    },
+    "efcbc717f6f4e56b207229ac9ec3b55609c03a6b1c044aac816e9cd41180830c.svg": {
+      "bytes": 700636,
+      "mime_types": [
+        "image/svg+xml"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "src/screenshots/ai-agents.en.svg"
+        }
+      ],
+      "sha256": "efcbc717f6f4e56b207229ac9ec3b55609c03a6b1c044aac816e9cd41180830c"
+    },
+    "59302a2e7e70826712d54089d17d781949a5fbeb298d08dac96175b613848095.webp": {
+      "bytes": 184006,
+      "mime_types": [
+        "image/webp"
+      ],
+      "origins": [
+        {
+          "page": "index.html",
+          "source": "imagegen: real player with fictional filename and ocean scene"
+        }
+      ],
+      "sha256": "59302a2e7e70826712d54089d17d781949a5fbeb298d08dac96175b613848095"
     }
   },
   "pages": {

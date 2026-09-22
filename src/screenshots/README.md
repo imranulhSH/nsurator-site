@@ -1,0 +1,13 @@
+# 官网演示图（2026-09-22）
+
+清单、收件箱、合集、私密空间和播放诊断来自用户提供的 `1111.zip`，保留各自的中英文稿。首页按当前语言选择图片，播放器演示图共用；所有发布图片登记在 `../asset-manifest.json`。
+
+AI 智能体以设计稿的布局为基础，补齐实际 App 的 7 个权限开关。开启项使用 App 的珊瑚色 `#D9523F`。`ai-agents.zh.svg` 和 `ai-agents.en.svg` 是可编辑矢量稿，运行 `python3 scripts/render-agent-mockups.py` 可重建。脚本直接嵌入 `agent-logos/` 中从 App 导出的 10 个 PNG，不再套第二层图标底框或内缩；Codex 使用 ChatGPT 图标，Grok 保留圆角，仅保留 Claude Code。品牌素材出处见 `agent-logos/SOURCES.md`。演示命令采用虚构用户目录 `/Users/demo/`。
+
+播放器以用户提供的真实截图为界面参考，使用内置 imagegen 编辑片名与影片画面。发布资产为 `assets/59302a2e7e70826712d54089d17d781949a5fbeb298d08dac96175b613848095.webp`，原始结果保存于交付包 `zh/player.png` 与 `en/player.png`。原片名和电影画面未加入仓库。
+
+生成提示词：
+
+> Edit image 1, the real Nsurator player screenshot, for a public product website. Image 1 is the ONLY authority for the player interface. Image 2 is only a reference for the fictional video filename and ocean-at-dusk subject, NOT its interface. Use case: precise-object-edit / compositing. Produce one full-width landscape player screenshot with the exact aspect ratio and complete framing of image 1. Change ONLY two things: (1) replace the long movie filename at the top with the fictional filename 'Northwind.S02E05.2160p.UHD.BluRay.DV.HDR10Plus.HEVC.TrueHD7.1.Atmos.mkv', retaining the exact original font, size, weight, left alignment and position; (2) replace the copyrighted movie picture, including all people, with a tasteful fictional cinematic shot of a quiet teal ocean at dusk, a clean distant horizon and a subdued warm sunset glow, a realistic soft natural sky, no people, no text. Every player UI pixel/shape/placement/color should remain as faithful to image 1 as possible: solid black top and bottom bands, top-left dark circular X close control with NO macOS traffic lights; full thin red timeline near the bottom, gray thumb, exact '1:30:14' and '2:14:28' timestamps; bottom-left dark translucent rounded rectangular volume group; centered dark rounded rectangular back-10 / coral play / forward-10 group; bottom-right five-icon dark rounded rectangular group; right-edge vertical dark rounded rectangle with the same six pale gray icons and separators. Preserve the muted thin highlight borders, dark fills, moderate original corner radii, exact symbols, spacing, sizing and alignment. Do not redesign, relayout, brighten, enlarge or simplify controls. Do not copy the light frosted capsules, white timeline thumb, extra traffic lights, or altered toolbar from image 2. Keep the actual toolbar over the replacement scene without retaining movie content. No annotations, no explanation, no new UI.
+
+验收：官网构建校验与 11 个 Node 测试通过；浏览器检查 1440px 桌面和 390px 手机布局，中英文切换会同步替换截图，7 张图片均可加载。播放器完整展示，诊断面板可展开。
