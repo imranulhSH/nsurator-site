@@ -20,12 +20,12 @@ function eventTarget(extra = {}) {
   });
 }
 
-function harness({ reducedMotion = false, count = 1 } = {}) {
+function harness({ reducedMotion = false, count = 1, compact = false, types = [], observerAvailable = true } = {}) {
   const observers = [];
   const calls = [];
   const activeAnimations = new Set();
-  const elements = Array.from({ length: count }, () => ({
-    dataset: {},
+  const elements = Array.from({ length: count }, (_, i) => ({
+    dataset: { reveal: types[i] },
     hidden: false,
     style: { opacity: '1', transform: 'none' },
     animate(keyframes, options) {
@@ -64,10 +64,10 @@ function harness({ reducedMotion = false, count = 1 } = {}) {
     querySelectorAll: selector => selector === '[data-reveal]' ? elements : [],
     getElementById: () => null,
   });
-  const window = eventTarget({ IntersectionObserver });
+  const window = eventTarget(observerAvailable ? { IntersectionObserver } : {});
   vm.runInNewContext(source, {
     window, document, IntersectionObserver,
-    matchMedia: () => reduced,
+    matchMedia: query => query.includes('max-width') ? { matches: compact } : reduced,
     innerHeight: 800,
     setTimeout, clearTimeout,
   }, { filename: 'motion.js' });
@@ -90,6 +90,44 @@ function harness({ reducedMotion = false, count = 1 } = {}) {
     enter, assertUnderlyingContentVisible,
   };
 }
+
+test('the homepage connects its new feature blocks and player to the motion runtime', () => {
+  const html = readFileSync(join(__dirname, '../src/index.html'), 'utf8');
+  assert.match(html, /<h1[^>]*data-reveal="hero-title"/);
+  assert.match(html, /<div[^>]*data-reveal="feature"/);
+  assert.match(html, /<figure[^>]*data-reveal="screen"/);
+  assert.match(html, /data-reveal="diagnostic"/);
+  assert.ok(html.indexOf('__SITE_MOTION__') < html.indexOf('<x-dc>'),
+    'motion must load before DC mounts the page');
+});
+
+test('mobile reduces travel while each entrance returns to the original layout', () => {
+  const types = ['feature', 'screen', 'hero-title', 'diagnostic'];
+  const desktop = harness({ count: types.length, types });
+  const mobile = harness({ count: types.length, types, compact: true });
+  for (const page of [desktop, mobile]) {
+    page.mount();
+    page.elements.forEach(page.enter);
+    for (const call of page.calls) {
+      assert.equal(call.keyframes.at(-1).opacity, 1);
+      assert.equal(call.keyframes.at(-1).transform, 'translate3d(0, 0, 0) scale(1)');
+      call.animation.finish();
+    }
+    page.assertUnderlyingContentVisible();
+    assert.equal(page.activeAnimations.size, 0);
+  }
+  for (const index of [0, 1, 3]) {
+    const distance = page => Number(page.calls[index].keyframes[0].transform.match(/, (\d+)px/)[1]);
+    assert.ok(distance(mobile) < distance(desktop));
+  }
+});
+
+test('without IntersectionObserver the complete page stays visible', () => {
+  const page = harness({ count: 3, observerAvailable: false });
+  page.mount();
+  assert.equal(page.calls.length, 0);
+  page.assertUnderlyingContentVisible();
+});
 
 test('reduced motion leaves content visible without an entrance animation', () => {
   const page = harness({ reducedMotion: true });

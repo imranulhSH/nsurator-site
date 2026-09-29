@@ -22,6 +22,8 @@ Apple 下载徽章与 TMDB 标志直接采用官方 SVG，来源记录在资源�
 
 动画可访问性回归检查使用 Node.js 内置测试工具，无需安装依赖：`node --test tests/motion.test.cjs`。检查减少动态效果、重复进入及标签隐藏时的取消行为；浏览器的实际渲染仍需预览确认。
 
+首页通过稳定容器上的 `data-reveal` 接入动效：首屏标题及介绍错开入场，主截图和播放器轻微缩放并上移，七个功能区保持整块图文共同进入，诊断面板单独渐显。手机缩短位移；元素只播放一次，语言切换不会重放整个页面，FAQ 使用可逆展开过渡。所有内容默认可见，系统减少动态效果或切到后台时取消动画。导航使用 `data-section-link` 跟随章节高亮，滚动期间不运行逐帧 JavaScript 循环。
+
 App 深链可用 `?lang=zh` / `?lang=en` 显式选择官网语言，例如
 `support.html?lang=en#guide`、`support.html?lang=zh#privacy` 和
 `support.html?lang=zh#oss`。语言参数优先于浏览器记忆，且在首次渲染前解析；

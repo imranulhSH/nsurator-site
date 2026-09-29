@@ -13,7 +13,7 @@ window.__resources = {
 };
 </script>
 <!-- End local resource map. -->
-<script src="/assets/5156961345246b83dcc5754023c69a6eca504a7db967191ce579ceb118c29801.js"></script>
+<script src="/assets/c469086f62e8f0bbdacf62c16f656b866739c540c450fe4a70b5761a81e2f058.js"></script>
 <script src="/assets/8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe.js"></script>
 
 </head>
@@ -359,7 +359,15 @@ a:hover{color:#B83B35}
 section[id]{scroll-margin-top:90px}
 .language-switch button{border:0;font-family:inherit;background:none}
 :focus-visible{outline:2px solid #EE8A76;outline-offset:4px}
-.site-nav-links a{white-space:nowrap}
+.site-nav-links a{white-space:nowrap;position:relative;transition:color .22s ease}
+.site-nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:#EE8A76;transform:scaleX(0);transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.site-nav-links a[aria-current="location"]{color:#F9F4ED!important}
+.site-nav-links a[aria-current="location"]::after{transform:scaleX(1)}
+.site-header{transition:background-color .25s ease,border-color .25s ease}
+.site-header[data-scrolled="true"]{background:rgba(30,28,27,.94)!important;border-bottom-color:rgba(249,244,237,.14)!important}
+.faq-toggle{border:0;padding:0;background:none;font:inherit;text-align:left;width:100%;cursor:pointer}
+.faq-answer{display:grid;transition:grid-template-rows .32s cubic-bezier(.22,1,.36,1),opacity .24s ease}
+
 @media(max-width:760px){
  .site-nav-inner{gap:12px!important;padding-top:12px!important;padding-bottom:10px!important}
  .site-nav-links{order:5;width:100%;gap:18px!important;flex-wrap:nowrap!important;overflow-x:auto;padding:4px 0}
@@ -368,7 +376,7 @@ section[id]{scroll-margin-top:90px}
  section[id]{scroll-margin-top:122px}
 }
 @media(max-width:400px){.site-nav-inner>a:first-child span{font-size:15px!important}.site-nav-inner{gap:8px!important}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.site-header,.site-nav-links a,.site-nav-links a::after,.faq-answer,.faq-sign{transition:none!important}}
 
 </style>
 </helmet>
@@ -379,7 +387,7 @@ section[id]{scroll-margin-top:90px}
     <div class="site-nav-inner" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);min-height:64px;display:flex;align-items:center;gap:26px;flex-wrap:wrap">
       <a href="#top" style="display:flex;align-items:center;gap:10px;color:#F9F4ED"><img src="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png" alt="" style="width:28px;height:28px;display:block" width="1024" height="1024"><span style="font-size:17px;font-weight:700;letter-spacing:-.2px;color:#F9F4ED">Nsurator</span></a>
       <nav class="site-nav-links" style="display:flex;gap:20px;flex-wrap:wrap">
-        <sc-for list="{{ NAV }}" as="n" hint-placeholder-count="6"><a href="{{ n.href }}" style="font-size:13.5px;font-weight:600;color:#C0B6A5" style-hover="color:#F9F4ED">{{ n.l }}</a></sc-for>
+        <sc-for list="{{ NAV }}" as="n" hint-placeholder-count="6"><a href="{{ n.href }}" data-section-link="{{ n.id }}" style="font-size:13.5px;font-weight:600;color:#C0B6A5" style-hover="color:#F9F4ED">{{ n.l }}</a></sc-for>
       </nav>
       <span class="site-nav-spacer" style="flex:1"></span>
       <div class="language-switch" style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><button type="button" lang="zh-CN" aria-label="中文" aria-pressed="{{ zh }}" sc-camel-on-click="{{ setZh }}" style="{{ zhS }}">中</button><button type="button" lang="en" aria-label="English" aria-pressed="{{ en }}" sc-camel-on-click="{{ setEn }}" style="{{ enS }}">EN</button></div>
@@ -392,8 +400,8 @@ section[id]{scroll-margin-top:90px}
 
   <section id="top" data-screen-label="首屏" style="background:radial-gradient(70% 60% at 50% -10%,rgba(217,82,63,.22),transparent 60%),#1E1C1B;color:#F9F4ED;padding:clamp(56px,7cqi,104px) 0 0;overflow:hidden">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px">
-      <h1 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(40px,5.8cqi,84px);line-height:1.06"><span style="display:block">{{ s.h1a }}</span><span style="display:block">{{ s.h1b }}</span></h1>
-      <p style="margin:0;max-width:60ch;font-size:clamp(16px,1.35cqi,20px);line-height:1.62;color:#C0B6A5;text-wrap:pretty">{{ s.sub }}</p>
+      <h1 data-reveal="hero-title" style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(40px,5.8cqi,84px);line-height:1.06"><span style="display:block">{{ s.h1a }}</span><span style="display:block">{{ s.h1b }}</span></h1>
+      <p data-reveal="intro" data-reveal-delay="100" style="margin:0;max-width:60ch;font-size:clamp(16px,1.35cqi,20px);line-height:1.62;color:#C0B6A5;text-wrap:pretty">{{ s.sub }}</p>
       <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:6px">
         <a href="https://apps.apple.com/app/id6763750134?mt=12" style="display:block;line-height:0">
           <sc-if value="{{ zh }}"><img src="/assets/41b614615f7ea665d538fe03513c4573765c04dd3b2611373e7280b2139cfb91.svg" alt="从 Mac App Store 下载" style="display:block;height:54px;width:auto"></sc-if>
@@ -403,7 +411,7 @@ section[id]{scroll-margin-top:90px}
       </div>
     </div>
     <div style="max-width:1280px;margin:clamp(40px,5cqi,72px) auto 0;padding:0 clamp(20px,4cqi,56px)">
-      <div style="aspect-ratio:1440 / 780;border-radius:16px 16px 0 0;overflow:hidden;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 40px 120px rgba(0,0,0,.55)">
+      <div data-reveal="screen" data-reveal-delay="180" style="aspect-ratio:1440 / 780;border-radius:16px 16px 0 0;overflow:hidden;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 40px 120px rgba(0,0,0,.55)">
         <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/7ae74c16abe1828e8e4d30b6d90d28abcb0782b6cb77f2cdb3ca7e1f5a065e36.webp" alt="Nsurator 电影海报墙" style="display:block;width:100%;height:auto" width="2400" height="1500"></sc-if>
         <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/37b5dff036bac87f3fcb6444cfe1e170dfdd5fc8a2bdd25e55c75dcc6483112f.webp" alt="Nsurator movie poster wall" style="display:block;width:100%;height:auto" width="2400" height="1500"></sc-if>
       </div>
@@ -412,13 +420,13 @@ section[id]{scroll-margin-top:90px}
 
   <section id="film" data-screen-label="影视" style="background:#171514;color:#F9F4ED;padding:clamp(80px,9cqi,140px) 0">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
-      <div style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div data-reveal="intro" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
         <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.8px;color:#EE8A76">{{ s.filmEyebrow }}</span>
         <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(32px,3.8cqi,54px);line-height:1.1;text-wrap:balance">{{ s.filmTitle }}</h2>
         <p style="margin:0;font-size:17px;line-height:1.7;color:#C0B6A5;text-wrap:pretty">{{ s.filmLead }}</p>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(56px,6cqi,96px)">
+      <div data-reveal="feature" style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(56px,6cqi,96px)">
         <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
           <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#EE8A76">{{ f1.name }}</span>
           <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f1.title }}</h3>
@@ -431,7 +439,7 @@ section[id]{scroll-margin-top:90px}
         </div></div>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+      <div data-reveal="feature" style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
         <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 30px 80px rgba(0,0,0,.5)">
           <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/8473ffe8dd4cb11aac6ec7fc1f739b69b03f8b427d95220299462b0585c700b7.webp" alt="电影页" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
           <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/fc69fddd406cae083e979e3f5e05c479fb9666edbd44c7b4bce4a878ff980a0c.webp" alt="Movie page" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
@@ -444,7 +452,7 @@ section[id]{scroll-margin-top:90px}
         </div>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+      <div data-reveal="feature" style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
         <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
           <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#EE8A76">{{ f3.name }}</span>
           <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f3.title }}</h3>
@@ -461,12 +469,12 @@ section[id]{scroll-margin-top:90px}
 
   <section id="features" data-screen-label="功能" style="padding:clamp(80px,9cqi,140px) 0">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
-      <div style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div data-reveal="intro" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
         <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.8px;color:#B83B35">{{ s.featEyebrow }}</span>
         <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(32px,3.8cqi,54px);line-height:1.1;text-wrap:balance">{{ s.featTitle }}</h2>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(48px,5cqi,80px)">
+      <div data-reveal="feature" style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(48px,5cqi,80px)">
         <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
           <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#B83B35">{{ f4.name }}</span>
           <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f4.title }}</h3>
@@ -479,7 +487,7 @@ section[id]{scroll-margin-top:90px}
         </div></div>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+      <div data-reveal="feature" style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
         <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(32,30,29,.06),0 24px 64px rgba(46,43,37,.2)">
           <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/d8351cc7f66e267dafe1d668b8e272544abbb14329d4225f50737abf7355197d.webp" alt="清单列表" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
           <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/26d00da8948917454bbc81f339b49c12fad93415eeeb0b94aea0a1fe3536b5ab.webp" alt="List view" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
@@ -492,7 +500,7 @@ section[id]{scroll-margin-top:90px}
         </div>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+      <div data-reveal="feature" style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
         <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
           <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#B83B35">{{ f6.name }}</span>
           <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f6.title }}</h3>
@@ -505,7 +513,7 @@ section[id]{scroll-margin-top:90px}
         </div></div>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+      <div data-reveal="feature" style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
         <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(32,30,29,.06),0 24px 64px rgba(46,43,37,.2)">
           <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/1f448c8f57c05ef68c649c2fef01ae4009e0f64c4a0621d14e625d912627880e.webp" alt="私密空间已锁定，用 Touch ID 解锁" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
           <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/d14a14002e86c47c005346c12fb2f3197ec3093fd8f3a3c2402ec03805e08665.webp" alt="Private Space locked, unlock with Touch ID" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
@@ -530,38 +538,38 @@ section[id]{scroll-margin-top:90px}
   <section id="play" data-screen-label="播放" style="background:#1E1C1B;color:#F9F4ED;padding:clamp(80px,9cqi,140px) 0 0;overflow:hidden">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
       <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#EE8A76">{{ play.name }}</span>
-      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(32px,3.8cqi,54px);line-height:1.1">{{ play.title }}</h2>
+      <h2 data-reveal="intro" style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(32px,3.8cqi,54px);line-height:1.1">{{ play.title }}</h2>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#C0B6A5;max-width:60ch;text-wrap:pretty">{{ play.copy }}</p>
-      <figure style="margin:clamp(20px,3cqi,40px) 0 0;width:min(1040px,100%);border-radius:14px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 30px 80px rgba(0,0,0,.5)"><img src="/assets/a1043d0add5d9e0b6e741be764b6d636e789af7219d6001e44c2d546002a7b3b.webp" alt="{{ play.playerAlt }}" style="display:block;width:100%;height:auto" width="1697" height="927" loading="lazy" decoding="async"></figure>
+      <figure data-reveal="screen" style="margin:clamp(20px,3cqi,40px) 0 0;width:min(1040px,100%);border-radius:14px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 30px 80px rgba(0,0,0,.5)"><img src="/assets/a1043d0add5d9e0b6e741be764b6d636e789af7219d6001e44c2d546002a7b3b.webp" alt="{{ play.playerAlt }}" style="display:block;width:100%;height:auto" width="1697" height="927" loading="lazy" decoding="async"></figure>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:6px"><sc-for list="{{ play.pts }}" as="c" hint-placeholder-count="6"><span style="display:flex;gap:9px;align-items:center;font-size:14.5px;color:#EDE6DC"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</span></sc-for></div>
-      <div style="width:min(680px,100%);height:clamp(260px,40cqi,560px);overflow:hidden;margin-top:clamp(32px,4cqi,56px)"><img src="{{ diagnosticSrc }}" alt="{{ diagnosticAlt }}" style="display:block;width:100%;height:auto"></div>
+      <div data-reveal="diagnostic" style="width:min(680px,100%);height:clamp(260px,40cqi,560px);overflow:hidden;margin-top:clamp(32px,4cqi,56px)"><img src="{{ diagnosticSrc }}" alt="{{ diagnosticAlt }}" style="display:block;width:100%;height:auto"></div>
     </div>
   </section>
 
   <section id="formats" data-screen-label="格式" style="padding:clamp(72px,9cqi,140px) 0 0">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqi,80px);align-items:start">
-      <div style="display:flex;flex-direction:column;gap:14px"><h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.specTitle }}</h2><p style="margin:0;font-size:16px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ s.specSub }}</p></div>
+      <div style="display:flex;flex-direction:column;gap:14px"><h2 data-reveal="intro" style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.specTitle }}</h2><p style="margin:0;font-size:16px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ s.specSub }}</p></div>
       <div style="display:flex;flex-direction:column"><sc-for list="{{ SPECS }}" as="r" hint-placeholder-count="10"><div style="display:grid;grid-template-columns:96px 1fr;gap:18px;padding:14px 0;border-top:1px solid rgba(32,30,29,.1)"><span style="font:600 12px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.5px;color:#8C7F6E">{{ r.k }}</span><span style="font-size:14.5px;line-height:1.6;color:#201E1D">{{ r.v }}</span></div></sc-for></div>
     </div>
   </section>
 
   <section id="log" data-screen-label="更新" style="padding:clamp(72px,9cqi,140px) 0 0">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqi,80px);align-items:start">
-      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.logTitle }}</h2>
+      <h2 data-reveal="intro" style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.logTitle }}</h2>
       <div style="display:flex;flex-direction:column;gap:28px"><sc-for list="{{ LOG }}" as="l" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:112px 1fr;gap:20px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700;color:#201E1D">{{ l.v }}</span><span style="font:500 12px/1.4 ui-monospace,Menlo,monospace;color:#8C7F6E">{{ l.date }}</span></div><div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ l.items }}" as="it" hint-placeholder-count="3"><span style="font-size:14.5px;line-height:1.6;color:#3A3531;text-wrap:pretty">{{ it }}</span></sc-for></div></div></sc-for></div>
     </div>
   </section>
 
   <section id="faq" data-screen-label="常见问题" style="padding:clamp(72px,9cqi,140px) 0 clamp(80px,10cqi,150px)">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqi,80px);align-items:start">
-      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.faqTitle }}</h2>
-      <div style="display:flex;flex-direction:column;gap:6px"><sc-for list="{{ FAQ }}" as="q" hint-placeholder-count="7"><div sc-camel-on-click="{{ q.toggle }}" style="background:#FFFDFC;border-radius:18px;padding:16px 20px;cursor:pointer;display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:12px"><span style="flex:1;font-size:15.5px;font-weight:700;line-height:1.45;color:#201E1D">{{ q.q }}</span><span style="{{ q.signS }}">+</span></div><sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14.5px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ q.a }}</p></sc-if></div></sc-for></div>
+      <h2 data-reveal="intro" style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.faqTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:6px"><sc-for list="{{ FAQ }}" as="q" hint-placeholder-count="7"><div style="background:#FFFDFC;border-radius:18px;padding:16px 20px"><button type="button" class="faq-toggle" sc-camel-on-click="{{ q.toggle }}" aria-expanded="{{ q.open }}" aria-controls="{{ q.answerId }}" style="display:flex;align-items:center;gap:12px"><span style="flex:1;font-size:15.5px;font-weight:700;line-height:1.45;color:#201E1D">{{ q.q }}</span><span class="faq-sign" aria-hidden="true" style="{{ q.signS }}">+</span></button><div class="faq-answer" id="{{ q.answerId }}" aria-hidden="{{ q.closed }}" style="{{ q.answerStyle }}"><div style="min-height:0;overflow:hidden"><p style="margin:10px 0 0;font-size:14.5px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ q.a }}</p></div></div></div></sc-for></div>
     </div>
   </section>
 
   <section data-screen-label="结尾" style="background:radial-gradient(60% 80% at 50% 120%,rgba(217,82,63,.2),transparent 60%),#1E1C1B;color:#F9F4ED;padding:clamp(80px,10cqi,150px) 0">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px">
-      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.6cqi,50px);line-height:1.1;max-width:22ch;text-wrap:balance">{{ s.finalTitle }}</h2>
+      <h2 data-reveal="intro" style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.6cqi,50px);line-height:1.1;max-width:22ch;text-wrap:balance">{{ s.finalTitle }}</h2>
       <a href="https://apps.apple.com/app/id6763750134?mt=12" style="display:block;line-height:0">
         <sc-if value="{{ zh }}"><img src="/assets/41b614615f7ea665d538fe03513c4573765c04dd3b2611373e7280b2139cfb91.svg" alt="从 Mac App Store 下载" style="display:block;height:54px;width:auto"></sc-if>
         <sc-if value="{{ en }}"><img src="/assets/15111cd04380b58d95307dcb07f0b6b06304dbc7504c57fd9cdbf0a2f78e3a92.svg" alt="Download on the Mac App Store" style="display:block;height:54px;width:auto"></sc-if>
@@ -681,8 +689,8 @@ class Component extends DCLogic {
       ['What do I need for AI Agents?', 'The tools you already use: Claude Code, Codex, Cursor or any MCP client. Turn on AI & automation connections in Settings and run the command it gives you once in Terminal.'],
       ['Which files are supported?', '30+ containers — MKV, MP4, MOV, AVI, RMVB, WMV, FLV, TS and more; video from H.264, HEVC, AV1 and VP9 to legacy RV40 and VC-1; Blu-ray BDMV, ISO and DVD folders play directly.'],
     ];
-    const FAQ = FAQ0.map(([q, a], i) => { const open = this.state.open === i; return { q, a, open, toggle: () => this.setState((st) => ({ open: st.open === i ? -1 : i })), signS: `flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:${open ? '#201E1D' : 'rgba(32,30,29,.07)'};color:${open ? '#F9F4ED' : '#201E1D'};font-size:17px;font-weight:600;line-height:1;transform:rotate(${open ? 45 : 0}deg);transition:transform .2s` }; });
-    const NAV = (zh ? [['影视', '#film'], ['功能', '#features'], ['播放', '#play'], ['格式', '#formats'], ['更新', '#log'], ['常见问题', '#faq']] : [['Film & TV', '#film'], ['Features', '#features'], ['Playback', '#play'], ['Formats', '#formats'], ['Updates', '#log'], ['FAQ', '#faq']]).map(([l, href]) => ({ l, href }));
+    const FAQ = FAQ0.map(([q, a], i) => { const open = this.state.open === i; return { q, a, open, closed:!open, answerId:'faq-answer-'+i, answerStyle:`grid-template-rows:${open ? '1fr' : '0fr'};opacity:${open ? 1 : 0}`, toggle: () => this.setState((st) => ({ open: st.open === i ? -1 : i })), signS: `flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:${open ? '#201E1D' : 'rgba(32,30,29,.07)'};color:${open ? '#F9F4ED' : '#201E1D'};font-size:17px;font-weight:600;line-height:1;transform:rotate(${open ? 45 : 0}deg);transition:transform .2s` }; });
+    const NAV = (zh ? [['影视', '#film'], ['功能', '#features'], ['播放', '#play'], ['格式', '#formats'], ['更新', '#log'], ['常见问题', '#faq']] : [['Film & TV', '#film'], ['Features', '#features'], ['Playback', '#play'], ['Formats', '#formats'], ['Updates', '#log'], ['FAQ', '#faq']]).map(([l, href]) => ({ l, href, id: href.slice(1) }));
     const seg = (on) => `display:inline-flex;align-items:center;height:26px;padding:0 11px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;${on ? 'background:#F9F4ED;color:#201E1D' : 'color:#C0B6A5'}`;
     return { lang, supportHref:'support.html?lang='+lang+'#support', privacyHref:'support.html?lang='+lang+'#privacy', creditsHref:'credits.html?lang='+lang,
       diagnosticSrc:zh?'/assets/f49652ec8b75a74a88b141cc759567165cc0337a9867a37267979eb6ecb21156.webp':'/assets/ac0ae6480d41c82bc14a37ec35962df372eb79f8c8b6a4f0d8171b52b7bc0362.webp', diagnosticAlt:zh?'播放诊断':'Playback Diagnostics', zh, en: !zh, s, NAV, MORE, SPECS, LOG, FAQ,
