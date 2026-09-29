@@ -20,7 +20,7 @@ function eventTarget(extra = {}) {
   });
 }
 
-function harness({ reducedMotion = false, count = 1, compact = false, types = [], observerAvailable = true } = {}) {
+function harness({ reducedMotion = false, count = 1, compact = false, types = [], observerAvailable = true, initiallyHidden = false, failure } = {}) {
   const observers = [];
   const calls = [];
   const activeAnimations = new Set();
@@ -29,14 +29,29 @@ function harness({ reducedMotion = false, count = 1, compact = false, types = []
     hidden: false,
     style: { opacity: '1', transform: 'none' },
     animate(keyframes, options) {
+      if (failure === 'animate') throw new Error('animation unavailable');
       const animation = {
         cancelCalls: 0,
+        playCalls: 0,
+        currentTime: null,
+        playState: 'running',
+        pause() {
+          if (failure === 'pause') throw new Error('animation could not pause');
+          this.playState = 'paused';
+        },
+        play() {
+          if (failure === 'play') throw new Error('animation could not play');
+          this.playCalls++;
+          this.playState = 'running';
+        },
         cancel() {
           this.cancelCalls++;
+          this.playState = 'idle';
           activeAnimations.delete(this);
           this.oncancel?.();
         },
         finish() {
+          this.playState = 'finished';
           activeAnimations.delete(this);
           this.onfinish?.();
         },
@@ -52,14 +67,17 @@ function harness({ reducedMotion = false, count = 1, compact = false, types = []
       this.targets = new Set();
       observers.push(this);
     }
-    observe(element) { this.targets.add(element); }
+    observe(element) {
+      if (failure === 'observe') throw new Error('observation unavailable');
+      this.targets.add(element);
+    }
     unobserve(element) { this.targets.delete(element); }
     disconnect() { this.targets.clear(); }
     enter(element) { this.callback([{ target: element, isIntersecting: true }]); }
   }
   const reduced = eventTarget({ matches: reducedMotion });
   const document = eventTarget({
-    hidden: false,
+    hidden: initiallyHidden,
     querySelector: () => null,
     querySelectorAll: selector => selector === '[data-reveal]' ? elements : [],
     getElementById: () => null,
@@ -122,6 +140,56 @@ test('mobile reduces travel while each entrance returns to the original layout',
   }
 });
 
+test('before any intersection callback, every entrance holds its starting frame and plays without being recreated', () => {
+  const page = harness({ count: 3, types: ['feature', 'screen', 'diagnostic'] });
+  page.elements[1].dataset.revealDelay = '180';
+  page.mount();
+  page.mount();
+  assert.equal(page.calls.length, 3);
+  for (const call of page.calls) {
+    assert.equal(call.animation.playState, 'paused');
+    assert.equal(call.animation.currentTime, 0);
+    assert.equal(call.keyframes[0].opacity, 0);
+    assert.equal(call.options.fill, 'backwards', 'the first frame also covers any entrance delay');
+    assert.equal(call.animation.playCalls, 0);
+  }
+  page.enter(page.elements[1]);
+  assert.equal(page.calls.length, 3, 'scrolling must not recreate and reset the animation');
+  assert.equal(page.calls[1].animation.playState, 'running');
+  assert.equal(page.calls[1].animation.playCalls, 1);
+  assert.equal(page.calls[0].animation.playState, 'paused');
+  assert.equal(page.calls[2].animation.playState, 'paused');
+});
+
+for (const failure of ['animate', 'pause', 'observe', 'play']) {
+  test(`a failure during ${failure} leaves all content visible`, () => {
+    const page = harness({ count: 2, failure });
+    page.mount();
+    if (failure === 'play') page.elements.forEach(page.enter);
+    page.mount();
+    assert.equal(page.activeAnimations.size, 0);
+    page.assertUnderlyingContentVisible();
+  });
+}
+
+test('a page first mounted in the background stays static when it becomes visible', () => {
+  const page = harness({ initiallyHidden: true });
+  page.mount();
+  page.document.hidden = false;
+  page.document.dispatch('visibilitychange');
+  page.mount();
+  assert.equal(page.calls.length, 0);
+  page.assertUnderlyingContentVisible();
+});
+
+test('without Web Animations the complete page stays visible', () => {
+  const page = harness();
+  delete page.elements[0].animate;
+  page.mount();
+  assert.equal(page.calls.length, 0);
+  page.assertUnderlyingContentVisible();
+});
+
 test('without IntersectionObserver the complete page stays visible', () => {
   const page = harness({ count: 3, observerAvailable: false });
   page.mount();
@@ -150,6 +218,7 @@ test('repeated mounts and queued intersection notifications reveal an element on
   page.mount();
   observer.enter(element);
   assert.equal(page.calls.length, 1);
+  assert.equal(page.calls[0].animation.playCalls, 1);
   assert.equal(page.activeAnimations.size, 0);
   assert.ok(!['forwards', 'both'].includes(page.calls[0].options.fill),
     'finished animations must not retain an overriding visual state');
@@ -157,10 +226,10 @@ test('repeated mounts and queued intersection notifications reveal an element on
 });
 
 for (const reason of ['hidden tab', 'reduced motion enabled']) {
-  test(`${reason} cancels all running entrance animations and exposes the underlying content`, () => {
+  test(`${reason} releases both pending and running entrances without replaying either`, () => {
     const page = harness({ count: 2 });
     page.mount();
-    page.elements.forEach(page.enter);
+    const observer = page.enter(page.elements[0]);
     assert.equal(page.activeAnimations.size, 2);
 
     const interrupt = () => {
@@ -176,6 +245,8 @@ for (const reason of ['hidden tab', 'reduced motion enabled']) {
     interrupt();
     assert.equal(page.activeAnimations.size, 0);
     assert.ok(page.calls.every(call => call.animation.cancelCalls === 1));
+    observer.enter(page.elements[1]); // A queued callback cannot restart a canceled entrance.
+    assert.equal(page.calls[1].animation.playCalls, 0);
     page.assertUnderlyingContentVisible();
 
     // Returning to the tab or re-enabling motion must not replay old entrances.
