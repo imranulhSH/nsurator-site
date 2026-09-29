@@ -16,9 +16,12 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parent.parent
-PAGES = ("index.html", "support.html")
+BUNDLED_PAGES = ("index.html", "support.html")
+PAGES = (*BUNDLED_PAGES, "credits.html")
 UUID = re.compile(r"\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b")
-ASSET_URL = re.compile(r"/assets/([A-Za-z0-9._-]+)")
+# Source/attribution links may contain their own /assets/ paths. Only collect
+# root-relative local URLs, including those inside CSS and DC expressions.
+ASSET_URL = re.compile(r"(?<![A-Za-z0-9_./:-])/assets/([A-Za-z0-9._-]+)")
 EXTENSIONS = {
     "application/javascript": ".js",
     "text/javascript": ".js",
@@ -93,7 +96,7 @@ class PageParser(HTMLParser):
 
 def extract_bundles():
     """One-time import. Refuse to overwrite editable sources."""
-    targets = [ROOT / "src" / name for name in PAGES] + [MANIFEST]
+    targets = [ROOT / "src" / name for name in BUNDLED_PAGES] + [MANIFEST]
     existing = [str(path.relative_to(ROOT)) for path in targets if path.exists()]
     if existing:
         raise ValueError("Extraction would overwrite editable sources: " + ", ".join(existing))
@@ -101,7 +104,7 @@ def extract_bundles():
     sources = {}
     assets = {}
     metadata = {"schema_version": 1, "asset_url_prefix": "/assets/", "pages": {}, "assets": {}}
-    for name in PAGES:
+    for name in BUNDLED_PAGES:
         raw = (ROOT / name).read_bytes()
         parser = BundleParser()
         parser.feed(raw.decode("utf-8"))

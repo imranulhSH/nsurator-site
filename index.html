@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="zh-CN"><head>
 <meta charset="utf-8">
+<title>Nsurator — 你的影片和剧集，终于有了个家。</title>
+<meta name="description" content="Nsurator：macOS 上的本地影片与剧集资料馆。自动识别影视、整理下载、连接 AI 工具，并用自研播放器畅看本地影片。">
+<link rel="icon" type="image/png" href="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Local resource map: keep before the DC runtime. -->
 <script data-local-resources>
@@ -12,12 +15,11 @@ window.__resources = {
 <!-- End local resource map. -->
 <script src="/assets/5156961345246b83dcc5754023c69a6eca504a7db967191ce579ceb118c29801.js"></script>
 <script src="/assets/8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe.js"></script>
+
 </head>
 <body>
 <x-dc>
-<helmet data-dc-atomics="">
-<meta name="description" content="Nsurator：macOS 上的本地影片资料馆。自动归档下载、让 AI 工具读懂片库、什么格式都放得开。文件不上传，一切留在你的 Mac。">
-<link rel="icon" type="image/png" href="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png">
+<helmet>
 <style>/* Organic — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
 /* latin-ext */
 @font-face {
@@ -349,149 +351,246 @@ textarea.input { min-height: 90px; resize: vertical; }
 
 </style>
 <script src="/assets/df4cc8303200853711b209fd67543dfcf2540c250d8a7cee0f76730d271401eb.js"></script>
-
 <style>
 html{scroll-behavior:smooth}
-body{margin:0;background:#F9F4ED;color:#201e1d;font-family:var(--font-body),'PingFang SC','Hiragino Sans GB',sans-serif}
-a{color:inherit;text-decoration:none}a:hover{color:inherit;opacity:.8}
-.mn{font-family:ui-monospace,"SF Mono",Menlo,monospace}
-.cap{font-family:var(--font-heading),sans-serif;font-weight:400}
-.hd{font-family:var(--font-heading),'PingFang SC','Hiragino Sans GB',sans-serif;font-weight:400;letter-spacing:-.01em}
-[data-lang="zh"] .hd{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;font-weight:800;letter-spacing:-.02em}
-[data-lang="zh"] h1.hd{line-height:1.12!important}
-.pg input::placeholder{color:#a19786}
+body{margin:0;background:#1E1C1B;font-family:var(--font-body),'PingFang SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#D9523F;text-decoration:none}
+a:hover{color:#B83B35}
+section[id]{scroll-margin-top:90px}
+.language-switch button{border:0;font-family:inherit;background:none}
+:focus-visible{outline:2px solid #EE8A76;outline-offset:4px}
+.site-nav-links a{white-space:nowrap}
+@media(max-width:760px){
+ .site-nav-inner{gap:12px!important;padding-top:12px!important;padding-bottom:10px!important}
+ .site-nav-links{order:5;width:100%;gap:18px!important;flex-wrap:nowrap!important;overflow-x:auto;padding:4px 0}
+ .site-nav-spacer{display:none}
+ .language-switch{margin-left:auto}
+ section[id]{scroll-margin-top:122px}
+}
+@media(max-width:400px){.site-nav-inner>a:first-child span{font-size:15px!important}.site-nav-inner{gap:8px!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
 
-/* Reveals never hide the default content. Only entering elements animate. */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:50;color:#F9F4ED;background:transparent}
-.site-header[data-scrolled="true"]{background:#24211f;box-shadow:0 1px 0 rgba(249,244,237,.1)}
-.site-subnav{position:absolute;top:64px;left:0;right:0;height:40px;background:#24211f;border-top:1px solid rgba(249,244,237,.1);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transition:opacity .18s ease-out,transform .18s ease-out,visibility .18s}
-.site-header[data-scrolled="true"] .site-subnav{opacity:1;visibility:visible;pointer-events:auto;transform:none}
-[data-section-link][aria-current="location"]{color:#F9F4ED!important}
-.feature-stack{padding:calc(14cqi + clamp(64px,7cqi,112px)) clamp(20px,4vw,64px) 0;scroll-margin-top:104px}
-.feature-card{max-width:1320px;margin:0 auto 32px;padding:clamp(32px,4.5vw,72px);border-radius:28px;display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);align-items:center;gap:clamp(32px,5vw,72px);contain:layout;overflow:hidden}
-.feature-copy{display:flex;flex-direction:column;align-items:flex-start;gap:20px;min-width:0}
-.feature-name{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700}
-.feature-title{font-size:clamp(30px,3.2vw,46px);line-height:1.12!important;text-wrap:balance;margin:0}
-.feature-description{font-size:17px;line-height:1.7;max-width:46ch;opacity:.82;margin:0}
-.feature-points{display:flex;flex-direction:column;gap:10px;margin:4px 0 0;padding:0;list-style:none;font-size:15px}
-.feature-points li{display:flex;align-items:center;gap:10px}
-.feature-visual{display:flex;align-items:center;justify-content:center;min-width:0;margin:0}
-.feature-visual img{display:block;width:100%;height:auto;max-height:510px;object-fit:contain;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.12)}
-.feature-card[data-alternate="true"] .feature-copy{order:2}
-.feature-card[data-alternate="true"] .feature-visual{order:1}
-/* Crop the SVG's 1440×1393 canvas to its main pane: x=250, y=60, 1166×1320. */
-.feature-card[data-feature="ai"]{grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr)}
-.feature-card[data-feature="ai"] .feature-visual{display:block;position:relative;aspect-ratio:1166/1320;overflow:hidden;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.12);background:#f7f5f2}
-.feature-card[data-feature="ai"] .feature-visual img{position:absolute;width:123.499%;max-width:none;max-height:none;left:-21.441%;top:-4.545%;border-radius:0;box-shadow:none}
-.playback-player-showcase{width:100%;margin:clamp(24px,3cqi,40px) 0 clamp(24px,3cqi,40px)}
-.playback-player-showcase img{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.3)}
-/* The artwork already contains its rounded outline; a second CSS frame doubles it. */
-.playback-diagnostic-showcase{width:min(680px,100%);height:clamp(260px,40cqi,560px);overflow:hidden;margin-top:clamp(32px,4cqi,56px);filter:drop-shadow(0 -24px 48px rgba(0,0,0,.4));transition-delay:200ms}
-.playback-diagnostic-showcase img{display:block;width:100%;height:auto}
-@media(max-width:820px){.feature-card{grid-template-columns:minmax(0,1fr);gap:32px;padding:32px 24px}.feature-card[data-alternate="true"] .feature-copy,.feature-card[data-alternate="true"] .feature-visual{order:initial}.feature-stack{padding-inline:16px}.feature-title{font-size:clamp(30px,5vw,42px)}.feature-visual img{max-height:480px}.feature-card[data-feature="ai"]{grid-template-columns:minmax(0,1fr)}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}}
-@container page (max-width:640px){.m-hide{display:none!important}.m-show{display:flex!important}.m-col{flex-direction:column!important;align-items:stretch!important}.m-1{grid-template-columns:1fr!important}.m-1>*{grid-column:auto!important;order:0!important}.m-wrap{flex-wrap:wrap!important}}
-</style></helmet>
-<div class="pg" data-lang="{{ lang }}" style="container-type:inline-size;container-name:page;min-height:100vh;background:#F9F4ED;color:#201e1d;font-size:15px;line-height:1.55">
+</style>
+</helmet>
 
-  <header class="site-header" data-site-header="">
-    <div style="display:flex;align-items:center;gap:20px;height:64px;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
-      <a href="#top" style="display:flex;align-items:center;gap:10px;flex:none"><span style="width:26px;height:26px;border-radius:7px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat;box-shadow:0 2px 6px rgba(0,0,0,.35)"></span><span class="cap" style="font-size:19px;line-height:1">Nsurator</span></a>
-      <div class="m-hide" style="flex:1;display:flex;justify-content:center;gap:26px;font-size:14px;font-weight:600;color:#C0B6A5"><a href="#top" style="color:#F9F4ED">{{ s.navProduct }}</a><a href="support.html?lang={{ lang }}#support">{{ s.navSupport }}</a></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
-        <div style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><span sc-camel-on-click="{{ setZh }}" style="{{ zhStyle }}">中</span><span sc-camel-on-click="{{ setEn }}" style="{{ enStyle }}">EN</span></div>
-        <a class="m-hide" href="https://apps.apple.com/app/id6763750134?mt=12" style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;background:#F9F4ED;color:#201e1d;font-size:13px;font-weight:700;transition:transform .2s" style-active="transform:scale(.97)">{{ s.navCta }}</a>
-        <span class="m-show" style="display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;background:rgba(249,244,237,.1)"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 12h16"></path><path d="M4 6h16"></path><path d="M4 18h16"></path></svg></span>
-      </div>
+<div style="container-type:inline-size;background:var(--color-bg);color:#201E1D">
+
+  <div data-site-header class="site-header" style="position:sticky;top:0;z-index:20;background:rgba(30,28,27,.84);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid rgba(249,244,237,.08)">
+    <div class="site-nav-inner" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);min-height:64px;display:flex;align-items:center;gap:26px;flex-wrap:wrap">
+      <a href="#top" style="display:flex;align-items:center;gap:10px;color:#F9F4ED"><img src="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png" alt="" style="width:28px;height:28px;display:block" width="1024" height="1024"><span style="font-size:17px;font-weight:700;letter-spacing:-.2px;color:#F9F4ED">Nsurator</span></a>
+      <nav class="site-nav-links" style="display:flex;gap:20px;flex-wrap:wrap">
+        <sc-for list="{{ NAV }}" as="n" hint-placeholder-count="6"><a href="{{ n.href }}" style="font-size:13.5px;font-weight:600;color:#C0B6A5" style-hover="color:#F9F4ED">{{ n.l }}</a></sc-for>
+      </nav>
+      <span class="site-nav-spacer" style="flex:1"></span>
+      <div class="language-switch" style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><button type="button" lang="zh-CN" aria-label="中文" aria-pressed="{{ zh }}" sc-camel-on-click="{{ setZh }}" style="{{ zhS }}">中</button><button type="button" lang="en" aria-label="English" aria-pressed="{{ en }}" sc-camel-on-click="{{ setEn }}" style="{{ enS }}">EN</button></div>
+      <a href="https://apps.apple.com/app/id6763750134?mt=12" style="display:block;line-height:0">
+        <sc-if value="{{ zh }}"><img src="/assets/41b614615f7ea665d538fe03513c4573765c04dd3b2611373e7280b2139cfb91.svg" alt="从 Mac App Store 下载" style="display:block;height:36px;width:auto"></sc-if>
+        <sc-if value="{{ en }}"><img src="/assets/15111cd04380b58d95307dcb07f0b6b06304dbc7504c57fd9cdbf0a2f78e3a92.svg" alt="Download on the Mac App Store" style="display:block;height:36px;width:auto"></sc-if>
+      </a>
     </div>
-    <div class="site-subnav m-hide">
-      <div style="display:flex;justify-content:center;align-items:center;gap:24px;height:40px;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);font-size:13px;font-weight:600">
-        <sc-for list="{{ subNav }}" as="n" hint-placeholder-count="5"><a href="{{ n.href }}" data-section-link="{{ n.id }}" style="color:#C0B6A5">{{ n.t }}</a></sc-for>
-      </div>
-    </div>
-  </header>
+  </div>
 
-  <section id="top" style="background:radial-gradient(70% 60% at 50% -10%,rgba(217,82,63,.22),transparent 60%),#1E1C1B;color:#F9F4ED;position:relative;display:flow-root;padding-top:64px">
-    <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,6cqi,88px) clamp(20px,5cqi,72px) 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
-      <h1 class="hd" style="margin:0;font-size:clamp(40px,5.8cqi,84px);line-height:1.04;max-width:16ch"><span style="display:block">{{ s.h1a }}</span><span style="display:block">{{ s.h1b }}</span></h1>
-      <p style="margin:0;max-width:58ch;font-size:clamp(16px,1.35cqi,20px);line-height:1.6;color:#C0B6A5;text-wrap:pretty;transition-delay:90ms">{{ s.sub }}</p>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:8px;transition-delay:180ms">
-        <a href="https://apps.apple.com/app/id6763750134?mt=12" style="display:inline-flex;align-items:center;height:48px;padding:0 26px;border-radius:999px;background:#F9F4ED;color:#201e1d;font-size:15px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-1px);box-shadow:0 16px 36px rgba(0,0,0,.4)" style-active="transform:scale(.97)">{{ s.cta }}</a>
+  <section id="top" data-screen-label="首屏" style="background:radial-gradient(70% 60% at 50% -10%,rgba(217,82,63,.22),transparent 60%),#1E1C1B;color:#F9F4ED;padding:clamp(56px,7cqi,104px) 0 0;overflow:hidden">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px">
+      <h1 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(40px,5.8cqi,84px);line-height:1.06"><span style="display:block">{{ s.h1a }}</span><span style="display:block">{{ s.h1b }}</span></h1>
+      <p style="margin:0;max-width:60ch;font-size:clamp(16px,1.35cqi,20px);line-height:1.62;color:#C0B6A5;text-wrap:pretty">{{ s.sub }}</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:6px">
+        <a href="https://apps.apple.com/app/id6763750134?mt=12" style="display:block;line-height:0">
+          <sc-if value="{{ zh }}"><img src="/assets/41b614615f7ea665d538fe03513c4573765c04dd3b2611373e7280b2139cfb91.svg" alt="从 Mac App Store 下载" style="display:block;height:54px;width:auto"></sc-if>
+          <sc-if value="{{ en }}"><img src="/assets/15111cd04380b58d95307dcb07f0b6b06304dbc7504c57fd9cdbf0a2f78e3a92.svg" alt="Download on the Mac App Store" style="display:block;height:54px;width:auto"></sc-if>
+        </a>
         <span style="font-size:13px;color:#A19786">{{ s.note }}</span>
       </div>
     </div>
-    <div style="position:relative;z-index:1;max-width:1200px;margin:clamp(40px,5cqi,72px) auto -14cqi;padding:0 clamp(20px,5cqi,72px);transition-delay:260ms"><div class="hero-win"><img src="{{ heroImage.src }}" alt="{{ heroImage.alt }}" style="width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 0 0 1px rgba(249,244,237,.12),0 24px 52px rgba(0,0,0,.3)" width="{{ heroImage.width }}" height="{{ heroImage.height }}" decoding="async" fetchpriority="high"></div></div>
+    <div style="max-width:1280px;margin:clamp(40px,5cqi,72px) auto 0;padding:0 clamp(20px,4cqi,56px)">
+      <div style="aspect-ratio:1440 / 780;border-radius:16px 16px 0 0;overflow:hidden;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 40px 120px rgba(0,0,0,.55)">
+        <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/7ae74c16abe1828e8e4d30b6d90d28abcb0782b6cb77f2cdb3ca7e1f5a065e36.webp" alt="Nsurator 电影海报墙" style="display:block;width:100%;height:auto" width="2400" height="1500"></sc-if>
+        <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/37b5dff036bac87f3fcb6444cfe1e170dfdd5fc8a2bdd25e55c75dcc6483112f.webp" alt="Nsurator movie poster wall" style="display:block;width:100%;height:auto" width="2400" height="1500"></sc-if>
+      </div>
+    </div>
   </section>
 
-  <section id="features" class="feature-stack">
-    <sc-for list="{{ steps }}" as="f" hint-placeholder-count="4">
-      <article class="feature-card" style="{{ f.surface }}" data-alternate="{{ f.alternate }}" data-feature="{{ f.key }}" data-reveal="feature">
-        <div class="feature-copy">
-          <div class="feature-name"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#D9523F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><sc-for list="{{ f.icon }}" as="p" hint-placeholder-count="1"><path d="{{ p }}"></path></sc-for></svg><span>{{ f.name }}</span></div>
-          <h2 class="hd feature-title">{{ f.title }}</h2>
-          <p class="feature-description">{{ f.copy }}</p>
-          <ul class="feature-points"><sc-for list="{{ f.pts }}" as="c" hint-placeholder-count="3"><li><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#D9523F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span>{{ c }}</span></li></sc-for></ul>
+  <section id="film" data-screen-label="影视" style="background:#171514;color:#F9F4ED;padding:clamp(80px,9cqi,140px) 0">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+        <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.8px;color:#EE8A76">{{ s.filmEyebrow }}</span>
+        <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(32px,3.8cqi,54px);line-height:1.1;text-wrap:balance">{{ s.filmTitle }}</h2>
+        <p style="margin:0;font-size:17px;line-height:1.7;color:#C0B6A5;text-wrap:pretty">{{ s.filmLead }}</p>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(56px,6cqi,96px)">
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#EE8A76">{{ f1.name }}</span>
+          <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f1.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#C0B6A5;text-wrap:pretty">{{ f1.copy }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px"><sc-for list="{{ f1.pts }}" as="c" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:#EDE6DC"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</div></sc-for></div>
         </div>
-        <figure class="feature-visual">
-          <img src="{{ f.image.src }}" width="{{ f.image.width }}" height="{{ f.image.height }}" alt="{{ f.name }}" loading="lazy" decoding="async">
-        </figure>
-      </article>
-    </sc-for>
+        <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 30px 80px rgba(0,0,0,.5)">
+          <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/eea8f9a9ca84654ad9545a2863c6402acf80f5bcd4b6da8e30896ea1d2f1084d.webp" alt="选中一部电影，详情栏里是认出来的资料" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+          <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/cd20eee6fa3498542d570813d7abd03a4f1e50c76a3bdd69a873bc835aa04802.webp" alt="A movie selected, with its recognized details" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+        </div></div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+        <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 30px 80px rgba(0,0,0,.5)">
+          <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/8473ffe8dd4cb11aac6ec7fc1f739b69b03f8b427d95220299462b0585c700b7.webp" alt="电影页" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+          <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/fc69fddd406cae083e979e3f5e05c479fb9666edbd44c7b4bce4a878ff980a0c.webp" alt="Movie page" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+        </div></div>
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#EE8A76">{{ f2.name }}</span>
+          <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f2.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#C0B6A5;text-wrap:pretty">{{ f2.copy }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px"><sc-for list="{{ f2.pts }}" as="c" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:#EDE6DC"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</div></sc-for></div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#EE8A76">{{ f3.name }}</span>
+          <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f3.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#C0B6A5;text-wrap:pretty">{{ f3.copy }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px"><sc-for list="{{ f3.pts }}" as="c" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:#EDE6DC"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</div></sc-for></div>
+        </div>
+        <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 30px 80px rgba(0,0,0,.5)">
+          <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/c399f4edf330fcb598d49183f63bd0aa33fba8572f3e3448157f76df1d7463b0.webp" alt="放映室" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+          <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/b2ae260663164ba83dc3b185a2f5302a70b20b8b970dd8d9805e8ecb6502e956.webp" alt="Screening Room" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+        </div></div>
+      </div>
+    </div>
   </section>
 
-  <div id="play" style="background:#1E1C1B;color:#F9F4ED;margin:clamp(40px,5cqi,80px) 0 0;padding:clamp(64px,8cqi,120px) 0 0;overflow:hidden;scroll-margin-top:104px">
-    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px">
-      <div data-reveal="" style="display:flex;align-items:center;gap:10px"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#F6A06B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><sc-for list="{{ play.icon }}" as="p" hint-placeholder-count="1"><path d="{{ p }}"></path></sc-for></svg><span style="font-size:14px;font-weight:700;color:#F9F4ED">{{ play.name }}</span></div>
-      <h2 class="hd" data-reveal="" style="margin:0;font-size:clamp(32px,3.8cqi,52px);line-height:1.08;max-width:20ch;text-wrap:balance;transition-delay:60ms">{{ play.title }}</h2>
-      <p data-reveal="" style="margin:0;font-size:17px;line-height:1.65;color:#C0B6A5;max-width:56ch;text-wrap:pretty;transition-delay:120ms">{{ play.copy }}</p>
-      <figure class="playback-player-showcase" data-reveal="far"><img src="{{ playerImage.src }}" width="{{ playerImage.width }}" height="{{ playerImage.height }}" alt="{{ playerImage.alt }}" decoding="async" loading="lazy"></figure>
-      <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin-top:4px;transition-delay:180ms"><sc-for list="{{ play.pts }}" as="c" hint-placeholder-count="6"><div style="display:flex;align-items:center;gap:8px;font-size:15px;color:#F9F4ED"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#F6A06B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span>{{ c }}</span></div></sc-for></div>
-      <div data-reveal="far" class="playback-diagnostic-showcase"><img src="{{ diagnosticImage.src }}" width="{{ diagnosticImage.width }}" height="{{ diagnosticImage.height }}" alt="{{ diagnosticImage.alt }}" decoding="async" loading="lazy"></div>
+  <section id="features" data-screen-label="功能" style="padding:clamp(80px,9cqi,140px) 0">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+        <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.8px;color:#B83B35">{{ s.featEyebrow }}</span>
+        <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(32px,3.8cqi,54px);line-height:1.1;text-wrap:balance">{{ s.featTitle }}</h2>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(48px,5cqi,80px)">
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#B83B35">{{ f4.name }}</span>
+          <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f4.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ f4.copy }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px"><sc-for list="{{ f4.pts }}" as="c" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:#3A3531"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</div></sc-for></div>
+        </div>
+        <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(32,30,29,.06),0 24px 64px rgba(46,43,37,.2)">
+          <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/0af63348861b8db9d5a56e45466b753a9c1087ee2e1c14b902411e69e3c502fb.webp" alt="收件箱整季归档" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+          <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/79092157067d11b21e7beb7e684ca65d80e182ab25a9020494febacfe2680637.webp" alt="Inbox season archiving" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+        </div></div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+        <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(32,30,29,.06),0 24px 64px rgba(46,43,37,.2)">
+          <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/d8351cc7f66e267dafe1d668b8e272544abbb14329d4225f50737abf7355197d.webp" alt="清单列表" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+          <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/26d00da8948917454bbc81f339b49c12fad93415eeeb0b94aea0a1fe3536b5ab.webp" alt="List view" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+        </div></div>
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#B83B35">{{ f5.name }}</span>
+          <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f5.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ f5.copy }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px"><sc-for list="{{ f5.pts }}" as="c" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:#3A3531"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</div></sc-for></div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#B83B35">{{ f6.name }}</span>
+          <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f6.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ f6.copy }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px"><sc-for list="{{ f6.pts }}" as="c" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:#3A3531"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</div></sc-for></div>
+        </div>
+        <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;background:#FFFDFC;box-shadow:0 0 0 1px rgba(32,30,29,.06),0 24px 64px rgba(46,43,37,.2)">
+          <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/ada38a6f49138daab8041fadbe1cbdc7ae4f90d54ea409107c144dce654cc090.webp" alt="AI 智能体：工具、权限与最近活动" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+          <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/dad0e07456b3907852880e014228db84b6420fa7eb7796a669965affeeccb47d.webp" alt="AI Agents: tools, permissions and recent activity" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+        </div></div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap-reverse;align-items:center;gap:clamp(28px,4cqi,64px);margin-top:clamp(64px,7cqi,112px)">
+        <div style="flex:1.7 1 520px;min-width:0"><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(32,30,29,.06),0 24px 64px rgba(46,43,37,.2)">
+          <sc-if value="{{ zh }}" hint-placeholder-val="{{ true }}"><img src="/assets/1f448c8f57c05ef68c649c2fef01ae4009e0f64c4a0621d14e625d912627880e.webp" alt="私密空间已锁定，用 Touch ID 解锁" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+          <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}"><img src="/assets/d14a14002e86c47c005346c12fb2f3197ec3093fd8f3a3c2402ec03805e08665.webp" alt="Private Space locked, unlock with Touch ID" style="display:block;width:100%;height:auto" width="2400" height="1500" loading="lazy" decoding="async"></sc-if>
+        </div></div>
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#B83B35">{{ f7.name }}</span>
+          <h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(26px,2.6cqi,38px);line-height:1.15;text-wrap:balance">{{ f7.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ f7.copy }}</p>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px"><sc-for list="{{ f7.pts }}" as="c" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:#3A3531"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</div></sc-for></div>
+        </div>
+      </div>
+
+      <div style="margin-top:clamp(72px,8cqi,128px);display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h3 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(24px,2.4cqi,34px);line-height:1.15">{{ s.moreTitle }}</h3><span style="font-size:15px;color:#5E5954">{{ s.moreSub }}</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
+          <sc-for list="{{ MORE }}" as="m" hint-placeholder-count="6"><div style="background:#FFFDFC;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:6px"><span style="font-size:15.5px;font-weight:700;color:#201E1D">{{ m.t }}</span><span style="font-size:14px;line-height:1.6;color:#5E5954;text-wrap:pretty">{{ m.d }}</span></div></sc-for>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <section style="padding:clamp(72px,9cqi,140px) 0 0"><div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;gap:44px">
-    <div data-reveal="" style="display:flex;flex-direction:column;gap:10px"><h2 class="hd" style="margin:0;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.moreTitle }}</h2><p style="margin:0;font-size:17px;color:#645c50">{{ s.moreSub }}</p></div>
-    <div class="m-1" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 40px">
-      <sc-for list="{{ more }}" as="m" hint-placeholder-count="6"><div data-reveal="" style="{{ m.style }}"><span style="flex:none;width:38px;height:38px;border-radius:11px;background:#EEE7DB;display:grid;place-items:center;color:#201e1d"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><sc-for list="{{ m.icon }}" as="p" hint-placeholder-count="1"><path d="{{ p }}"></path></sc-for></svg></span><div style="display:flex;flex-direction:column;gap:4px;min-width:0"><div style="font-size:16px;font-weight:700;color:#201e1d">{{ m.title }}</div><div style="font-size:14.5px;line-height:1.55;color:#645c50">{{ m.desc }}</div></div></div></sc-for>
+  <section id="play" data-screen-label="播放" style="background:#1E1C1B;color:#F9F4ED;padding:clamp(80px,9cqi,140px) 0 0;overflow:hidden">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
+      <span style="font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:1.6px;color:#EE8A76">{{ play.name }}</span>
+      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(32px,3.8cqi,54px);line-height:1.1">{{ play.title }}</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#C0B6A5;max-width:60ch;text-wrap:pretty">{{ play.copy }}</p>
+      <figure style="margin:clamp(20px,3cqi,40px) 0 0;width:min(1040px,100%);border-radius:14px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(249,244,237,.08),0 30px 80px rgba(0,0,0,.5)"><img src="/assets/a1043d0add5d9e0b6e741be764b6d636e789af7219d6001e44c2d546002a7b3b.webp" alt="{{ play.playerAlt }}" style="display:block;width:100%;height:auto" width="1697" height="927" loading="lazy" decoding="async"></figure>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:6px"><sc-for list="{{ play.pts }}" as="c" hint-placeholder-count="6"><span style="display:flex;gap:9px;align-items:center;font-size:14.5px;color:#EDE6DC"><span style="width:6px;height:6px;border-radius:50%;background:#D9523F;flex:none"></span>{{ c }}</span></sc-for></div>
+      <div style="width:min(680px,100%);height:clamp(260px,40cqi,560px);overflow:hidden;margin-top:clamp(32px,4cqi,56px)"><img src="{{ diagnosticSrc }}" alt="{{ diagnosticAlt }}" style="display:block;width:100%;height:auto"></div>
     </div>
-  </div></section>
+  </section>
 
-  <section id="formats" style="padding:clamp(72px,9cqi,140px) 0 0;scroll-margin-top:104px"><div class="m-1" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 80px;align-items:start">
-    <div data-reveal="" style="display:flex;flex-direction:column;gap:14px"><h2 class="hd" style="margin:0;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.specTitle }}</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#645c50;max-width:38ch;text-wrap:pretty">{{ s.specSub }}</p></div>
-    <div style="display:flex;flex-direction:column"><sc-for list="{{ specs }}" as="r" hint-placeholder-count="10"><div data-reveal="" style="{{ r.style }}"><span class="mn" style="font-size:12px;letter-spacing:.08em;color:#82796a;padding-top:3px">{{ r.k }}</span><span style="font-size:16px;color:#201e1d">{{ r.v }}</span></div></sc-for></div>
-  </div></section>
-
-  <section id="log" style="padding:clamp(72px,9cqi,140px) 0 0;scroll-margin-top:104px"><div class="m-1" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 80px;align-items:start">
-    <div data-reveal="" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start"><h2 class="hd" style="margin:0;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.logTitle }}</h2></div>
-    <div style="display:flex;flex-direction:column;gap:30px"><sc-for list="{{ changelog }}" as="l" hint-placeholder-count="3"><div data-reveal="" style="{{ l.style }}"><div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:16px;font-weight:700;color:#201e1d">{{ l.v }}</span><span class="mn" style="font-size:12px;color:#82796a">{{ l.date }}</span></div><div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ l.items }}" as="it" hint-placeholder-count="3"><div style="font-size:15.5px;line-height:1.55;color:#474238">{{ it }}</div></sc-for></div></div></sc-for></div>
-  </div></section>
-
-  <section id="faq" style="padding:clamp(72px,9cqi,140px) 0 0;scroll-margin-top:104px"><div class="m-1" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 80px;align-items:start">
-    <h2 class="hd" data-reveal="" style="margin:0;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.faqTitle }}</h2>
-    <div data-reveal="" style="display:flex;flex-direction:column;gap:4px;transition-delay:80ms"><sc-for list="{{ faq2 }}" as="q" hint-placeholder-count="5"><div sc-camel-on-click="{{ q.toggle }}" style="{{ q.itemStyle }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:16px"><span style="font-size:17px;font-weight:700;line-height:1.35;color:#201e1d">{{ q.q }}</span><span style="{{ q.chevStyle }}"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div><div style="{{ q.aWrap }}"><div style="overflow:hidden;min-height:0"><p style="{{ q.aStyle }}">{{ q.a }}</p></div></div></div></sc-for></div>
-  </div></section>
-
-  <section style="padding:clamp(80px,10cqi,160px) 0"><div data-reveal="" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
-    <h2 class="hd" style="margin:0;font-size:clamp(30px,3.6cqi,48px);line-height:1.1;max-width:22ch;text-wrap:pretty">{{ s.finalTitle }}</h2>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:12px"><a href="https://apps.apple.com/app/id6763750134?mt=12" style="display:inline-flex;align-items:center;height:48px;padding:0 26px;border-radius:999px;background:#201e1d;color:#F9F4ED;font-size:15px;font-weight:700;box-shadow:0 10px 30px rgba(32,30,29,.2);transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-1px);box-shadow:0 16px 36px rgba(32,30,29,.28)" style-active="transform:scale(.97)">{{ s.cta }}</a><span style="font-size:13px;color:#82796a">{{ s.note }}</span></div>
-  </div></section>
-
-  <footer style="background:#1E1C1B;color:#F9F4ED;padding:clamp(48px,6cqi,80px) 0 36px"><div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;gap:48px">
-    <div class="m-1" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px">
-      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><div style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:6px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat"></span><span class="cap" style="font-size:18px">Nsurator</span></div><p style="margin:0;font-size:14px;line-height:1.55;color:#A19786;max-width:26ch">{{ s.brandLine }}</p></div>
-      <sc-for list="{{ fcols }}" as="col" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:12.5px;font-weight:700;letter-spacing:.06em;color:#A19786">{{ col.h }}</span><sc-for list="{{ col.links }}" as="lk" hint-placeholder-count="3"><a href="{{ lk.href }}" style="font-size:14.5px;color:#F9F4ED">{{ lk.t }}</a></sc-for></div></sc-for>
+  <section id="formats" data-screen-label="格式" style="padding:clamp(72px,9cqi,140px) 0 0">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqi,80px);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:14px"><h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.specTitle }}</h2><p style="margin:0;font-size:16px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ s.specSub }}</p></div>
+      <div style="display:flex;flex-direction:column"><sc-for list="{{ SPECS }}" as="r" hint-placeholder-count="10"><div style="display:grid;grid-template-columns:96px 1fr;gap:18px;padding:14px 0;border-top:1px solid rgba(32,30,29,.1)"><span style="font:600 12px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.5px;color:#8C7F6E">{{ r.k }}</span><span style="font-size:14.5px;line-height:1.6;color:#201E1D">{{ r.v }}</span></div></sc-for></div>
     </div>
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#A19786;padding-top:22px;border-top:1px solid rgba(249,244,237,.1)"><span>{{ s.copy }}</span><span>{{ s.madeFor }}</span></div>
-  </div>
-    <div class="site-registration" style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;padding-top:18px;font-size:12px;line-height:1.6;color:#A19786;text-align:center"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
-</footer>
+  </section>
 
+  <section id="log" data-screen-label="更新" style="padding:clamp(72px,9cqi,140px) 0 0">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqi,80px);align-items:start">
+      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.logTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:28px"><sc-for list="{{ LOG }}" as="l" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:112px 1fr;gap:20px"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700;color:#201E1D">{{ l.v }}</span><span style="font:500 12px/1.4 ui-monospace,Menlo,monospace;color:#8C7F6E">{{ l.date }}</span></div><div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ l.items }}" as="it" hint-placeholder-count="3"><span style="font-size:14.5px;line-height:1.6;color:#3A3531;text-wrap:pretty">{{ it }}</span></sc-for></div></div></sc-for></div>
+    </div>
+  </section>
+
+  <section id="faq" data-screen-label="常见问题" style="padding:clamp(72px,9cqi,140px) 0 clamp(80px,10cqi,150px)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqi,80px);align-items:start">
+      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.4cqi,46px);line-height:1.1">{{ s.faqTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:6px"><sc-for list="{{ FAQ }}" as="q" hint-placeholder-count="7"><div sc-camel-on-click="{{ q.toggle }}" style="background:#FFFDFC;border-radius:18px;padding:16px 20px;cursor:pointer;display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:12px"><span style="flex:1;font-size:15.5px;font-weight:700;line-height:1.45;color:#201E1D">{{ q.q }}</span><span style="{{ q.signS }}">+</span></div><sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14.5px;line-height:1.7;color:#5E5954;text-wrap:pretty">{{ q.a }}</p></sc-if></div></sc-for></div>
+    </div>
+  </section>
+
+  <section data-screen-label="结尾" style="background:radial-gradient(60% 80% at 50% 120%,rgba(217,82,63,.2),transparent 60%),#1E1C1B;color:#F9F4ED;padding:clamp(80px,10cqi,150px) 0">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px">
+      <h2 style="margin:0;font-family:var(--font-heading),'PingFang SC',sans-serif;font-weight:400;font-size:clamp(30px,3.6cqi,50px);line-height:1.1;max-width:22ch;text-wrap:balance">{{ s.finalTitle }}</h2>
+      <a href="https://apps.apple.com/app/id6763750134?mt=12" style="display:block;line-height:0">
+        <sc-if value="{{ zh }}"><img src="/assets/41b614615f7ea665d538fe03513c4573765c04dd3b2611373e7280b2139cfb91.svg" alt="从 Mac App Store 下载" style="display:block;height:54px;width:auto"></sc-if>
+        <sc-if value="{{ en }}"><img src="/assets/15111cd04380b58d95307dcb07f0b6b06304dbc7504c57fd9cdbf0a2f78e3a92.svg" alt="Download on the Mac App Store" style="display:block;height:54px;width:auto"></sc-if>
+      </a>
+      <span style="font-size:13px;color:#A19786">{{ s.note }}</span>
+    </div>
+  </section>
+
+  <footer style="background:#151312;color:#A19786;padding:36px 0 44px">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <span style="display:flex;align-items:center;gap:9px"><img src="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png" alt="" style="width:22px;height:22px;display:block" width="1024" height="1024" loading="lazy" decoding="async"><span style="font-size:14px;font-weight:700;color:#F9F4ED">Nsurator</span><span style="font-size:13px">{{ s.brandLine }}</span></span>
+        <span style="flex:1"></span>
+        <a href="{{ supportHref }}" style="font-size:13px;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.support }}</a>
+        <a href="{{ privacyHref }}" style="font-size:13px;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.privacy }}</a>
+        <a href="#faq" style="font-size:13px;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.faqTitle }}</a>
+      </div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;padding-top:16px;border-top:1px solid rgba(249,244,237,.08)">
+        <div style="display:flex;flex-direction:column;gap:6px;max-width:70ch"><a href="https://www.themoviedb.org/" aria-label="TMDB" style="display:block;margin-bottom:6px;align-self:flex-start"><img src="/assets/9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg" alt="TMDB" width="120" height="16" style="display:block;width:120px;height:auto"></a><span style="font-size:12.5px;line-height:1.6">{{ s.tmdb }}</span><span style="font-size:12.5px;line-height:1.6">{{ s.art }} <a href="{{ creditsHref }}" style="color:#C0B6A5;text-decoration:underline;text-underline-offset:3px" style-hover="color:#F9F4ED">{{ s.artLink }}</a></span></div>
+        <span style="flex:1"></span>
+        <span style="font-size:12.5px">© 2026 Nsurator</span>
+      </div>
+    </div>
+  </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;zh&quot;,&quot;en&quot;],&quot;default&quot;:&quot;zh&quot;,&quot;tsType&quot;:&quot;'zh' | 'en'&quot;,&quot;section&quot;:&quot;官网&quot;}}">
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;zh&quot;,&quot;en&quot;],&quot;default&quot;:&quot;zh&quot;,&quot;tsType&quot;:&quot;'zh' | 'en'&quot;}}">
 class Component extends DCLogic {
-  state = { lang: this.initialLanguage(), faqOpen: 0 };
+  state = { lang: this.initialLanguage(), open: 0 };
   initialLanguage() {
     // App links take precedence over a language previously chosen in this browser.
     const requested = new URLSearchParams(location.search).get("lang");
@@ -509,7 +608,7 @@ class Component extends DCLogic {
   componentDidUpdate() { this.syncTitle(); window.NsuratorMotion?.mount(); }
   syncTitle() {
     const lang = this.state.lang ?? this.props.lang ?? "zh";
-    document.title = lang === "en" ? "Nsurator — Your films finally have a home." : "Nsurator — 你的影片，终于有了个家。";
+    document.title = lang === "en" ? "Nsurator — Your films and shows, finally at home." : "Nsurator — 你的影片和剧集，终于有了个家。";
     document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
   }
   setLang(l) {
@@ -519,79 +618,76 @@ class Component extends DCLogic {
     // Keep refreshes and copied links consistent with a manual language change.
     try { const url = new URL(location.href); url.searchParams.set("lang", l); history.replaceState(null, "", url); } catch (e) {}
   }
+
   renderVals() {
-    const lang = this.state.lang ?? this.props.lang ?? "zh";
+    const lang = this.state.lang ?? (this.props.lang === 'en' ? 'en' : 'zh');
+    const zh = lang === 'zh';
+    const pick = (o) => o[lang];
     const S = {
-      zh: { navFeatures: "功能", navPlay: "播放", navFormats: "格式", navLog: "更新", navFaq: "常见问题", navProduct: "产品", navSupport: "支持", navCta: "下载", h1a: "你的影片，", h1b: "终于有了个家。", sub: "macOS 上的本地影片资料馆：自动归档下载、让 AI 工具读懂片库、什么格式都放得开。文件不上传，一切留在你的 Mac。", cta: "从 Mac App Store 下载", note: "macOS 14 或更新 · Apple 芯片 · 免费下载", moreTitle: "还有这些", moreSub: "都在同一个窗口里。", specTitle: "装得上，放得开。", specSub: "原生 Swift 编写，为 Apple 芯片优化；旧版资料库直接读取，一次搬家不丢数据。", logTitle: "最近更新", faqTitle: "常见问题", finalTitle: "把下载文件夹交给它，然后忘掉整理这件事。", copy: "© 2026 Nsurator", madeFor: "为 macOS 而生", brandLine: "放在你自己硬盘上的影片资料馆。" },
-      en: { navFeatures: "Features", navPlay: "Playback", navFormats: "Formats", navLog: "Updates", navFaq: "FAQ", navProduct: "Product", navSupport: "Support", navCta: "Download", h1a: "Your films finally", h1b: "have a home.", sub: "A local film library for macOS: downloads archive themselves, your AI tools can read the catalog, and everything plays. Nothing is uploaded — it all stays on your Mac.", cta: "Download on the Mac App Store", note: "macOS 14 or later · Apple silicon · Free download", moreTitle: "And more", moreSub: "All in the same window.", specTitle: "Runs on your Mac. Plays your files.", specSub: "Native Swift, tuned for Apple silicon; reads legacy libraries directly — move once, lose nothing.", logTitle: "Recent updates", faqTitle: "Questions", finalTitle: "Hand it your download folder, then forget about sorting.", copy: "© 2026 Nsurator", madeFor: "Made for macOS", brandLine: "A film library that lives on your own drive." },
+      zh: { h1a: '你的影片和剧集，', h1b: '终于有了个家。', sub: '认出电影和剧集，排成海报墙；自己拍的视频照样井井有条。收件箱自动归档，放映室一键开播，什么格式都放得开。文件留在你的 Mac 和 NAS 上。', note: 'macOS 14 或更新 · Apple 芯片 · 免费下载',
+        filmEyebrow: '影视', filmTitle: '认出每一部，排成海报墙。', filmLead: '把影视文件夹交给 Nsurator：它按文件名和本地 NFO 认出电影、剧集和第几季第几集，配上海报、背景图和片名 Logo。再填一个免费的 TMDB 密钥，认得更全。',
+        featEyebrow: '整理与工具', featTitle: '下载、整理、找片，都在同一个窗口里。', moreTitle: '还有这些', moreSub: '都在同一个窗口里。',
+        specTitle: '装得上，放得开。', specSub: '原生 Swift 编写，为 Apple 芯片优化；旧版资料库直接读取，一次搬家不丢数据。', logTitle: '最近更新', faqTitle: '常见问题',
+        finalTitle: '把片子交给它，然后只管看。', brandLine: '放在你自己硬盘上的影片资料馆。', support: '支持', privacy: '隐私',
+        tmdb: '影视资料和图片来自 TMDB。本产品使用 TMDB API，但未经 TMDB 认可或认证。', art: '截图里的海报和剧照来自 Blender Studio 的开放电影和 David Revoy 的《Pepper & Carrot》，按 CC BY 授权使用，并按界面尺寸裁切。', artLink: '素材署名' },
+      en: { h1a: 'Your films and shows,', h1b: 'finally at home.', sub: 'Nsurator recognizes movies and shows and lays them out as a poster wall, while your own videos stay in order. The Inbox archives downloads, the Screening Room starts in one click, and nearly any format plays. Your files stay on your Mac and NAS.', note: 'macOS 14 or later · Apple silicon · Free download',
+        filmEyebrow: 'FILM & TV', filmTitle: 'Every title recognized. Every poster in place.', filmLead: 'Point Nsurator at your film folders. It recognizes movies, shows, seasons and episodes from file names and local NFO files, then adds posters, backdrops and title logos. Add a free TMDB key to recognize even more.',
+        featEyebrow: 'ORGANIZE & TOOLS', featTitle: 'Download, sort and find — all in one window.', moreTitle: 'And more', moreSub: 'All in the same window.',
+        specTitle: 'Installs easily. Plays anything.', specSub: 'Written natively in Swift and tuned for Apple silicon; legacy libraries are read directly, so moving loses nothing.', logTitle: 'Recent updates', faqTitle: 'FAQ',
+        finalTitle: 'Hand it your films. Then just watch.', brandLine: 'A film library that lives on your own drives.', support: 'Support', privacy: 'Privacy',
+        tmdb: 'Film and TV data and images are provided by TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.', art: 'Posters and stills in the screenshots come from Blender Studio’s open movies and David Revoy’s Pepper & Carrot, used under CC BY and cropped to fit.', artLink: 'Credits' },
     };
     const s = S[lang];
-    const I = {
-      inbox: ["M22 12h-6l-2 3h-4l-2-3H2", "M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"],
-      sparkles: ["M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"],
-      lock: ["M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z", "M7 11V7a5 5 0 0 1 10 0v4"],
-      activity: ["M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"],
-      library: ["m16 6 4 14", "M12 6v14", "M8 8v12", "M4 4v16"],
-      users: ["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M9 3a4 4 0 1 0 0 8a4 4 0 1 0 0-8", "M22 21v-2a4 4 0 0 0-3-3.87", "M16 3.13a4 4 0 0 1 0 7.75"],
-      copy: ["M10 8h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z", "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"],
-      map: ["M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z", "M15 5.764v15", "M9 3.236v15"],
-      database: ["M3 5a9 3 0 1 0 18 0a9 3 0 1 0-18 0", "M3 5v14a9 3 0 0 0 18 0V5", "M3 12a9 3 0 0 0 18 0"],
-      share: ["M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8", "m16 6-4-4-4 4", "M12 2v13"],
-      history: ["M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", "M3 3v5h5", "M12 7v5l4 2"],
+    const F = {
+      f1: { zh: { name: '海报墙与自动识别', title: '电影、剧集、个人视频，各就各位。', copy: '清单分成电影、剧集和个人视频三段，每段先是继续观看，再是最近加入，最后是全部。剧集按部聚合，写着看到第几季第几集、还剩几分钟。', pts: ['本地 NFO 优先，不填密钥也能用', '没认准的，一步修正匹配', 'NAS 文件夹直接加进清单'] },
+        en: { name: 'POSTER WALL & RECOGNITION', title: 'Movies, shows and your own videos, each in its place.', copy: 'The list splits into Movies, Shows and Personal Videos. Each starts with Continue Watching, then Recently Added, then everything. Shows group by series and tell you the season, episode and minutes left.', pts: ['Local NFO first — works without a key', 'Fix a wrong match in one step', 'Add NAS folders straight to the list'] } },
+      f2: { zh: { name: '电影页 · 剧集页', title: '每一部，都有自己的首映式。', copy: '背景图铺满窗口，整页取它的颜色；评分、分级、画质和声音一眼看清。一部片子有几个版本、放在哪台设备上，都写在版本里；剧集按季排好，停在你上次看到的那一集。', pts: ['4K 杜比视界和 1080p 并存，挑一个就放', '同系列、演职员、附带字幕', '看完一集，自动接下一集'] },
+        en: { name: 'MOVIE & SHOW PAGES', title: 'Every title gets its own premiere.', copy: 'The backdrop fills the window and the page takes on its colour; rating, certification, picture and sound are clear at a glance. Every version and the device it lives on is listed, and shows are laid out by season, waiting at the episode you left off.', pts: ['4K Dolby Vision and 1080p side by side', 'Collections, cast and bundled subtitles', 'The next episode plays on its own'] } },
+      f3: { zh: { name: '放映室', title: '坐下，就开播。', copy: '按 ⌘1 进放映室：整屏背景图、大字标题，队列排在下面。方向键选片，回车开播；走到最后一部，也能一下回到开头。', pts: ['继续观看按剧聚合', '方向键选片，回车开播', '队尾一键回到开头'] },
+        en: { name: 'SCREENING ROOM', title: 'Sit down. It’s showtime.', copy: 'Press ⌘1 for the Screening Room: a full-window backdrop, a big title and the queue below. Arrow keys to choose, Return to play — and from the last title, one click takes you back to the start.', pts: ['Continue Watching grouped by show', 'Arrow keys to pick, Return to play', 'Back to the start in one click'] } },
+      f4: { zh: { name: '收件箱', title: '下载完，就归好了。', copy: '把下载文件夹交给收件箱。新文件一到就进流水线：能归的一键归档，同一季的几十集合成一组一次归好；有冲突的逐项确认，不在本机的告诉你为什么。', pts: ['电影、剧集、个人视频各有归档规则', '整季一次归档', '重复文件先挑出来'] },
+        en: { name: 'INBOX', title: 'Downloaded. Already sorted.', copy: 'Hand your downloads folder to the Inbox. New files enter a pipeline: ready ones archive in one click, a whole season goes in as one group, conflicts are reviewed one by one, and anything not on this Mac tells you why.', pts: ['Separate rules for movies, shows and personal videos', 'Archive a whole season at once', 'Duplicates caught first'] } },
+      f5: { zh: { name: '清单与合集', title: '列表看文件，合集自己长。', copy: '清单也能切成列表：一部剧占一行，展开到季、再到集，几个版本收在同一行下。合集是清单之上的视角：手动挑，或写一条规则让它自己更新。', pts: ['智能合集', '按年份、标签、人物', '随机放映'] },
+        en: { name: 'LISTS & COLLECTIONS', title: 'Browse the files. Let collections grow.', copy: 'Switch the list to rows: one show per row, opening into seasons and episodes, with every version tucked under its title. Collections sit on top — pick by hand, or write one rule and let it keep itself up to date.', pts: ['Smart collections', 'By year, tag or person', 'Shuffle play'] } },
+      f6: { zh: { name: 'AI 智能体', title: '你的 AI 工具，读得懂你的片库。', copy: '在 Claude Code、Codex、Cursor 这类支持 MCP 的工具里说一句话：找片、建合集、挑重复、控制播放。只走本机回环地址，私密空间永远排除在外。', pts: ['MCP 标准接口', '权限逐条开关', '每次调用留痕'] },
+        en: { name: 'AI AGENTS', title: 'Your AI tools can read your library.', copy: 'Say it in Claude Code, Codex, Cursor or any MCP client: find a film, build a collection, catch duplicates, control playback. Loopback only — the Private Space is always excluded.', pts: ['Standard MCP interface', 'Per-permission switches', 'Every call logged'] } },
+      f7: { zh: { name: '私密空间', title: '有些片子，只给你自己看。', copy: '移进去的影片从清单、搜索、合集和 Spotlight 里同时消失，Touch ID 才能看见。锁上时连缩略图都不留在缓存里。', pts: ['Touch ID 解锁', '到时自动锁定', '缩略图不落盘'] },
+        en: { name: 'PRIVATE SPACE', title: 'Some films are for your eyes only.', copy: 'Films moved in vanish from lists, search, collections and Spotlight at once; Touch ID brings them back. While locked, not even thumbnails stay in the cache.', pts: ['Touch ID unlock', 'Auto-lock on a timer', 'No cached thumbnails'] } },
     };
-    const F2 = [
-      { k: "inbox", icon: I.inbox, bg: "#EEE7DB", zh: { name: "收件箱", title: "下载完，就归好了。", copy: "把下载文件夹交给收件箱。新文件一落地就进流水线：能归的一键归进清单，有冲突的逐项确认，不在本机的告诉你为什么。", pts: ["监听任意文件夹", "按人物、年份、系列归档", "重复文件先挑出来"] }, en: { name: "Inbox", title: "Downloaded. Already sorted.", copy: "Hand your download folder to the Inbox. New files enter a pipeline: ready ones archive into lists with one click, conflicts get reviewed one by one, and anything not on this Mac tells you why.", pts: ["Watch any folder", "Archive by person, year or series", "Duplicates caught first"] } },
-      { k: "ai", icon: I.sparkles, bg: "#E8ECDF", zh: { name: "AI 智能体", title: "你的 AI 工具，读得懂你的片库。", copy: "在 Claude Code、Codex、Cursor、Windsurf、Gemini、Kimi 里说一句话：找片、建合集、挑重复、控制播放。走的是本机回环地址，私密空间永远排除在外。", pts: ["MCP 标准接口", "权限逐条开关", "每次调用留痕"] }, en: { name: "AI Agents", title: "Your AI tools can read your library.", copy: "Say it in Claude Code, Codex, Cursor, Windsurf, Gemini or Kimi: find a film, build a collection, catch duplicates, control playback. Loopback only — the Private Space is always excluded.", pts: ["Standard MCP interface", "Per-permission switches", "Every call logged"] } },
-      { k: "vault", icon: I.lock, bg: "#E4DFD8", zh: { name: "私密空间", title: "有些片子，只给你自己看。", copy: "移进去的影片从清单、搜索、合集和 Spotlight 里同时消失，Touch ID 才能看见。锁上时连缩略图都不留在缓存里。", pts: ["Touch ID 解锁", "到时自动锁定", "缩略图不落盘"] }, en: { name: "Private Space", title: "Some films are for your eyes only.", copy: "Films moved in vanish from lists, search, collections and Spotlight at once; Touch ID brings them back. While locked, not even thumbnails stay in the cache.", pts: ["Touch ID unlock", "Auto-lock on a timer", "No cached thumbnails"] } },
-      { k: "lists", icon: I.library, bg: "#F1E5D8", zh: { name: "清单与合集", title: "清单按媒体库分组，合集自己长。", copy: "本机、外置硬盘、网盘各成一组，容量和授权状态写在组头。合集是清单之上的视角：手动挑，或写一条规则让它自动更新。", pts: ["智能合集", "年份 · 标签 · 人物", "随机放映"] }, en: { name: "Lists & Collections", title: "Lists group by library. Collections grow themselves.", copy: "This Mac, external drives and cloud each form a group, with capacity and access state in the header. Collections are a lens on top: pick by hand, or write one rule and let it update.", pts: ["Smart collections", "Year · Tag · Person", "Shuffle play"] } },
-    ];
-    const PLAY = { icon: I.activity, zh: { name: "自研播放核心 · NsuratorPlayerCore", title: "放得开，也说得清。", copy: "播放核心是自己写的，不借系统播放器：从 RMVB 这样的老格式到 HEVC、AV1，从蓝光目录到杜比视界，什么都直接放；HEVC、AV1 与 4K 走硬件解码，系统放不了的格式，还能实时转投到 Apple TV。卡了、没声了，打开诊断：是解码、音轨还是硬盘在拖后腿，一眼看清。", pts: ["三十余种容器 · RMVB 到 AV1", "蓝光 BDMV · ISO · DVD 目录直接播", "HDR10+ · 杜比视界 · EDR 显示器自动适配", "13 种字幕 · ASS 特效原样渲染", "逐帧步进 · 精确跳转 · A-B 循环", "AirPlay 投送系统放不了的格式"] }, en: { name: "Our own playback core · NsuratorPlayerCore", title: "Plays anything. Explains everything.", copy: "We wrote the playback core ourselves rather than borrowing the system player: from RMVB-era formats to HEVC and AV1, from Blu-ray folders to Dolby Vision, everything plays directly; HEVC, AV1 and 4K go through hardware decoding, and what the system can't play is transcoded live to Apple TV. Stutter or silence? Open Diagnostics and see whether it's the decoder, the audio track or the drive.", pts: ["30+ containers · RMVB to AV1", "Blu-ray BDMV · ISO · DVD folders play as one film", "HDR10+ · Dolby Vision · adapts to EDR displays", "13 subtitle formats · ASS effects as written", "Frame step · exact seek · A-B loop", "AirPlay for formats the system can't play"] } };
-    const screenshotSets = {"zh":{"list":{"src":"/assets/6a3538499a611ad1e73f4e6ae75aba83148dc9ac246c276a4292016e4b52c680.webp","width":2880,"height":1800},"inbox":{"src":"/assets/db61ebbc650c02c8a762e4b4740ade2add7e506be7da255e824b0727e3c023d4.webp","width":2880,"height":1800},"collections":{"src":"/assets/37606bae594a26daf7cd1101c20e2445e13e0823c5f1f740714c5c6cd75bcec8.webp","width":2880,"height":1800},"private-space":{"src":"/assets/84311852c6a8f6da46ef7093b36a414177da5ed9d30383d835557f7bdf9bfc53.webp","width":2880,"height":1800},"playback-diagnostics":{"src":"/assets/f49652ec8b75a74a88b141cc759567165cc0337a9867a37267979eb6ecb21156.webp","width":1280,"height":1654},"ai":{"src":"/assets/be7232c1210d2bff60a7957be278ceb0f16c0e55e34c6dce332f564ef3e5ea3f.svg","width":2880,"height":2786},"player":{"src":"/assets/59302a2e7e70826712d54089d17d781949a5fbeb298d08dac96175b613848095.webp","width":1697,"height":927}},"en":{"list":{"src":"/assets/fcef8c809af71f9e41a2fc228ee809354a50a6cbccb95c4b16f8543dd23808e3.webp","width":2880,"height":1800},"inbox":{"src":"/assets/973df467493d9e49b1547cd1eec537201f72eb8585029410f26ac0255fa26826.webp","width":2880,"height":1800},"collections":{"src":"/assets/4a79671a22555b6eba9d3aed7ff8d5a11893ed86c22f208908ac6340028f4360.webp","width":2880,"height":1800},"private-space":{"src":"/assets/d6ea82edd3cb4c01c032827eb213db8c84d734a4ff46279a23b3058f783b09f3.webp","width":2880,"height":1800},"playback-diagnostics":{"src":"/assets/ac0ae6480d41c82bc14a37ec35962df372eb79f8c8b6a4f0d8171b52b7bc0362.webp","width":1280,"height":1650},"ai":{"src":"/assets/efcbc717f6f4e56b207229ac9ec3b55609c03a6b1c044aac816e9cd41180830c.svg","width":2880,"height":2786},"player":{"src":"/assets/59302a2e7e70826712d54089d17d781949a5fbeb298d08dac96175b613848095.webp","width":1697,"height":927}}};
-    const screenshots = screenshotSets[lang];
-    const heroImage = { ...screenshots.list, alt: lang === "zh" ? "Nsurator 影片清单" : "Nsurator film library" };
-    const playerImage = { ...screenshots.player, alt: lang === "zh" ? "Nsurator 播放器，演示片名与海面画面" : "Nsurator player with a fictional title and ocean scene" };
-    const diagnosticImage = { ...screenshots["playback-diagnostics"], alt: lang === "zh" ? "播放诊断" : "Playback diagnostics" };
-    const featureImages = [screenshots.inbox, screenshots.ai, screenshots["private-space"], screenshots.collections];
-    const steps = F2.map((f, i) => ({ ...f[lang], key: f.k, icon: f.icon, image: featureImages[i], alternate: String(i % 2 === 1), surface: `background:${f.k === "vault" ? "#1E1C1B" : f.bg};color:${f.k === "vault" ? "#F9F4ED" : "#201e1d"}` }));
-    const play = { icon: PLAY.icon, ...PLAY[lang] };
-    const more = [
-      { icon: I.users, zh: ["人物识别", "本机模型认脸，一组一个决定。"], en: ["People", "On-device face recognition, one decision per group."] },
-      { icon: I.copy, zh: ["重复项", "组内并排对比，结论先行。"], en: ["Duplicates", "Side-by-side comparison, verdict first."] },
-      { icon: I.map, zh: ["收藏地图", "整个片库的鸟瞰图。"], en: ["Library map", "A bird's-eye view of the whole library."] },
-      { icon: I.database, zh: ["备份与搬家", "动手之前，先留一份可回滚的备份。"], en: ["Backup & move", "A restorable backup before anything changes."] },
-      { icon: I.share, zh: ["共享扩展", "从访达、Safari 直接投进收件箱。"], en: ["Share extension", "Drop files in from Finder or Safari."] },
-      { icon: I.history, zh: ["观看历史", "看到哪，记到哪。"], en: ["History", "Picks up where you left off."] },
-    ].map((m, i) => ({ icon: m.icon, title: m[lang][0], desc: m[lang][1], style: `display:flex;gap:14px;align-items:flex-start;transition-delay:${(i % 3) * 70}ms` }));
-    const specs = (lang === "en" ? [["System", "macOS 14 Sonoma or later · Apple silicon"], ["Containers", "MKV · MP4 · MOV · AVI · RMVB · WMV · FLV · TS / M2TS · VOB and 30+ more"], ["Video", "H.264 · HEVC 10-bit · AV1 · VP9 · RV30 / RV40 · VC-1 · Theora"], ["Audio", "AAC · AC-3 / E-AC-3 · TrueHD · DTS-HD · FLAC · ALAC · APE · DSD"], ["Subtitles", "SRT · ASS / SSA · PGS · WebVTT · TTML and 13 formats in all · embedded & external · ±3600 s delay"], ["Discs", "Blu-ray BDMV · ISO · DVD VIDEO_TS (unencrypted) · titles, chapters, menus"], ["HDR", "HDR10 · HDR10+ · Dolby Vision · HDR Vivid · tone mapping picked per display"], ["Decoding", "HEVC, AV1 and 4K on VideoToolbox · 1080p H.264 multi-threaded in software, measured faster"], ["Casting", "AirPlay to Apple TV, transcoded live to HLS"], ["Migration", "Reads legacy Nsurator libraries directly"]] : [["系统", "macOS 14 Sonoma 或更新 · Apple 芯片"], ["容器", "MKV · MP4 · MOV · AVI · RMVB · WMV · FLV · TS / M2TS · VOB 等三十余种"], ["视频", "H.264 · HEVC 10-bit · AV1 · VP9 · RV30 / RV40 · VC-1 · Theora"], ["音频", "AAC · AC-3 / E-AC-3 · TrueHD · DTS-HD · FLAC · ALAC · APE · DSD"], ["字幕", "SRT · ASS / SSA · PGS · WebVTT · TTML 等 13 种 · 内嵌与外挂 · 延迟 ±3600 秒"], ["光盘", "蓝光 BDMV · ISO · DVD VIDEO_TS（无加密）· 标题、章节、菜单"], ["HDR", "HDR10 · HDR10+ · 杜比视界 · HDR Vivid · 按显示器能力选色调映射"], ["解码", "HEVC、AV1、4K 走 VideoToolbox 硬解 · 1080p H.264 多线程软解，实测更快"], ["投送", "AirPlay 到 Apple TV · 实时转 HLS"], ["迁移", "旧版 Nsurator 资料库直接读取"]]).map(([k, v], i) => ({ k, v, style: `display:grid;grid-template-columns:112px 1fr;gap:20px;padding:15px 0;border-top:1px solid rgba(32,30,29,.1);transition-delay:${i * 45}ms` }));
+    const PLAY = { zh: { name: '自研播放核心 · NsuratorPlayerCore', title: '放得开，也说得清。', copy: '播放核心是自己写的，不借系统播放器：从 RMVB 这样的老格式到 HEVC、AV1，从蓝光目录到杜比视界，什么都直接放；HEVC、AV1 与 4K 走硬件解码，系统放不了的格式，还能实时转投到 Apple TV。卡了、没声了，打开诊断：是解码、音轨还是硬盘在拖后腿，一眼看清。', playerAlt: 'Nsurator 播放器：演示片名与海面画面', pts: ['三十余种容器 · RMVB 到 AV1', '蓝光 BDMV · ISO · DVD 目录直接播', 'HDR10+ · 杜比视界 · EDR 显示器自动适配', '13 种字幕 · ASS 特效原样渲染', '逐帧步进 · 精确跳转 · A-B 循环', 'AirPlay 投送系统放不了的格式'] },
+      en: { name: 'Our own playback core · NsuratorPlayerCore', title: 'Plays anything. Explains everything.', copy: 'We wrote the playback core ourselves rather than borrowing the system player: from RMVB-era formats to HEVC and AV1, from Blu-ray folders to Dolby Vision, everything plays directly; HEVC, AV1 and 4K go through hardware decoding, and what the system can’t play is transcoded live to Apple TV. Stutter or silence? Open Diagnostics and see whether it’s the decoder, the audio track or the drive.', playerAlt: 'The Nsurator player with a demo file name and an ocean scene', pts: ['30+ containers · RMVB to AV1', 'Blu-ray BDMV · ISO · DVD folders play as one film', 'HDR10+ · Dolby Vision · adapts to EDR displays', '13 subtitle formats · ASS effects as written', 'Frame step · exact seek · A-B loop', 'AirPlay for formats the system can’t play'] } };
+    const MORE = (zh ? [['剧集接着看', '看完一集自动接下一集，停在哪都记得。'], ['NAS 与外置硬盘', '只建索引，不搬文件；拔掉不算出错。'], ['本地 NFO', '已有的资料直接用，不填密钥也行。'], ['人物', '认出片子里的人，按人找片。'], ['观看历史', '看到哪，记到哪。'], ['备份与搬家', '资料库打一个包，换了 Mac 也带得走。']]
+      : [['Keep watching', 'The next episode starts on its own, and your place is always kept.'], ['NAS & external drives', 'Indexed where they are, never moved; unplugging isn’t an error.'], ['Local NFO', 'Use the metadata you already have — no key required.'], ['People', 'Recognize the people in your videos and find films by person.'], ['History', 'Picks up where you left off.'], ['Backup & move', 'Pack the library into one file and take it to a new Mac.']]).map(([t, d]) => ({ t, d }));
+    const SPECS = (zh ? [['系统', 'macOS 14 Sonoma 或更新 · Apple 芯片'], ['容器', 'MKV · MP4 · MOV · AVI · RMVB · WMV · FLV · TS / M2TS · VOB 等三十余种'], ['视频', 'H.264 · HEVC 10-bit · AV1 · VP9 · RV30 / RV40 · VC-1 · Theora'], ['音频', 'AAC · AC-3 / E-AC-3 · TrueHD · DTS-HD · FLAC · ALAC · APE · DSD'], ['字幕', 'SRT · ASS / SSA · PGS · WebVTT · TTML 等 13 种 · 内嵌与外挂 · 延迟 ±3600 秒'], ['光盘', '蓝光 BDMV · ISO · DVD VIDEO_TS（无加密）· 标题、章节、菜单'], ['HDR', 'HDR10 · HDR10+ · 杜比视界 · HDR Vivid · 按显示器能力选色调映射'], ['解码', 'HEVC、AV1、4K 走 VideoToolbox 硬解 · 1080p H.264 多线程软解，实测更快'], ['影视资料', '本地 NFO · TMDB（可选，自备免费密钥）'], ['投送', 'AirPlay 到 Apple TV · 实时转 HLS'], ['迁移', '旧版 Nsurator 资料库直接读取']]
+      : [['System', 'macOS 14 Sonoma or later · Apple silicon'], ['Containers', 'MKV · MP4 · MOV · AVI · RMVB · WMV · FLV · TS / M2TS · VOB and 30+ more'], ['Video', 'H.264 · HEVC 10-bit · AV1 · VP9 · RV30 / RV40 · VC-1 · Theora'], ['Audio', 'AAC · AC-3 / E-AC-3 · TrueHD · DTS-HD · FLAC · ALAC · APE · DSD'], ['Subtitles', 'SRT · ASS / SSA · PGS · WebVTT · TTML and 13 formats in all · embedded & external · ±3600 s delay'], ['Discs', 'Blu-ray BDMV · ISO · DVD VIDEO_TS (unencrypted) · titles, chapters, menus'], ['HDR', 'HDR10 · HDR10+ · Dolby Vision · HDR Vivid · tone mapping picked per display'], ['Decoding', 'HEVC, AV1 and 4K on VideoToolbox · 1080p H.264 multi-threaded in software, measured faster'], ['Metadata', 'Local NFO · TMDB (optional, bring your own free key)'], ['Casting', 'AirPlay to Apple TV, transcoded live to HLS'], ['Migration', 'Reads legacy Nsurator libraries directly']]).map(([k, v]) => ({ k, v }));
     const LOG = [
-      { v: "6.0.0", date: "2026-09", zh: ["收件箱流水线：待归档 / 待确认 / 暂不可归档 三列，一键归档", "播放诊断面板：丢帧、音频缓冲、重缓冲原因", "AI 智能体：Claude Code / Codex / Cursor / Windsurf / Gemini / Kimi 经 MCP 接入"], en: ["Inbox pipeline: To archive / Review / Not archivable, one-click archive", "Playback diagnostics: dropped frames, audio buffer, rebuffer causes", "AI agents: Claude Code / Codex / Cursor / Windsurf / Gemini / Kimi over MCP"] },
+      { v: zh ? '即将推出' : 'Coming soon', date: zh ? '影视' : 'Film & TV', items: zh ? ['影视：认出电影和剧集，排成海报墙', '电影页、剧集页：背景图铺满窗口', '全新放映室：继续观看按剧聚合', 'NAS 文件夹直接加进清单', '收件箱整季归档'] : ['Film & TV: movies and shows recognized and laid out as a poster wall', 'Movie and show pages with full-window backdrops', 'A new Screening Room with Continue Watching grouped by show', 'Add NAS folders straight to the list', 'Archive a whole season from the Inbox'] },
+      { v: '6.0.0', date: '2026-09', items: zh ? ['收件箱流水线：待归档 / 待确认 / 暂不可归档 三列，一键归档', '播放诊断面板：丢帧、音频缓冲、重缓冲原因', 'AI 智能体：用 MCP 接入你的 AI 工具'] : ['Inbox pipeline: To archive / Review / Not archivable, one-click archive', 'Playback diagnostics: dropped frames, audio buffer, rebuffer causes', 'AI Agents: connect your AI tools over MCP'] },
     ];
-    const changelog = LOG.map((l, i) => ({ v: l.v, date: l.date, items: l[lang], style: `display:grid;grid-template-columns:112px 1fr;gap:20px;transition-delay:${i * 80}ms` }));
-    const FAQ = [
-      { zh: { q: "我的文件会上传到哪里吗？", a: "不会。影片、识别结果、笔记、观看记录都在这台 Mac 上的资料库里，断网也照常用。AI 智能体只走本机回环地址。" }, en: { q: "Does anything get uploaded?", a: "No. Films, recognition results, notes and watch history live in the library on this Mac, and everything works offline. AI agents connect over the local loopback address only." } },
-      { zh: { q: "换了 Mac 或硬盘，资料能带走吗？", a: "能。先在「备份与搬家」里手动备份一份资料库；换硬盘后把媒体库位置指向新盘，Nsurator 按文件内容重新对上，标签和人物都跟过去。" }, en: { q: "Can I take my data to a new Mac or drive?", a: "Yes. Make a backup of the library first under Backup & moving; after changing drives, point the library location at the new one and Nsurator re-matches files by content, with tags and people following." } },
-      { zh: { q: "AI 智能体需要我装什么？", a: "你已经在用的工具就行：Claude Code、Codex、Cursor、Windsurf、Gemini、Kimi，或任何支持 MCP 的客户端。在设置里打开连接、复制一行配置，剩下的它们自己会。" }, en: { q: "What do I need for AI agents?", a: "The tools you already use: Claude Code, Codex, Cursor, Windsurf, Gemini, Kimi or any other MCP client. Turn on the connection in Settings, copy one line of config, and they take it from there." } },
-      { zh: { q: "支持哪些文件？", a: "三十余种容器：MKV、MP4、MOV、AVI、RMVB、WMV、FLV、TS 等；视频从 H.264、HEVC、AV1、VP9 到 RV40、VC-1 这类老编码；音频 AAC、AC-3、TrueHD、DTS-HD、FLAC、DSD 等；13 种字幕格式。蓝光 BDMV、ISO 和 DVD 目录（无加密）可直接当一部影片打开。HEVC、AV1、4K 走硬件解码。" }, en: { q: "Which files does it play?", a: "30+ containers: MKV, MP4, MOV, AVI, RMVB, WMV, FLV, TS and more; video from H.264, HEVC, AV1 and VP9 to legacy codecs like RV40 and VC-1; audio including AAC, AC-3, TrueHD, DTS-HD, FLAC and DSD; 13 subtitle formats. Blu-ray BDMV, ISO and DVD folders (unencrypted) open as a single film. HEVC, AV1 and 4K go through hardware decoding." } },
+    const FAQ0 = zh ? [
+      ['我的文件会上传到哪里吗？', '不会。影片、识别结果、笔记和观看记录都在这台 Mac 上的资料库里。只有填了 TMDB 密钥时，Nsurator 才会把片名和年份发给 TMDB 查资料，文件本身不离开你的设备；不填密钥、断网也照常用。AI 智能体只走本机回环地址。'],
+      ['一定要填 TMDB 密钥吗？', '不用。有本地 NFO 的照常认出来。填一个免费的 TMDB 密钥（在 themoviedb.org 申请，大约 3 分钟），没有 NFO 的也能认出来，还会补上海报和背景图。密钥只存在这台 Mac 上。'],
+      ['NAS 上的片子能看吗？', '能。在媒体源里把 NAS 上的文件夹加进清单：只建索引，不搬文件。NAS 暂时连不上时，清单照常显示缓存的封面，连上就能播。'],
+      ['怎么收费？', '免费下载，免费版每月 15 次播放。Pro 先免费试用 7 天，之后 ¥39 / 年，或 ¥69 终身买断，都在 Mac App Store 里购买和管理；实际价格以 App Store 显示为准。'],
+      ['换了 Mac 或硬盘，资料能带走吗？', '能。在「备份与搬家」里把资料库打一个包，到新 Mac 上恢复；换硬盘后把媒体库位置指向新盘，Nsurator 会按文件重新对上。TMDB 密钥不在包里，搬家后重新粘贴一次。'],
+      ['AI 智能体需要我装什么？', '你已经在用的工具就行：Claude Code、Codex、Cursor 这类支持 MCP 的客户端。在设置里打开「AI 与自动化连接」，把给出的命令在终端里运行一次。'],
+      ['支持哪些文件？', '三十余种容器：MKV、MP4、MOV、AVI、RMVB、WMV、FLV、TS 等；视频从 H.264、HEVC、AV1、VP9 到 RV40、VC-1 这类老编码；蓝光 BDMV、ISO 和 DVD 目录也能直接播。'],
+    ] : [
+      ['Do my files get uploaded anywhere?', 'No. Films, recognition results, notes and watch history live in the library on this Mac. Only when you add a TMDB key does Nsurator send titles and years to TMDB to look up details; the files themselves never leave your devices, and without a key it works offline. AI Agents connect over loopback only.'],
+      ['Do I need a TMDB key?', 'No. Anything with a local NFO is recognized as usual. Add a free TMDB key (from themoviedb.org, about three minutes) and titles without an NFO are recognized too, with posters and backdrops filled in. The key stays on this Mac.'],
+      ['Can I watch films stored on a NAS?', 'Yes. Add NAS folders to the list from Sources: they’re indexed where they are, never moved. If the NAS is briefly unreachable, the list keeps showing cached artwork, and playback returns once it reconnects.'],
+      ['How much does it cost?', 'Free to download, with 15 plays a month on the free plan. Pro starts with a 7-day free trial, then a yearly subscription or a one-time lifetime purchase, bought and managed in the Mac App Store at your local price.'],
+      ['Can I take my library to a new Mac or drive?', 'Yes. Pack the library in Backup & Move and restore it on the new Mac; after changing drives, point the library to the new drive and Nsurator matches files again. The TMDB key isn’t included — paste it once after moving.'],
+      ['What do I need for AI Agents?', 'The tools you already use: Claude Code, Codex, Cursor or any MCP client. Turn on AI & automation connections in Settings and run the command it gives you once in Terminal.'],
+      ['Which files are supported?', '30+ containers — MKV, MP4, MOV, AVI, RMVB, WMV, FLV, TS and more; video from H.264, HEVC, AV1 and VP9 to legacy RV40 and VC-1; Blu-ray BDMV, ISO and DVD folders play directly.'],
     ];
-    const faq2 = FAQ.map((q, i) => {
-      const open = this.state.faqOpen === i, c = q[lang];
-      return { q: c.q, a: c.a, toggle: () => this.setState({ faqOpen: open ? -1 : i }),
-        itemStyle: `padding:20px 24px;border-radius:18px;cursor:pointer;transition:background .25s;background:${open ? "#EEE7DB" : "transparent"}`,
-        aWrap: `display:grid;grid-template-rows:${open ? "1fr" : "0fr"};transition:grid-template-rows .32s cubic-bezier(.2,.7,.2,1)`,
-        aStyle: `margin:12px 0 0;font-size:15.5px;line-height:1.65;color:#645c50;max-width:62ch;opacity:${open ? 1 : 0};transition:opacity .25s ${open ? ".08s" : "0s"}`,
-        chevStyle: `flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:${open ? "#F9F4ED" : "#EEE7DB"};color:#474238;transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s;transform:rotate(${open ? 180 : 0}deg)` };
-    });
-    const SUP = "support.html?lang=" + lang + "#";
-    const fcols = (lang === "en"
-      ? [["Product", [["Features", "#features"], ["Formats", "#formats"], ["Release notes", "#log"], ["Download", "#top"]]], ["Support", [["FAQ", "#faq"], ["Contact", SUP + "support"], ["User guide", SUP + "guide"]]], ["Legal", [["Privacy", SUP + "privacy"], ["Terms", SUP + "terms"], ["Open source", SUP + "oss"]]]]
-      : [["产品", [["功能", "#features"], ["格式与要求", "#formats"], ["更新记录", "#log"], ["下载", "#top"]]], ["支持", [["常见问题", "#faq"], ["联系支持", SUP + "support"], ["使用说明", SUP + "guide"]]], ["法律", [["隐私政策", SUP + "privacy"], ["使用条款", SUP + "terms"], ["开源许可", SUP + "oss"]]]]
-    ).map(([h, links]) => ({ h, links: links.map(([t, href]) => ({ t, href })) }));
-    const segOn = "padding:6px 11px;border-radius:999px;background:#F9F4ED;color:#201e1d;font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:background .2s,color .2s";
-    const segOff = "padding:6px 11px;border-radius:999px;color:#C0B6A5;font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:background .2s,color .2s";
-    return { lang, s, steps, play, more, specs, changelog, faq2, fcols, heroImage, playerImage, diagnosticImage,
-      subNav: [["features", s.navFeatures], ["play", s.navPlay], ["formats", s.navFormats], ["log", s.navLog], ["faq", s.navFaq]].map(([id, t]) => ({ id, t, href: "#" + id })),
-      setZh: () => this.setLang("zh"), setEn: () => this.setLang("en"),
-      zhStyle: lang === "zh" ? segOn : segOff, enStyle: lang === "en" ? segOn : segOff };
+    const FAQ = FAQ0.map(([q, a], i) => { const open = this.state.open === i; return { q, a, open, toggle: () => this.setState((st) => ({ open: st.open === i ? -1 : i })), signS: `flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:${open ? '#201E1D' : 'rgba(32,30,29,.07)'};color:${open ? '#F9F4ED' : '#201E1D'};font-size:17px;font-weight:600;line-height:1;transform:rotate(${open ? 45 : 0}deg);transition:transform .2s` }; });
+    const NAV = (zh ? [['影视', '#film'], ['功能', '#features'], ['播放', '#play'], ['格式', '#formats'], ['更新', '#log'], ['常见问题', '#faq']] : [['Film & TV', '#film'], ['Features', '#features'], ['Playback', '#play'], ['Formats', '#formats'], ['Updates', '#log'], ['FAQ', '#faq']]).map(([l, href]) => ({ l, href }));
+    const seg = (on) => `display:inline-flex;align-items:center;height:26px;padding:0 11px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;${on ? 'background:#F9F4ED;color:#201E1D' : 'color:#C0B6A5'}`;
+    return { lang, supportHref:'support.html?lang='+lang+'#support', privacyHref:'support.html?lang='+lang+'#privacy', creditsHref:'credits.html?lang='+lang,
+      diagnosticSrc:zh?'/assets/f49652ec8b75a74a88b141cc759567165cc0337a9867a37267979eb6ecb21156.webp':'/assets/ac0ae6480d41c82bc14a37ec35962df372eb79f8c8b6a4f0d8171b52b7bc0362.webp', diagnosticAlt:zh?'播放诊断':'Playback Diagnostics', zh, en: !zh, s, NAV, MORE, SPECS, LOG, FAQ,
+      f1: pick(F.f1), f2: pick(F.f2), f3: pick(F.f3), f4: pick(F.f4), f5: pick(F.f5), f6: pick(F.f6), f7: pick(F.f7), play: pick(PLAY),
+      zhS: seg(zh), enS: seg(!zh), setZh: () => this.setLang('zh'), setEn: () => this.setLang('en') };
   }
 }
 </script>

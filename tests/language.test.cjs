@@ -30,7 +30,7 @@ function harness(page, { query = '', saved = null, storageBlocked = false, fragm
   return { component, document, storage, url: () => url };
 }
 
-for (const page of ['index.html', 'support.html']) {
+for (const page of ['index.html', 'support.html', 'credits.html']) {
   test(`${page}: explicit language overrides a conflicting browser preference before first render`, () => {
     for (const lang of ['zh', 'en']) {
       const h = harness(page, { query: '?lang=' + lang, saved: lang === 'zh' ? 'en' : 'zh' });

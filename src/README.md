@@ -1,6 +1,6 @@
 # 官网可编辑源文件
 
-`index.html`、`support.html` 从既有导出包提取，资源改用本地文件并在第一个运行时脚本前加入 `window.__resources` 映射。文案、图片和原 DC React 运行时保留；首页功能区已改为自然页面流和一次性渐显，支持页的滚动导航也不再触发整页渲染。日常修改这两个源文件及 `motion.js`，无需编辑巨大的 base64 导出包。
+`index.html`、`support.html` 从既有导出包提取，资源改用本地文件并在第一个运行时脚本前加入 `window.__resources` 映射。首页采用 2026-09-29 的双语设计稿，支持页沿用原有内容与深链；`credits.html` 列出截图素材的作者、来源与许可。日常修改这三个源文件及 `motion.js`，无需编辑巨大的 base64 导出包。
 
 ```sh
 python3 scripts/build-site.py --check
@@ -10,9 +10,11 @@ python3 -m http.server 8080 --directory /absolute/path/to/site-output
 
 在浏览器打开 `http://localhost:8080/`。资源使用 `/assets/` 根路径，需要从站点根部署和预览；不能直接双击 HTML，也不适用于未配置根路径的子目录部署。
 
-`../assets/` 按解码后原始内容的完整 SHA-256 命名，同内容只保留一份；`asset-manifest.json` 记录来源 UUID、外部模块映射、大小和校验值。构建会验证资源存在及哈希，输出两页、资源和 `build-report.json`，报告原包大小、共享资源收益及 gzip 估算；不会读取、复制或覆盖独立维护的隐私页、CNAME 或服务器配置。输出目录复用时不会删除其他文件，正式发布宜选空目录并明确合并独立页面。
+`../assets/` 按解码后原始内容的完整 SHA-256 命名，同内容只保留一份；`asset-manifest.json` 记录来源 UUID、外部模块映射、大小和校验值。构建会验证资源存在及哈希，输出三页、资源和 `build-report.json`，报告原包大小、共享资源收益及 gzip 估算；不会读取、复制或覆盖独立维护的隐私页、CNAME 或服务器配置。输出目录复用时不会删除其他文件，正式发布宜选空目录并明确合并独立页面。
 
 原始导入命令为 `python3 scripts/build-site.py --extract-bundles --out /absolute/path/to/site-output`，已有 `src` 时会拒绝再次导入，防止覆盖后续编辑。
+
+Apple 下载徽章与 TMDB 标志直接采用官方 SVG，来源记录在资源清单。开放影片逐图署名位于 `credits.html`；不包含未使用的 Agent 327 素材。首页图片仅展示，中英文截图随页面语言切换，播放器共用一张示意画面，播放诊断沿用原先的双语素材与裁切高度。
 
 可选的 `src/motion.js` 由源码维护者编辑。在页面需要的位置加入 `<script src="__SITE_MOTION__"></script>`，构建会以其内容哈希生成输出 `assets/*.js` 并仅在输出 HTML 中替换占位地址；不会重写源 HTML 或 JavaScript。两页引用同一份输出资源。无占位引用时不额外打包该脚本。
 
