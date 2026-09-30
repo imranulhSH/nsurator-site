@@ -610,10 +610,17 @@ class Component extends DCLogic {
     return null;
   }
   componentDidMount() {
+    this.onLocation = () => this.setState({ lang: this.initialLanguage() });
+    window.addEventListener("popstate", this.onLocation);
+    window.addEventListener("pageshow", this.onLocation);
     this.syncTitle();
     window.NsuratorMotion?.mount();
   }
   componentDidUpdate() { this.syncTitle(); window.NsuratorMotion?.mount(); }
+  componentWillUnmount() {
+    window.removeEventListener("popstate", this.onLocation);
+    window.removeEventListener("pageshow", this.onLocation);
+  }
   syncTitle() {
     const lang = this.state.lang ?? this.props.lang ?? "zh";
     document.title = lang === "en" ? "Nsurator — Your films and shows, finally at home." : "Nsurator — 你的影片和剧集，终于有了个家。";
@@ -673,7 +680,7 @@ class Component extends DCLogic {
       { v: '6.0.0', date: '2026-09', items: zh ? ['收件箱流水线：待归档 / 待确认 / 暂不可归档 三列，一键归档', '播放诊断面板：丢帧、音频缓冲、重缓冲原因', 'AI 智能体：用 MCP 接入你的 AI 工具'] : ['Inbox pipeline: To archive / Review / Not archivable, one-click archive', 'Playback diagnostics: dropped frames, audio buffer, rebuffer causes', 'AI Agents: connect your AI tools over MCP'] },
     ];
     const FAQ0 = zh ? [
-      ['我的文件会上传到哪里吗？', '不会。影片、识别结果、笔记和观看记录都在这台 Mac 上的资料库里。只有填了 TMDB 密钥时，Nsurator 才会把片名和年份发给 TMDB 查资料，文件本身不离开你的设备；不填密钥、断网也照常用。AI 智能体只走本机回环地址。'],
+      ['我的文件会上传到哪里吗？', '默认不会上传到 Nsurator 的服务器。影片资料、识别结果、笔记和观看记录保存在本机；主动投送时，所选影片会通过网络发送到你选择的接收设备。TMDB、远程媒体源、网盘授权和 AI 工具会按你启用的功能处理相应数据。完整说明见页脚的隐私政策。'],
       ['一定要填 TMDB 密钥吗？', '不用。有本地 NFO 的照常认出来。填一个免费的 TMDB 密钥（在 themoviedb.org 申请，大约 3 分钟），没有 NFO 的也能认出来，还会补上海报和背景图。密钥只存在这台 Mac 上。'],
       ['NAS 上的片子能看吗？', '能。在媒体源里把 NAS 上的文件夹加进清单：只建索引，不搬文件。NAS 暂时连不上时，清单照常显示缓存的封面，连上就能播。'],
       ['怎么收费？', '免费下载，免费版每月 15 次播放。Pro 先免费试用 7 天，之后 ¥39 / 年，或 ¥69 终身买断，都在 Mac App Store 里购买和管理；实际价格以 App Store 显示为准。'],
@@ -681,7 +688,7 @@ class Component extends DCLogic {
       ['AI 智能体需要我装什么？', '你已经在用的工具就行：Claude Code、Codex、Cursor 这类支持 MCP 的客户端。在设置里打开「AI 与自动化连接」，把给出的命令在终端里运行一次。'],
       ['支持哪些文件？', '三十余种容器：MKV、MP4、MOV、AVI、RMVB、WMV、FLV、TS 等；视频从 H.264、HEVC、AV1、VP9 到 RV40、VC-1 这类老编码；蓝光 BDMV、ISO 和 DVD 目录也能直接播。'],
     ] : [
-      ['Do my files get uploaded anywhere?', 'No. Films, recognition results, notes and watch history live in the library on this Mac. Only when you add a TMDB key does Nsurator send titles and years to TMDB to look up details; the files themselves never leave your devices, and without a key it works offline. AI Agents connect over loopback only.'],
+      ['Do my files get uploaded anywhere?', 'Your videos are not uploaded to Nsurator servers by default. Library details, recognition results, notes and watch history stay on your Mac. When you choose casting, the selected media is sent over your network to your chosen receiver. TMDB, remote sources, cloud authorization and AI tools process data for the features you enable. See the privacy policy in the footer for details.'],
       ['Do I need a TMDB key?', 'No. Anything with a local NFO is recognized as usual. Add a free TMDB key (from themoviedb.org, about three minutes) and titles without an NFO are recognized too, with posters and backdrops filled in. The key stays on this Mac.'],
       ['Can I watch films stored on a NAS?', 'Yes. Add NAS folders to the list from Sources: they’re indexed where they are, never moved. If the NAS is briefly unreachable, the list keeps showing cached artwork, and playback returns once it reconnects.'],
       ['How much does it cost?', 'Free to download, with 15 plays a month on the free plan. Pro starts with a 7-day free trial, then a yearly subscription or a one-time lifetime purchase, bought and managed in the Mac App Store at your local price.'],
@@ -692,7 +699,7 @@ class Component extends DCLogic {
     const FAQ = FAQ0.map(([q, a], i) => { const open = this.state.open === i; return { q, a, open, closed:!open, answerId:'faq-answer-'+i, answerStyle:`grid-template-rows:${open ? '1fr' : '0fr'};opacity:${open ? 1 : 0}`, toggle: () => this.setState((st) => ({ open: st.open === i ? -1 : i })), signS: `flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:${open ? '#201E1D' : 'rgba(32,30,29,.07)'};color:${open ? '#F9F4ED' : '#201E1D'};font-size:17px;font-weight:600;line-height:1;transform:rotate(${open ? 45 : 0}deg);transition:transform .2s` }; });
     const NAV = (zh ? [['影视', '#film'], ['功能', '#features'], ['播放', '#play'], ['格式', '#formats'], ['更新', '#log'], ['常见问题', '#faq']] : [['Film & TV', '#film'], ['Features', '#features'], ['Playback', '#play'], ['Formats', '#formats'], ['Updates', '#log'], ['FAQ', '#faq']]).map(([l, href]) => ({ l, href, id: href.slice(1) }));
     const seg = (on) => `display:inline-flex;align-items:center;height:26px;padding:0 11px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;${on ? 'background:#F9F4ED;color:#201E1D' : 'color:#C0B6A5'}`;
-    return { lang, supportHref:'support.html?lang='+lang+'#support', privacyHref:'support.html?lang='+lang+'#privacy', creditsHref:'credits.html?lang='+lang,
+    return { lang, supportHref:'support.html?lang='+lang+'#support', privacyHref:'privacy.html?lang='+lang+(zh?'#zh-hans':'#english'), creditsHref:'credits.html?lang='+lang,
       diagnosticSrc:zh?'/assets/f49652ec8b75a74a88b141cc759567165cc0337a9867a37267979eb6ecb21156.webp':'/assets/ac0ae6480d41c82bc14a37ec35962df372eb79f8c8b6a4f0d8171b52b7bc0362.webp', diagnosticAlt:zh?'播放诊断':'Playback Diagnostics', zh, en: !zh, s, NAV, MORE, SPECS, LOG, FAQ,
       f1: pick(F.f1), f2: pick(F.f2), f3: pick(F.f3), f4: pick(F.f4), f5: pick(F.f5), f6: pick(F.f6), f7: pick(F.f7), play: pick(PLAY),
       zhS: seg(zh), enS: seg(!zh), setZh: () => this.setLang('zh'), setEn: () => this.setLang('en') };

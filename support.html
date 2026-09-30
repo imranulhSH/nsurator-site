@@ -356,6 +356,8 @@ html{scroll-behavior:smooth}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}}
 body{margin:0;background:var(--color-neutral-100);color:var(--color-text);font-family:var(--font-body),'PingFang SC','Hiragino Sans GB',sans-serif}
 a{color:inherit;text-decoration:none}a:hover{opacity:.8}
+.language-button{appearance:none;border:0;background:transparent;font-family:inherit;min-height:32px;min-width:34px}
+.language-button:focus-visible{outline:2px solid #F9F4ED;outline-offset:3px}
 .mn{font-family:ui-monospace,"SF Mono",Menlo,monospace}
 .cap{font-family:var(--font-heading),sans-serif;font-weight:400}
 .hd{font-family:var(--font-heading),'PingFang SC','Hiragino Sans GB',sans-serif;font-weight:400;letter-spacing:-.01em}
@@ -380,9 +382,8 @@ a{color:inherit;text-decoration:none}a:hover{opacity:.8}
       <a href="index.html?lang={{ lang }}" style="display:flex;align-items:center;gap:10px;flex:none"><span style="width:26px;height:26px;border-radius:7px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat;box-shadow:0 2px 6px rgba(0,0,0,.35)"></span><span class="cap" style="font-size:19px;line-height:1">Nsurator</span></a>
       <div class="m-hide" style="flex:1;display:flex;justify-content:center;gap:26px;font-size:14px;font-weight:600;color:var(--color-neutral-400)"><a href="index.html?lang={{ lang }}#top">{{ t.navProduct }}</a><span style="color:var(--color-neutral-100)">{{ t.navSupport }}</span></div>
       <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
-        <div style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><span sc-camel-on-click="{{ setZh }}" style="{{ zhStyle }}">中</span><span sc-camel-on-click="{{ setEn }}" style="{{ enStyle }}">EN</span></div>
+        <div role="group" aria-label="{{ languageLabel }}" style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><button type="button" class="language-button" aria-label="中文" aria-pressed="{{ zh }}" sc-camel-on-click="{{ setZh }}" style="{{ zhStyle }}">中</button><button type="button" class="language-button" aria-label="English" aria-pressed="{{ en }}" sc-camel-on-click="{{ setEn }}" style="{{ enStyle }}">EN</button></div>
         <a class="m-hide" href="https://apps.apple.com/app/id6763750134?mt=12" style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;background:var(--color-neutral-100);color:var(--color-text);font-size:13px;font-weight:700;transition:transform .2s" style-active="transform:scale(.97)">{{ t.navCta }}</a>
-        <span class="m-show" style="display:none;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;background:rgba(249,244,237,.1)"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 12h16"></path><path d="M4 6h16"></path><path d="M4 18h16"></path></svg></span>
       </div>
     </div>
   </div>
@@ -394,7 +395,7 @@ a{color:inherit;text-decoration:none}a:hover{opacity:.8}
         <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
         <div class="rail-grp" style="display:flex;flex-direction:column;gap:2px">
           <span class="rail-lbl" style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--color-neutral-600);padding:0 0 8px 12px">{{ g.h }}</span>
-          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3"><a href="#" sc-camel-on-click="{{ it.go }}" style="{{ it.style }}" style-hover="background:var(--color-neutral-200)"><span style="{{ it.dot }}"></span>{{ it.t }}</a></sc-for>
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3"><a href="{{ it.href }}" sc-camel-on-click="{{ it.go }}" style="{{ it.style }}" style-hover="background:var(--color-neutral-200)"><span style="{{ it.dot }}"></span>{{ it.t }}</a></sc-for>
         </div>
         </sc-for>
       </div>
@@ -520,7 +521,13 @@ a{color:inherit;text-decoration:none}a:hover{opacity:.8}
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;support&quot;,&quot;guide&quot;,&quot;privacy&quot;,&quot;terms&quot;,&quot;oss&quot;],&quot;default&quot;:&quot;support&quot;,&quot;tsType&quot;:&quot;'support' | 'guide' | 'privacy' | 'terms' | 'oss'&quot;,&quot;section&quot;:&quot;页面&quot;,&quot;label&quot;:&quot;当前页&quot;},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;zh&quot;,&quot;en&quot;],&quot;default&quot;:&quot;zh&quot;,&quot;tsType&quot;:&quot;'zh' | 'en'&quot;,&quot;section&quot;:&quot;页面&quot;,&quot;label&quot;:&quot;语言&quot;},&quot;updated&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-09-15&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;法律页&quot;,&quot;label&quot;:&quot;更新日期&quot;},&quot;version&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;6.0.0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;法律页&quot;,&quot;label&quot;:&quot;对应版本&quot;}}">
 class Component extends DCLogic {
-  state = { page: null, active: "", lang: this.initialLanguage() };
+  state = { page: this.initialPage(), active: "", lang: this.initialLanguage() };
+  initialPage() {
+    const pages = ["support", "guide", "privacy", "terms", "oss"];
+    const fragment = location.hash.slice(1);
+    const doc = new URLSearchParams(location.search).get("doc");
+    return pages.includes(fragment) ? fragment : pages.includes(doc) ? doc : null;
+  }
   initialLanguage() {
     // App links take precedence over a language previously chosen in this browser.
     const requested = new URLSearchParams(location.search).get("lang");
@@ -532,21 +539,61 @@ class Component extends DCLogic {
     return null;
   }
   componentDidMount() {
-    const PAGES = ["support", "guide", "privacy", "terms", "oss"];
-    this.onHash = () => { const h = (location.hash || "").slice(1); if (PAGES.includes(h) && h !== (this.state.page ?? this.props.page ?? "support")) this.setState({ page: h, active: "" }); };
-    window.addEventListener("hashchange", this.onHash);
-    this.onHash();
+    this.onLocation = () => {
+      const page = this.initialPage() ?? this.props.page ?? "support";
+      const lang = this.initialLanguage() ?? this.props.lang ?? "zh";
+      if (page === "privacy") { location.replace(this.pageURL(page, "", lang)); return; }
+      // Keep document identity while native section links change the fragment.
+      const url = new URL(location.href);
+      url.searchParams.set("doc", page);
+      try { history.replaceState(null, "", url); } catch (e) {}
+      this.pendingSection = /^#s[1-9]\d*$/.test(location.hash) ? location.hash.slice(1) : "";
+      this.setState({ page, lang, active: this.pendingSection });
+    };
+    window.addEventListener("hashchange", this.onLocation);
+    window.addEventListener("popstate", this.onLocation);
+    window.addEventListener("pageshow", this.onLocation);
+    this.onLocation();
     this.syncTitle();
     window.NsuratorMotion?.mount();
+    this.restoreSection();
   }
-  componentDidUpdate(prev) { if (prev.page !== this.props.page && this.state.page !== null) this.setState({ page: null, active: "" }); this.syncTitle(); window.NsuratorMotion?.mount(); }
+  componentDidUpdate(prev) { if (prev.page !== this.props.page && this.state.page !== null) this.setState({ page: null, active: "" }); this.syncTitle(); window.NsuratorMotion?.mount(); this.restoreSection(); }
+  restoreSection() {
+    if (!this.pendingSection) return;
+    const section = document.getElementById(this.pendingSection);
+    if (section) { section.scrollIntoView({ block: "start", behavior: "instant" }); this.pendingSection = ""; }
+  }
   syncTitle() {
     const page = this.state.page ?? this.props.page ?? "support", lang = this.state.lang ?? this.props.lang ?? "zh";
     const T = { zh: { support: "联系支持", guide: "使用说明", privacy: "隐私政策", terms: "使用条款", oss: "开源许可" }, en: { support: "Contact support", guide: "User guide", privacy: "Privacy Policy", terms: "Terms of Use", oss: "Open-Source Licenses" } };
     try { document.title = "Nsurator · " + (T[lang][page] || ""); document.documentElement.lang = lang === "en" ? "en" : "zh-CN"; } catch (e) {}
   }
-  componentWillUnmount() { window.removeEventListener("hashchange", this.onHash); }
-  go(p) { this.setState({ page: p, active: "" }); try { history.replaceState(null, "", "#" + p); } catch (e) {} window.scrollTo({ top: 0 }); }
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.onLocation);
+    window.removeEventListener("popstate", this.onLocation);
+    window.removeEventListener("pageshow", this.onLocation);
+  }
+  pageURL(page, section = "", lang = this.state.lang ?? this.props.lang ?? "zh") {
+    const url = new URL(location.href);
+    url.searchParams.set("lang", lang);
+    if (page === "privacy") {
+      url.pathname = url.pathname.replace(/[^/]*$/, "privacy.html");
+      url.searchParams.delete("doc");
+      url.hash = lang === "en" ? "english" : "zh-hans";
+    } else {
+      url.searchParams.set("doc", page);
+      url.hash = section || page;
+    }
+    return url.pathname + url.search + url.hash;
+  }
+  go(p) {
+    if (!["support", "guide", "privacy", "terms", "oss"].includes(p)) return;
+    if (p === "privacy") { location.assign(this.pageURL(p)); return; }
+    try { history.pushState(null, "", this.pageURL(p)); } catch (e) {}
+    this.onLocation();
+    window.scrollTo({ top: 0 });
+  }
   setLang(l) {
     if (l !== "zh" && l !== "en") return;
     this.setState({ lang: l });
@@ -561,7 +608,10 @@ class Component extends DCLogic {
     const updated = this.props.updated ?? "2026-09-15";
     const version = this.props.version ?? "6.0.0";
     const SITE = "index.html?lang=" + lang;
-    const nav = (t, k) => ({ t, href: "#", go: (e) => { if (e) e.preventDefault(); this.go(k); } });
+    const nav = (t, k) => ({ t, href: this.pageURL(k), go: (e) => {
+      if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0)) return;
+      if (e) e.preventDefault(); this.go(k);
+    } });
     const site = (t, h) => ({ t, href: SITE + h, go: () => {} });
 
     const P = (text) => ({ isP: 1, text });
@@ -583,7 +633,7 @@ class Component extends DCLogic {
       head: {
         support: { kicker: "支持", title: "联系支持", sub: "问题会直接送到开发者。请尽量写清楚发生了什么，多数情况一次回复即可解决。", meta: "工作日 48 小时内回复 · 支持中文与英文" },
         guide: { kicker: "支持", title: "使用说明", sub: "从首次设置到更换硬盘，共十章。全程不需要账号，也不需要联网。", meta: `对应版本 ${version} · 随版本更新` },
-        privacy: { kicker: "法律", title: "隐私政策", sub: "结论先行：你的影片始终保存在你的设备上，我们没有存放它们的服务器。", meta: `更新日期 ${updated} · 适用于 Nsurator ${version} 及以后` },
+        privacy: { kicker: "法律", title: "隐私政策", sub: "查看正式隐私政策，了解本地数据与可选在线功能。", meta: `更新日期 ${updated} · 适用于 Nsurator ${version} 及以后` },
         terms: { kicker: "法律", title: "使用条款", sub: "从 Mac App Store 下载并使用 Nsurator，即表示接受本条款。我们尽量写得简短、易读。", meta: `更新日期 ${updated} · 适用于 Nsurator ${version} 及以后` },
         oss: { kicker: "法律", title: "开源许可", sub: "Nsurator 使用了以下开源项目。清单按工程里实际链接、附带与下载的组件逐项核对，随版本更新。", meta: `对应版本 ${version} · 许可证全文随 app 分发` },
       },
@@ -620,26 +670,6 @@ class Component extends DCLogic {
           ["用备份覆盖现在的资料", "先做一次预演，列出会改动什么；确认后写入。合并是全有或全无的：哪一步出错就整笔撤回，一行不写。", "设置 › 备份与搬家 › 用备份恢复"]]),
           P("合并时若有个别项无法写入（例如备份中某条记录损坏），Nsurator 会列出具体项目与原因，并提供「跳过这 N 项，继续合并」；其余内容照常合并，结果中会列出未合并的项目。磁盘空间不足、资料库被占用等原因无法跳过，需处理后重试。")] },
         { title: "键盘快捷键", blocks: [K([["空格", "播放 / 暂停"], ["← →", "后退 / 前进 10 秒"], ["⌘1 ⌘2 ⌘3", "影片 / 合集 / 收件箱"], ["⌘F", "搜索整个片库"], ["⌘⇧A", "把待归档的全部归档"], ["⌘⌥D", "打开播放诊断"], ["⌘⌥L", "立即锁定私密空间"], ["⌘⌫", "把选中影片移到废纸篓"]]), P("完整列表见菜单栏「帮助 › 键盘快捷键」。")] },
-      ],
-      privacy: [
-        { title: "先说结论", blocks: [L(["影片文件永远留在你的设备上，本应用没有上传它们的能力。", "没有账号，不需要注册，因此没有任何东西能指向「你这个人」。", "不埋点、不做分析统计、不接第三方追踪 SDK。", "只有六类网络请求，全部列在第 04 条，且都由你的动作触发。"]), P("以下为全文。摘要仅为便于阅读，如有出入以正文为准。")] },
-        { title: "这份政策管什么", blocks: [P("本政策说明 Nsurator for macOS（下称「本应用」）如何处理与你有关的信息。本应用仅通过 Mac App Store 分发；其他渠道的同名程序与我们无关。"), P("本应用没有账号系统，你不需要注册、不需要登录，我们也因此无法把任何数据和「你这个人」对应起来。")] },
-        { title: "留在你设备上的数据", blocks: [P("本应用的全部工作数据都写在你的 Mac 上，默认位于应用沙盒的 Application Support 目录，媒体库位置由你指定。这些数据包括："), L(["影片的文件路径、文件名、大小、时长、容器与编解码等技术信息；", "你自己写下的标签、笔记、评分、人物命名与合集规则；", "观看历史与播放进度；", "缩略图与预览帧缓存；", "人脸特征向量——由本机模型从你的影片画面中提取，用于把同一个人的镜头归到一起；", "私密空间的索引，以及本月播放次数等授权相关的本地计数。"]), P("我们不持有这些数据的任何副本，也没有可以存放它们的服务器。你可以随时整份复制或删除。"), N("影片文件本身永远不会被上传。本应用不具备把视频内容发送到任何远端的能力。")] },
-        { title: "本应用发出的全部网络请求", blocks: [P("下表是本应用可能联网的全部情形。除此之外没有任何后台上报、遥测或心跳请求；断网状态下，除下列功能外一切正常可用。"), T(["做什么", "发往哪里", "包含什么"], [
-          ["内购与授权校验", "Apple（App Store / StoreKit）", "由 Apple 处理的交易凭据。我们只收到「已购买 / 未购买」这一个结果，看不到你的 Apple ID、姓名或支付信息。"],
-          ["影片资料补全", "TMDB（themoviedb.org）", "仅在你点击「补全元数据」时发出，内容是你要查询的片名或年份。不含文件路径、设备标识或任何账号信息。"],
-          ["报告问题", "Nsurator 自己的接口", "仅在你点「发送」时：你写的内容、可选的回信邮箱、勾选的诊断日志与你添加的截图。诊断日志里没有文件名、路径或人物姓名。"],
-          ["崩溃与卡顿报告", "Apple", "仅当你在「系统设置 › 隐私与安全性 › 分析与改进」里开启了与开发者共享。由 Apple 匿名化后转交，内容是堆栈与设备型号，不含文件名。"],
-          ["识别模型下载", "模型发布方的下载地址（AuraFace：fal.ai；YuNet：OpenCV Zoo）", "仅在你首次开启人物识别时发出一次，内容只是下载两个模型文件的请求，不含任何与你或你的影片有关的信息。此后识别全程在本机运行。"],
-          ["访问你添加的媒体源", "你自己指定的 SMB / SFTP / FTP / WebDAV 服务器或网盘（如 MEGA）", "读取目录与影片文件所需的请求，只发往你填写的那台服务器或你登录的服务商；登录凭据保存在本机，我们不经手、也看不到。"]]), P("与任何网络请求一样，接收方能看到你的 IP 地址，上表不再逐条重复。如不需要联网的资料补全，不使用该功能即可；本应用不会自行发起请求。")] },
-        { title: "人物识别在本机完成", blocks: [P("人脸检测与特征提取由本机模型执行——模型文件在你首次开启识别时下载一次，之后运算全部发生在你的 Mac 上。照片、画面截图和人脸特征向量都不会离开设备，也不会用于训练任何模型。"), P("你可以在设置里关闭识别；关闭后本应用停止分析新影片。删除某个人物时，对应的特征向量一并删除。")] },
-        { title: "AI 智能体（MCP）", blocks: [P("开启后，本应用在本机回环地址（127.0.0.1）上监听，只接受这台 Mac 上的客户端连接，不对局域网或公网开放。可授予的能力逐条开关，每次调用都会记录时间、来源与动作，日志可查看也可清空。"), P("私密空间永远被排除在 AI 智能体的可见范围之外，任何权限组合都无法读到其中的内容。"), N("你连接的 AI 客户端（例如 Claude Code、Codex、Cursor、Windsurf、Gemini、Kimi）是第三方产品。你在其中输入的内容、以及它把哪些信息发往哪家公司的服务器，由那家公司的隐私政策决定——本应用只负责回答它在本机提出的问题，无法约束其后续行为。接入前请先读一遍对方的隐私条款。")] },
-        { title: "私密空间", blocks: [P("移入私密空间的影片会同时从清单、搜索、合集和 Spotlight 索引中消失，需要 Touch ID 或系统密码才能看见。锁定状态下不保留可读的缩略图缓存。"), P("解锁凭据由 macOS 钥匙串与本机生物识别管理，我们既不持有也无法绕过。因此不存在「找回」流程：若你失去对这台 Mac 的访问能力，我们无法协助恢复。这是有意的设计取舍。")] },
-        { title: "我们不做的事", blocks: [L(["不出售、不出租、不交换任何与你有关的信息；", "不投放广告，不做用户画像，不做行为定向；", "不接入任何第三方分析或追踪 SDK——本应用中不存在 Google Analytics、Firebase、Facebook SDK 或第三方崩溃平台；", "不在后台扫描与本应用无关的目录；只读取你明确授权的媒体库位置和监听文件夹。"])] },
-        { title: "儿童", blocks: [P("本应用不面向 14 岁以下（部分地区为 13 或 16 岁以下）的儿童，也不会有意收集他们的个人信息。由于本应用不设账号、不收集身份信息，实际上也不具备识别用户年龄的手段。")] },
-        { title: "你的权利，以及如何行使", blocks: [P("因为数据在你自己的设备上，大部分权利你可以直接行使，不必等我们批准："), L(["查阅与导出：资料库就是一个文件夹加一个数据库文件，整份拷走即可；设置里也提供导出。", "更正：标签、人物、笔记在界面里直接改。", "删除：删除资料库文件夹即清空全部记录；清除缓存不会动你的影片文件。"]), P("对于我们确实持有的极少量信息——你通过「报告问题」或邮件发来的内容——你可以写信要求查阅或删除，我们会在 30 天内处理；报告内容在问题关闭 90 天后自动删除。若你位于中国内地、欧洲经济区、英国或加利福尼亚州，本政策同样适用当地法律赋予你的相应权利。")] },
-        { title: "政策变更", blocks: [P("政策有实质变更时，我们会更新本页顶部的日期，并在应用内提示一次。历史版本可以写信索取。继续使用新版本即表示接受更新后的政策。")] },
-        { title: "联系", blocks: [P("隐私相关问题请发送至 support@nsurator.com，工作日 48 小时内回复。"), M("开发者   个人开发者，与 Mac App Store 页面「销售商」所示一致\n邮箱     support@nsurator.com")] },
       ],
       terms: [
         { title: "你和谁在订这份约", blocks: [P("本条款是你与 Nsurator 开发者之间关于使用 Nsurator for macOS 的协议。你从 Mac App Store 下载、安装或使用本应用，即表示接受本条款。"), P("同时，你与 Apple 之间的《Apple 媒体服务条款》和其中的最终用户许可协议同样适用。两者如有冲突，与 Apple 的协议优先；Apple 不是本条款的当事方，但有权作为第三方受益人主张本条款。")] },
@@ -678,7 +708,7 @@ class Component extends DCLogic {
       head: {
         support: { kicker: "Support", title: "Contact support", sub: "Your message goes straight to the developer. Describe what happened as clearly as you can; most cases are resolved in a single reply.", meta: "Replies within 48 hours on business days · Chinese and English" },
         guide: { kicker: "Support", title: "User guide", sub: "From first setup to moving to a new drive, in ten short chapters. No account and no internet connection required.", meta: `For version ${version} · Updated with each release` },
-        privacy: { kicker: "Legal", title: "Privacy Policy", sub: "The short version: your films stay on your device. We have no server to store them on.", meta: `Updated ${updated} · Applies to Nsurator ${version} and later` },
+        privacy: { kicker: "Legal", title: "Privacy Policy", sub: "Read the privacy policy for local data and optional online features.", meta: `Updated ${updated} · Applies to Nsurator ${version} and later` },
         terms: { kicker: "Legal", title: "Terms of Use", sub: "Downloading and using Nsurator from the Mac App Store means you accept these terms. We have kept them short and readable.", meta: `Updated ${updated} · Applies to Nsurator ${version} and later` },
         oss: { kicker: "Legal", title: "Open-Source Licenses", sub: "Nsurator is built on the following open-source projects. The list is checked item by item against what each version actually links, bundles or downloads, and updated with each release.", meta: `For version ${version} · Full license texts ship with the app` },
       },
@@ -716,26 +746,6 @@ class Component extends DCLogic {
           P("If a few items cannot be written during a merge (for example a damaged record in the backup), Nsurator lists the items and the reasons and offers Skip these N items and continue; the rest merges as normal and the result lists what was left out. Causes such as a full disk or a locked library cannot be skipped and must be resolved before retrying.")] },
         { title: "Keyboard shortcuts", blocks: [K([["Space", "Play / pause"], ["← →", "Back / forward 10 seconds"], ["⌘1 ⌘2 ⌘3", "Films / Collections / Inbox"], ["⌘F", "Search the whole library"], ["⌘⇧A", "Archive everything in To archive"], ["⌘⌥D", "Open playback diagnostics"], ["⌘⌥L", "Lock the Private Space now"], ["⌘⌫", "Move selected films to the Trash"]]), P("The full list is under Help › Keyboard Shortcuts in the menu bar.")] },
       ],
-      privacy: [
-        { title: "In short", blocks: [L(["Your video files never leave your device; the app has no ability to upload them.", "There is no account and no sign-up, so nothing can be tied to you as a person.", "No analytics, no usage statistics, no third-party tracking SDKs.", "Only six kinds of network request, all listed in section 04, and each triggered by your own action."]), P("The full text follows. The summary is for convenience; where they differ, the full text applies.")] },
-        { title: "What this policy covers", blocks: [P("This policy explains how Nsurator for macOS (the App) handles information about you. The App is distributed only through the Mac App Store; programs of the same name from other sources are unrelated to us."), P("The App has no account system. You do not register or sign in, and we therefore have no way to associate any data with you as a person.")] },
-        { title: "Data that stays on your device", blocks: [P("All of the App's working data is written on your Mac — by default in the app sandbox's Application Support directory, with the library location chosen by you. This includes:"), L(["File paths, names, sizes, durations, containers and codecs of your films;", "Tags, notes, ratings, names of people and collection rules you create;", "Watch history and playback positions;", "Thumbnail and preview-frame caches;", "Face feature vectors, extracted from frames of your films by the on-device model to group appearances of the same person;", "The Private Space index, and local counters related to licensing such as this month's play count."]), P("We hold no copy of this data and have no server to store it on. You can copy or delete it in full at any time."), N("Video files themselves are never uploaded. The App has no capability to send video content to any remote destination.")] },
-        { title: "Every network request the App makes", blocks: [P("The table below lists every case in which the App may connect to the internet. There is no background reporting, telemetry or heartbeat beyond these; offline, everything except the features below works normally."), T(["Purpose", "Sent to", "Contents"], [
-          ["Purchase and license check", "Apple (App Store / StoreKit)", "Transaction receipts handled by Apple. We receive only a purchased / not purchased result — never your Apple ID, name or payment details."],
-          ["Metadata lookup", "TMDB (themoviedb.org)", "Sent only when you click Fetch metadata; contains the title or year you are looking up. No file paths, device identifiers or account information."],
-          ["Report a Problem", "Nsurator's own endpoint", "Only when you click Send: what you wrote, an optional reply email, the diagnostic log if selected, and any screenshots you added. The diagnostic log contains no file names, paths or people's names."],
-          ["Crash and hang reports", "Apple", "Only if you have enabled Share with App Developers under System Settings › Privacy & Security › Analytics & Improvements. Anonymized by Apple; contains stack traces and device model, not file names."],
-          ["Recognition model download", "The publishers' download locations (AuraFace: fal.ai; YuNet: OpenCV Zoo)", "Sent once, when you first enable people recognition; it is only a request to download the two model files and carries nothing about you or your films. Recognition then runs entirely on your Mac."],
-          ["Access to media sources you add", "The SMB / SFTP / FTP / WebDAV servers or cloud drives (such as MEGA) you specify yourself", "Requests needed to read folders and video files, sent only to the server you entered or the service you signed in to; credentials stay on your Mac and never pass through us."]]), P("As with any network request, the recipient can see your IP address; the table does not repeat this per row. If you do not want online metadata lookup at all, simply do not use the feature; the App never starts a request on its own.")] },
-        { title: "People recognition happens on your Mac", blocks: [P("Face detection and feature extraction run on on-device models — the model files are downloaded once, when you first enable recognition, and all computation then happens on your Mac. Photos, frames and feature vectors never leave the device and are not used to train any model."), P("Recognition can be turned off in Settings, after which the App stops analyzing new films. Deleting a person deletes their feature vectors.")] },
-        { title: "AI agents (MCP)", blocks: [P("When enabled, the App listens on the local loopback address (127.0.0.1) and accepts connections only from clients on this Mac; it is not exposed to the local network or the internet. Each capability is granted separately, and every call is logged with time, source and action; the log can be viewed and cleared."), P("The Private Space is always excluded from what AI agents can see; no combination of permissions can read its contents."), N("The AI client you connect (for example Claude Code, Codex, Cursor, Windsurf, Gemini or Kimi) is a third-party product. What you type into it, and what it sends to which company's servers, is governed by that company's privacy policy. The App only answers the questions the client asks locally and cannot control what happens afterwards. Please read the client's privacy terms before connecting.")] },
-        { title: "Private Space", blocks: [P("Films moved into the Private Space disappear from lists, search, collections and the Spotlight index at once, and require Touch ID or your system password to view. No readable thumbnail cache is kept while locked."), P("Unlock credentials are managed by the macOS Keychain and on-device biometrics; we do not hold them and cannot bypass them. There is therefore no recovery process: if you lose access to this Mac, we cannot help restore the contents. This is a deliberate design decision.")] },
-        { title: "What we do not do", blocks: [L(["We do not sell, rent or exchange any information about you;", "We show no advertising and build no user profiles or behavioral targeting;", "We include no third-party analytics or tracking SDKs — there is no Google Analytics, Firebase, Facebook SDK or third-party crash service in the App;", "We do not scan directories unrelated to the App in the background; we read only the library location and watched folders you have explicitly authorized."])] },
-        { title: "Children", blocks: [P("The App is not directed at children under 14 (13 or 16 in some regions) and does not knowingly collect their personal information. Because the App has no accounts and collects no identity information, it has no practical means of determining a user's age.")] },
-        { title: "Your rights and how to exercise them", blocks: [P("Because the data is on your own device, you can exercise most rights directly, without waiting for us:"), L(["Access and export: the library is a folder plus a database file; copy it in full, or use Export in Settings.", "Correction: edit tags, people and notes directly in the app.", "Deletion: deleting the library folder removes all records; clearing the cache does not touch your video files."]), P("For the small amount of information we do hold — the contents of reports you send through Report a Problem or by email — you may write to us to request access or deletion, and we will respond within 30 days; report contents are deleted automatically 90 days after the issue is closed. If you are in mainland China, the EEA, the United Kingdom or California, this policy also applies the rights granted to you under local law.")] },
-        { title: "Changes to this policy", blocks: [P("When the policy changes materially, we update the date at the top of this page and show a one-time notice in the app. Previous versions are available on request. Continued use of a new version constitutes acceptance of the updated policy.")] },
-        { title: "Contact", blocks: [P("Privacy questions: support@nsurator.com. Replies within 48 hours on business days."), M("Developer   Individual developer, as shown under Seller on the Mac App Store\nEmail       support@nsurator.com")] },
-      ],
       terms: [
         { title: "Who this agreement is between", blocks: [P("These terms are an agreement between you and the developer of Nsurator regarding your use of Nsurator for macOS. Downloading, installing or using the App from the Mac App Store constitutes acceptance of these terms."), P("Apple's Media Services Terms and Conditions, including the Licensed Application End User License Agreement, also apply. Where the two conflict, the agreement with Apple prevails. Apple is not a party to these terms but may enforce them as a third-party beneficiary.")] },
         { title: "Scope of the license", blocks: [P("We grant you a personal, non-exclusive, non-transferable license to use the App on Apple devices you own or control, within the App Store Usage Rules (including Family Sharing)."), P("You may not: reverse-engineer, decompile or attempt to extract the source code (except where expressly permitted by law); circumvent or tamper with licensing or in-app purchase verification; redistribute, resell or rent the App or its components; or remove any copyright or attribution notices.")] },
@@ -771,16 +781,16 @@ class Component extends DCLogic {
     const dot = (on) => `flex:none;width:6px;height:6px;border-radius:50%;background:${on ? "#D9523F" : "transparent"}`;
     const groups = C.groups.map(([h, items]) => ({ h, items: items.map(([k, t]) => ({ ...nav(t, k), style: railItem(page === k), dot: dot(page === k) })) }));
     const fcols = C.fcols.map(([h, links]) => ({ h, links }));
-    const SRC = { guide: C.guide, privacy: C.privacy, terms: C.terms, oss: C.oss }[page] || [];
+    const SRC = { guide: C.guide, terms: C.terms, oss: C.oss }[page] || [];
     const active = this.state.active;
     const sections = SRC.map((s, i) => ({ id: `s${i + 1}`, n: String(i + 1).padStart(2, "0"), title: s.title, blocks: s.blocks }));
-    const toc = sections.map((s) => ({ id: s.id, n: s.n, title: s.title, href: `#${s.id}`,
+    const toc = sections.map((s) => ({ id: s.id, n: s.n, title: s.title, href: this.pageURL(page, s.id),
       style: `display:flex;gap:10px;align-items:baseline;padding:6px 12px;border-radius:12px;font-size:13.5px;line-height:1.45;transition:background .2s,color .2s;${active === s.id ? "color:var(--color-text);font-weight:700;background:var(--color-accent-2-100)" : "color:var(--color-neutral-600)"}` }));
     const foot = C.foot[page] || ["", ""];
     const segOn = "padding:6px 11px;border-radius:999px;background:#F9F4ED;color:#201e1d;font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:background .2s,color .2s";
     const segOff = "padding:6px 11px;border-radius:999px;color:#C0B6A5;font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:background .2s,color .2s";
 
-    return { lang, t: C.t, groups, fcols, head: C.head[page], routes: C.routes, before: C.before, diag, lookups: C.lookups, sections, toc,
+    return { lang, zh: !en, en, languageLabel: en ? "Language" : "语言", t: C.t, groups, fcols, head: C.head[page], routes: C.routes, before: C.before, diag, lookups: C.lookups, sections, toc,
       hasToc: page !== "support", isSupport: page === "support", isDoc: page !== "support",
       docFoot: foot[0], docMail: "mailto:" + foot[1], docMailText: foot[1],
       setZh: () => this.setLang("zh"), setEn: () => this.setLang("en"), zhStyle: en ? segOff : segOn, enStyle: en ? segOn : segOff };

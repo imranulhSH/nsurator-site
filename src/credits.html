@@ -59,10 +59,17 @@ class Component extends DCLogic {
     return null;
   }
   componentDidMount() {
+    this.onLocation = () => this.setState({ lang: this.initialLanguage() });
+    window.addEventListener("popstate", this.onLocation);
+    window.addEventListener("pageshow", this.onLocation);
     this.syncTitle();
     window.NsuratorMotion?.mount();
   }
   componentDidUpdate() { this.syncTitle(); window.NsuratorMotion?.mount(); }
+  componentWillUnmount() {
+    window.removeEventListener("popstate", this.onLocation);
+    window.removeEventListener("pageshow", this.onLocation);
+  }
   syncTitle() {
     const lang = this.state.lang ?? this.props.lang ?? "zh";
     document.title = lang === "en" ? "Nsurator · Image credits" : "Nsurator · 素材署名";
