@@ -388,6 +388,7 @@ section[id]{scroll-margin-top:90px}
       <a href="#top" style="display:flex;align-items:center;gap:10px;color:#F9F4ED"><img src="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png" alt="" style="width:28px;height:28px;display:block" width="1024" height="1024"><span style="font-size:17px;font-weight:700;letter-spacing:-.2px;color:#F9F4ED">Nsurator</span></a>
       <nav class="site-nav-links" style="display:flex;gap:20px;flex-wrap:wrap">
         <sc-for list="{{ NAV }}" as="n" hint-placeholder-count="6"><a href="{{ n.href }}" data-section-link="{{ n.id }}" style="font-size:13.5px;font-weight:600;color:#C0B6A5" style-hover="color:#F9F4ED">{{ n.l }}</a></sc-for>
+        <a href="/guides/" style="font-size:13.5px;font-weight:600;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.guides }}</a>
       </nav>
       <span class="site-nav-spacer" style="flex:1"></span>
       <div class="language-switch" style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><button type="button" lang="zh-CN" aria-label="中文" aria-pressed="{{ zh }}" sc-camel-on-click="{{ setZh }}" style="{{ zhS }}">中</button><button type="button" lang="en" aria-label="English" aria-pressed="{{ en }}" sc-camel-on-click="{{ setEn }}" style="{{ enS }}">EN</button></div>
@@ -583,6 +584,7 @@ section[id]{scroll-margin-top:90px}
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
         <span style="display:flex;align-items:center;gap:9px"><img src="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png" alt="" style="width:22px;height:22px;display:block" width="1024" height="1024" loading="lazy" decoding="async"><span style="font-size:14px;font-weight:700;color:#F9F4ED">Nsurator</span><span style="font-size:13px">{{ s.brandLine }}</span></span>
         <span style="flex:1"></span>
+        <a href="/guides/" style="font-size:13px;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.guides }}</a>
         <a href="{{ supportHref }}" style="font-size:13px;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.support }}</a>
         <a href="{{ privacyHref }}" style="font-size:13px;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.privacy }}</a>
         <a href="#faq" style="font-size:13px;color:#C0B6A5" style-hover="color:#F9F4ED">{{ s.faqTitle }}</a>
@@ -643,13 +645,13 @@ class Component extends DCLogic {
         filmEyebrow: '影视', filmTitle: '认出每一部，排成海报墙。', filmLead: '把影视文件夹交给 Nsurator：它按文件名和本地 NFO 认出电影、剧集和第几季第几集，配上海报、背景图和片名 Logo。再填一个免费的 TMDB 密钥，认得更全。',
         featEyebrow: '整理与工具', featTitle: '下载、整理、找片，都在同一个窗口里。', moreTitle: '还有这些', moreSub: '都在同一个窗口里。',
         specTitle: '装得上，放得开。', specSub: '原生 Swift 编写，为 Apple 芯片优化；旧版资料库直接读取，一次搬家不丢数据。', logTitle: '最近更新', faqTitle: '常见问题',
-        finalTitle: '把片子交给它，然后只管看。', brandLine: '放在你自己硬盘上的影片资料馆。', support: '支持', privacy: '隐私',
+        finalTitle: '把片子交给它，然后只管看。', brandLine: '放在你自己硬盘上的影片资料馆。', support: '支持', privacy: '隐私', guides: '使用攻略',
         tmdb: '使用你自己的 TMDB API 密钥，获取影视资料与图片。', art: '截图里的海报和剧照来自 Blender Studio 的开放电影和 David Revoy 的《Pepper & Carrot》，按 CC BY 授权使用，并按界面尺寸裁切。', artLink: '素材署名' },
       en: { h1a: 'Your films and shows,', h1b: 'finally at home.', sub: 'Nsurator recognizes movies and shows and lays them out as a poster wall, while your own videos stay in order. The Inbox archives downloads, the Screening Room starts in one click, and nearly any format plays. Your files stay on your Mac and NAS.', note: 'macOS 14 or later · Apple silicon · Free download',
         filmEyebrow: 'FILM & TV', filmTitle: 'Every title recognized. Every poster in place.', filmLead: 'Point Nsurator at your film folders. It recognizes movies, shows, seasons and episodes from file names and local NFO files, then adds posters, backdrops and title logos. Add a free TMDB key to recognize even more.',
         featEyebrow: 'ORGANIZE & TOOLS', featTitle: 'Download, sort and find — all in one window.', moreTitle: 'And more', moreSub: 'All in the same window.',
         specTitle: 'Installs easily. Plays anything.', specSub: 'Written natively in Swift and tuned for Apple silicon; legacy libraries are read directly, so moving loses nothing.', logTitle: 'Recent updates', faqTitle: 'FAQ',
-        finalTitle: 'Hand it your films. Then just watch.', brandLine: 'A film library that lives on your own drives.', support: 'Support', privacy: 'Privacy',
+        finalTitle: 'Hand it your films. Then just watch.', brandLine: 'A film library that lives on your own drives.', support: 'Support', privacy: 'Privacy', guides: 'Guides (Chinese)',
         tmdb: 'Use your own TMDB API key to retrieve film and TV details and artwork.', art: 'Posters and stills in the screenshots come from Blender Studio’s open movies and David Revoy’s Pepper & Carrot, used under CC BY and cropped to fit.', artLink: 'Credits' },
     };
     const s = S[lang];

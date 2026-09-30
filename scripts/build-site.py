@@ -13,6 +13,7 @@ import json
 from pathlib import Path
 import re
 import sys
+from urllib.parse import unquote, urljoin, urlsplit
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -309,9 +310,62 @@ def validate_sources():
     return pages, assets, report
 
 
-def build(out, pages, assets, report):
+def guide_sources():
+    """Publish the self-contained guide center, including its attribution files."""
+    source = ROOT / "src" / "guides"
+    files = {}
+    for path in sorted(source.rglob("*")):
+        if path.is_symlink():
+            raise ValueError("Guide sources must not be symlinks: " + str(path))
+        if not path.is_file():
+            continue
+        if path.suffix not in {".html", ".css", ".js", ".png", ".woff2", ".json"}:
+            raise ValueError("Unexpected guide file: " + str(path))
+        files["guides/" + path.relative_to(source).as_posix()] = path.read_bytes()
+    if "guides/index.html" not in files:
+        raise ValueError("Missing guide center index")
+
+    class Links(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.refs, self.ids = [], set()
+
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            self.refs.extend(attrs[key] for key in ("href", "src") if attrs.get(key))
+            if attrs.get("id"):
+                self.ids.add(attrs["id"])
+
+    parsed = {}
+    for name, data in files.items():
+        if name.endswith(".html"):
+            page = Links()
+            page.feed(data.decode("utf-8"))
+            parsed[name] = page
+    for name, page in parsed.items():
+        for ref in page.refs:
+            url = urlsplit(urljoin("https://build.invalid/" + name, ref))
+            if url.netloc != "build.invalid":
+                continue
+            target = unquote(url.path).lstrip("/")
+            if not target or target.endswith("/"):
+                target += "index.html"
+            if target not in files and target not in (*PAGES, "privacy.html"):
+                raise ValueError(name + ": missing local link " + ref)
+            if url.fragment and target in parsed and unquote(url.fragment) not in parsed[target].ids:
+                raise ValueError(name + ": missing anchor " + ref)
+    for name, data in files.items():
+        if name.endswith(".css"):
+            for ref in re.findall(r"url\(['\"]?([^'\")]+)", data.decode("utf-8")):
+                target = unquote(urlsplit(urljoin("https://build.invalid/" + name, ref)).path).lstrip("/")
+                if target not in files:
+                    raise ValueError(name + ": missing CSS asset " + ref)
+    return files
+
+
+def build(out, pages, assets, report, guides):
     out = out.resolve()
-    protected = [ROOT / "src", ROOT / "assets", ROOT / "scripts"]
+    protected = [ROOT / "src", ROOT / "assets", ROOT / "scripts", ROOT / "guides"]
     if out == ROOT or any(out == path or path in out.parents or out in path.parents for path in protected):
         raise ValueError("Output must be a separate build directory, not the repository root or source directories")
     out.mkdir(parents=True, exist_ok=True)
@@ -320,6 +374,10 @@ def build(out, pages, assets, report):
         (out / name).write_bytes(data)
     for filename, data in assets.items():
         (out / "assets" / filename).write_bytes(data)
+    for name, data in guides.items():
+        destination = out / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(data)
     (out / "build-report.json").write_text(json_text(report), encoding="utf-8")
     # No directory removal, no glob copy from the repository root, and no access
     # to the independently maintained privacy page or domain/server settings.
@@ -337,9 +395,18 @@ def main():
         if args.extract_bundles:
             extract_bundles()
         pages, assets, report = validate_sources()
+        guides = guide_sources()
+        report["guides"] = {
+            "pages": sorted(name for name in guides if name.endswith(".html")),
+            "files": len(guides),
+            "bytes": sum(len(data) for data in guides.values()),
+            "sha256": {name: sha256(data) for name, data in guides.items()},
+        }
+        report["output_bytes_excluding_report"] += report["guides"]["bytes"]
         if args.out:
-            build(args.out, pages, assets, report)
-        print(json_text({key: value for key, value in report.items() if key not in ("pages",)}), end="")
+            build(args.out, pages, assets, report, guides)
+        print(json_text({key: value for key, value in report.items() if key not in ("pages", "guides")}), end="")
+        print("Guides: " + str(report["guides"]["files"]) + " files; local links verified")
         if args.out:
             print("Built: " + str(args.out.resolve()))
     except (OSError, ValueError, KeyError, TypeError) as exc:
