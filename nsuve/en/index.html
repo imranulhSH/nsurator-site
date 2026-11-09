@@ -135,6 +135,25 @@ html[data-layout=desktop] body{background:#1B1714}
 .wp-site .wp-lg.wp-lg-on{color:#F9F4ED}
 .wp-site .wp-navbadge-a{display:block;line-height:0}
 html[lang=en] .wp-eb{text-transform:uppercase}
+/* the frosted bar (owner 11-09): once the Nsuve mark sits in the corner the whole nav is one bar, as on the phone */
+.wp-site .wps-bar{position:fixed;left:0;right:0;top:0;height:80px;z-index:-1;pointer-events:none;opacity:0;transition:opacity .3s,background .3s;
+  background:rgba(238,231,219,.62);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.wp-site .wp-nav[data-tone=dark] .wps-bar{background:rgba(28,25,22,.6)}
+.wp-site .wp-nav.wps-solid .wps-bar{opacity:1}
+.wp-site .wp-nav{transition:top .3s}
+.wp-site .wp-nav.wps-solid{top:18px}
+.wp-site .wp-navcap{transition:background .3s,border-color .3s}
+.wp-site .wp-nav.wps-solid .wp-navcap{background:transparent;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.wp-site .wp-nav.wps-solid[data-tone=dark] .wp-links{color:#F2EBDF}
+.wp-site .wp-nav.wps-solid[data-tone=dark] .wp-links a.wp-cur{color:#FFB59E}
+.wp-site .wp-nav.wps-solid[data-tone=dark] .wp-lang{background:rgba(242,235,223,.14)}
+.wp-site .wp-nav.wps-solid[data-tone=dark] .wp-lg{color:rgba(242,235,223,.7)}
+.wp-site .wp-nav.wps-solid[data-tone=dark] .wp-lg.wp-lg-on{background:#F2EBDF;color:#201E1D}
+@media (prefers-reduced-transparency: reduce){
+  .wp-site .wps-bar{background:#EEE7DB;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .wp-site .wp-nav[data-tone=dark] .wps-bar{background:#1C1916}
+}
+@media (prefers-reduced-motion: reduce){ .wp-site .wp-nav,.wp-site .wps-bar,.wp-site .wp-navcap{transition:none} }
 
 /* ===== hero (D v4, prefix wph-) ===== */
 .wph-root{--wph-px:0;--wph-py:0;width:1440px;height:900px;position:relative;overflow:hidden;background:#F5EAD8;color:#201E1D;
@@ -1721,6 +1740,7 @@ html[data-layout=phone] body{background:#EEE7DB}
 <a id="top"></a>
 <div class="wp-root wp-site">
 <div class="wps-navwrap"><nav class="wp-nav" data-tone="light" aria-label="Main">
+  <div class="wps-bar" aria-hidden="true"></div>
   <a class="wp-mark wps-mark" href="#top" aria-label="Nsuve · Back to top"><img class="wp-mark-ink" src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve"><img class="wp-mark-cream" src="/home-assets/brand/nsuve-cream.svg" alt=""></a>
   <div class="wp-navcap"><div class="wp-links"><a data-nav="screens" data-go="screens" href="#screens">Platforms</a><a data-nav="collect" data-go="collect" href="#collect">Organize</a><a data-nav="play" data-go="play" href="#play">Play</a><a data-nav="sources" data-go="sources" href="#sources">Sources</a><a data-nav="more" data-go="more" href="#more">More</a><a data-nav="pricing" data-go="pricing" href="#pricing">Pricing</a><a data-nav="faq" data-go="faq" href="#faq">FAQ</a><a href="/guides/">Guides (Chinese)</a><span class="wp-ul"></span></div><div class="wp-lang"><a class="wp-lg" href="/nsuve/?lang=zh" lang="zh-CN" hreflang="zh-Hans">中</a><a class="wp-lg wp-lg-on" href="/nsuve/en/?lang=en" lang="en" hreflang="en" aria-current="true">EN</a></div></div>
   <a class="wp-navbadge-a" href="https://apps.apple.com/app/id6763750134?mt=12"><img class="wp-navbadge" src="/home-assets/web/badge-mas-en.svg" alt="Download on the Mac App Store"></a>
@@ -4991,6 +5011,7 @@ class WMSite {
     if (!nat || natLayout !== d.dataset.layout) measure(p);
     var landed = e >= 1;
     p.slot.classList.toggle('wps-on', landed);
+    var bar = p.slot.closest('.wp-nav'); if (bar) bar.classList.toggle('wps-solid', landed);  // desktop: the frosted bar
     p.big.style.visibility = landed ? 'hidden' : '';
     if (reduced) { p.big.style.transform = ''; return; }
     var k = ease(e), s = p.slot.getBoundingClientRect();

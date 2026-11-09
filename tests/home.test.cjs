@@ -147,3 +147,13 @@ test('zh homepage: every drawn heading character has its outline, and the text i
   const hidden = [...html.matchAll(/<span class="zh-vh">([^<]*)<\/span>/g)].map((m) => m[1]).join('');
   for (const ch of new Set(headingText(html).replace(/\s/g, ''))) if (/[\u3000-\u303f\u3400-\u9fff\uff00-\uffef]/.test(ch)) assert.ok(hidden.includes(ch), 'text kept for ' + ch);
 });
+
+// 2026-11-09 (owner): once the Nsuve mark lands in the corner, the desktop nav becomes one frosted bar, as on the phone.
+for (const lang of ['zh', 'en']) {
+  test(`${lang} homepage: the desktop nav carries the frosted bar, switched on when the mark lands`, () => {
+    const html = read(lang);
+    assert.ok(html.includes('<div class="wps-bar" aria-hidden="true"></div>'));
+    assert.ok(html.includes(".wp-site .wp-nav.wps-solid .wps-bar{opacity:1}"));
+    assert.ok(html.includes("bar.classList.toggle('wps-solid', landed)"));
+  });
+}
