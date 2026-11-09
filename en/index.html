@@ -259,7 +259,7 @@ html[lang=en] .wp-eb{text-transform:uppercase}
 
 /* ===== screens ===== */
 .wp-screens .wp-screens-tear{z-index:7}
-.wp-screens .wp-screens-stage{position:sticky;top:0;width:1440px;height:900px;z-index:1}
+.wp-screens .wp-screens-stage{position:relative;width:1440px;height:900px;z-index:1}
 .wp-screens .wp-screens-spread{display:none}
 
 /* ---- left: the platform name (rolls vertically), its line, the status tag ---- */
@@ -306,6 +306,8 @@ html[lang=en] .wp-eb{text-transform:uppercase}
 .wp-screens .wp-screens-ix{position:absolute;right:16px;height:24px;display:flex;align-items:center;font:700 13.5px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:.01em;color:rgba(242,235,223,.46);white-space:nowrap;cursor:pointer;text-decoration:none;transition:color .25s;outline:none}
 .wp-screens .wp-screens-ix:hover,.wp-screens .wp-screens-ix:focus-visible{color:rgba(242,235,223,.9)}
 .wp-screens .wp-screens-ix.wp-screens-cur{color:#D9523F}
+/* autoplay progress: a coral hairline under the current name fills during its dwell */
+.wp-screens .wp-screens-pg{position:absolute;left:0;right:0;bottom:-3px;height:2px;border-radius:1px;background:#D9523F;transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
 
 /* ---- long board: the lineup ---- */
 .wp-long .wp-screens .wp-screens-stage{display:none}
@@ -322,15 +324,30 @@ html[lang=en] .wp-eb{text-transform:uppercase}
 @media (prefers-reduced-transparency: reduce){
   .wp-screens .wp-screens-rim{-webkit-backdrop-filter:none;backdrop-filter:none;background:#474238}
 }
+/* reduced motion: the index switches at once (no colour fade, no progress line) */
+.wp-reduced .wp-screens .wp-screens-ix{transition:none}
+.wp-reduced .wp-screens .wp-screens-pg{display:none}
+@media (prefers-reduced-motion: reduce){
+  .wp-screens .wp-screens-ix{transition:none}
+  .wp-screens .wp-screens-pg{display:none}
+}
 
 /* ===== collect ===== */
 .wp-collect{color:#201E1D}
-.wp-collect-stage{position:sticky;top:0;width:1440px;height:900px;overflow:hidden}
+.wp-collect-stage{position:relative;width:1440px;height:980px;overflow:hidden}
 .wp-collect-head{position:absolute;left:64px;top:104px}
-.wp-collect-actw{margin-top:14px;transform-origin:0 0;will-change:transform}
+.wp-collect-actw{margin-top:14px;transform-origin:0 0}
 .wp-collect-act{font:400 144px/1.02 Caprasimo,'PingFang SC',sans-serif;letter-spacing:-.005em}
 .wp-collect-lead{position:absolute;left:900px;top:176px;width:476px;max-width:476px;margin:0}
-.wp-collect-live{position:absolute;left:0;top:0;width:1440px;height:900px}
+.wp-collect-live{position:absolute;left:0;top:60px;width:1440px;height:900px}
+/* the state pill, under the lead; the hover zone that holds the loop covers the heap and the shelves */
+.wp-collect-seg{position:absolute;left:900px;top:292px;z-index:8;display:flex;gap:2px;height:40px;padding:4px;border-radius:999px;background:rgba(32,30,29,.07)}
+.wp-collect .wp-collect-seg button{height:32px;padding:0 17px;border:0;border-radius:999px;background:none;font:700 14px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:.02em;color:#645C50;cursor:pointer;
+  transition:background-color .3s ease,color .3s ease;-webkit-tap-highlight-color:transparent}
+.wp-collect .wp-collect-seg button:hover{color:#201E1D}
+.wp-collect .wp-collect-seg button.wp-collect-on{background:#201E1D;color:#F9F4ED}
+.wp-collect .wp-collect-seg button:focus-visible{outline:2px solid #D9523F;outline-offset:2px}
+.wp-collect-hz{position:absolute;left:0;top:350px;width:1440px;height:630px;z-index:7}
 
 .wp-collect-it{position:absolute;left:0;top:0;will-change:transform}
 .wp-collect-pill{position:absolute;top:-17px;height:34px;padding:0 17px;border-radius:999px;background:#F9F4ED;border:1px solid rgba(32,30,29,.18);
@@ -371,7 +388,7 @@ html[lang=en] .wp-eb{text-transform:uppercase}
 .wp-collect-spread{display:none}
 .wp-long .wp-collect-stage{position:relative;height:760px}
 .wp-long .wp-collect-actw{transform:scale(.8)}
-.wp-long .wp-collect-live{display:none}
+.wp-long .wp-collect-live,.wp-long .wp-collect-seg,.wp-long .wp-collect-hz{display:none}
 .wp-long .wp-collect-spread{display:block;position:absolute;left:0;top:300px;width:1440px;height:460px}
 .wp-collect-panel{position:absolute;top:0;width:636px;height:400px;overflow:hidden;border-radius:14px;background:#EBDDC5}
 .wp-collect-before{left:64px}
@@ -380,6 +397,8 @@ html[lang=en] .wp-eb{text-transform:uppercase}
 .wp-collect-pin{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
 .wp-collect-before .wp-collect-pin{transform:translate(-21px,-64px) scale(.47)}
 .wp-collect-after .wp-collect-pin{transform:translate(-11px,-60px) scale(.47)}
+.wp-reduced .wp-collect .wp-collect-seg button{transition:none}
+@media (prefers-reduced-motion: reduce){ .wp-collect .wp-collect-seg button{transition:none} }
 
 /* EN: the act title is the hero's first half, set in the hero's EN face; the lead takes three lines */
 .wp-collect-lead{top:168px}
@@ -687,6 +706,16 @@ html[lang=en] .wp-eb{text-transform:uppercase}
 .wp-more-denied .wp-more-rend .wp-more-a1{display:none}
 .wp-more-denied .wp-more-rend .wp-more-a2{display:inline}
 .wp-more-rend em.wp-more-x{color:#82796A}
+/* autoplay: a thin fill under the active example while the finished receipt holds; 允许 pressed by itself; a note when a tap holds it */
+.wp-more .wp-more-exb{position:relative}
+.wp-more-exb::after{content:'';position:absolute;left:11px;right:11px;bottom:-5px;height:2px;border-radius:1px;background:#D9523F;transform:scaleX(0);transform-origin:0 50%;opacity:0}
+.wp-more-exb.wp-more-fill::after{opacity:1;animation:wp-more-fill 2.6s linear forwards}
+.wp-more-apause .wp-more-exb.wp-more-fill::after{animation-play-state:paused}
+@keyframes wp-more-fill{to{transform:scaleX(1)}}
+.wp-more .wp-more-yes{transition:transform .12s ease,background-color .12s ease}
+.wp-more .wp-more-yes.wp-more-press{transform:translateY(1px) scale(.95);background:#B8432D}
+.wp-more-apnote{position:absolute;right:26px;bottom:4px;margin:0;font:600 11px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:#82796A;white-space:nowrap;opacity:0;transition:opacity .2s ease;pointer-events:none}
+.wp-more-tpause .wp-more-apnote{opacity:1}
 
 /* 5 · private */
 .wp-more-slot{position:absolute;width:96px;height:140px;border-radius:8px;background:rgba(249,244,237,.2);display:grid;place-items:center}
@@ -1035,19 +1064,32 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 .wm-screens.wm-screens-soon-on .wm-screens-soon{display:inline-flex}
 .wm-screens .wm-screens-idx{display:flex;justify-content:space-between;gap:2px;max-width:440px;margin:16px 0 0 -6px}
 .wm-screens .wm-screens-ix{position:relative;min-width:44px;min-height:44px;padding:0 6px;font:700 13px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:.01em;color:rgba(242,235,223,.5);white-space:nowrap;transition:color .25s}
-.wm-screens .wm-screens-ix::after{content:'';position:absolute;left:50%;bottom:6px;width:18px;height:3px;margin-left:-9px;border-radius:2px;background:#D9523F;transform:scaleX(0);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.wm-screens .wm-screens-ix::after{content:'';position:absolute;left:50%;bottom:6px;width:24px;height:3px;margin-left:-12px;border-radius:2px;background:#D9523F;transform:scaleX(0);transition:transform .3s cubic-bezier(.2,.8,.2,1),background-color .3s}
 .wm-screens .wm-screens-ix.wm-screens-cur{color:#F2EBDF}
 .wm-screens .wm-screens-ix.wm-screens-cur::after{transform:none}
+/* autoplay: the current name's bar turns into a track and fills over the card's 3.5 s */
+.wm-screens .wm-screens-pg{position:absolute;left:50%;bottom:6px;width:24px;height:3px;margin-left:-12px;border-radius:2px;background:#D9523F;transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
+.wm-screens .wm-screens-ix.wm-screens-run::after{background:rgba(217,82,63,.34)}
+.wm-screens .wm-screens-ix.wm-screens-run .wm-screens-pg{animation:wm-screens-fill 3500ms linear forwards}
+@keyframes wm-screens-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .wm-reduced .wm-screens .wm-screens-card,.wm-reduced .wm-screens .wm-screens-ix,.wm-reduced .wm-screens .wm-screens-ix::after{transition:none}
+.wm-reduced .wm-screens .wm-screens-pg{display:none}
 @media (prefers-reduced-motion: reduce){
   .wm-screens .wm-screens-card,.wm-screens .wm-screens-ix,.wm-screens .wm-screens-ix::after{transition:none}
+  .wm-screens .wm-screens-pg{display:none}
 }
 
 /* ===== phone collect ===== */
 .wm-collect{padding-top:88px}
 .wm-collect-seam{position:absolute;left:0;top:0;width:100%;height:24px;display:block;pointer-events:none}
 .wm-collect .wm-collect-act{font-family:Caprasimo,'PingFang SC',sans-serif;font-weight:400;font-size:clamp(54px,16vw,92px);letter-spacing:-.005em;line-height:1.02}
-.wm-collect-stage{position:relative;margin-top:34px}
+.wm-collect-stage{position:relative;margin-top:22px}
+/* the state pill: two 44 px targets */
+.wm-collect-seg{display:inline-flex;gap:2px;margin-top:26px;padding:3px;border-radius:999px;background:rgba(32,30,29,.07)}
+.wm-collect .wm-collect-seg button{min-height:44px;padding:0 20px;border-radius:999px;font:700 15px/1 'PingFang SC','Noto Sans SC',Figtree,sans-serif;color:#645C50;
+  transition:background-color .3s ease,color .3s ease;-webkit-tap-highlight-color:transparent}
+.wm-collect .wm-collect-seg button.wm-collect-on{background:#201E1D;color:#F9F4ED}
+.wm-collect .wm-collect-seg button:focus-visible{outline:2px solid #D9523F;outline-offset:2px}
 
 /* the after state, laid out by CSS */
 .wm-collect-shelf{position:relative;padding:0 0 18px;margin:0 0 16px}
@@ -1082,27 +1124,13 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 .wm-collect-heap{position:absolute;inset:0;pointer-events:none}
 .wm-collect-pill{position:absolute;left:0;top:0;height:32px;padding:0 13px;border-radius:999px;background:#F9F4ED;border:1px solid rgba(32,30,29,.18);
   font:500 12.5px/30px ui-monospace,'SF Mono',Menlo,'PingFang SC','Noto Sans SC',monospace;color:#2E2B25;white-space:nowrap;will-change:transform}
-.wm-collect-stage:not([data-state=done]) :is(.wm-collect-card,.wm-collect-season,.wm-collect-lab,.wm-collect-rule){opacity:0}
-.wm-collect-stage[data-state=done] .wm-collect-pill{opacity:0;visibility:hidden}
-.wm-collect-stage.wm-collect-reset :is(.wm-collect-card,.wm-collect-season,.wm-collect-lab,.wm-collect-rule){transition:opacity .25s ease}
-.wm-collect-stage.wm-collect-reset .wm-collect-pill{transition:opacity .3s ease .12s}
+.wm-collect-stage[data-state=after] .wm-collect-pill{opacity:0;visibility:hidden}     /* without JS: the sorted shelves */
 
-/* the line and the one button */
-.wm-collect-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:22px}
-.wm-collect-line{margin:0;flex:1 1 auto;min-width:0;font:700 19px/1.3 'PingFang SC','Noto Sans SC',Figtree,sans-serif;letter-spacing:-.01em;color:#201E1D;text-wrap:balance;
-  transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
-.wm-collect:not(.wm-collect-sorted) .wm-collect-line{opacity:0;transform:translateY(8px)}
-.wm-collect .wm-collect-go{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 18px;border-radius:22px;border:1.5px solid rgba(32,30,29,.8);
-  font:700 15px/1 'PingFang SC','Noto Sans SC',Figtree,sans-serif;color:#201E1D;-webkit-tap-highlight-color:transparent}
-.wm-collect-go:focus-visible{outline:2px solid #D9523F;outline-offset:2px}
-.wm-collect-go svg{display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.wm-collect-go1{display:none;align-items:center;gap:7px}
-.wm-collect-sorted .wm-collect-go0{display:none}
-.wm-collect-sorted .wm-collect-go1{display:inline-flex}
-.wm-collect-go[disabled]{opacity:.4;cursor:default}
-.wm-reduced .wm-collect-go{display:none}
-.wm-reduced .wm-collect-line{transition:none}
-@media (prefers-reduced-motion: reduce){ .wm-collect-go{display:none} .wm-collect-line{transition:none} }
+/* the line under the shelves (its opacity follows the loop) */
+.wm-collect-foot{margin-top:22px}
+.wm-collect-line{margin:0;font:700 20px/1.3 'PingFang SC','Noto Sans SC',Figtree,sans-serif;letter-spacing:-.01em;color:#201E1D;text-wrap:balance}
+.wm-reduced .wm-collect .wm-collect-seg button{transition:none}
+@media (prefers-reduced-motion: reduce){ .wm-collect .wm-collect-seg button{transition:none} }
 
 /* ===== phone play ===== */
 .wm-play{padding-top:88px;padding-bottom:48px}                       /* sources follows on the same dark ground */
@@ -1414,6 +1442,16 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 .wm-more-denied .wm-more-rend .wm-more-a1{display:none}
 .wm-more-denied .wm-more-rend .wm-more-a2{display:inline}
 .wm-more-rend em.wm-more-x{color:#82796A}
+/* autoplay: the fill under the active example during the hold; 允许 pressed by itself; a note while a tap holds it */
+.wm-more .wm-more-exb{position:relative}
+.wm-more-exb::after{content:'';position:absolute;left:16px;right:16px;bottom:-5px;height:2px;border-radius:1px;background:#D9523F;transform:scaleX(0);transform-origin:0 50%;opacity:0}
+.wm-more-exb.wm-more-fill::after{opacity:1;animation:wm-more-fill 2.6s linear forwards}
+.wm-more-apause .wm-more-exb.wm-more-fill::after{animation-play-state:paused}
+@keyframes wm-more-fill{to{transform:scaleX(1)}}
+.wm-more .wm-more-yes{transition:transform .12s ease,background-color .12s ease}
+.wm-more .wm-more-yes.wm-more-press{transform:translateY(1px) scale(.96);background:#B8432D}
+.wm-more-tile .wm-more-apnote{position:absolute;left:20px;right:20px;bottom:5px;margin:0;text-align:center;font:600 12px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:#82796A;opacity:0;transition:opacity .2s ease;pointer-events:none}
+.wm-more-tpause .wm-more-apnote{opacity:1}
 
 /* 5 · Private Space */
 .wm-more-psd{position:relative;margin-top:20px}
@@ -1757,7 +1795,7 @@ html[lang=en] .wm-eb{text-transform:uppercase}
   </div>
 </div>
 </section>
-<section id="screens" class="wp-sec wp-screens wp-ground-dark" data-key="screens" data-nav="screens" data-tone="dark" data-h="4300" data-h-long="1160" style="height:4300px;background:#1B1714">
+<section id="screens" class="wp-sec wp-screens wp-ground-dark" data-key="screens" data-nav="screens" data-tone="dark" data-h="900" data-h-long="1160" style="height:900px;background:#1B1714">
   <svg class="wp-layer wp-screens-tear" width="1440" height="66" viewBox="0 0 1440 66" aria-hidden="true"><rect x="0" y="0" width="1440" height="44" fill="#F5EAD8"/><path d="M-40 18L-28 17.7L-21.5 20.4L-8 20L8.8 21.8L16 23.2L30 16.9L44.4 15.3L60.9 12.1L67.3 15L77.8 15L86.3 13.6L94.4 14.1L105.4 9.1L121.3 10.6L135.5 13L144.6 14.2L151 13L165.5 8.8L177.6 9.6L184.9 8.5L199.1 16.1L213.6 16.8L224.8 17.9L236.3 18L243.3 19.1L252.2 16.9L261.7 20.9L275.5 24.2L289 21.1L305.2 17.1L318.2 17.8L334.2 19.7L342.2 18.4L352.9 16.6L367.2 12L382.7 13.9L397.2 16.8L408.4 14.2L416.4 10L428.9 10.4L442.2 9.2L457.9 9.9L465.6 11.8L481.4 11L495.8 12.7L507.4 14.5L519.9 18.2L533.3 22.1L543.7 20.9L556.1 18.9L562.9 17.4L577.3 21.2L587.8 23.6L595.1 20.4L605.8 22.2L613.6 18.8L625.3 15.1L632.6 16.4L639.6 18.5L653.5 19L662.5 17.7L669.9 17.1L684.7 11.1L694.4 12.4L709.3 10.9L722 14.9L734.5 11.2L749 8.7L760.1 10.2L766.7 10.5L776.4 14.1L783.2 14.3L790.5 15.4L799.7 13.8L809.9 15.6L816.8 15L826.9 17.5L834.3 16.9L849.6 21.2L864.2 17.9L876.2 16.1L890.9 17.8L903.7 20.3L914.7 21.2L923.5 20.4L932.6 20.1L939.9 17.4L955.5 15.7L963.2 17.7L972.1 17.3L987.4 16.7L994.3 14.2L1004.3 10.9L1014.7 9.8L1031.2 11.5L1047.9 9.6L1056.3 10.5L1067 8.9L1082.5 14L1097.7 18.8L1110.9 17.9L1127.3 15L1139.6 16.8L1153.9 20.1L1168.7 21L1184.1 19.6L1192.4 17.4L1208.7 19.3L1216.8 17.9L1229.2 21.6L1244.9 20.6L1256.1 17.7L1270.8 12.7L1277.8 14.9L1292 14.5L1305.4 11.5L1315.9 8.3L1332.5 8.3L1344.9 12.7L1352 12.9L1365.8 16.3L1376 14.2L1389.9 13.6L1401 13.2L1408.2 16.4L1421.8 17.7L1437 16.7L1449.5 15.4L1465.3 17L1475.8 17.7L1480 18L1480 72L-40 72Z" fill="#F9F4ED"/><path d="M-40 18L-28 19.7L-21.5 21L-8 21.8L8.8 24.3L16 25.8L30 20L44.4 19L60.9 15.6L67.3 17.4L77.8 18.3L86.3 16.3L94.4 16.4L105.4 11L121.3 11.4L135.5 14.6L144.6 15.7L151 15.8L165.5 11.9L177.6 13.6L184.9 12.2L199.1 18.9L213.6 19.1L224.8 20.9L236.3 18.9L243.3 19.9L252.2 18.9L261.7 22.5L275.5 24.9L289 23.1L305.2 20.5L318.2 20.8L334.2 23.4L342.2 21.7L352.9 19.7L367.2 14.4L382.7 15.9L397.2 18.5L408.4 16.2L416.4 11.9L428.9 11.7L442.2 11.2L457.9 13.7L465.6 15.3L481.4 14.8L495.8 14.9L507.4 16.6L519.9 19.3L533.3 23.9L543.7 22.1L556.1 20.9L562.9 20L577.3 23.1L587.8 26.9L595.1 23.6L605.8 25.1L613.6 22.1L625.3 18.1L632.6 19.5L639.6 21.4L653.5 20.4L662.5 18.6L669.9 18.5L684.7 12.6L694.4 13.6L709.3 13.8L722 16.9L734.5 14L749 11.8L760.1 12.9L766.7 14.3L776.4 16.7L783.2 16.4L790.5 17.7L799.7 15.8L809.9 17.5L816.8 15.7L826.9 19.3L834.3 19.1L849.6 23.1L864.2 21.2L876.2 20.1L890.9 21.7L903.7 23.5L914.7 23.9L923.5 23.4L932.6 21L939.9 19.5L955.5 17.1L963.2 19.3L972.1 19.3L987.4 18.3L994.3 16.2L1004.3 13.7L1014.7 12.4L1031.2 14.3L1047.9 13.3L1056.3 12.4L1067 11.7L1082.5 15.2L1097.7 19.8L1110.9 19.6L1127.3 17.9L1139.6 19.4L1153.9 23.8L1168.7 25.3L1184.1 22.6L1192.4 20.1L1208.7 20.9L1216.8 20.4L1229.2 22.8L1244.9 21.6L1256.1 18.6L1270.8 15.5L1277.8 16.6L1292 17.1L1305.4 15L1315.9 12.1L1332.5 10.9L1344.9 14.6L1352 15.2L1365.8 17.7L1376 15.2L1389.9 14.8L1401 14.6L1408.2 18.9L1421.8 20.5L1437 20.5L1449.5 19.3L1465.3 19.6L1475.8 18.8L1480 18L1480 72L-40 72Z" fill="#1B1714"/></svg>
 
   <div class="wp-screens-stage">
@@ -1816,12 +1854,12 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 
     <nav class="wp-screens-idx wp-rv wp-rv-fade" style="--wp-d:300ms" aria-label="Six screens">
       <span class="wp-screens-trk"></span><span class="wp-screens-mk"></span>
-      <a class="wp-screens-ix wp-screens-cur" data-i="0" role="button" tabindex="0" style="top:0px">Mac</a>
-      <a class="wp-screens-ix" data-i="1" role="button" tabindex="0" style="top:36px">iPhone</a>
-      <a class="wp-screens-ix" data-i="2" role="button" tabindex="0" style="top:72px">iPad</a>
-      <a class="wp-screens-ix" data-i="3" role="button" tabindex="0" style="top:108px">iPhone Duo</a>
-      <a class="wp-screens-ix" data-i="4" role="button" tabindex="0" style="top:144px">Apple TV</a>
-      <a class="wp-screens-ix" data-i="5" role="button" tabindex="0" style="top:180px">Vision Pro</a>
+      <a class="wp-screens-ix wp-screens-cur" data-i="0" role="button" tabindex="0" style="top:0px">Mac<i class="wp-screens-pg" aria-hidden="true"></i></a>
+      <a class="wp-screens-ix" data-i="1" role="button" tabindex="0" style="top:36px">iPhone<i class="wp-screens-pg" aria-hidden="true"></i></a>
+      <a class="wp-screens-ix" data-i="2" role="button" tabindex="0" style="top:72px">iPad<i class="wp-screens-pg" aria-hidden="true"></i></a>
+      <a class="wp-screens-ix" data-i="3" role="button" tabindex="0" style="top:108px">iPhone Duo<i class="wp-screens-pg" aria-hidden="true"></i></a>
+      <a class="wp-screens-ix" data-i="4" role="button" tabindex="0" style="top:144px">Apple TV<i class="wp-screens-pg" aria-hidden="true"></i></a>
+      <a class="wp-screens-ix" data-i="5" role="button" tabindex="0" style="top:180px">Vision Pro<i class="wp-screens-pg" aria-hidden="true"></i></a>
     </nav>
   </div>
 
@@ -1856,7 +1894,7 @@ html[lang=en] .wm-eb{text-transform:uppercase}
     <div class="wp-screens-sp-nm" style="left:956px;top:1052px"><p>Vision Pro</p><span class="wp-screens-soon">Coming soon</span></div>
   </div>
 </section>
-<section id="collect" class="wp-sec wp-collect" data-key="collect" data-nav="collect" data-tone="light" data-h="2200" data-h-long="760" style="height:2200px;background:#F5EAD8">
+<section id="collect" class="wp-sec wp-collect" data-key="collect" data-nav="collect" data-tone="light" data-h="980" data-h-long="760" style="height:980px;background:#F5EAD8">
 <svg class="wp-layer wp-seam" width="1440" height="44" viewBox="0 0 1440 44" aria-hidden="true" style="z-index:60"><path d="M-20 -14L1460 -14L1460 26L1452.3 26.7L1442.9 26.2L1429.3 23.3L1414.1 25.5L1403.1 28.5L1389.1 30L1375.9 28.6L1366.7 29.7L1350.9 28.7L1343.1 30.7L1334.6 32.5L1323.4 33L1307.3 30.9L1292.9 27.8L1277.3 30.2L1265 31L1251.1 31.4L1242.8 27.7L1228.8 26.2L1221 27.4L1213.2 27.2L1202.6 27.3L1187.6 25.8L1173 23.1L1163.8 22.8L1152.7 23.9L1139.1 26.7L1129.3 25.6L1114.3 25.1L1103.9 25.3L1088.3 30.8L1079 30.5L1066 32.7L1055.8 32.7L1040 30.6L1026.1 29.4L1011 33L996.3 31.6L981.9 29.3L968.4 29.2L960 30.3L947.1 31.1L940.5 31.8L925 27.2L918.8 24.7L903.6 24.5L887.3 25.4L875 23.5L861.1 24.4L848.4 21.8L832.7 26.5L826.1 26.2L815.6 30.1L799.8 29.7L784.5 28.6L778.5 26.8L765.8 29.3L752 32.6L737.5 31.3L728.2 30.3L711.8 29.8L703.4 32.4L688.9 34.1L678.8 32.5L662.8 29.8L651.6 28.4L638.5 30L624.2 29.7L613.2 27L606.1 25.6L592.6 22.4L585.5 21.2L578.8 23.4L569.2 24.9L555.1 27.4L541.3 26.4L529.8 26.6L515.7 26.9L505.1 27.5L497.7 29.7L488.2 30.2L475.8 27.1L465.7 27L457.1 25.8L445.3 29.9L430.7 34.4L418.4 32.5L402.2 31L394.7 30.4L385.1 32.1L373.6 34.4L358.7 30.2L350.2 30.6L334 25L318.4 25.3L310.8 27.5L293.9 26.7L283.1 24.7L271.5 25.2L264.9 25.6L257.6 25.4L249.1 28.7L233.3 29.7L221.2 27L214.7 26.4L201.6 24.8L187 27.6L180.5 27.2L165.6 30.5L149.2 30.1L132.6 30.1L123.6 32.8L115.4 36.1L106.3 33.1L95.3 33.2L83.8 30.1L72.2 27.7L62.5 30.5L46.4 29.2L38.5 28.3L27.4 26.5L21.3 24.5L13.3 25.8L7 24.9L-8.4 27.8L-20 26Z" fill="#F9F4ED"/><path d="M-20 -14L1460 -14L1460 26L1452.3 25.3L1442.9 24.3L1429.3 22L1414.1 22.9L1403.1 26L1389.1 26.8L1375.9 26.1L1366.7 26.8L1350.9 25.9L1343.1 28.1L1334.6 30.7L1323.4 31.6L1307.3 30L1292.9 27.3L1277.3 29L1265 28.9L1251.1 28.8L1242.8 24.9L1228.8 22.6L1221 24.3L1213.2 24.6L1202.6 25L1187.6 23.2L1173 21.1L1163.8 21.3L1152.7 22.8L1139.1 24.2L1129.3 23.9L1114.3 23.1L1103.9 21.9L1088.3 26.4L1079 27.7L1066 30.5L1055.8 29.5L1040 28.2L1026.1 28.4L1011 31.6L996.3 29.4L981.9 26.8L968.4 25.8L960 26.6L947.1 27.2L940.5 28.3L925 25.1L918.8 22.1L903.6 23.2L887.3 23.9L875 23L861.1 23.3L848.4 19.4L832.7 23.3L826.1 22.9L815.6 26L799.8 25.6L784.5 25.6L778.5 25.1L765.8 27.1L752 30.9L737.5 30.9L728.2 28.1L711.8 28.2L703.4 29.8L688.9 31.8L678.8 29.1L662.8 25.6L651.6 24.9L638.5 26.6L624.2 27.5L613.2 24.8L606.1 24.8L592.6 21.9L585.5 20.1L578.8 21.8L569.2 22.4L555.1 24.4L541.3 23.7L529.8 22.5L515.7 23.3L505.1 25.4L497.7 27.6L488.2 27.8L475.8 25.2L465.7 25.6L457.1 25.4L445.3 28L430.7 31.7L418.4 30.5L402.2 27.8L394.7 26.9L385.1 28.7L373.6 30.7L358.7 28.4L350.2 28.2L334 23.5L318.4 23.7L310.8 25.6L293.9 24.9L283.1 21.7L271.5 21.8L264.9 22L257.6 21.1L249.1 24.7L233.3 25.8L221.2 24.1L214.7 23.8L201.6 23.5L187 26.8L180.5 26.8L165.6 28.3L149.2 28.3L132.6 27.5L123.6 28.9L115.4 32.2L106.3 29.9L95.3 29.6L83.8 26.9L72.2 25.7L62.5 28.3L46.4 28.6L38.5 27.9L27.4 25.3L21.3 22.7L13.3 23.4L7 22.3L-8.4 25.6L-20 26Z" fill="#1B1714"/></svg>
   <div class="wp-collect-stage">
     <div class="wp-collect-head">
@@ -1864,6 +1902,8 @@ html[lang=en] .wm-eb{text-transform:uppercase}
       <div class="wp-collect-actw"><h2 class="wp-act wp-collect-act wp-rv wp-rv-word" style="--wp-d:80ms">Kept well.</h2></div>
     </div>
     <p class="wp-lead wp-collect-lead wp-rv wp-rv-up" style="--wp-d:200ms">However messy the file names, it knows each one.<br>It recognizes the film, files it, and gathers a whole season into one — in a single step.</p>
+    <div class="wp-collect-seg wp-rv wp-rv-fade" style="--wp-d:320ms" role="group" aria-label="Before and after"><button type="button" data-to="before" class="wp-collect-on" aria-pressed="true">Before</button><button type="button" data-to="after" aria-pressed="false">After</button></div>
+    <div class="wp-collect-hz" aria-hidden="true"></div>
     <div class="wp-collect-live" aria-hidden="true">
         <div class="wp-collect-shelves" style="opacity:0">
           <p class="wp-collect-lab" style="top:320px"><b>Movies</b><span>8 movies</span></p><span class="wp-collect-rule" style="top:514px"></span>
@@ -2190,6 +2230,7 @@ html[lang=en] .wm-eb{text-transform:uppercase}
         <div class="wp-more-rr wp-more-rcard"><p>Move <b>4 lower-quality copies</b> to the Trash?</p><span class="wp-more-btns"><button type="button" class="wp-more-yes">Allow</button><button type="button" class="wp-more-no">Don't allow</button></span><span class="wp-more-dy"><em>✓</em> Allowed</span><span class="wp-more-dn">Not allowed</span></div>
         <div class="wp-more-rr wp-more-rend"><span class="wp-more-a1"><em>✓</em> Moved to the Trash · restore them from there</span><span class="wp-more-a2"><em class="wp-more-x">✕</em> Files left as they were</span></div>
       </div>
+      <p class="wp-more-apnote" aria-hidden="true">Paused · tap to resume</p>
     </div>
   </div>
   <div class="wp-more-tw wp-rv wp-rv-up" style="--wp-d:580ms">
@@ -2387,7 +2428,7 @@ html[lang=en] .wm-eb{text-transform:uppercase}
     </ul>
   </div>
   <div class="wm-wrap">
-    <div class="wm-screens-idx wm-rv" style="--wm-d:220ms"><button class="wm-screens-ix wm-screens-cur" type="button" data-i="0" aria-label="Mac" aria-current="true">Mac</button><button class="wm-screens-ix" type="button" data-i="1" aria-label="iPhone">iPhone</button><button class="wm-screens-ix" type="button" data-i="2" aria-label="iPad">iPad</button><button class="wm-screens-ix" type="button" data-i="3" aria-label="iPhone Duo">Duo</button><button class="wm-screens-ix" type="button" data-i="4" aria-label="Apple TV">TV</button><button class="wm-screens-ix" type="button" data-i="5" aria-label="Vision Pro">Vision</button></div>
+    <div class="wm-screens-idx wm-rv" style="--wm-d:220ms"><button class="wm-screens-ix wm-screens-cur" type="button" data-i="0" aria-label="Mac" aria-current="true">Mac<i class="wm-screens-pg" aria-hidden="true"></i></button><button class="wm-screens-ix" type="button" data-i="1" aria-label="iPhone">iPhone<i class="wm-screens-pg" aria-hidden="true"></i></button><button class="wm-screens-ix" type="button" data-i="2" aria-label="iPad">iPad<i class="wm-screens-pg" aria-hidden="true"></i></button><button class="wm-screens-ix" type="button" data-i="3" aria-label="iPhone Duo">Duo<i class="wm-screens-pg" aria-hidden="true"></i></button><button class="wm-screens-ix" type="button" data-i="4" aria-label="Apple TV">TV<i class="wm-screens-pg" aria-hidden="true"></i></button><button class="wm-screens-ix" type="button" data-i="5" aria-label="Vision Pro">Vision<i class="wm-screens-pg" aria-hidden="true"></i></button></div>
   </div>
 </section>
 <section class="wm-sec wm-light wm-collect" data-key="collect" data-nav="collect" data-tone="light">
@@ -2396,7 +2437,8 @@ html[lang=en] .wm-eb{text-transform:uppercase}
     <p class="wm-eb wm-rv">ACT ONE · ORGANIZE</p>
     <h2 class="wm-act wm-collect-act wm-rv" style="--wm-d:80ms">Kept well.</h2>
     <p class="wm-lead wm-rv" style="--wm-d:160ms">However messy the file names, it knows each one. It recognizes the film, files it, and gathers a whole season into one — in a single step.</p>
-    <div class="wm-collect-stage" data-state="done">
+    <div class="wm-collect-seg wm-rv" style="--wm-d:220ms" role="group" aria-label="Before and after"><button type="button" data-to="before" aria-pressed="false">Before</button><button type="button" data-to="after" class="wm-collect-on" aria-pressed="true">After</button></div>
+    <div class="wm-collect-stage" data-state="after">
       <div class="wm-collect-shelves">
         <div class="wm-collect-shelf wm-collect-s-movie">
           <p class="wm-collect-lab"><b>Movies</b><span>8 movies</span></p>
@@ -2454,7 +2496,6 @@ html[lang=en] .wm-eb{text-transform:uppercase}
     </div>
     <div class="wm-collect-foot">
       <p class="wm-collect-line">By the time it’s downloaded, it’s filed.</p>
-      <button class="wm-collect-go" type="button"><span class="wm-collect-go0">Tidy up</span><span class="wm-collect-go1"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 8a5.4 5.4 0 1 0 1.7-3.9M2.4 2.2v3.2h3.2"/></svg>Replay</span></button>
     </div>
   </div>
 </section>
@@ -2683,6 +2724,7 @@ html[lang=en] .wm-eb{text-transform:uppercase}
             <div class="wm-more-rr wm-more-rend"><span class="wm-more-a1"><em>✓</em> Moved to the Trash · restore them from there</span><span class="wm-more-a2"><em class="wm-more-x">✕</em> Files left as they were</span></div>
           </div>
         </div>
+        <p class="wm-more-apnote" aria-hidden="true">Paused · tap to resume</p>
       </div>
     </div>
     <div class="wm-more-tw">
@@ -3072,148 +3114,182 @@ class WPSite {
     if (kit.long) return;
     const q = (s) => sec.querySelector(s), qa = (s) => Array.from(sec.querySelectorAll(s));
     this.S = [[432,320,840,525,10,0,10],[500,320,270,587,40,9,49],[500,320,640,445,18,13,31],[500,320,341,492,22,9,31],[500,320,700,492,22,9,31],[500,320,740,416,4,5,8],[500,290,728,310,24,8,32]];   // cx cy w h r bezel bodyRadius
-    this.H = [[0,200],[560,840],[1240,1520],[1800,1860],[2120,2260],[2640,2940],[3260,3400]];
-    this.T = [100,700,1380,2190,2790,3330];
+    this.NM = [0, 1, 2, 3, 3, 4, 5];   // stop → name (the Duo's folded and open stops share one)
     this.BW = 900; this.BH = 640;
-    this.stage = q('.wp-screens-stage'); this.tilt = q('.wp-screens-tilt');
+    this.stage = q('.wp-screens-stage'); this.tilt = q('.wp-screens-tilt'); this.devwrap = q('.wp-screens-devwrap'); this.idx = q('.wp-screens-idx');
     this.gen = q('.wp-screens-gen'); this.hl = q('.wp-screens-hl'); this.slab = q('.wp-screens-slab'); this.rim = q('.wp-screens-rim'); this.scr = q('.wp-screens-scr');
     this.imgs = qa('.wp-screens-im'); this.orn = q('.wp-screens-orn');
     this.rig = q('.wp-screens-rig'); this.rp = q('.wp-screens-rp'); this.lp = q('.wp-screens-lp'); this.shs = qa('.wp-screens-sh');
     this.names = qa('.wp-screens-nm'); this.lines = qa('.wp-screens-ln');
-    this.ix = qa('.wp-screens-ix'); this.mk = q('.wp-screens-mk');
-    this.yT = 0; this.yD = 0; this.px = 0; this.py = 0; this.rx = 0; this.ry = 0; this.cur = -1; this.ready = false; this.looping = false; this.active = false;
-    kit.onScroll(({ y, vh }) => {
-      const top = sec.offsetTop, loc = y - top;
-      if (loc < -vh || loc > sec.offsetHeight) return;
-      this.yT = Math.max(0, Math.min(sec.offsetHeight - 900, loc));
-      if (!this.ready || kit.reduced) { this.yD = this.yT; this.ready = true; this.render(); return; }
-      this.kick();
+    this.ix = qa('.wp-screens-ix'); this.mk = q('.wp-screens-mk'); this.pgs = qa('.wp-screens-pg');
+    const D = 3200, M = 1100, F = 1200, U = 1500, DUO = F + U + D;
+    // one loop: [hold | morph]; res = [length, offset] of the time the current name is on show (drives the progress line)
+    this.C = [
+      this.hold(0, D, [D, 0]), this.morph(0, 1, M), this.hold(1, D, [D, 0]), this.morph(1, 2, M), this.hold(2, D, [D, 0]), this.morph(2, 3, M),
+      this.hold(3, F, [DUO, 0]), this.morph(3, 4, U, [DUO, F]), this.hold(4, D, [DUO, F + U]),
+      this.morph(4, 5, M), this.hold(5, D, [D, 0]), this.morph(5, 6, M), this.hold(6, D, [D, 0]), this.morph(6, 0, M),
+    ];
+    this.k = 0; this.seg = this.C[0]; this.t = 0; this.q = [];
+    this.active = false; this.raf = 0; this.last = 0; this.drawn = null; this.pgOn = -1; this.pgV = -1;
+    this.px = 0; this.py = 0; this.rx = 0; this.ry = 0; this.cp = this.S[0]; this.cv = 0;
+    this.hov = new Set();
+    // hover pauses (mouse / pen only): the device itself (its current frame), or the index
+    kit.on(this.stage, 'pointermove', (e) => {
+      const p = kit.local(e, this.stage); this.px = Math.max(-1, Math.min(1, (p[0] - 880) / 520)); this.py = Math.max(-1, Math.min(1, (p[1] - 440) / 380));
+      if (e.pointerType === 'touch') return;
+      const d = kit.local(e, this.devwrap), c = this.cp, pad = 10 + c[5];
+      const bottom = c[1] + c[3] / 2 + pad + (this.cv > 0.5 ? 80 : 0);   // Vision: its control ornament counts as the device
+      if (Math.abs(d[0] - c[0]) <= c[2] / 2 + pad && d[1] >= c[1] - c[3] / 2 - pad && d[1] <= bottom) this.hov.add('dev'); else this.hov.delete('dev');
     });
-    kit.on(this.stage, 'pointermove', (e) => { const p = kit.local(e, this.stage); this.px = Math.max(-1, Math.min(1, (p[0] - 880) / 520)); this.py = Math.max(-1, Math.min(1, (p[1] - 440) / 380)); this.kick(); });
-    kit.on(this.stage, 'pointerleave', () => { this.px = 0; this.py = 0; this.kick(); });
+    kit.on(this.stage, 'pointerleave', () => { this.px = 0; this.py = 0; this.hov.delete('dev'); });
+    kit.on(this.idx, 'pointerenter', (e) => { if (e.pointerType !== 'touch') this.hov.add('idx'); });
+    kit.on(this.idx, 'pointerleave', () => this.hov.delete('idx'));
     this.ix.forEach((a) => {
-      const go = (e) => { e.preventDefault(); const sc = kit.scroller; if (!sc) return; sc.scrollTo({ top: sec.offsetTop + this.T[+a.dataset.i], behavior: kit.reduced ? 'auto' : 'smooth' }); };
+      const go = (e) => { e.preventDefault(); this.go(+a.dataset.i); };
       kit.on(a, 'click', go);
       kit.on(a, 'keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') go(e); });
     });
-    this.render();
+    this.draw();
   }
+
+  V(s) { return s === 6 ? 1 : 0; }   // Vision's glass rim, ornament and pointer tilt
+  hold(s, ms, res) { const S = this.S; return { kind: 'hold', ms, pa: S[s], pb: S[s], ia: s, ib: s, ao: 1, va: this.V(s), vb: this.V(s), oa: this.V(s), ob: this.V(s), na: this.NM[s], nb: this.NM[s], res: res || null }; }
+  morph(a, b, ms, res) { return this.from({ p: this.S[a], img: a, io: 1, v: this.V(a), o: this.V(a), n: this.NM[a] }, b, ms, res, a === 3 && b === 4); }
+  from(c, b, ms, res, unfold) { return { kind: 'morph', ms, pa: c.p, pb: this.S[b], ia: c.img, ib: b, ao: c.io, va: c.v, vb: this.V(b), oa: c.o, ob: this.V(b), na: c.n, nb: this.NM[b], res: res || null, unfold: !!unfold }; }
 
   enter() {
     if (this.kit.long) return;
     this.active = true;
-    const sc = this.kit.scroller;
-    if (sc) { this.yT = Math.max(0, Math.min(this.sec.offsetHeight - 900, sc.scrollTop - this.sec.offsetTop)); this.yD = this.yT; this.ready = true; }
-    this.render();
+    if (this.kit.reduced) { this.draw(); return; }
+    this.kick();
   }
-  leave() { this.active = false; this.looping = false; this.g.clear(); }
+  leave() { this.active = false; this.g.clear(); this.raf = 0; this.last = 0; }
   destroy() { this.leave(); }
 
-  kick() {
-    if (this.looping || this.kit.long) return;
-    this.looping = true;
-    const step = () => {
-      const d = this.yT - this.yD;
-      this.yD = Math.abs(d) < 0.6 ? this.yT : this.yD + d * 0.2;
-      const settled = this.render();
-      if (this.yD !== this.yT || !settled) this.g.frame(step); else this.looping = false;
-    };
-    this.g.frame(step);
+  kick() { if (!this.raf && this.active && !this.kit.reduced) { this.last = 0; this.raf = this.g.frame((n) => this.loop(n)); } }
+  loop(now) {
+    this.raf = 0;
+    if (!this.active || document.hidden) return;
+    const dt = this.last ? Math.min(now - this.last, 100) : 16; this.last = now;
+    // a hold waits while the pointer rests on the device or the index; a morph always finishes
+    if (!(this.seg.kind === 'hold' && this.hov.size)) this.t += dt;
+    let n = 0;
+    while (this.t >= this.seg.ms && n++ < 4) { this.t -= this.seg.ms; this.next(); }
+    this.draw();
+    this.raf = this.g.frame((x) => this.loop(x));
+  }
+  next() {
+    if (this.q.length) this.seg = this.q.shift();
+    else { this.k = (this.k + 1) % this.C.length; this.seg = this.C[this.k]; }
   }
 
-  // scroll (section-relative, smoothed) -> stop position s in [0, 6]: whole numbers on the holds, fractions in between
-  pos(y) {
-    const H = this.H;
-    if (this.kit.reduced) {   // no morph: the nearest stop
-      let best = 0, bd = 1e9;
-      H.forEach((h, i) => { const d = y < h[0] ? h[0] - y : y > h[1] ? y - h[1] : 0; if (d < bd) { bd = d; best = i; } });
-      return best;
-    }
-    for (let i = 0; i < H.length; i++) {
-      if (y <= H[i][1]) return y >= H[i][0] || i === 0 ? i : i - 1 + (y - H[i - 1][1]) / (H[i][0] - H[i - 1][1]);
-    }
-    return H.length - 1;
-  }
-
-  render() {
+  // where the device is right now, as the start of a new morph
+  pose() {
+    const s = this.seg, S = this.S;
+    if (s.kind === 'hold') return { at: s.ia, p: s.pa, img: s.ia, io: 1, v: s.va, o: s.oa, n: s.na };
+    if (s.unfold) return { at: -1, p: S[4], img: 4, io: 1, v: 0, o: 0, n: 3 };
     const sm = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
-    const s = this.pos(this.yD), S = this.S;
-    const i = Math.min(Math.floor(s), S.length - 1), t = s - i, e = sm(0, 1, t), j = Math.min(i + 1, S.length - 1);
-    const A = S[i], B = S[j], L = (k) => A[k] + (B[k] - A[k]) * e;
-    const cx = L(0), cy = L(1), w = L(2), h = L(3), r = L(4), b = L(5), rb = L(6);
+    const t = Math.min(1, this.t / s.ms), e = sm(0, 1, t);
+    const p = s.pa.map((v, k) => v + (s.pb[k] - v) * e);
+    const oA = s.ia === s.ib ? s.ao + (1 - s.ao) * e : s.ao * (1 - sm(0.14, 0.44, t)), oB = s.ia === s.ib ? 0 : sm(0.56, 0.86, t);
+    const u = s.na !== s.nb ? sm(0.36, 0.64, t) : 0;
+    return { at: -1, p, img: oB > 0 ? s.ib : s.ia, io: oB > 0 ? oB : oA, v: s.va + (s.vb - s.va) * e,
+      o: s.oa + (s.ob - s.oa) * (s.ob > s.oa ? sm(0.55, 1, t) : sm(0, 0.45, t)), n: u < 0.5 ? s.na : s.nb };
+  }
+
+  // the index: morph straight to that stop (the Duo lands open, unfolding on the way), hold there 6 s, then carry on
+  go(n) {
+    const W = 6000, U = 1500, tgt = [0, 1, 2, 4, 5, 6][n];
+    this.k = this.C.findIndex((x) => x.kind === 'hold' && x.ia === tgt);   // the loop resumes after this stop's hold
+    if (this.kit.reduced) { this.q = []; this.seg = this.hold(tgt, W, null); this.t = 0; this.draw(); return; }
+    if (this.seg.unfold && n === 3) this.q = [this.hold(4, W, [W, 0])];   // already unfolding: let it finish, then hold open
+    else {
+      const c = this.pose(), M = 1100;
+      const q = c.at === tgt ? [this.hold(tgt, W, [W, 0])]
+        : n === 3 ? [...(c.at === 3 ? [] : [this.from(c, 3, M)]), this.morph(3, 4, U, [U + W, 0]), this.hold(4, W, [U + W, U])]
+        : [this.from(c, tgt, M), this.hold(tgt, W, [W, 0])];
+      this.seg = q.shift(); this.q = q; this.t = 0;
+    }
+    this.drawn = null;
+    this.draw(); this.kick();
+  }
+
+  draw() {
+    const sm = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+    const s = this.seg, t = s.kind === 'hold' ? 1 : Math.min(1, this.t / s.ms), e = sm(0, 1, t);
     const f = (n) => Math.round(n * 10) / 10;
-    const ins = (x0, y0, x1, y1, rr) => 'inset(' + f(y0) + 'px ' + f(this.BW - x1) + 'px ' + f(this.BH - y1) + 'px ' + f(x0) + 'px round ' + f(rr) + 'px)';
-    const unfolding = i === 3 && t > 0.0005;
-
-    // generic frame (every stop but the Duo's unfold)
-    this.gen.style.opacity = unfolding ? '0' : '1';
-    this.rig.style.visibility = unfolding ? 'visible' : 'hidden';
-    if (!unfolding) {
-      const sx0 = cx - w / 2, sy0 = cy - h / 2, sx1 = cx + w / 2, sy1 = cy + h / 2;
-      this.hl.style.clipPath = ins(sx0 - b - 1, sy0 - b - 1, sx1 + b + 1, sy1 + b + 1, rb + 1);
-      this.slab.style.clipPath = this.rim.style.clipPath = ins(sx0 - b, sy0 - b, sx1 + b, sy1 + b, rb);
-      this.scr.style.clipPath = ins(sx0, sy0, sx1, sy1, r);
-      const vis = i === 5 ? e : i >= 6 ? 1 : 0;
-      this.rim.style.opacity = vis.toFixed(3);
-      this.slab.style.opacity = (1 - vis).toFixed(3);
-      // out, then in: the outgoing screen fades to the dark glass (t 0.14–0.44), the glass stays empty for a beat, then the
-      // incoming one fades up (t 0.56–0.86) — two screens are never on show at once. Each is scaled to cover the morphing
-      // frame and settles to 1:1 on its stop; the frame's size and radius keep interpolating the whole way
-      const tout = j !== i ? sm(0.14, 0.44, t) : 0, tin = j !== i ? sm(0.56, 0.86, t) : 0;
-      this.imgs.forEach((im, k) => {
-        let o = 0;
-        if (k === i) o = 1 - tout;
-        else if (k === j && j !== i) o = tin;
-        im.style.opacity = o.toFixed(3);
-        im.style.visibility = o > 0.002 ? 'visible' : 'hidden';
-        if (o > 0.002) {
-          const sc = Math.max(w / S[k][2], h / S[k][3]);
-          im.style.transform = 'translate(' + f(cx - S[k][0]) + 'px,' + f(cy - S[k][1]) + 'px) scale(' + sc.toFixed(4) + ')';
-        }
+    const v = s.va + (s.vb - s.va) * e;
+    const u = s.na !== s.nb ? sm(0.36, 0.64, t) : 0;
+    const cur = s.na !== s.nb && u >= 0.5 ? s.nb : s.na;
+    if (this.drawn !== s || s.kind !== 'hold') {
+      if (s.kind === 'hold') this.drawn = s;
+      const S = this.S, P = (k) => s.pa[k] + (s.pb[k] - s.pa[k]) * e;
+      const cx = P(0), cy = P(1), w = P(2), h = P(3), r = P(4), b = P(5), rb = P(6);
+      this.cp = [cx, cy, w, h, r, b]; this.cv = v;
+      const ins = (x0, y0, x1, y1, rr) => 'inset(' + f(y0) + 'px ' + f(this.BW - x1) + 'px ' + f(this.BH - y1) + 'px ' + f(x0) + 'px round ' + f(rr) + 'px)';
+      const unfolding = s.unfold && t > 0.0005;
+      // generic frame (every stop but the Duo's unfold)
+      this.gen.style.opacity = unfolding ? '0' : '1';
+      this.rig.style.visibility = unfolding ? 'visible' : 'hidden';
+      if (!unfolding) {
+        const sx0 = cx - w / 2, sy0 = cy - h / 2, sx1 = cx + w / 2, sy1 = cy + h / 2;
+        this.hl.style.clipPath = ins(sx0 - b - 1, sy0 - b - 1, sx1 + b + 1, sy1 + b + 1, rb + 1);
+        this.slab.style.clipPath = this.rim.style.clipPath = ins(sx0 - b, sy0 - b, sx1 + b, sy1 + b, rb);
+        this.scr.style.clipPath = ins(sx0, sy0, sx1, sy1, r);
+        this.rim.style.opacity = v.toFixed(3);
+        this.slab.style.opacity = (1 - v).toFixed(3);
+        // out, then in: the outgoing screen fades to the dark glass (t 0.14–0.44), the glass stays empty for a beat, then the
+        // incoming one fades up (t 0.56–0.86) — two screens never show at once. Each is scaled to cover the morphing frame
+        const two = s.ia !== s.ib, tout = two ? sm(0.14, 0.44, t) : 0, tin = two ? sm(0.56, 0.86, t) : 0;
+        this.imgs.forEach((im, k) => {
+          let o = 0;
+          if (!two) { if (k === s.ia) o = s.ao + (1 - s.ao) * e; } else if (k === s.ia) o = s.ao * (1 - tout); else if (k === s.ib) o = tin;
+          im.style.opacity = o.toFixed(3);
+          im.style.visibility = o > 0.002 ? 'visible' : 'hidden';
+          if (o > 0.002) {
+            const sc = Math.max(w / S[k][2], h / S[k][3]);
+            im.style.transform = 'translate(' + f(cx - S[k][0]) + 'px,' + f(cy - S[k][1]) + 'px) scale(' + sc.toFixed(4) + ')';
+          }
+        });
+      } else {
+        // the Duo opens: the left panel swings 180° → 0° about the hinge; its back is the outer screen
+        const th = 180 * (1 - e), hinge = 320.5 + 179.5 * e;
+        this.rp.style.transform = 'translateX(' + f(hinge) + 'px)';
+        this.lp.style.transform = 'translateX(' + f(hinge - 360) + 'px) rotateY(' + th.toFixed(2) + 'deg)';
+        const shade = (0.42 * Math.sin(th * Math.PI / 180)).toFixed(3);
+        this.shs.forEach((x) => { x.style.opacity = shade; });
+      }
+      const ov = s.oa + (s.ob - s.oa) * (s.ob > s.oa ? sm(0.55, 1, t) : sm(0, 0.45, t));
+      this.orn.style.opacity = ov.toFixed(3);
+      this.orn.style.visibility = ov > 0.002 ? 'visible' : 'hidden';
+      // left column: the outgoing name slides up and out, the incoming one rises in, mid-morph; the Duo keeps its name through the unfold
+      const roll = (els, step) => els.forEach((el, n) => {
+        const d = n === s.na ? -u : n === s.nb ? 1 - u : null, o = d === null ? 0 : Math.max(0, 1 - Math.abs(d) * 2.2);
+        el.style.transform = 'translateY(' + f((d === null ? 1 : d) * step) + 'px)';
+        el.style.opacity = o.toFixed(3);
+        el.style.visibility = o > 0.002 ? 'visible' : 'hidden';
+        el.setAttribute('aria-hidden', n === cur ? 'false' : 'true');
       });
-    } else {
-      // the Duo opens: the left panel swings 180° → 0° about the hinge; its back is the outer screen
-      const u = e, th = 180 * (1 - u), hinge = 320.5 + 179.5 * u;
-      this.rp.style.transform = 'translateX(' + f(hinge) + 'px)';
-      this.lp.style.transform = 'translateX(' + f(hinge - 360) + 'px) rotateY(' + th.toFixed(2) + 'deg)';
-      const shade = (0.42 * Math.sin(th * Math.PI / 180)).toFixed(3);
-      this.shs.forEach((x) => { x.style.opacity = shade; });
+      roll(this.names, 120); roll(this.lines, 26);
+      if (cur !== this.cur) { this.cur = cur; this.ix.forEach((a, n) => { a.classList.toggle('wp-screens-cur', n === cur); if (n === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }); }
+      this.mk.style.transform = 'translateY(' + f((s.na + (s.nb - s.na) * u) * 36) + 'px)';
     }
-    const ov = i === 5 ? sm(0.55, 1, t) : i >= 6 ? 1 : 0;
-    this.orn.style.opacity = ov.toFixed(3);
-    this.orn.style.visibility = ov > 0.002 ? 'visible' : 'hidden';
-
+    // the progress line under the current name: how much of its time on show has passed (full while it hands over)
+    const pg = this.kit.reduced ? 0 : s.res ? Math.min(1, (s.res[1] + Math.min(this.t, s.ms)) / s.res[0]) : s.na !== s.nb ? (u < 0.5 ? 1 : 0) : 0;
+    const pv = Math.round(pg * 1000) / 1000;
+    if (cur !== this.pgOn || pv !== this.pgV) {
+      if (cur !== this.pgOn && this.pgs[this.pgOn]) this.pgs[this.pgOn].style.transform = 'scaleX(0)';
+      this.pgOn = cur; this.pgV = pv;
+      this.pgs[cur].style.transform = 'scaleX(' + pv + ')';
+    }
     // Vision: the window tilts a little toward the pointer
-    let settled = true;
-    const wv = i === 5 ? e : i >= 6 ? 1 : 0;
     if (!this.kit.reduced) {
-      const ty = this.px * 5.5 * wv, tx = -this.py * 3.5 * wv;
+      const ty = this.px * 5.5 * v, tx = -this.py * 3.5 * v;
       this.ry += (ty - this.ry) * 0.12; this.rx += (tx - this.rx) * 0.12;
-      if (Math.abs(ty - this.ry) < 0.02 && Math.abs(tx - this.rx) < 0.02) { this.ry = ty; this.rx = tx; } else settled = false;
-      this.tilt.style.transform = (this.rx || this.ry) ? 'perspective(1500px) rotateX(' + this.rx.toFixed(3) + 'deg) rotateY(' + this.ry.toFixed(3) + 'deg)' : '';
+      if (Math.abs(ty - this.ry) < 0.02 && Math.abs(tx - this.rx) < 0.02) { this.ry = ty; this.rx = tx; }
+      const tr = (this.rx || this.ry) ? 'perspective(1500px) rotateX(' + this.rx.toFixed(3) + 'deg) rotateY(' + this.ry.toFixed(3) + 'deg)' : '';
+      if (tr !== this.tr) { this.tr = tr; this.tilt.style.transform = tr; }
     }
-
-    // left column: names roll in the middle of each morph; the Duo keeps its name through the unfold
-    const nc = s < 3 ? s : s < 4 ? 3 : s - 1;
-    const n0 = Math.floor(nc), sn = this.kit.reduced ? Math.round(nc) : n0 + sm(0.36, 0.64, nc - n0);
-    this.names.forEach((el, n) => {
-      const d = n - sn, o = Math.max(0, 1 - Math.abs(d) * 2.2);
-      el.style.transform = 'translateY(' + f(d * 120) + 'px)';
-      el.style.opacity = o.toFixed(3);
-      el.style.visibility = o > 0.002 ? 'visible' : 'hidden';
-      el.setAttribute('aria-hidden', Math.abs(d) < 0.5 ? 'false' : 'true');
-    });
-    this.lines.forEach((el, n) => {
-      const d = n - sn, o = Math.max(0, 1 - Math.abs(d) * 2.2);
-      el.style.transform = 'translateY(' + f(d * 26) + 'px)';
-      el.style.opacity = o.toFixed(3);
-      el.style.visibility = o > 0.002 ? 'visible' : 'hidden';
-      el.setAttribute('aria-hidden', Math.abs(d) < 0.5 ? 'false' : 'true');
-    });
-    const cur = Math.round(sn);
-    if (cur !== this.cur) { this.cur = cur; this.ix.forEach((a, n) => a.classList.toggle('wp-screens-cur', n === cur)); }
-    this.mk.style.transform = 'translateY(' + f((this.kit.reduced ? cur : nc) * 36) + 'px)';
-    return settled;
   }
 }),
       "collect": (class {
@@ -3227,26 +3303,60 @@ class WPSite {
     this.shelves = live.querySelector('.wp-collect-shelves');
     this.season = live.querySelector('.wp-collect-season');
     this.line = live.querySelector('.wp-collect-line');
-    this.act = sec.querySelector('.wp-collect-actw');
-    this.p = 0; this.target = 0; this.raf = 0; this.on = false;
+    this.seg = Array.from(sec.querySelectorAll('.wp-collect-seg button'));
+    this.p = 0; this.on = false; this.hover = false; this.waiting = false; this.until = 0;
     if (kit.long) return;
-    if (kit.reduced) { this.render(1); return; }
-    kit.onScroll(({ y }) => this.track(y));
-    if (kit.scroller) this.track(kit.scroller.scrollTop, true);
+    this.seg.forEach((b) => kit.on(b, 'click', () => this.choose(b.dataset.to === 'after' ? 1 : 0)));
+    // hovering the stage holds whichever state it is in (a flight already under way still lands)
+    const hz = sec.querySelector('.wp-collect-hz');
+    kit.on(hz, 'pointerenter', (e) => { if (e.pointerType !== 'touch') this.hover = true; });
+    kit.on(hz, 'pointerleave', () => { this.hover = false; if (this.waiting && this.on) this.hold(700); });
+    this.p = kit.reduced ? 1 : 0;                      // reduced motion: 收拾后, and no loop
+    this.render(this.p); this.mark(this.p);
   }
-  track(y, snap) {
-    const top = this.sec.offsetTop, span = this.sec.offsetHeight - 900;
-    if (y < top - 1000 || y > top + this.sec.offsetHeight + 200) return;    // far away: nothing to do
-    this.target = Math.max(0, Math.min(1, (y - top) / span));
-    if (snap) { this.p = this.target; this.render(this.p); return; }
-    if (!this.raf) this.raf = this.g.frame(() => this.step());
+  // the loop runs only while the section is on screen (the page calls leave() when the tab hides); each visit starts at 收拾前
+  enter() {
+    this.on = true;
+    if (this.kit.long || this.kit.reduced) return;
+    this.g.clear(); this.until = 0;
+    this.p = 0; this.render(0); this.mark(0);
+    this.hold(2200);
   }
-  step() {
-    this.raf = 0;
-    const d = this.target - this.p;
-    this.p = Math.abs(d) < 0.0006 ? this.target : this.p + d * 0.2;
-    this.render(this.p);
-    if (this.p !== this.target) this.raf = this.g.frame(() => this.step());
+  leave() { this.on = false; this.waiting = false; this.g.clear(); }
+  destroy() { this.leave(); }
+
+  hold(ms) { this.waiting = false; this.g.later(() => this.next(), Math.max(0, ms)); }
+  next() {
+    if (!this.on) return;
+    const wait = this.until - Date.now();
+    if (wait > 0) { this.hold(wait); return; }        // a click asked for a pause
+    if (this.hover) { this.waiting = true; return; }  // pointerleave resumes
+    this.fly(this.p > 0.5 ? 0 : 1);
+  }
+  // time drives p: 0 → 1 in 2400 ms, 1 → 0 in 1400 ms (from wherever it is, so a click mid-flight just turns round)
+  fly(to) {
+    this.g.clear(); this.waiting = false;
+    this.mark(to);
+    const from = this.p, dur = Math.max(1, Math.abs(to - from) * (to > from ? 2400 : 1400));
+    let t0 = 0;
+    const step = (now) => {
+      if (!t0) t0 = now;
+      const k = Math.min(1, (now - t0) / dur);
+      this.p = from + (to - from) * k;
+      this.render(this.p);
+      if (k < 1) this.g.frame(step);
+      else { this.p = to; this.hold(to === 1 ? 4000 : 2200); }
+    };
+    this.g.frame(step);
+  }
+  choose(to) {
+    if (this.kit.reduced) { this.p = to; this.render(to); this.mark(to); return; }   // instant
+    this.until = Date.now() + 8000;
+    if (this.p === to) { this.g.clear(); this.mark(to); if (this.on) this.hold(8000); return; }
+    this.fly(to);
+  }
+  mark(to) {
+    this.seg.forEach((b) => { const on = (b.dataset.to === 'after') === (to === 1); b.classList.toggle('wp-collect-on', on); b.setAttribute('aria-pressed', String(on)); });
   }
   render(p) {
     const cl = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
@@ -3267,12 +3377,8 @@ class WPSite {
     }
     if (this.shelves) this.shelves.style.opacity = ss(0.06, 0.32, p).toFixed(3);
     if (this.season) { const s = ss(0.86, 0.97, p); this.season.style.opacity = s.toFixed(3); this.season.style.transform = 'scale(' + (0.95 + 0.05 * s).toFixed(3) + ')'; }
-    if (this.act) this.act.style.transform = 'scale(' + (1 - 0.34 * ss(0.06, 0.36, p)).toFixed(4) + ')';
     if (this.line) { const l = ss(0.9, 1, p); this.line.style.opacity = l.toFixed(3); this.line.style.transform = 'translateY(' + ((1 - l) * 14).toFixed(1) + 'px)'; }
   }
-  enter() { this.on = true; }
-  leave() { this.on = false; }
-  destroy() { this.g.clear(); }
 }),
       "play": (class {
   constructor(sec, kit) {
@@ -3499,7 +3605,7 @@ class WPSite {
     this.t = {}; $$('.wp-more-tile').forEach((el) => { this.t[el.dataset.tile] = el; });
     this.busy = {};
     // replay on hover (each tile, when its demo is idle)
-    const hov = { inbox: () => this.inbox(true), lists: () => this.lists(true), screen: () => this.step(1, true), agent: () => this.agentReplay(), priv: () => this.peek() };
+    const hov = { inbox: () => this.inbox(true), lists: () => this.lists(true), screen: () => this.step(1, true), agent: () => { if (!this.auto) this.agentReplay(); }, priv: () => this.peek() };
     Object.keys(hov).forEach((k) => kit.on(this.t[k], 'pointerenter', () => { if (this.done && this.done[k] && !this.busy[k]) hov[k](); }));
     // 2 · rule chips
     this.ls = $$('.wp-more-lsp').map((el, i) => ({ el, i, y: +el.dataset.y, anim: el.dataset.anim === '1', k4: el.dataset.k4 === '1', slot: i }));
@@ -3512,15 +3618,24 @@ class WPSite {
     kit.on(st, 'pointerdown', () => { try { st.focus({ preventScroll: true }); } catch (e) {} });
     kit.on(st, 'keydown', (e) => { if (e.key === 'ArrowRight') this.step(1); else if (e.key === 'ArrowLeft') this.step(-1); });
     // 4 · receipt
-    // three example exchanges; the chips switch between them, each plays once from the top
+    // three example exchanges. 11-09 owner: autoplay — each types, waits at 允许, is allowed by itself, holds, then the next tab, in a
+    // loop — until the visitor clicks a tab or 允许 / 不允许 (then they are in control for this page view). Hovering the tile (a tap on
+    // touch, or keyboard focus) holds it between steps; it also holds while the tile is off screen or the tab is hidden.
     this.ga = kit.group(); this.rcs = $$('.wp-more-rc'); this.exb = $$('.wp-more-exb'); this.ast = 'idle';
+    this.auto = !this.R; this.ap = { hover: false, tap: false, focus: false, off: false }; this.parked = null; this.aw = null;
     this.useRc(0);
     this.rcs.forEach((rc) => {
       const y = $('.wp-more-yes', rc), n = $('.wp-more-no', rc);
-      if (y) kit.on(y, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) this.decide(true); });
-      if (n) kit.on(n, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) this.decide(false); });
+      if (y) kit.on(y, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) { this.stopAuto(); this.decide(true); } });
+      if (n) kit.on(n, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) { this.stopAuto(); this.decide(false); } });
     });
-    this.exb.forEach((b, i) => kit.on(b, 'click', (e) => { e.stopPropagation(); this.pick(i); }));
+    this.exb.forEach((b, i) => kit.on(b, 'click', (e) => { e.stopPropagation(); this.stopAuto(); this.pick(i); }));
+    const at = this.t.agent;
+    kit.on(at, 'pointerenter', (e) => { if (e.pointerType === 'mouse') this.pauseFor('hover', true); });
+    kit.on(at, 'pointerleave', (e) => { if (e.pointerType === 'mouse') this.pauseFor('hover', false); });
+    kit.on(at, 'pointerup', (e) => { if (e.pointerType !== 'mouse' && !e.target.closest('button')) this.pauseFor('tap', !this.ap.tap); });
+    kit.on(at, 'focusin', () => this.pauseFor('focus', true));
+    kit.on(at, 'focusout', (e) => { if (!at.contains(e.relatedTarget)) this.pauseFor('focus', false); });
     // 5 · Touch ID: hold to see; release and it locks after 2.5 s
     this.pv = this.t.priv; this.disc = $('.wp-more-disc'); this.held = false; this.readT = 0; this.lockT = 0;
     kit.on(this.disc, 'pointerdown', (e) => { if (e.button > 0) return; try { this.disc.setPointerCapture(e.pointerId); } catch (_) {} this.press(); });
@@ -3551,6 +3666,7 @@ class WPSite {
   }
   check() {
     if (!this.on) return;
+    if (this.auto) this.agentVis();
     const first = { inbox: () => this.inbox(false), lists: () => this.lists(false), screen: () => this.step(1, true), agent: () => this.agent(), priv: () => this.peek() };
     let k = 0;
     Object.keys(first).forEach((key) => {
@@ -3562,19 +3678,25 @@ class WPSite {
   enter() {
     if (this.R) return;
     this.on = true;
+    const had = !!(this.done && this.done.agent);
     if (!this.done) { this.done = {}; if (!this.kit.long) this.kit.onScroll(() => this.check()); }
     this.check();
+    // back on screen with autoplay still on: carry on from where leave() settled it
+    if (this.auto && had) { if (this.ast === 'done') this.autoHold(); else if (this.ast === 'idle') this.ga.later(() => this.agent(), 300); }
+    this.syncAuto();
   }
   leave() {
     this.on = false;
     this.g.clear(); this.ga.clear(); this.busy = {};
     this.readT = this.lockT = 0; this.held = false; this.pv.classList.remove('wp-more-held');
+    this.aw = null; this.parked = null; this.exb.forEach((b) => b.classList.remove('wp-more-fill'));
     if (!this.played) return;
     // cut short: settle every demo on its end state
     const d = this.done || {};
     if (d.inbox) this.t.inbox.classList.add('wp-more-fan', 'wp-more-fold');
     if (d.lists) ['y', 'a', 'k'].forEach((k) => this.rule(k, true));
-    if (this.ast === 'run') this.agentTo('wait');
+    if (this.auto) { if (this.ast === 'run' || this.ast === 'wait') this.agentDone(); }
+    else if (this.ast === 'run') this.agentTo('wait');
     this.pv.dataset.ps = 'locked';
   }
   destroy() { this.g.clear(); this.ga.clear(); }
@@ -3637,10 +3759,12 @@ class WPSite {
     this.rc.querySelectorAll('.wp-more-rq i').forEach((c) => c.classList.remove('wp-more-on'));
     if (this.card) this.card.classList.remove('wp-more-ok', 'wp-more-nay');
     this.rc.classList.remove('wp-more-denied');
+    this.rc.querySelectorAll('.wp-more-yes').forEach((y) => y.classList.remove('wp-more-press'));
   }
   pick(i) {                 // a chip: show that example and play it from the top
     if (i === this.ex && this.ast !== 'done' && this.ast !== 'idle') return;
-    this.ga.clear(); this.resetRc();
+    this.ga.clear(); this.aw = null; this.parked = null; this.resetRc();
+    this.exb.forEach((b) => b.classList.remove('wp-more-fill'));
     this.rcs.forEach((rc, k) => rc.classList.toggle('wp-more-rc-off', k !== i));
     this.exb.forEach((b, k) => b.setAttribute('aria-selected', k === i ? 'true' : 'false'));
     this.useRc(i); this.resetRc(); this.ast = 'idle';
@@ -3660,13 +3784,21 @@ class WPSite {
     this.rc.querySelectorAll('.wp-more-rq i').forEach((c) => c.classList.add('wp-more-on'));
     this.ast = s; this.busy.agent = false;
   }
+  agentDone() {              // autoplay was cut short (the section left): show this example finished, as if allowed
+    this.rows.forEach((r) => { r.classList.add('wp-more-on'); r.classList.remove('wp-more-typing'); });
+    this.rc.querySelectorAll('.wp-more-rq i').forEach((c) => c.classList.add('wp-more-on'));
+    if (this.card) this.card.classList.add('wp-more-ok');
+    this.ast = 'done'; this.busy.agent = false;
+  }
   arun() {
     if (this.ast !== 'run') return;
+    // autoplay never cuts a step: it finishes the one under way, then waits here while held
+    if (this.auto && !this.canAuto()) { this.parked = () => this.arun(); return; }
     const r = this.rows[this.ai];
-    if (!r) { this.ast = 'done'; this.busy.agent = false; return; }
+    if (!r) { this.ast = 'done'; this.busy.agent = false; if (this.auto) this.autoHold(); return; }
     if (r.classList.contains('wp-more-rq')) return this.type(r);
     r.classList.add('wp-more-on');
-    if (r.classList.contains('wp-more-rcard')) { this.ast = 'wait'; this.busy.agent = false; return; }
+    if (r.classList.contains('wp-more-rcard')) { this.ast = 'wait'; this.busy.agent = false; if (this.auto) this.autoAllow(); return; }
     this.ga.later(() => { this.ai++; this.arun(); }, +r.dataset.w || 420);
   }
   type(r) {
@@ -3680,10 +3812,58 @@ class WPSite {
   }
   decide(ok) {
     if (this.ast !== 'wait') return;
+    this.awClear();
     this.card.classList.add(ok ? 'wp-more-ok' : 'wp-more-nay');
     this.rc.classList.toggle('wp-more-denied', !ok);
     this.ast = 'run'; this.busy.agent = true; this.ai = this.rows.length - 1;
     this.ga.later(() => this.arun(), 500);
+  }
+  // ---------- 4 · autoplay ----------
+  canAuto() { return this.auto && !!this.on && !this.ap.hover && !this.ap.tap && !this.ap.focus && !this.ap.off && !document.hidden; }
+  // a pausable wait: its clock stops while autoplay is held and carries on from there
+  autoWait(ms, fn) { this.awClear(); this.aw = { left: ms, fn, id: 0, t0: 0 }; this.awGo(); }
+  awGo() { const w = this.aw; if (!w || w.id || !this.canAuto()) return; w.t0 = performance.now(); w.id = this.ga.later(() => { if (this.aw === w) this.aw = null; w.fn(); }, w.left); }
+  awHalt() { const w = this.aw; if (w && w.id) { clearTimeout(w.id); w.id = 0; w.left = Math.max(0, w.left - (performance.now() - w.t0)); } }
+  awClear() { if (this.aw && this.aw.id) clearTimeout(this.aw.id); this.aw = null; }
+  syncAuto() {
+    const go = this.canAuto();
+    this.t.agent.classList.toggle('wp-more-apause', this.auto && !go);
+    if (!go) { this.awHalt(); return; }
+    this.awGo();
+    if (this.parked) { const f = this.parked; this.parked = null; f(); }
+  }
+  pauseFor(k, v) {
+    if (!this.auto || this.ap[k] === v) return;
+    this.ap[k] = v;
+    this.t.agent.classList.toggle('wp-more-tpause', this.ap.tap);
+    this.syncAuto();
+  }
+  agentVis() {               // autoplay runs only while the agent tile itself is on screen
+    const sc = this.kit.scroller;
+    let seen = true;
+    if (sc) {
+      const r = this.t.agent.getBoundingClientRect(), v = sc.getBoundingClientRect();
+      seen = Math.min(r.bottom, v.bottom) - Math.max(r.top, v.top) >= Math.min(r.height * 0.4, (v.bottom - v.top) * 0.3);
+    }
+    if (this.ap.off !== !seen) { this.ap.off = !seen; this.syncAuto(); }
+  }
+  stopAuto() {               // a tab or 允许 / 不允许 was clicked: the visitor drives from here on
+    if (!this.auto) return;
+    this.auto = false; this.awClear(); this.parked = null;
+    this.exb.forEach((b) => b.classList.remove('wp-more-fill'));
+    this.t.agent.classList.remove('wp-more-apause', 'wp-more-tpause');
+  }
+  autoAllow() {              // the card is up: after a beat 允许 is pressed (a brief pressed state) and the exchange runs on
+    this.autoWait(1200, () => {
+      const y = this.rc.querySelector('.wp-more-yes'); if (!y || this.ast !== 'wait') return;
+      y.classList.add('wp-more-press');
+      this.ga.later(() => { y.classList.remove('wp-more-press'); if (this.auto && this.ast === 'wait') this.decide(true); }, 260);
+    });
+  }
+  autoHold() {               // finished: hold, with a thin fill under the tab, then the next example (and round again)
+    const b = this.exb[this.ex];
+    b.classList.remove('wp-more-fill'); void b.offsetWidth; b.classList.add('wp-more-fill');
+    this.autoWait(2600, () => { b.classList.remove('wp-more-fill'); this.pick((this.ex + 1) % this.rcs.length); });
   }
   // ---------- 5 · Touch ID ----------
   set(s) { this.pv.dataset.ps = s; }
@@ -3936,17 +4116,24 @@ class WMSite {
 }),
       "screens": (class {
   constructor(sec, kit) {
-    this.sec = sec; this.kit = kit; this.raf = 0; this.cur = -1;
+    this.sec = sec; this.kit = kit; this.g = kit.group(); this.raf = 0; this.cur = -1;
     const SOON = true;   // 「即将推出」 on every platform except Mac until they are on the store — flip to false at launch
     if (SOON) sec.classList.add('wm-screens-soon-on');
     this.track = sec.querySelector('.wm-screens-track');
     this.cards = Array.from(sec.querySelectorAll('.wm-screens-card'));
     this.ix = Array.from(sec.querySelectorAll('.wm-screens-ix'));
-    this.lock = null; this.unlock = 0;   // while a tapped name scrolls the carousel, the index stays on that name
+    this.lock = null; this.unlock = 0;   // while a tapped name (or the autoplay) scrolls the carousel, the index stays on that card
+    this.active = false; this.seen = !window.IntersectionObserver; this.user = false;
     kit.on(this.track, 'scroll', () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.sync(); }); }, { passive: true });
-    const free = () => { this.lock = null; };
-    ['pointerdown', 'touchstart', 'wheel'].forEach((ev) => kit.on(this.track, ev, free, { passive: true }));
-    this.ix.forEach((b, i) => kit.on(b, 'click', () => this.go(i)));
+    // a touch, a swipe, a wheel or a key on the carousel is the user's: autoplay waits until it has been quiet for a while
+    const mine = () => { this.lock = null; this.hold(); };
+    ['pointerdown', 'touchstart', 'touchmove', 'wheel', 'keydown'].forEach((ev) => kit.on(this.track, ev, mine, { passive: true }));
+    this.ix.forEach((b, i) => kit.on(b, 'click', () => { this.go(i); this.hold(); }));
+    // autoplay only while the carousel itself is mostly on screen
+    if (window.IntersectionObserver) {
+      this.io = new IntersectionObserver((es) => es.forEach((e) => { const s = e.isIntersecting && e.intersectionRatio >= 0.55; if (s !== this.seen) { this.seen = s; this.plan(); } }), { threshold: [0, 0.55, 0.8] });
+      this.io.observe(this.track);
+    }
     this.set(0);
   }
   // where card i sits when it is snapped to the start
@@ -3970,65 +4157,108 @@ class WMSite {
     clearTimeout(this.unlock); this.unlock = setTimeout(() => { this.lock = null; this.sync(); }, 1600);
     this.track.scrollTo({ left: this.at(i), behavior: this.kit.reduced ? 'auto' : 'smooth' });
   }
-  enter() {}
-  leave() { if (this.raf) cancelAnimationFrame(this.raf); this.raf = 0; clearTimeout(this.unlock); this.lock = null; }
-  destroy() { this.leave(); }
+  // autoplay: 3.5 s a card (the name's bar fills meanwhile), then on to the next, back to the first after the last
+  plan() {
+    this.g.clear(); this.fill(false);
+    if (this.kit.reduced || !this.active || !this.seen) return;
+    if (this.user) { this.g.later(() => { this.user = false; this.plan(); }, 6000); return; }
+    this.fill(true);
+    this.g.later(() => { this.go((this.cur + 1) % this.cards.length); this.plan(); }, 3500);
+  }
+  hold() { this.user = true; this.plan(); }
+  fill(on) {
+    this.ix.forEach((b) => b.classList.remove('wm-screens-run'));
+    const b = this.ix[this.cur];
+    if (on && b) { void b.offsetWidth; b.classList.add('wm-screens-run'); }
+  }
+  enter() { this.active = true; this.user = false; this.plan(); }
+  leave() {
+    this.active = false; this.g.clear(); this.fill(false);
+    if (this.raf) cancelAnimationFrame(this.raf); this.raf = 0; clearTimeout(this.unlock); this.lock = null;
+  }
+  destroy() { this.leave(); if (this.io) this.io.disconnect(); }
 }),
       "collect": (class {
   constructor(sec, kit) {
     this.sec = sec; this.kit = kit; this.g = kit.group();
     this.stage = sec.querySelector('.wm-collect-stage');
-    this.btn = sec.querySelector('.wm-collect-go');
-    this.pills = Array.from(sec.querySelectorAll('.wm-collect-pill')).map((el) => ({ el, to: el.dataset.to, r: +el.dataset.r, rank: +el.dataset.rank }));
-    this.cards = {};
-    sec.querySelectorAll('[data-c]').forEach((el) => { this.cards[el.dataset.c] = el; });
-    this.anims = []; this.on = false; this.played = false; this.runId = 0;
-    if (kit.reduced) { this.set('done'); return; }        // the sorted shelves, no motion
-    this.set('heap');
-    this.layout();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (this.state === 'heap') this.layout(); });
+    this.line = sec.querySelector('.wm-collect-line');
+    this.season = sec.querySelector('.wm-collect-season');
+    this.seasonTick = this.season.querySelector('.wm-collect-tick');
+    this.fades = Array.from(sec.querySelectorAll('.wm-collect-lab,.wm-collect-rule'));
+    const cards = {};
+    sec.querySelectorAll('[data-c]').forEach((el) => { cards[el.dataset.c] = el; });
+    this.pills = Array.from(sec.querySelectorAll('.wm-collect-pill')).map((el) => {
+      const c = cards[el.dataset.to], own = el.dataset.to === 'e' ? null : c;
+      return { el, r: +el.dataset.r, rank: +el.dataset.rank, pic: c.querySelector('.wm-collect-pic'), card: own, tick: own && own.querySelector('.wm-collect-tick'), x0: 0, y0: 0, x1: 0, y1: 0 };
+    });
+    this.seg = Array.from(sec.querySelectorAll('.wm-collect-seg button'));
+    this.on = false; this.until = 0; this.rt = 0;
+    this.seg.forEach((b) => kit.on(b, 'click', () => this.choose(b.dataset.to === 'after' ? 1 : 0)));
+    this.stage.dataset.state = 'live';
+    this.p = kit.reduced ? 1 : 0;                      // reduced motion: 收拾后, and no loop
+    this.layout(); this.mark(this.p);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this.layout());
     let w = window.innerWidth;
-    kit.on(window, 'resize', () => { if (window.innerWidth === w || !this.on) return; w = window.innerWidth; this.g.later(() => { if (this.state === 'heap') this.layout(); }, 150); });
-    kit.on(this.btn, 'click', () => { this.played = true; if (this.state === 'done') this.replay(); else if (this.state === 'heap') this.run(); });
-    kit.onScroll(() => { if (this.on) this.check(); });
+    kit.on(window, 'resize', () => { if (window.innerWidth === w) return; w = window.innerWidth; clearTimeout(this.rt); this.rt = setTimeout(() => this.layout(), 150); });
   }
+  // the loop runs only while the section is on screen (the page calls leave() when the tab hides); each visit starts at 收拾前
   enter() {
     this.on = true;
-    if (this.state === 'heap' && this.lw !== this.stage.clientWidth) this.layout();   // the width changed while it was away
-    this.check();
+    if (this.lw !== this.stage.clientWidth) this.layout();
+    if (this.kit.reduced) return;
+    this.g.clear(); this.until = 0;
+    this.p = 0; this.render(0); this.mark(0);
+    this.hold(2200);
   }
-  leave() {
-    this.on = false; this.g.clear();
-    if (this.state === 'run') this.finish();                 // off screen mid-sort: just be sorted
-    else if (this.stage.classList.contains('wm-collect-reset')) { this.stage.classList.remove('wm-collect-reset'); this.set('done'); }
-  }
-  destroy() { this.g.clear(); this.anims.forEach((a) => a.cancel()); }
+  leave() { this.on = false; this.g.clear(); }
+  destroy() { this.leave(); clearTimeout(this.rt); }
 
-  set(s) {
-    this.state = s; this.stage.dataset.state = s;
-    this.sec.classList.toggle('wm-collect-sorted', s === 'done');
-    this.btn.disabled = s === 'run';
+  hold(ms) { this.g.later(() => this.next(), Math.max(0, ms)); }
+  next() {
+    if (!this.on) return;
+    const wait = this.until - Date.now();
+    if (wait > 0) { this.hold(wait); return; }        // a tap asked for a pause
+    this.fly(this.p > 0.5 ? 0 : 1);
   }
-  // plays once, when the whole stage is on screen (or as much of it as the screen can hold)
-  check() {
-    if (this.played || this.state !== 'heap') return;
-    const r = this.stage.getBoundingClientRect(), vh = window.innerHeight, top = 58;
-    const seen = Math.min(r.bottom, vh) - Math.max(r.top, top);
-    if (seen >= Math.min(r.height, vh - top) * 0.94) { this.played = true; this.g.later(() => this.run(), 380); }
+  fly(to) {
+    this.g.clear();
+    this.mark(to);
+    const from = this.p, dur = Math.max(1, Math.abs(to - from) * (to > from ? 2400 : 1400));
+    let t0 = 0;
+    const step = (now) => {
+      if (!t0) t0 = now;
+      const k = Math.min(1, (now - t0) / dur);
+      this.p = from + (to - from) * k;
+      this.render(this.p);
+      if (k < 1) this.g.frame(step);
+      else { this.p = to; this.hold(to === 1 ? 4000 : 2200); }
+    };
+    this.g.frame(step);
   }
-  // a seeded heap for this width: least-overlap of up to 60 tries per pill, rotated boxes kept inside the stage
+  choose(to) {
+    if (this.kit.reduced) { this.p = to; this.render(to); this.mark(to); return; }   // instant
+    this.until = Date.now() + 8000;
+    if (this.p === to) { this.g.clear(); this.mark(to); if (this.on) this.hold(8000); return; }
+    this.fly(to);
+  }
+  mark(to) {
+    this.seg.forEach((b) => { const on = (b.dataset.to === 'after') === (to === 1); b.classList.toggle('wm-collect-on', on); b.setAttribute('aria-pressed', String(on)); });
+  }
+  // a seeded heap for this width (least overlap of up to 60 tries, bunched toward the middle so it reads as a pile),
+  // then where each pill lands: the centre of its card's picture (the six episodes all land on the season card)
   layout() {
     const W = this.stage.clientWidth, H = this.stage.clientHeight;
     this.lw = W;
     let s = 3033;
     const R = () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const off = (el) => { let x = 0, y = 0; while (el && el !== this.stage) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return [x, y]; };
     const placed = [];
     this.pills.forEach((p) => {
       const w = p.el.offsetWidth, h = p.el.offsetHeight, a = Math.abs(p.r) * Math.PI / 180;
       const bw = w * Math.cos(a) + h * Math.sin(a), bh = w * Math.sin(a) + h * Math.cos(a);
       let best = null;
       for (let k = 0; k < 60; k++) {
-        // x anywhere it fits; y bunched toward the middle (the mean of two draws), so it reads as a pile, not a list
         const x = bw / 2 + R() * Math.max(0, W - bw), y = bh / 2 + 4 + (R() + R()) / 2 * Math.max(0, H - bh - 8);
         let worst = 0;
         for (const q of placed) {
@@ -4041,50 +4271,31 @@ class WMSite {
       placed.push({ x: best.x, y: best.y, bw, bh });
       p.el.style.left = (best.x - w / 2).toFixed(1) + 'px';
       p.el.style.top = (best.y - h / 2).toFixed(1) + 'px';
+      p.x0 = best.x; p.y0 = best.y;
+      const [px, py] = off(p.pic);
+      p.x1 = px + p.pic.offsetWidth / 2; p.y1 = py + p.pic.offsetHeight / 2;
     });
+    this.render(this.p);
   }
-  run() {
-    if (this.state !== 'heap') return;
-    const id = ++this.runId;
-    this.set('run');
-    const sr = this.stage.getBoundingClientRect();
-    const D = 780, ST = 48, ease = 'cubic-bezier(.55,0,.3,1)', pop = 'cubic-bezier(.2,.8,.2,1)';
-    const A = (el, kf, o) => { const a = el.animate(kf, Object.assign({ fill: 'both' }, o)); this.anims.push(a); return a; };
-    let lastEp = 0, end = 0;
-    this.pills.forEach((p) => {
-      const card = this.cards[p.to], pic = card.querySelector('.wm-collect-pic') || card;
-      const tr = pic.getBoundingClientRect();
-      const cx = p.el.offsetLeft + p.el.offsetWidth / 2, cy = p.el.offsetTop + p.el.offsetHeight / 2;
-      const dx = tr.left - sr.left + tr.width / 2 - cx, dy = tr.top - sr.top + tr.height / 2 - cy;
-      const delay = 140 + p.rank * ST, land = delay + D * 0.8;
-      A(p.el, [
-        { transform: 'rotate(' + p.r + 'deg)', opacity: 1 },
-        { transform: 'translate(' + (dx * 0.42).toFixed(1) + 'px,' + (dy * 0.42 - 28).toFixed(1) + 'px) rotate(' + (p.r * 0.3).toFixed(2) + 'deg) scale(.95)', opacity: 1, offset: 0.45 },
-        { transform: 'translate(' + (dx * 0.94).toFixed(1) + 'px,' + (dy * 0.94).toFixed(1) + 'px) rotate(0deg) scale(.66)', opacity: 1, offset: 0.8 },
-        { transform: 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) rotate(0deg) scale(.5)', opacity: 0 },
-      ], { duration: D, delay, easing: ease });
-      if (p.to === 'e') { lastEp = Math.max(lastEp, land); return; }
-      A(card, [{ opacity: 0, transform: 'scale(.74)' }, { opacity: 1, transform: 'none' }], { duration: 380, delay: land, easing: pop });
-      const tk = card.querySelector('.wm-collect-tick');
-      if (tk) A(tk, [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'none' }], { duration: 260, delay: land + 260, easing: pop });
-      end = Math.max(end, land + 520);
-    });
-    const season = this.cards.e;
-    A(season, [{ opacity: 0, transform: 'scale(.94)' }, { opacity: 1, transform: 'none' }], { duration: 420, delay: lastEp + 60, easing: pop });
-    A(season.querySelector('.wm-collect-tick'), [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'none' }], { duration: 260, delay: lastEp + 360, easing: pop });
-    end = Math.max(end, lastEp + 620);
-    this.sec.querySelectorAll('.wm-collect-lab,.wm-collect-rule').forEach((el, k) => A(el, [{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 80 + k * 60, easing: 'ease' }));
-    this.g.later(() => { if (this.runId === id && this.state === 'run') this.finish(); }, end + 40);
-  }
-  finish() {
-    this.set('done');
-    this.anims.forEach((a) => a.cancel()); this.anims = [];
-  }
-  replay() {
-    this.stage.classList.add('wm-collect-reset');
-    this.layout();
-    this.set('heap');
-    this.g.later(() => { this.stage.classList.remove('wm-collect-reset'); this.run(); }, 720);
+  render(p) {
+    const cl = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+    const ss = (a, b, v) => { const t = cl((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+    const io = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    for (const o of this.pills) {
+      const t = cl((p - (0.04 + o.rank * 0.022)) / 0.36), e = io(t);
+      const x = (o.x1 - o.x0) * e, y = (o.y1 - o.y0) * e - Math.sin(Math.PI * e) * 26;
+      const r = o.r * (1 - ss(0, 0.55, t)), s = 1 - 0.5 * ss(0.3, 1, t), op = 1 - ss(0.6, 0.88, t);
+      o.el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + r.toFixed(2) + 'deg) scale(' + s.toFixed(3) + ')';
+      o.el.style.opacity = op.toFixed(3);
+      o.el.style.visibility = op > 0 ? '' : 'hidden';
+      if (o.card) { const c = ss(0.62, 0.92, t); o.card.style.opacity = c.toFixed(3); o.card.style.transform = c < 1 ? 'scale(' + (0.74 + 0.26 * c).toFixed(3) + ')' : ''; }
+      if (o.tick) { const k = ss(0.86, 1, t); o.tick.style.opacity = k.toFixed(3); o.tick.style.transform = 'scale(' + (0.4 + 0.6 * k).toFixed(3) + ')'; }
+    }
+    const sn = ss(0.84, 0.96, p);
+    this.season.style.opacity = sn.toFixed(3); this.season.style.transform = sn < 1 ? 'scale(' + (0.94 + 0.06 * sn).toFixed(3) + ')' : '';
+    const st = ss(0.9, 1, p); this.seasonTick.style.opacity = st.toFixed(3); this.seasonTick.style.transform = 'scale(' + (0.4 + 0.6 * st).toFixed(3) + ')';
+    const f = ss(0.04, 0.3, p).toFixed(3); this.fades.forEach((el) => { el.style.opacity = f; });
+    const l = ss(0.9, 1, p); this.line.style.opacity = l.toFixed(3); this.line.style.transform = l < 1 ? 'translateY(' + ((1 - l) * 8).toFixed(1) + 'px)' : '';
   }
 }),
       "play": (class {
@@ -4307,15 +4518,24 @@ class WMSite {
     kit.on(st, 'pointerdown', () => { try { st.focus({ preventScroll: true }); } catch (e) {} });
     kit.on(st, 'keydown', (e) => { if (e.key === 'ArrowRight') this.step(1); else if (e.key === 'ArrowLeft') this.step(-1); });
     // 4 · receipt
-    // three example exchanges; the chips switch between them, each plays once from the top
+    // three example exchanges. 11-09 owner: autoplay — each types, waits at 允许, is allowed by itself, holds, then the next tab, in a
+    // loop — until the visitor clicks a tab or 允许 / 不允许 (then they are in control for this page view). Hovering the tile (a tap on
+    // touch, or keyboard focus) holds it between steps; it also holds while the tile is off screen or the tab is hidden.
     this.ga = kit.group(); this.rcs = $$('.wm-more-rc'); this.exb = $$('.wm-more-exb'); this.ast = 'idle';
+    this.auto = !this.R; this.ap = { hover: false, tap: false, focus: false, off: false }; this.parked = null; this.aw = null;
     this.useRc(0);
     this.rcs.forEach((rc) => {
       const y = $('.wm-more-yes', rc), n = $('.wm-more-no', rc);
-      if (y) kit.on(y, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) this.decide(true); });
-      if (n) kit.on(n, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) this.decide(false); });
+      if (y) kit.on(y, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) { this.stopAuto(); this.decide(true); } });
+      if (n) kit.on(n, 'click', (e) => { e.stopPropagation(); if (rc === this.rc) { this.stopAuto(); this.decide(false); } });
     });
-    this.exb.forEach((b, i) => kit.on(b, 'click', (e) => { e.stopPropagation(); this.pick(i); }));
+    this.exb.forEach((b, i) => kit.on(b, 'click', (e) => { e.stopPropagation(); this.stopAuto(); this.pick(i); }));
+    const at = this.t.agent;
+    kit.on(at, 'pointerenter', (e) => { if (e.pointerType === 'mouse') this.pauseFor('hover', true); });
+    kit.on(at, 'pointerleave', (e) => { if (e.pointerType === 'mouse') this.pauseFor('hover', false); });
+    kit.on(at, 'pointerup', (e) => { if (e.pointerType !== 'mouse' && !e.target.closest('button')) this.pauseFor('tap', !this.ap.tap); });
+    kit.on(at, 'focusin', () => this.pauseFor('focus', true));
+    kit.on(at, 'focusout', (e) => { if (!at.contains(e.relatedTarget)) this.pauseFor('focus', false); });
     // 5 · Touch ID: hold to see; release and it locks after 2.5 s
     this.pv = this.t.priv; this.disc = $('.wm-more-disc'); this.held = false; this.readT = 0; this.lockT = 0;
     kit.on(this.disc, 'pointerdown', (e) => { if (e.button > 0) return; try { this.disc.setPointerCapture(e.pointerId); } catch (_) {} this.press(); });
@@ -4347,6 +4567,7 @@ class WMSite {
     if (!this.on) return;
     // phone: each tile rises in as it comes up the screen
     Object.keys(this.t).forEach((k) => { const w = this.t[k].parentNode; if (!w.classList.contains('wm-more-seen') && this.t[k].getBoundingClientRect().top < window.innerHeight * 0.94) w.classList.add('wm-more-seen'); });
+    if (this.auto) this.agentVis();
     const first = { inbox: () => this.inbox(false), lists: () => this.lists(false), screen: () => this.step(1, true), agent: () => this.agent(), priv: () => this.peek() };
     let k = 0;
     Object.keys(first).forEach((key) => {
@@ -4358,19 +4579,25 @@ class WMSite {
   enter() {
     if (this.R) return;
     this.on = true;
+    const had = !!(this.done && this.done.agent);
     if (!this.done) { this.done = {}; if (!this.kit.long) this.kit.onScroll(() => this.check()); }
     this.check();
+    // back on screen with autoplay still on: carry on from where leave() settled it
+    if (this.auto && had) { if (this.ast === 'done') this.autoHold(); else if (this.ast === 'idle') this.ga.later(() => this.agent(), 300); }
+    this.syncAuto();
   }
   leave() {
     this.on = false;
     this.g.clear(); this.ga.clear(); this.gl.clear(); this.busy = {};
     this.readT = this.lockT = 0; this.held = false; this.pv.classList.remove('wm-more-held');
+    this.aw = null; this.parked = null; this.exb.forEach((b) => b.classList.remove('wm-more-fill'));
     if (!this.played) return;
     // cut short: settle every demo on its end state
     const d = this.done || {};
     if (d.inbox) this.t.inbox.classList.add('wm-more-fan', 'wm-more-fold');
     if (d.lists) ['y', 'a', 'k'].forEach((k) => this.rule(k, true));
-    if (this.ast === 'run') this.agentTo('wait');
+    if (this.auto) { if (this.ast === 'run' || this.ast === 'wait') this.agentDone(); }
+    else if (this.ast === 'run') this.agentTo('wait');
     this.pv.dataset.ps = 'locked';
   }
   destroy() { this.g.clear(); this.ga.clear(); this.gl.clear(); }
@@ -4433,10 +4660,12 @@ class WMSite {
     this.rc.querySelectorAll('.wm-more-rq i').forEach((c) => c.classList.remove('wm-more-on'));
     if (this.card) this.card.classList.remove('wm-more-ok', 'wm-more-nay');
     this.rc.classList.remove('wm-more-denied');
+    this.rc.querySelectorAll('.wm-more-yes').forEach((y) => y.classList.remove('wm-more-press'));
   }
   pick(i) {                 // a chip: show that example and play it from the top
     if (i === this.ex && this.ast !== 'done' && this.ast !== 'idle') return;
-    this.ga.clear(); this.resetRc();
+    this.ga.clear(); this.aw = null; this.parked = null; this.resetRc();
+    this.exb.forEach((b) => b.classList.remove('wm-more-fill'));
     this.rcs.forEach((rc, k) => rc.classList.toggle('wm-more-rc-off', k !== i));
     this.exb.forEach((b, k) => b.setAttribute('aria-selected', k === i ? 'true' : 'false'));
     this.useRc(i); this.resetRc(); this.ast = 'idle';
@@ -4456,13 +4685,21 @@ class WMSite {
     this.rc.querySelectorAll('.wm-more-rq i').forEach((c) => c.classList.add('wm-more-on'));
     this.ast = s; this.busy.agent = false;
   }
+  agentDone() {              // autoplay was cut short (the section left): show this example finished, as if allowed
+    this.rows.forEach((r) => { r.classList.add('wm-more-on'); r.classList.remove('wm-more-typing'); });
+    this.rc.querySelectorAll('.wm-more-rq i').forEach((c) => c.classList.add('wm-more-on'));
+    if (this.card) this.card.classList.add('wm-more-ok');
+    this.ast = 'done'; this.busy.agent = false;
+  }
   arun() {
     if (this.ast !== 'run') return;
+    // autoplay never cuts a step: it finishes the one under way, then waits here while held
+    if (this.auto && !this.canAuto()) { this.parked = () => this.arun(); return; }
     const r = this.rows[this.ai];
-    if (!r) { this.ast = 'done'; this.busy.agent = false; return; }
+    if (!r) { this.ast = 'done'; this.busy.agent = false; if (this.auto) this.autoHold(); return; }
     if (r.classList.contains('wm-more-rq')) return this.type(r);
     r.classList.add('wm-more-on');
-    if (r.classList.contains('wm-more-rcard')) { this.ast = 'wait'; this.busy.agent = false; return; }
+    if (r.classList.contains('wm-more-rcard')) { this.ast = 'wait'; this.busy.agent = false; if (this.auto) this.autoAllow(); return; }
     this.ga.later(() => { this.ai++; this.arun(); }, +r.dataset.w || 420);
   }
   type(r) {
@@ -4476,10 +4713,58 @@ class WMSite {
   }
   decide(ok) {
     if (this.ast !== 'wait') return;
+    this.awClear();
     this.card.classList.add(ok ? 'wm-more-ok' : 'wm-more-nay');
     this.rc.classList.toggle('wm-more-denied', !ok);
     this.ast = 'run'; this.busy.agent = true; this.ai = this.rows.length - 1;
     this.ga.later(() => this.arun(), 500);
+  }
+  // ---------- 4 · autoplay ----------
+  canAuto() { return this.auto && !!this.on && !this.ap.hover && !this.ap.tap && !this.ap.focus && !this.ap.off && !document.hidden; }
+  // a pausable wait: its clock stops while autoplay is held and carries on from there
+  autoWait(ms, fn) { this.awClear(); this.aw = { left: ms, fn, id: 0, t0: 0 }; this.awGo(); }
+  awGo() { const w = this.aw; if (!w || w.id || !this.canAuto()) return; w.t0 = performance.now(); w.id = this.ga.later(() => { if (this.aw === w) this.aw = null; w.fn(); }, w.left); }
+  awHalt() { const w = this.aw; if (w && w.id) { clearTimeout(w.id); w.id = 0; w.left = Math.max(0, w.left - (performance.now() - w.t0)); } }
+  awClear() { if (this.aw && this.aw.id) clearTimeout(this.aw.id); this.aw = null; }
+  syncAuto() {
+    const go = this.canAuto();
+    this.t.agent.classList.toggle('wm-more-apause', this.auto && !go);
+    if (!go) { this.awHalt(); return; }
+    this.awGo();
+    if (this.parked) { const f = this.parked; this.parked = null; f(); }
+  }
+  pauseFor(k, v) {
+    if (!this.auto || this.ap[k] === v) return;
+    this.ap[k] = v;
+    this.t.agent.classList.toggle('wm-more-tpause', this.ap.tap);
+    this.syncAuto();
+  }
+  agentVis() {               // autoplay runs only while the agent tile itself is on screen
+    const sc = this.kit.scroller;
+    let seen = true;
+    if (sc) {
+      const r = this.t.agent.getBoundingClientRect(), v = sc.getBoundingClientRect();
+      seen = Math.min(r.bottom, v.bottom) - Math.max(r.top, v.top) >= Math.min(r.height * 0.4, (v.bottom - v.top) * 0.3);
+    }
+    if (this.ap.off !== !seen) { this.ap.off = !seen; this.syncAuto(); }
+  }
+  stopAuto() {               // a tab or 允许 / 不允许 was clicked: the visitor drives from here on
+    if (!this.auto) return;
+    this.auto = false; this.awClear(); this.parked = null;
+    this.exb.forEach((b) => b.classList.remove('wm-more-fill'));
+    this.t.agent.classList.remove('wm-more-apause', 'wm-more-tpause');
+  }
+  autoAllow() {              // the card is up: after a beat 允许 is pressed (a brief pressed state) and the exchange runs on
+    this.autoWait(1200, () => {
+      const y = this.rc.querySelector('.wm-more-yes'); if (!y || this.ast !== 'wait') return;
+      y.classList.add('wm-more-press');
+      this.ga.later(() => { y.classList.remove('wm-more-press'); if (this.auto && this.ast === 'wait') this.decide(true); }, 260);
+    });
+  }
+  autoHold() {               // finished: hold, with a thin fill under the tab, then the next example (and round again)
+    const b = this.exb[this.ex];
+    b.classList.remove('wm-more-fill'); void b.offsetWidth; b.classList.add('wm-more-fill');
+    this.autoWait(2600, () => { b.classList.remove('wm-more-fill'); this.pick((this.ex + 1) % this.rcs.length); });
   }
   // ---------- 5 · Touch ID ----------
   set(s) { this.pv.dataset.ps = s; }
