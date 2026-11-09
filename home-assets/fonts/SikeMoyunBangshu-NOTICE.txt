@@ -1,0 +1,12 @@
+斯科墨韵榜书 (SKMYBS 2.0SJ), Version 2.000, 2025-04-15, by 斯科工作室
+
+The Chinese headings of https://nsurator.com/nsuve/ are drawn in this typeface. The font file itself is not
+served: the studio's free commercial licence does not cover embedding fonts in web pages
+(https://mp.weixin.qq.com/s/nJxK6Iu4rgJQs1XQ4pVPnA, item 4). Instead, at build time each character the headings
+use is turned into an SVG outline, the way a poster title is set; the text stays in the page for screen readers.
+
+The licence note that ships with the font (授权说明.txt): 『斯科墨韵榜书』是【斯科工作室】发行的一款免费商用字体，
+无需获取授权书也能免费商用。The font was downloaded from the studio's official channel on 2026-11-09, and the site owner
+holds a 猫啃网 font licence certificate for it (2026-11-09, perpetual, A类 全媒体商业发布, which names 企业官方网站).
+That certificate forbids modifying the font software and embedding it (apps, H5 pages and the like); this site does
+neither: no font file is served and the outlines are drawn as they are.
