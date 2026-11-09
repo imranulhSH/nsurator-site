@@ -376,7 +376,7 @@ def home_sources():
             raise ValueError("Home sources must not be symlinks: " + str(path))
         if not path.is_file():
             continue
-        if path.suffix not in {".html", ".jpg", ".png", ".webp", ".svg", ".ttf", ".txt"}:
+        if path.suffix not in {".html", ".jpg", ".png", ".webp", ".svg", ".ttf", ".woff2", ".txt"}:
             raise ValueError("Unexpected home file: " + str(path))
         files[path.relative_to(source).as_posix()] = path.read_bytes()
     for name in HOME_PAGES:

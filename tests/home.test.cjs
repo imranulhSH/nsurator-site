@@ -2,7 +2,7 @@
 // both the 1440 desktop comp and the phone column. These checks cover the parts that must not regress:
 // the language choice shared with support / credits / privacy, the layout pick, and the links out of the page.
 const assert = require('node:assert/strict');
-const { readFileSync, existsSync } = require('node:fs');
+const { readFileSync, existsSync, readdirSync } = require('node:fs');
 const { join } = require('node:path');
 const test = require('node:test');
 const vm = require('node:vm');
@@ -81,7 +81,7 @@ for (const lang of ['zh', 'en']) {
 
   test(`${lang} homepage: every /home-assets/ file it names is in src/home`, () => {
     const html = read(lang);
-    const refs = new Set([...html.matchAll(/\/home-assets\/([A-Za-z0-9._\/-]+\.(?:jpg|png|webp|svg|ttf))/g)].map((m) => m[1]));
+    const refs = new Set([...html.matchAll(/\/home-assets\/([A-Za-z0-9._\/-]+\.(?:jpg|png|webp|svg|ttf|woff2))/g)].map((m) => m[1]));
     assert.ok(refs.size > 20);
     for (const r of refs) assert.ok(existsSync(join(HOME, 'home-assets', r)), 'missing home-assets/' + r);
   });
@@ -99,3 +99,51 @@ for (const [page, to] of [['index.html', '/nsuve/'], ['en/index.html', '/nsuve/e
     assert.ok(html.includes('<link rel="canonical" href="https://nsurator.com' + to + '">'));
   });
 }
+
+// 2026-11-09 (owner): headings in two faces. English: 851 GBai Marker, self-hosted (Basic Latin only).
+// Chinese: 斯科墨韵榜书, whose free licence excludes embedding in web pages, so its font file never ships; the build
+// draws each heading character as an inline SVG path and keeps the real text for screen readers and search.
+const TITLE_CLASSES = ['wph-h', 'wp-h2', 'wp-act', 'wm-hero-h', 'wm-h2', 'wm-act'];
+const FONTS = join(HOME, 'home-assets/fonts');
+function headingText(html) {
+  let out = '';
+  const open = /<([a-z][a-z0-9]*)\b[^>]*\bclass="([^"]*)"[^>]*>/g;
+  for (let m; (m = open.exec(html));) {
+    if (!m[2].split(/\s+/).some((c) => TITLE_CLASSES.includes(c))) continue;
+    const close = new RegExp('<(/?)' + m[1] + '\\b[^>]*>', 'g');
+    close.lastIndex = open.lastIndex;
+    let depth = 1, t;
+    while (depth && (t = close.exec(html))) depth += t[1] ? -1 : 1;
+    out += html.slice(open.lastIndex, t ? t.index : html.length).replace(/<[^>]+>/g, '');
+  }
+  return out;
+}
+
+test('en homepage: the headings use 851 GBai Marker, preloaded, and need nothing beyond Basic Latin', () => {
+  const html = read('en');
+  assert.ok(html.includes('<link rel="preload" href="/home-assets/fonts/851GBaiMarker-latin.woff2" as="font" type="font/woff2" crossorigin>'));
+  assert.ok(html.includes(`@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2")`));
+  assert.ok(html.includes(TITLE_CLASSES.map((c) => '.' + c).join(',') + "{font-family:'851 GBai Marker',Caprasimo"), 'the rule names every heading class');
+  const text = headingText(html);
+  assert.ok(text.length > 100, 'found the headings');
+  assert.deepEqual([...new Set(text)].filter((ch) => !/[\u0020-\u007e\s]/.test(ch)), []);
+  for (const f of ['851GBaiMarker-latin.woff2', '851GBaiMarker-NOTICE.txt']) assert.ok(existsSync(join(FONTS, f)), f);
+});
+
+test('zh homepage: no heading web font, and the 斯科墨韵榜书 file never ships', () => {
+  const html = read('zh');
+  assert.equal(html.includes('851GBaiMarker'), false);
+  assert.equal(/@font-face\{font-family:'?(?!Caprasimo|Figtree)/.test(html), false, 'only Caprasimo and Figtree are web fonts');
+  assert.deepEqual(readdirSync(FONTS).filter((f) => /\.(ttf|otf|woff2?)$/.test(f) && !/^(Caprasimo|Figtree|851GBaiMarker)/.test(f)), []);
+});
+
+const zhDrawn = read('zh').includes('class="zg"');
+test('zh homepage: every drawn heading character has its outline, and the text is still there', { skip: !zhDrawn && 'zh headings are not drawn yet' }, () => {
+  const html = read('zh');
+  const defs = new Set([...html.matchAll(/<path id="(zg-[0-9a-f]+)"/g)].map((m) => m[1]));
+  const uses = new Set([...html.matchAll(/<use href="#(zg-[0-9a-f]+)"\/>/g)].map((m) => m[1]));
+  assert.ok(uses.size > 30);
+  assert.deepEqual([...uses].filter((u) => !defs.has(u)), []);
+  const hidden = [...html.matchAll(/<span class="zh-vh">([^<]*)<\/span>/g)].map((m) => m[1]).join('');
+  for (const ch of new Set(headingText(html).replace(/\s/g, ''))) if (/[\u3000-\u303f\u3400-\u9fff\uff00-\uffef]/.test(ch)) assert.ok(hidden.includes(ch), 'text kept for ' + ch);
+});

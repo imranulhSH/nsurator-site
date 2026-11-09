@@ -1,0 +1,11 @@
+851 GBai Marker (851 GBai 马克笔体), Version 0.04
+copyright 8:51:22 pm, edited by lamda05  (from the font's own name table)
+Based on the fonts of 8:51:22 pm, https://pm85122.onamae.jp/85122font.html
+
+851GBaiMarker-latin.woff2 holds only Basic Latin (U+0020-007E), taken from the web font that 猫啃网 serves for
+https://www.maoken.com/freefonts/27979.html. Modified for English headings: the space is narrowed and
+the punctuation (. , : ; ! ? ' ") is re-fitted to its ink instead of a centred half-width box. No outline was changed.
+
+Terms (https://pm85122.onamae.jp/851fontTerm.html): commercial and non-commercial use are both allowed; modification
+and redistribution are free; converting to a web font to display on your own site is allowed; credit is not required.
+Do not sell the font on its own, and do not claim to be its author.
