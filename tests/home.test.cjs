@@ -1,4 +1,4 @@
-// The D homepage (2026-11-09): src/home/index.html (zh) and src/home/en/index.html (en), static pages that carry
+// The D homepage (2026-11-09): src/home/nsuve/index.html (zh) and src/home/nsuve/en/index.html (en), static pages that carry
 // both the 1440 desktop comp and the phone column. These checks cover the parts that must not regress:
 // the language choice shared with support / credits / privacy, the layout pick, and the links out of the page.
 const assert = require('node:assert/strict');
@@ -8,7 +8,7 @@ const test = require('node:test');
 const vm = require('node:vm');
 
 const HOME = join(__dirname, '../src/home');
-const PAGES = { zh: 'index.html', en: 'en/index.html' };
+const PAGES = { zh: 'nsuve/index.html', en: 'nsuve/en/index.html' };
 const read = (lang) => readFileSync(join(HOME, PAGES[lang]), 'utf8');
 const headScript = (html) => html.match(/<head>[\s\S]*?<script>([\s\S]*?)<\/script>/)[1];
 
@@ -34,7 +34,7 @@ function boot(lang, { query = '', hash = '', saved = null, blocked = false, prot
 
 for (const lang of ['zh', 'en']) {
   const other = lang === 'zh' ? 'en' : 'zh';
-  const otherPath = other === 'en' ? '/en/' : '/';
+  const otherPath = other === 'en' ? '/nsuve/en/' : '/nsuve/';
 
   test(`${lang} homepage: ?lang wins over a saved choice, is saved, and moves to the other page when it differs`, () => {
     const same = boot(lang, { query: '?lang=' + lang, saved: other });
@@ -74,7 +74,7 @@ for (const lang of ['zh', 'en']) {
       assert.ok(html.includes('href="' + href + '"'), lang + ' homepage links to ' + href);
     }
     assert.ok(html.includes('href="https://apps.apple.com/app/id6763750134?mt=12"'), 'App Store link');
-    assert.ok(html.includes('href="/?lang=zh"') && html.includes('href="/en/?lang=en"'), 'language switch');
+    assert.ok(html.includes('href="/nsuve/?lang=zh"') && html.includes('href="/nsuve/en/?lang=en"'), 'language switch');
     assert.equal(/<script[^>]+src=/.test(html), false, 'no external scripts');
     assert.match(html, new RegExp('<html lang="' + (lang === 'zh' ? 'zh-CN' : 'en') + '"'));
   });
@@ -84,5 +84,18 @@ for (const lang of ['zh', 'en']) {
     const refs = new Set([...html.matchAll(/\/home-assets\/([A-Za-z0-9._\/-]+\.(?:jpg|png|webp|svg|ttf))/g)].map((m) => m[1]));
     assert.ok(refs.size > 20);
     for (const r of refs) assert.ok(existsSync(join(HOME, 'home-assets', r)), 'missing home-assets/' + r);
+  });
+}
+
+// The old addresses keep working: / and /en/ move to /nsuve/ and /nsuve/en/ before anything renders, keeping ?lang and #.
+for (const [page, to] of [['index.html', '/nsuve/'], ['en/index.html', '/nsuve/en/']]) {
+  test(`${page} redirects to ${to} with the query and fragment`, () => {
+    const html = readFileSync(join(HOME, page), 'utf8');
+    const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
+    const moved = [];
+    vm.runInNewContext(script, { location: { search: '?lang=en&from=app', hash: '#pricing', replace: (u) => moved.push(u) } });
+    assert.deepEqual(moved, [to + '?lang=en&from=app#pricing']);
+    assert.ok(html.includes('<meta http-equiv="refresh" content="0; url=' + to + '">'), 'refresh fallback without JavaScript');
+    assert.ok(html.includes('<link rel="canonical" href="https://nsurator.com' + to + '">'));
   });
 }

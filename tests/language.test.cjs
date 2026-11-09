@@ -157,7 +157,7 @@ test('all privacy entry points use the single existing policy and appropriate la
     h.component.go('privacy');
     assert.equal(h.url().pathname, '/privacy.html');
     assert.equal(h.url().hash, hash);
-    const home = readFileSync(join(__dirname, '../src/home', lang === 'zh' ? 'index.html' : 'en/index.html'), 'utf8');
+    const home = readFileSync(join(__dirname, '../src/home', lang === 'zh' ? 'nsuve/index.html' : 'nsuve/en/index.html'), 'utf8');
     assert.ok(home.includes('href="/privacy.html?lang=' + lang + hash + '"'), 'homepage privacy link for ' + lang);
   }
 });

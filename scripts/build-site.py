@@ -21,7 +21,8 @@ BUNDLED_PAGES = ("index.html", "support.html")
 # 2026-11-09: the homepage is the D page (src/home/, generated from the design source, see src/README.md);
 # only the support and credits pages still run on the extracted DC export.
 PAGES = ("support.html", "credits.html")
-HOME_PAGES = ("index.html", "en/index.html")
+# 2026-11-09: the homepage lives at /nsuve/ (zh) and /nsuve/en/ (en); / and /en/ are small redirect pages to them.
+HOME_PAGES = ("nsuve/index.html", "nsuve/en/index.html", "index.html", "en/index.html")
 UUID = re.compile(r"\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b")
 # Source/attribution links may contain their own /assets/ paths. Only collect
 # root-relative local URLs, including those inside CSS and DC expressions.
@@ -367,7 +368,7 @@ def guide_sources():
 
 
 def home_sources():
-    """Publish the homepage: src/home/index.html (zh), src/home/en/index.html and src/home/home-assets/**."""
+    """Publish the homepage: src/home/nsuve/index.html (zh), nsuve/en/index.html, the / and /en/ redirects and home-assets/**."""
     source = ROOT / "src" / "home"
     files = {}
     for path in sorted(source.rglob("*")):
