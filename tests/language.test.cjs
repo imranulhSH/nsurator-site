@@ -45,7 +45,8 @@ function harness(page, { query = '', saved = null, storageBlocked = false, fragm
   };
 }
 
-for (const page of ['index.html', 'support.html', 'credits.html']) {
+// index.html is the D homepage since 2026-11-09 (static, no DC component): see tests/home.test.cjs
+for (const page of ['support.html', 'credits.html']) {
   test(`${page}: explicit language overrides a conflicting browser preference before first render`, () => {
     for (const lang of ['zh', 'en']) {
       const h = harness(page, { query: '?lang=' + lang, saved: lang === 'zh' ? 'en' : 'zh' });
@@ -88,7 +89,8 @@ test('switching support tabs preserves query parameters and browser navigation',
   assert.equal(h.component.renderVals().head.title, 'Terms of Use');
 });
 
-for (const page of ['index.html', 'support.html', 'credits.html']) {
+// index.html is the D homepage since 2026-11-09 (static, no DC component): see tests/home.test.cjs
+for (const page of ['support.html', 'credits.html']) {
   test(`${page}: history restores URL language, content, title and selection`, () => {
     const h = harness(page, { query: '?lang=zh', fragment: page === 'support.html' ? '#guide' : '' });
     const chineseTitle = h.document.title;
@@ -155,7 +157,7 @@ test('all privacy entry points use the single existing policy and appropriate la
     h.component.go('privacy');
     assert.equal(h.url().pathname, '/privacy.html');
     assert.equal(h.url().hash, hash);
-    const home = harness('index.html', { query: '?lang=' + lang });
-    assert.equal(new URL(home.component.renderVals().privacyHref, home.url()).hash, hash);
+    const home = readFileSync(join(__dirname, '../src/home', lang === 'zh' ? 'index.html' : 'en/index.html'), 'utf8');
+    assert.ok(home.includes('href="/privacy.html?lang=' + lang + hash + '"'), 'homepage privacy link for ' + lang);
   }
 });

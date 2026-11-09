@@ -1,6 +1,18 @@
 # 官网可编辑源文件
 
-`index.html`、`support.html` 从既有导出包提取，资源改用本地文件并在第一个运行时脚本前加入 `window.__resources` 映射。首页采用 2026-09-29 的双语设计稿，支持页沿用原有内容与深链；`credits.html` 列出截图素材的作者、来源与许可。日常修改这三个源文件及 `motion.js`，无需编辑巨大的 base64 导出包。
+## 首页（2026-11-09 起：D 整页）
+
+`src/home/` 是新首页：`index.html`（中文）、`en/index.html`（英文）和 `home-assets/`（图片、字体）。它们是生成出来的静态页，不再走 DC 导出包：
+
+- 设计源在读稿第二册「官网」页的 D 整页（第四版），生成脚本在 `w16-notes/web-redesign/wp-build/`（`build.js` 拼 1440 × 900 桌面稿，`build-site.js` 出官网页）。改首页先改那边的 `sections/`，再跑 `node build-site.js`，把 `site-home/` 整个换进 `src/home/`。
+- 一个文件同时带桌面稿和手机单栏：页面在首帧前按窗口选版式（宽 ≥ 1000 且缩放 ≥ 0.62 用桌面稿，桌面稿按 `min(宽 / 1440, 高 / 900)` 等比缩放、跟文档滚动），否则用手机单栏。
+- 语言：`?lang=zh|en` 优先，其次是和支持页、署名页共用的 `nsurator-site-lang` 记忆，都没有就用本页语言；和本页不同时在首帧前跳到 `/` 或 `/en/`，保留查询参数和 `#`。旧链接 `/?lang=en`、`index.html?lang=en` 都照常可用。
+- 字体自带（`home-assets/fonts/`，Caprasimo 与 Figtree，均为 SIL OFL，许可文本在同一目录），不连 Google Fonts，中国站也能显示。
+- `node --test tests/*.test.cjs` 里的 `home.test.cjs` 检查语言跳转、版式选择、链接和资源。
+
+以下是支持页和署名页（仍为 DC 导出）的说明；旧首页的 DC 源文件已删除，它用过的 `assets/` 文件暂时保留。
+
+`support.html`（及已删除的旧首页）从既有导出包提取，资源改用本地文件并在第一个运行时脚本前加入 `window.__resources` 映射。首页采用 2026-09-29 的双语设计稿，支持页沿用原有内容与深链；`credits.html` 列出截图素材的作者、来源与许可。日常修改这三个源文件及 `motion.js`，无需编辑巨大的 base64 导出包。
 
 ```sh
 python3 scripts/build-site.py --check

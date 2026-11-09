@@ -18,7 +18,10 @@ from urllib.parse import unquote, urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 BUNDLED_PAGES = ("index.html", "support.html")
-PAGES = (*BUNDLED_PAGES, "credits.html")
+# 2026-11-09: the homepage is the D page (src/home/, generated from the design source, see src/README.md);
+# only the support and credits pages still run on the extracted DC export.
+PAGES = ("support.html", "credits.html")
+HOME_PAGES = ("index.html", "en/index.html")
 UUID = re.compile(r"\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b")
 # Source/attribution links may contain their own /assets/ paths. Only collect
 # root-relative local URLs, including those inside CSS and DC expressions.
@@ -350,7 +353,7 @@ def guide_sources():
             target = unquote(url.path).lstrip("/")
             if not target or target.endswith("/"):
                 target += "index.html"
-            if target not in files and target not in (*PAGES, "privacy.html"):
+            if target not in files and target not in (*PAGES, *HOME_PAGES, "privacy.html"):
                 raise ValueError(name + ": missing local link " + ref)
             if url.fragment and target in parsed and unquote(url.fragment) not in parsed[target].ids:
                 raise ValueError(name + ": missing anchor " + ref)
@@ -363,7 +366,56 @@ def guide_sources():
     return files
 
 
-def build(out, pages, assets, report, guides):
+def home_sources():
+    """Publish the homepage: src/home/index.html (zh), src/home/en/index.html and src/home/home-assets/**."""
+    source = ROOT / "src" / "home"
+    files = {}
+    for path in sorted(source.rglob("*")):
+        if path.is_symlink():
+            raise ValueError("Home sources must not be symlinks: " + str(path))
+        if not path.is_file():
+            continue
+        if path.suffix not in {".html", ".jpg", ".png", ".webp", ".svg", ".ttf", ".txt"}:
+            raise ValueError("Unexpected home file: " + str(path))
+        files[path.relative_to(source).as_posix()] = path.read_bytes()
+    for name in HOME_PAGES:
+        if name not in files:
+            raise ValueError("Missing home page: src/home/" + name)
+
+    class Refs(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.refs, self.scripts = [], []
+
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            self.refs.extend(attrs[key] for key in ("href", "src") if attrs.get(key))
+            if tag == "script" and attrs.get("src"):
+                self.scripts.append(attrs["src"])
+
+    for name in HOME_PAGES:
+        text = files[name].decode("utf-8")
+        page = Refs()
+        page.feed(text)
+        if page.scripts:
+            raise ValueError(name + ": the homepage must not load external scripts: " + ", ".join(page.scripts))
+        refs = page.refs + re.findall(r"url\(['\"]?([^'\")]+)", text)
+        for ref in refs:
+            url = urlsplit(urljoin("https://build.invalid/" + name, ref))
+            if url.netloc != "build.invalid":
+                continue
+            target = unquote(url.path).lstrip("/")
+            if not target or target.endswith("/"):
+                target += "index.html"
+            if target in files or target in (*PAGES, "privacy.html"):
+                continue
+            if target.startswith("guides/") and (ROOT / "src" / target).is_file():
+                continue
+            raise ValueError(name + ": missing local link " + ref)
+    return files
+
+
+def build(out, pages, assets, report, guides, home):
     out = out.resolve()
     protected = [ROOT / "src", ROOT / "assets", ROOT / "scripts", ROOT / "guides"]
     if out == ROOT or any(out == path or path in out.parents or out in path.parents for path in protected):
@@ -375,6 +427,10 @@ def build(out, pages, assets, report, guides):
     for filename, data in assets.items():
         (out / "assets" / filename).write_bytes(data)
     for name, data in guides.items():
+        destination = out / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(data)
+    for name, data in home.items():
         destination = out / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(data)
@@ -403,10 +459,19 @@ def main():
             "sha256": {name: sha256(data) for name, data in guides.items()},
         }
         report["output_bytes_excluding_report"] += report["guides"]["bytes"]
+        home = home_sources()
+        report["home"] = {
+            "pages": list(HOME_PAGES),
+            "files": len(home),
+            "bytes": sum(len(data) for data in home.values()),
+            "sha256": {name: sha256(data) for name, data in home.items() if name.endswith(".html")},
+        }
+        report["output_bytes_excluding_report"] += report["home"]["bytes"]
         if args.out:
-            build(args.out, pages, assets, report, guides)
-        print(json_text({key: value for key, value in report.items() if key not in ("pages", "guides")}), end="")
+            build(args.out, pages, assets, report, guides, home)
+        print(json_text({key: value for key, value in report.items() if key not in ("pages", "guides", "home")}), end="")
         print("Guides: " + str(report["guides"]["files"]) + " files; local links verified")
+        print("Home: " + str(report["home"]["files"]) + " files (zh + en); local links verified")
         if args.out:
             print("Built: " + str(args.out.resolve()))
     except (OSError, ValueError, KeyError, TypeError) as exc:

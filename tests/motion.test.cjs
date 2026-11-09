@@ -109,14 +109,10 @@ function harness({ reducedMotion = false, count = 1, compact = false, types = []
   };
 }
 
-test('the homepage connects its new feature blocks and player to the motion runtime', () => {
-  const html = readFileSync(join(__dirname, '../src/index.html'), 'utf8');
-  assert.match(html, /<h1[^>]*data-reveal="hero-title"/);
-  assert.match(html, /<div[^>]*data-reveal="feature"/);
-  assert.match(html, /<figure[^>]*data-reveal="screen"/);
-  assert.match(html, /data-reveal="diagnostic"/);
-  assert.ok(html.indexOf('__SITE_MOTION__') < html.indexOf('<x-dc>'),
-    'motion must load before DC mounts the page');
+test('the support page still loads the motion runtime before DC mounts it', () => {
+  // The homepage moved to the static D page on 2026-11-09 and carries its own motion (tests/home.test.cjs).
+  const html = readFileSync(join(__dirname, '../src/support.html'), 'utf8');
+  assert.ok(html.indexOf('__SITE_MOTION__') < html.indexOf('<x-dc>'), 'motion must load before DC mounts the page');
 });
 
 test('mobile reduces travel while each entrance returns to the original layout', () => {
