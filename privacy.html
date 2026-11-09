@@ -1,148 +1,445 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nsurator Privacy Policy / 隐私政策</title>
-  <meta name="description" content="Privacy policy for Nsurator / Nsurator 隐私政策。">
-  <style>
-    :root { color-scheme: light dark; }
-    * { box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      line-height: 1.7;
-      color: #18181b;
-      background: #ffffff;
-    }
-    h1 { font-size: clamp(34px, 7vw, 44px); line-height: 1.12; margin: 0 0 8px; }
-    h2 { margin-top: 36px; line-height: 1.3; }
-    h3 { margin-top: 26px; line-height: 1.35; }
-    p, li { font-size: 16px; color: #3f3f46; }
-    li + li { margin-top: 8px; }
-    a { color: #2563eb; }
-    .muted { color: #71717a; }
-    .language-nav, .page-nav { display: flex; gap: 16px; flex-wrap: wrap; }
-    .language-nav { margin: 22px 0 36px; }
-    .policy { scroll-margin-top: 24px; }
-    .policy + .policy { margin-top: 64px; padding-top: 48px; border-top: 1px solid #e4e4e7; }
-    .page-nav { margin-top: 44px; }
-    .site-footer {
-      display: grid;
-      gap: 8px;
-      justify-items: center;
-      margin-top: 40px;
-      padding-top: 24px;
-      border-top: 1px solid #e4e4e7;
-      color: #71717a;
-      font-size: 14px;
-      text-align: center;
-    }
-    .record-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    @media (prefers-color-scheme: dark) {
-      body { color: #f4f4f5; background: #101114; }
-      p, li { color: #d4d4d8; }
-      .muted, .site-footer { color: #a1a1aa; }
-      a { color: #60a5fa; }
-      .policy + .policy, .site-footer { border-color: #3f3f46; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var K='nsurator-site-lang',q=new URLSearchParams(location.search),want=q.get('lang');
+if(want!=='zh'&&want!=='en'){want=null;try{var s=localStorage.getItem(K);if(s==='zh'||s==='en')want=s}catch(e){}}else{try{localStorage.setItem(K,want)}catch(e){}}
+document.documentElement.dataset.lang="zh";
+if(want&&want!=="zh"&&false)location.replace(""+location.search+location.hash);})();</script>
+<title>Nsuve 隐私政策 · Privacy Policy</title>
+<meta name="description" content="Nsuve 隐私政策：哪些资料留在你的设备上，认片、问题报告、媒体源、网盘、iCloud 和购买各会发送什么、发去哪里。">
+<link rel="canonical" href="https://nsurator.com/privacy.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nsurator">
+<meta property="og:title" content="Nsuve 隐私政策 · Privacy Policy">
+<meta property="og:description" content="Nsuve 隐私政策：哪些资料留在你的设备上，认片、问题报告、媒体源、网盘、iCloud 和购买各会发送什么、发去哪里。">
+<meta property="og:url" content="https://nsurator.com/privacy.html">
+<meta property="og:image" content="https://nsurator.com/home-assets/web/page-d-first.jpg">
+<meta name="theme-color" content="#EEE7DB">
+<link rel="icon" type="image/png" href="/home-assets/AppIcon-1024.png">
+<link rel="apple-touch-icon" href="/home-assets/AppIcon-1024.png">
+<style>
+@font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
+@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+:root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.8 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--rust);text-underline-offset:3px}
+img{max-width:100%}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
+.skip:focus{left:12px}
+.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
+/* header: the phone header's frosted bar, full width */
+.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-mark{display:block;line-height:0;margin-right:auto}
+.hd-mark img{height:28px;width:auto;display:block}
+.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav a[aria-current]{color:var(--rust)}
+.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
+.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
+.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
+@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
+  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
+@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* page head */
+.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
+.eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
+.eb a{color:inherit;text-decoration:none}
+h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
+h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+.lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+/* body: text column + table of contents */
+.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
+.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
+.toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
+.toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
+.doc{min-width:0;max-width:760px}
+.doc section{margin:0 0 56px}
+.doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+.doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
+.doc p,.doc li{color:var(--ink2);text-wrap:pretty}
+.doc p{margin:0 0 16px}
+.doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
+.doc li+li{margin-top:6px}
+.doc b,.doc strong{color:var(--ink);font-weight:700}
+.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
+.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
+.note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
+.note p:last-child{margin:0}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
+.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
+.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:700;color:var(--ink)}
+.tbl td{color:var(--ink2)}
+figure.shot{margin:8px 0 28px}
+figure.shot img{display:block;width:100%;height:auto;border-radius:14px;background:#1B1714}
+figure.shot.dev-phone img{max-width:360px;border-radius:28px}
+figure.shot.dev-tv img,figure.shot.dev-vision img{border-radius:18px}
+figure.shot figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink3)}
+details{margin:0 0 10px;border-radius:16px;background:rgba(255,255,255,.55)}
+details summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;font:700 17px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink)}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
+details[open] summary::after{content:'–'}
+details>div{padding:0 20px 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
+.cards a:hover{background:rgba(255,255,255,.8)}
+.cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
+.cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
+.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
+[data-doc][hidden]{display:none!important}
+.next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+/* footer: the homepage's dark end */
+.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.ft-in{max-width:1120px;margin:0 auto}
+.ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+.ft-brand img.w{height:30px;width:auto;display:block}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by img{height:22px;width:auto}
+.ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
+.ft-links a{color:#F2EBDF;text-decoration:none}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+/* zh titles drawn as SVG */
+.zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-g{white-space:nowrap}
+svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-  <h1>Nsurator Privacy Policy</h1>
-  <p class="muted">Effective and last updated: November 7, 2026</p>
-  <nav class="language-nav" aria-label="Language">
-    <a href="#english">English</a>
-    <a href="#zh-hans" lang="zh-CN">简体中文</a>
-  </nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="zg-9690" d="M478 -932Q466 -925 450 -890Q434 -856 409 -782Q395 -742 387 -706Q379 -669 374 -623L369 -579L379 -561Q390 -543 400 -538Q410 -534 431 -538Q449 -542 486 -559Q524 -576 558 -596Q587 -613 591 -613Q596 -613 596 -598Q596 -583 588 -577Q580 -571 557 -569Q538 -567 507 -554Q476 -542 450 -526Q424 -511 420 -502Q416 -493 422 -478Q428 -463 439 -453L448 -444L470 -453Q493 -462 535 -485Q553 -495 566 -501Q579 -507 580 -506Q582 -504 574 -494Q566 -483 557 -478Q548 -473 495 -448Q382 -394 382 -356Q382 -347 393 -336Q405 -324 414 -324Q424 -324 462 -336Q486 -344 495 -345Q504 -346 505 -340Q507 -335 501 -319Q495 -298 495 -290Q496 -281 506 -273Q518 -262 552 -250Q586 -237 592 -241Q594 -242 599 -252Q605 -261 609 -272Q621 -299 626 -305Q632 -311 632 -320Q632 -325 629 -326Q627 -328 621 -328Q615 -328 608 -331Q602 -334 597 -338Q588 -346 580 -360Q572 -374 574 -378Q577 -382 607 -387Q631 -390 639 -393Q652 -398 659 -408Q667 -418 676 -441Q681 -456 696 -502Q715 -566 720 -588Q727 -616 723 -630Q720 -642 704 -659Q692 -673 680 -680Q668 -688 646 -697L632 -703L651 -730Q666 -752 671 -762Q677 -772 676 -779Q676 -786 671 -796Q657 -824 635 -840Q614 -855 590 -855Q577 -855 575 -857Q573 -859 573 -868Q573 -881 563 -902Q553 -922 542 -928Q532 -935 510 -936Q488 -937 478 -932ZM265 -834Q241 -827 191 -805Q144 -784 103 -763Q60 -740 53 -731Q31 -703 73 -654Q89 -636 94 -626Q105 -604 110 -538Q116 -474 113 -391Q111 -304 102 -225Q96 -171 98 -161Q100 -155 140 -114Q180 -72 190 -66Q194 -64 198 -70Q203 -75 213 -92L230 -122L229 -378L265 -397Q309 -420 335 -450Q362 -479 368 -513Q371 -529 367 -540Q363 -550 345 -572Q323 -598 323 -609Q323 -614 330 -634Q337 -655 346 -679Q361 -716 367 -733Q373 -752 372 -762Q372 -773 367 -784Q356 -804 332 -822Q309 -840 293 -840Q286 -839 265 -834ZM518 -717Q518 -707 491 -674Q465 -640 442 -623Q427 -612 422 -610Q417 -609 417 -617Q417 -625 445 -660Q474 -694 494 -710Q509 -720 513 -722Q518 -723 518 -717ZM232 -662Q234 -655 227 -634Q220 -613 215 -613Q211 -613 210 -618Q209 -622 210 -637Q212 -661 218 -664Q224 -668 227 -668Q230 -667 232 -662ZM228 -577Q238 -557 251 -540Q264 -522 264 -519Q264 -516 254 -508Q245 -499 236 -494Q229 -490 226 -490Q224 -490 221 -496Q219 -501 215 -550Q212 -598 214 -598Q217 -598 228 -577ZM700 -383Q694 -375 692 -370Q690 -364 691 -354Q692 -344 695 -338Q698 -333 708 -326Q715 -321 725 -308Q735 -296 744 -285Q760 -261 766 -254Q775 -245 784 -242Q792 -240 811 -240Q842 -240 846 -244Q851 -249 853 -300L855 -351L844 -361Q833 -371 813 -381Q801 -388 790 -390Q779 -393 753 -394L711 -395ZM339 -287Q324 -270 309 -242Q295 -215 291 -198Q288 -184 288 -178Q289 -173 293 -166Q301 -155 317 -146Q333 -136 349 -132Q366 -128 375 -132Q385 -136 397 -154Q409 -173 409 -184Q409 -198 391 -240Q374 -281 361 -296Q357 -301 353 -300Q349 -298 339 -287ZM653 -276Q651 -271 646 -235Q643 -220 640 -208Q637 -196 635 -195Q630 -192 610 -194Q560 -200 525 -214Q491 -228 482 -246Q473 -264 461 -268Q449 -273 437 -264Q426 -254 421 -234Q412 -203 450 -168Q469 -150 488 -140Q507 -129 539 -118Q610 -93 689 -93Q729 -93 746 -98Q764 -104 775 -121Q784 -135 783 -144Q782 -154 768 -173Q714 -251 678 -269Q655 -281 653 -276Z"/><path id="zg-79c1" d="M299 -101Q279 -117 271 -130Q255 -156 262 -232Q265 -271 263 -276Q260 -282 238 -255Q213 -223 189 -206Q164 -188 147 -188Q132 -188 116 -194Q100 -201 90 -210Q79 -220 79 -230Q79 -240 100 -268Q121 -295 127 -301Q132 -307 160 -343Q179 -368 194 -393Q208 -418 208 -426Q208 -430 200 -429Q191 -428 166 -422Q136 -413 120 -415Q114 -416 104 -420Q94 -425 86 -430Q70 -442 57 -460Q43 -479 45 -487Q49 -499 70 -510Q91 -521 143 -539Q171 -549 211 -565Q251 -581 258 -586Q262 -588 263 -596Q263 -603 261 -623Q258 -658 257 -660Q255 -662 234 -653Q163 -621 151 -621Q143 -621 131 -634Q118 -647 116 -659Q113 -667 117 -674Q120 -682 136 -700Q148 -714 190 -759Q214 -783 245 -820Q288 -872 316 -895Q344 -918 362 -918Q374 -918 389 -902Q404 -886 416 -864Q427 -842 427 -826Q427 -809 423 -798Q418 -787 398 -762Q381 -741 375 -732Q368 -721 367 -711Q365 -701 367 -681Q368 -669 370 -659Q371 -649 373 -648Q377 -646 392 -649Q417 -655 431 -638Q438 -630 448 -611Q458 -592 458 -586Q458 -577 444 -559Q429 -541 404 -520Q391 -508 382 -498Q372 -488 372 -486Q372 -481 407 -458Q441 -434 448 -434Q454 -434 458 -442Q461 -450 469 -481Q482 -527 516 -626Q549 -725 558 -742Q566 -760 577 -769Q583 -775 590 -778Q597 -780 614 -780Q630 -781 638 -780Q645 -778 655 -773Q661 -769 669 -762Q676 -756 679 -750Q689 -736 688 -719Q686 -699 670 -658Q655 -623 616 -539Q594 -492 573 -442Q552 -392 552 -386Q552 -381 562 -384Q571 -387 595 -398Q627 -414 632 -414Q637 -414 639 -420Q641 -426 624 -442Q613 -452 610 -458Q606 -464 606 -473Q606 -486 615 -498Q624 -511 639 -518Q650 -524 682 -526Q714 -528 730 -524Q763 -515 796 -474Q810 -455 825 -424Q839 -392 845 -366Q848 -352 848 -344Q848 -335 845 -321Q840 -301 833 -286Q825 -271 816 -266Q798 -255 771 -257Q744 -259 730 -273Q719 -283 707 -306Q703 -315 699 -322Q694 -328 692 -328Q688 -328 597 -282Q505 -235 488 -232Q470 -230 452 -236Q434 -243 418 -257Q408 -266 406 -271Q403 -276 403 -287Q403 -303 409 -313Q422 -335 404 -344Q386 -352 382 -344Q379 -340 376 -251Q374 -194 372 -174Q370 -154 364 -139Q358 -124 343 -105Q328 -86 322 -86Q318 -86 299 -101Z"/><path id="zg-653f" d="M815 -117Q768 -124 733 -144Q713 -155 680 -179Q646 -203 627 -219Q604 -238 602 -238Q599 -238 577 -215Q560 -195 539 -180Q518 -166 501 -160Q491 -157 484 -158Q477 -158 460 -162Q443 -167 436 -170Q430 -174 430 -180Q430 -186 435 -198Q444 -217 479 -270Q493 -291 504 -309Q514 -327 514 -331Q514 -337 504 -353Q493 -369 486 -373Q482 -376 473 -396Q466 -410 464 -411Q463 -412 461 -404Q455 -376 448 -361Q442 -346 429 -330Q412 -309 353 -259Q298 -213 246 -174Q190 -133 180 -133Q166 -133 113 -170Q85 -191 65 -209Q45 -227 45 -232Q45 -234 52 -240Q60 -246 70 -252Q141 -293 147 -300Q151 -304 147 -374Q143 -444 146 -460Q150 -475 162 -485Q169 -491 175 -494Q181 -496 190 -496Q204 -496 220 -488Q236 -481 240 -472Q245 -464 250 -413Q253 -392 256 -376Q258 -360 260 -358Q264 -354 270 -360Q274 -364 274 -372Q274 -381 270 -412Q264 -459 258 -527Q256 -555 253 -576Q250 -597 249 -599Q245 -603 222 -596Q199 -590 185 -590Q171 -590 152 -600Q134 -610 115 -629Q93 -650 88 -667Q86 -677 86 -682Q86 -688 90 -695Q93 -700 99 -706Q105 -712 112 -715Q127 -723 171 -737Q215 -751 274 -774Q325 -793 350 -801Q376 -809 391 -809Q401 -810 406 -807Q411 -804 421 -793Q435 -778 443 -762Q451 -745 451 -734Q451 -722 446 -712Q441 -702 424 -686Q406 -669 388 -657Q380 -651 374 -646Q369 -640 369 -638Q368 -623 370 -599Q371 -575 374 -572Q376 -570 406 -582Q437 -594 444 -600Q447 -602 452 -614Q456 -627 461 -642Q470 -677 486 -740Q502 -804 506 -826Q512 -855 518 -872Q524 -888 534 -897Q541 -903 546 -906Q552 -908 560 -908Q587 -907 613 -881Q629 -866 635 -852Q641 -839 640 -820Q640 -805 634 -776Q627 -748 617 -718Q610 -699 612 -698Q613 -696 624 -701Q636 -706 651 -714Q688 -734 725 -747Q751 -756 758 -757Q766 -758 774 -754Q784 -748 800 -726Q815 -705 821 -686Q826 -672 826 -668Q825 -663 820 -654Q814 -642 792 -626Q770 -611 746 -602Q723 -592 718 -589Q716 -587 714 -582Q713 -576 713 -569Q713 -554 700 -464L686 -373Q686 -370 699 -359Q712 -348 729 -337Q787 -301 828 -291Q851 -285 857 -281Q866 -276 869 -263Q872 -253 874 -221Q877 -178 876 -149Q874 -120 869 -117Q864 -114 852 -114Q841 -114 815 -117ZM404 -423Q416 -434 424 -448Q431 -461 446 -495Q455 -517 448 -515Q442 -513 414 -485Q390 -462 383 -452Q376 -443 374 -433Q371 -406 382 -406Q387 -406 404 -423ZM587 -438Q591 -443 598 -480Q604 -516 604 -533Q604 -543 602 -547Q601 -551 598 -551Q592 -551 570 -542Q547 -534 527 -513Q518 -505 512 -496Q506 -488 506 -485Q506 -477 524 -467Q543 -457 560 -446Q578 -434 580 -434Q583 -434 587 -438Z"/><path id="zg-7b56" d="M368 -50Q349 -59 329 -78Q308 -97 305 -108Q304 -112 306 -121Q307 -130 309 -138Q316 -160 319 -182Q322 -204 319 -206Q315 -208 312 -204Q299 -186 283 -168Q267 -150 254 -139Q235 -123 206 -108Q177 -93 160 -91Q151 -90 145 -92Q139 -93 130 -98Q114 -108 107 -111Q105 -112 103 -114Q101 -117 101 -120Q101 -122 108 -132Q115 -141 125 -152L153 -182L185 -217Q210 -245 216 -254Q222 -262 220 -266Q217 -270 210 -270Q202 -270 187 -286Q172 -301 164 -319Q155 -337 153 -360Q150 -384 156 -405Q160 -424 168 -434Q176 -445 193 -454Q210 -463 245 -476Q302 -497 310 -502Q318 -507 319 -514Q320 -520 314 -520Q307 -520 236 -496Q207 -486 181 -478Q154 -471 146 -470Q131 -468 126 -470Q121 -473 107 -488Q100 -496 95 -504Q89 -512 89 -515Q89 -522 112 -532Q134 -542 143 -545Q152 -548 198 -570Q244 -591 276 -607Q294 -616 301 -622Q307 -627 312 -638Q319 -654 319 -661Q319 -668 332 -684Q344 -700 352 -703Q363 -707 367 -714Q371 -721 369 -733Q367 -747 370 -765Q375 -787 396 -847Q416 -907 422 -919Q430 -934 447 -942Q464 -950 482 -948Q498 -946 515 -938Q532 -931 540 -923Q561 -903 574 -910Q587 -917 604 -912Q620 -906 635 -889Q647 -876 648 -864Q648 -851 638 -834Q629 -819 616 -812Q603 -805 581 -802Q558 -800 558 -795Q558 -790 566 -780Q569 -776 571 -770Q573 -763 573 -757Q573 -746 566 -733Q559 -720 550 -714Q540 -708 526 -706Q511 -703 503 -706Q499 -708 494 -714Q488 -719 484 -725Q479 -731 475 -736Q470 -741 467 -741Q461 -743 443 -725Q425 -707 425 -700Q425 -692 432 -683Q437 -677 442 -676Q447 -676 467 -679Q495 -684 526 -684Q552 -684 561 -680Q569 -675 572 -658Q574 -646 572 -634Q569 -623 562 -616Q552 -604 487 -580Q444 -563 444 -555Q444 -553 452 -555Q460 -557 471 -561Q497 -571 506 -574Q517 -577 524 -576Q530 -575 540 -569Q556 -559 572 -541Q588 -523 596 -506Q600 -499 603 -488Q605 -478 605 -471Q605 -453 597 -428Q588 -402 576 -385Q547 -340 514 -332Q495 -327 478 -329Q460 -331 458 -328Q455 -324 466 -318Q476 -312 491 -309Q513 -305 584 -295Q655 -285 676 -278Q688 -274 694 -270Q699 -266 703 -258Q707 -250 709 -242Q710 -233 709 -218Q708 -202 706 -195Q704 -188 698 -181Q676 -158 635 -154Q620 -152 609 -154Q597 -155 576 -162Q562 -166 537 -176Q512 -187 492 -197Q442 -223 440 -223Q437 -223 437 -204Q437 -184 438 -156Q440 -90 436 -77Q433 -65 420 -52Q406 -39 399 -39Q392 -39 368 -50ZM279 -319Q290 -334 294 -339Q302 -346 309 -360Q316 -373 318 -384Q320 -395 319 -396Q317 -398 308 -398Q293 -398 284 -386Q275 -375 267 -346Q257 -311 255 -303Q253 -299 254 -298Q255 -297 260 -300Q267 -304 279 -319ZM459 -386Q468 -408 476 -430Q483 -452 483 -458Q483 -463 481 -464Q479 -465 471 -463Q459 -461 449 -456Q443 -453 441 -450Q439 -448 439 -440Q438 -433 437 -412Q436 -374 438 -368Q440 -365 442 -364Q443 -364 447 -367Q453 -372 459 -386ZM86 -617Q74 -625 64 -634Q54 -643 51 -648Q48 -652 46 -659Q44 -666 45 -672Q45 -686 57 -720Q68 -754 86 -794Q103 -834 114 -852Q125 -871 139 -884Q165 -910 196 -902Q214 -897 232 -889Q249 -881 256 -874Q260 -871 263 -864Q266 -857 267 -850Q268 -844 271 -840Q273 -836 275 -836Q280 -836 293 -844Q298 -847 306 -850Q313 -852 319 -852Q331 -852 343 -844Q354 -836 358 -825Q360 -818 360 -812Q359 -805 355 -793Q348 -773 340 -762Q332 -751 328 -738Q323 -724 317 -697Q315 -685 311 -672Q307 -659 303 -653Q292 -636 277 -638Q261 -641 233 -666L213 -684L169 -641Q151 -623 137 -610Q122 -598 120 -598Q114 -598 86 -617Z"/></defs></svg>
+<a class="skip" href="#main">跳到正文</a>
+<header class="hd">
+  <a class="hd-mark" href="/nsuve/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
+  <nav class="hd-nav" aria-label="主导航"><a href="/nsuve/">首页</a><a href="/guides/">使用攻略</a><a href="/support.html">支持</a><a href="/privacy.html#zh-hans" aria-current="page">隐私</a></nav>
+  <div class="hd-lang"><a href="#zh-hans" lang="zh-CN" hreflang="zh-Hans" aria-current="true">中</a><a href="#english" lang="en" hreflang="en">EN</a></div>
+  <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-zh.svg" alt="在 Mac App Store 下载" width="108" height="32"></a>
+</header>
+<div class="pg">
+<section id="zh-hans" lang="zh-CN" class="pv">
+<div class="ph">
+  <p class="eb">法律 · 简体中文</p>
+  <h1 class="t"><span class="zh-vh">隐私政策</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.9em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 900 1000"><use href="#zg-9690"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.893em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 893 1000"><use href="#zg-79c1"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.921em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 921 1000"><use href="#zg-653f"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.755em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 755 1000"><use href="#zg-7b56"/></svg></span></span></h1>
+  <p class="lead">Nsuve 是 Nsurator 的 App。这份政策说明 Nsuve 在 Mac、iPhone、iPad 上会处理哪些数据：哪些只留在你的设备上，哪些会离开、发去哪里、保存多久。</p>
+  <ul class="meta"><li>生效日期 2026-11-09</li><li>最后更新 2026-11-09</li></ul>
+</div>
+<div class="wrap"><nav class="toc" aria-label="本篇内容"><p>本篇内容</p><ol><li><a href="#zh-scope">1. 适用范围</a></li><li><a href="#zh-device">2. 留在你设备上的资料</a></li><li><a href="#zh-files">3. 文件与权限</a></li><li><a href="#zh-library">4. 认片：Nsurator 资料库与你的 TMDB 密钥</a></li><li><a href="#zh-reports">5. 问题报告</a></li><li><a href="#zh-sources">6. NAS、媒体服务器与网盘</a></li><li><a href="#zh-icloud">7. iCloud 同步</a></li><li><a href="#zh-other">8. 其他联网功能</a></li><li><a href="#zh-tracking">9. 我们不做的事，以及旧版试用</a></li><li><a href="#zh-retention">10. 保存期限与安全</a></li><li><a href="#zh-choices">11. 你的选择与权利</a></li><li><a href="#zh-contact">12. 未成年人、政策变更与联系</a></li></ol></nav><main class="doc" id="main"><section id="zh-scope">
+<h2>1. 适用范围</h2>
+<p>Nsuve 是 Nsurator 开发的影片库与播放器，现有 Mac 版和 iPhone / iPad 版（iPhone Duo 使用 iPhone 版）；Apple TV 与 Vision Pro 版即将推出，上线后同样适用本政策。本政策也适用于 Nsurator 为 Nsuve 运营的服务（Nsurator 资料库、问题报告服务、百度网盘授权中转）和 nsurator.com 网站。下文的「我们」指 Nsurator。</p>
+<p>使用 Nsuve 不需要注册 Nsurator 账户。</p>
+</section>
 
-  <article id="english" class="policy" lang="en">
-    <h2>English</h2>
-    <p>Nsurator is a local-first macOS video library manager. You do not need a Nsurator account to manage a local library. This policy explains what data the app and its optional online features process.</p>
+<section id="zh-device">
+<h2>2. 留在你设备上的资料</h2>
+<p>Nsuve 会在你的设备上保存片库信息，包括文件路径、片名及其他影视资料、人物、合集、标签、评分、收藏、笔记、观看记录与进度、缩略图、缓存、安全作用域书签和 App 设置。免费版的播放次数也只记在这台设备上。Mac 上的人脸特征与人脸底库、MetricKit 性能记录和本机日志同样只存在本机；日志只在你发送问题报告时附上最近的一段。</p>
+<p>你的视频文件不会上传到 Nsurator 运营的服务器。</p>
+<h3>私密空间</h3>
+<ul>
+<li><b>Mac</b>：只能放已经归档进影片库的文件，NAS 上的文件不能放。私密文件会被移到该影片库里隐藏的 <code>.nsurator-private</code> 区域。这个区域只是隐藏，<b>没有加密</b>。锁定后，App 会从清单、搜索、合集、Spotlight 和界面中移除私密片名、封面以及相关的辅助功能元素，也不保留可读的缩略图。</li>
+<li><b>iPhone、iPad</b>：私密空间是一个<b>加密</b>保险库（256 位密钥），用面容 ID（或触控 ID）或设备密码解锁，入口在「文件」根目录的卡片上。</li>
+<li>解锁凭据由系统的钥匙串与生物识别管理，我们不持有，也无法绕过。</li>
+<li>AI 智能体、全局搜索和 iCloud 同步都碰不到私密空间。Apple TV 与 Vision Pro 版没有私密空间。</li>
+<li>例外：你主动发送的问题报告里，诊断信息可能包含私密空间里的名称和路径，见<a href="#zh-reports">第 5 节</a>。</li>
+</ul>
+</section>
 
-    <h3>1. Local library data</h3>
-    <p>Nsurator stores library information on your Mac, including file paths, titles and other metadata, people, collections, tags, ratings, favorites, playback history, thumbnails, caches, security-scoped bookmarks, and app settings. Your video files are not uploaded to Nsurator-operated servers by default.</p>
-    <p>Private Space is available only for files archived into the movie library. Private files are moved into the hidden <code>.nsurator-private</code> area of that library. This area is hidden but <strong>not encrypted</strong>. When Private Space is locked, the app removes private titles, artwork, and related accessibility elements from the interface.</p>
+<section id="zh-files">
+<h2>3. 文件与权限</h2>
+<ul>
+<li><b>Mac</b>：App 只访问你通过 macOS 选择或明确授权的文件夹和文件，并按你的操作进行扫描、播放、整理、重命名、移动、归档或删除。扫描文件夹本身不会触发文件移动或删除。</li>
+<li><b>iPhone、iPad</b>：App 只用你选的文件，包括「文件」App 里你授权的位置、你导入的文件和你从「相册」里选的视频。导入时存一份副本，原位置的文件留在原处。</li>
+<li><b>相机</b>：只用来扫描 Nsuve 互联的配对二维码。</li>
+<li><b>本地网络</b>：用于 Nsuve 互联、投送，发现局域网里的 DLNA 设备与媒体服务器，以及连接你局域网里的 NAS。</li>
+<li><b>面容 ID / 触控 ID</b>：验证由系统完成，App 只知道验证是否通过，拿不到你的生物特征。</li>
+</ul>
+</section>
 
-    <h3>2. Files and permissions</h3>
-    <p>The app accesses only folders and files that you select or otherwise authorize through macOS. It uses that access to scan, play, organize, rename, move, archive, or delete files when you request those actions. A file move or deletion does not occur merely because a folder was scanned.</p>
+<section id="zh-library">
+<h2>4. 认片：Nsurator 资料库与你的 TMDB 密钥</h2>
+<h3>Nsurator 资料库</h3>
+<p>联网识别默认开着。认片时，App 会向 Nsurator 资料库服务发送：</p>
+<ul>
+<li>搜索用的文字，通常是从文件名里解析出的片名、年份和季集号；</li>
+<li>你按外部编号识别时的编号（例如 TMDB、IMDb、TVDB 编号），以及资料和片名的语言；</li>
+<li>海报、剧照等图片的请求，图片也经由这项服务取回。</li>
+</ul>
+<p>App 不会发送你的影片文件。服务分两个区：中国大陆（<code>www.nsurator.com.cn</code>）和美国（<code>meta-us.nsurator.com</code>）。在支持的设备上，App 用 Apple 的 App Attest 证明请求来自正版 Nsuve，换取一个 24 小时有效的访问令牌；这个过程不带你的 Apple 账户信息。</p>
+<p>服务不记录完整的请求地址、片名、令牌或原始 IP 地址，资料和图片的访问日志是关闭的，只记录错误；为了限流，服务在处理请求时会短暂用到你的 IP 地址。资料来自 TMDB 和 Bangumi 番组计划：服务用自己的连接向它们查询（大陆区经由 Nsurator 在 Cloudflare 上的出口），它们看不到你的设备和 IP 地址。</p>
+<p>iPhone、iPad 第一次联网认片前会先征得你的同意。要关掉联网识别：iPhone、iPad 上在「管理 → 影视资料」关掉「联网识别」；Mac 上把文件夹的资料来源设为「只用本地」。</p>
+<h3>你自己的 TMDB 密钥（选填）</h3>
+<p>只有你填了密钥，并且「问哪边」会问 TMDB 时，App 才用你的密钥直接连接 TMDB，发送搜索文字和你的密钥。密钥存在这台设备的钥匙串里，不经过 Nsurator 的服务器，也不会同步到其他设备。TMDB 按它自己的<a href="https://www.themoviedb.org/privacy-policy">隐私政策</a>处理这些请求。</p>
+</section>
 
-    <h3>3. Optional network features and third parties</h3>
-    <ul>
-      <li><strong>Nearby playback.</strong> When you choose AirPlay, Chromecast, DLNA, Roku, or another supported receiver, the selected media bytes, media metadata, and playback-control messages may be sent over your network to the device you selected. Temporary local-server URLs or in-memory access tokens may be used during that session and expire when the session ends.</li>
-      <li><strong>Remote media sources.</strong> If you add WebDAV, mounted SMB, Emby, Jellyfin, or another supported source, Nsurator connects directly to the server you configure. Connection settings are stored locally; passwords and access tokens are stored in the macOS Keychain where supported. The operator of that source processes your requests under its own privacy policy.</li>
-      <li><strong>Baidu Netdisk authorization.</strong> If you choose Baidu Netdisk, authorization takes place in your browser using Baidu's official OAuth flow. Nsurator's authorization broker processes a one-time transaction identifier and challenge and temporarily holds the encrypted authorization result, which may include Baidu access and refresh tokens. These results are normally retained only for delivery and retry, for no more than 24 hours, after which secret token payloads are cleared. The broker's strictly necessary cookie supports the authorization transaction and is not used for tracking. Delivered tokens are stored in your macOS Keychain. See <a href="https://privacy.baidu.com/policy.html" target="_blank" rel="noopener noreferrer">Baidu's Privacy Policy</a>.</li>
-      <li><strong>Purchases.</strong> App Store purchases and subscriptions are processed by Apple. Nsurator receives transaction and entitlement status and stores entitlement state locally; it does not receive your full payment-card details. See <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's Privacy Policy</a>. The app retrieves a public pricing-display configuration file from the official website without attaching account information, device identifiers, purchase records, or other personal data.</li>
-      <li><strong>Optional model downloads.</strong> If you start a supported model download, the file may be requested from providers such as Hugging Face, GitHub, or Microsoft. Those providers receive ordinary network information such as your IP address and request metadata under their own policies.</li>
-      <li><strong>Agent integration.</strong> Agent access is off by default and its built-in service is limited to the local loopback interface. If you connect a third-party AI or automation client, only the data and actions you authorize are made available to that client. Nsurator does not automatically upload your library database to an AI service.</li>
-    </ul>
+<section id="zh-reports">
+<h2>5. 问题报告</h2>
+<h3>Mac</h3>
+<p>你点「发送」时，报告会上传到 Nsurator 的报告服务（<code>www.nsurator.com.cn</code>，位于中国大陆）。报告包含：你选的类别和写的描述、你加的 0–3 个截图或录屏、App 与系统版本、诊断信息和本机日志的最近一段。诊断和日志<b>可能包含私密空间里的片名和路径</b>；账号、密码等凭据会被滤掉。发送前，App 会告诉你这一点。</p>
+<p>报告正文、设备与版本文字、开发者回复、附件名和附件内容都在服务端加密保存（AES-256-GCM）。附件 180 天后自动删除；报告文字、处理状态和开发者回复会保留，供你在「已反馈的问题」里查看。服务不记录请求正文、请求号、查询参数或原始 IP 地址；为了限流，会短暂用到 IP 地址。</p>
+<p>你打开「已反馈的问题」或「消息」时，以及每天最多一次的自动检查中，App 只带着报告的请求号去查询进度和回复。「已反馈的问题」列表经你自己的 iCloud 在你的 Mac 之间同步，见<a href="#zh-icloud">第 7 节</a>。</p>
+<h3>iPhone、iPad</h3>
+<p>报告通过「邮件」发到 support@nsurator.com，附件里有诊断信息和本机播放日志，同样可能包含私密空间里的名称。邮件由你的邮件服务商和我们的邮箱服务商传递和保存。</p>
+<h3>用途</h3>
+<p>报告只用来查找和修复你报告的问题，不会公开。想删除服务器上的某份报告，请写信给我们并附上报告编号。</p>
+</section>
 
-    <h3>4. Collection, tracking, and legacy trial builds</h3>
-    <p>Nsurator does not sell personal data, show behavioral advertising, or include third-party advertising trackers. The current Mac App Store app does not use a self-managed trial server. Nsurator-operated web hosting and reverse proxies may process ordinary request data, such as IP address, timestamp, and user-agent, for security, abuse prevention, and service reliability.</p>
-    <p>Some older direct-distribution or China-region trial builds may send a randomly generated persistent device identifier, a device-fingerprint hash, platform and app version, and a trial token to a Nsurator authorization server solely to determine trial eligibility and prevent repeated-trial abuse.</p>
+<section id="zh-sources">
+<h2>6. NAS、媒体服务器与网盘</h2>
+<p>你添加的 WebDAV、SMB（直连或已挂载）、NFS、SFTP、Emby、Jellyfin、Plex、飞牛 fnOS、群晖、威联通、Nextcloud、DLNA / UPnP 等媒体源，App 都直接连接你配置的服务器。连接设置保存在本地；在支持的情况下，密码和访问令牌存在系统钥匙串里。媒体源的运营方按它自己的隐私政策处理你的请求。</p>
+<h3>网盘登录（Mac）</h3>
+<p>网盘直连目前只在 Mac 上。除百度网盘外，登录都直接在你的 Mac 与网盘服务商之间完成，令牌和文件内容不经过 Nsurator 运营的服务器；令牌存在 macOS 钥匙串里。</p>
+<ul>
+<li><b>Microsoft OneDrive</b>：Nsuve 当前支持个人 OneDrive 账户。添加 OneDrive 时，App 通过 Microsoft 官方 OAuth 服务完成登录，只申请委托的 <code>Files.Read</code> 权限，用于列出文件夹和视频文件、读取文件名、标识及播放所需元数据，并获取短期下载地址以播放你选择的文件。App 不申请上传、编辑、移动或删除 OneDrive 文件的权限。访问令牌和刷新令牌存储在 macOS 钥匙串中；OneDrive 请求直接在你的 Mac 与 Microsoft 之间传输，Nsurator 不会把这些令牌或文件内容发送到 Nsurator 运营的服务器。移除媒体源时会删除本地保存的授权。Microsoft 会根据<a href="https://privacy.microsoft.com/privacystatement">《Microsoft 隐私声明》</a>处理登录和 OneDrive 请求。</li>
+<li><b>Dropbox</b>：通过 Dropbox 官方 OAuth（PKCE）登录，只申请只读权限（账户信息、文件元数据和文件内容的读取）。</li>
+<li><b>Google Drive</b>：通过 Google 官方 OAuth（PKCE）登录，只申请只读的 <code>drive.readonly</code> 权限，不会上传、修改或删除云端硬盘里的文件。</li>
+<li><b>pCloud</b>：通过 pCloud 官方授权页登录，App 保存它发回的访问令牌。</li>
+<li><b>MEGA</b>：用 MEGA 官方 SDK 直接登录 MEGA。</li>
+<li><b>123 云盘、MagentaCLOUD、HiDrive、Koofr、Icedrive、kDrive</b>：通过各家的 WebDAV 接口，用你填写的账号和 WebDAV 专用密码直接连接对方的服务器，密码存在 macOS 钥匙串里。</li>
+<li><b>百度网盘</b>：如果你选择百度网盘，App 会通过浏览器使用百度官方 OAuth 流程完成授权。Nsurator 的授权中转服务（<code>www.nsurator.com.cn/oauth/baidu/</code>）会处理一次性交易标识和校验信息，并临时保存加密的授权结果，其中可能包含百度访问令牌和刷新令牌。结果仅用于交付和重试，通常不超过 24 小时；到期后会清除其中的机密令牌内容。中转服务使用的严格必要 Cookie 仅用于完成授权交易，不用于跟踪。交付到 App 的令牌保存在 macOS 钥匙串中。请参阅<a href="https://privacy.baidu.com/policy.html">《百度隐私权保护声明》</a>。</li>
+</ul>
+<p>你可以随时在服务商那边撤销对 Nsuve 的授权。</p>
+</section>
 
-    <h3>5. Retention and security</h3>
-    <p>Local data remains on your Mac until you delete it. Removing the app may not remove media files, library folders, backups, or Keychain entries. OAuth authorization results are retained only for their short delivery and retry window, up to 24 hours, and secret payloads are then cleared. Minimal terminal transaction records and security logs may be retained briefly for reliability and abuse prevention. Information you voluntarily send for support is retained as needed to resolve the request and meet legal obligations.</p>
-    <p>We use measures such as HTTPS, the macOS Keychain, sandboxed helper processes, and encrypted OAuth result delivery where applicable. No security measure is absolute, and the hidden Private Space area is not encryption.</p>
+<section id="zh-icloud">
+<h2>7. iCloud 同步</h2>
+<p>同步的数据存在你自己 iCloud 账户里 Nsuve 的私有数据库中，我们读不到；Apple 按它的隐私政策处理 iCloud 数据。</p>
+<ul>
+<li><b>iPhone、iPad</b>：在「管理 → 影视资料」打开「在我的设备间同步」后，同步哪个文件是哪部片子、手动修正、版本合并、每台 NAS 的识别方式，以及 NAS 上的片子看到哪儿；NAS 和文件名只以哈希形式存放。海报、扫描清单、NAS 的地址和密码、你的 TMDB 密钥和「问哪边」、私密空间里的东西都不同步。点「删除 iCloud 里的识别结果」可以把它们从 iCloud 删掉，这台设备上的不受影响。</li>
+<li><b>Mac</b>：「已反馈的问题」列表经你的 iCloud 同步，文字存在加密字段里。</li>
+</ul>
+<p>iCloud 里都不放密码、私密空间、图片、诊断、日志和截图。</p>
+</section>
 
-    <h3>6. Your choices and rights</h3>
-    <p>You can use the local library without enabling optional network services. You may remove a configured source, revoke third-party authorization, delete local library data, clear history and caches in the app where available, or delete files through Finder. Depending on where you live, you may have rights to request access, correction, deletion, restriction, or information about data processed by Nsurator-operated services.</p>
+<section id="zh-other">
+<h2>8. 其他联网功能</h2>
+<h3>Nsuve 互联</h3>
+<p>配对时，iPhone 或 iPad 扫描 Mac 上显示的二维码，核对 4 位数字，再在 Mac 上点「允许」。配对以后，iPhone、iPad 通过局域网读取 Mac 共享出来的文件夹、片库目录和海报，并直接播放其中的视频；iPhone 上的「送到 Mac」会把你选的视频经局域网送进 Mac 的收件箱。设备之间用 Bonjour 互相发现，连接用固定的证书指纹校验，只在局域网里进行，不经过云端中转。私密空间里的内容不会共享。</p>
+<h3>投送</h3>
+<p>当你选择 AirPlay、Chromecast、DLNA、Roku 或其他受支持的接收设备时（Mac；iPhone、iPad 上是 AirPlay），所选的媒体数据、媒体资料和播放控制消息会通过你的网络发送到你选的设备。播放期间可能使用临时的本地服务器地址或内存中的访问令牌，会话结束后失效。</p>
+<h3>人物识别模型下载（Mac）</h3>
+<p>第一次打开人物识别时，App 会从 Hugging Face 和 GitHub 下载两个模型文件。这些提供方会按各自的政策收到普通的网络请求信息，例如 IP 地址和请求元数据。识别在本机完成，画面和人脸特征不离开这台 Mac。</p>
+<h3>AI 工具（Mac）</h3>
+<p>AI 连接默认关闭，内置服务只在本机回环地址上。你连接第三方 AI 或自动化工具后，只有你授权的资料和操作会提供给它，私密空间永远不在其中。Nsuve 不会自动把片库数据库上传到任何 AI 服务；但你连接的工具可能把它拿到的结果发给它自己的远端模型，这部分由该工具的提供方按其政策处理。</p>
+<h3>购买</h3>
+<p>App Store 的购买和订阅由 Apple 处理。Nsuve 只接收交易和权益状态并保存在本地，不会收到你的完整银行卡资料。请参阅<a href="https://www.apple.com/legal/privacy/">《Apple 隐私政策》</a>。</p>
+<p>App 会在启动时，以及回到前台且距上次超过一小时时，从官网读取一个公开的购买配置文件（<code>nsurator.com/app/nsuve-purchase.json</code>，中国站有一份镜像），它决定早鸟优惠是否开启、哪些购买项目在售。这个请求不附带账户、设备标识、购买记录或任何其他个人资料。</p>
+<h3>本网站</h3>
+<p>nsurator.com 托管在 GitHub Pages 和阿里云上。托管方和 Nsurator 运营的反向代理可能出于安全、防滥用和服务稳定处理常规请求数据，例如 IP 地址、时间戳和浏览器标识。网站不使用统计或跟踪脚本，字体都放在我们自己的站点上；你选的网站语言只记在你的浏览器里。</p>
+</section>
 
-    <h3>7. Children, changes, and contact</h3>
-    <p>Nsurator is a general-audience media utility and is not directed to children. We do not knowingly collect children's personal information through Nsurator-operated services. We may update this policy when app features or legal requirements change and will update the date above.</p>
-    <p>For privacy questions or requests, email <a href="mailto:852310683@qq.com">852310683@qq.com</a> or visit the <a href="./support.html">Support page</a>.</p>
-  </article>
+<section id="zh-tracking">
+<h2>9. 我们不做的事，以及旧版试用</h2>
+<p>Nsurator 不出售个人数据，不展示行为广告，也不包含第三方广告跟踪器或分析 SDK。Nsuve 只通过 Mac App Store 和 App Store 分发，不使用自建的试用服务器。</p>
+<p>旧版 Nsurator 的部分较早的独立分发版本或中国区试用版本，可能会把随机生成的持久设备标识、设备指纹哈希、平台与 App 版本以及试用令牌发送到 Nsurator 授权服务器，仅用于判断试用资格和防止重复试用滥用。Nsuve 不会这样做。</p>
+</section>
 
-  <article id="zh-hans" class="policy" lang="zh-CN">
-    <h2>简体中文</h2>
-    <p>Nsurator 是一款以本地处理为主的 macOS 影片库管理工具。管理本地影片库不需要注册 Nsurator 账户。本政策说明 App 及其可选在线功能会处理哪些数据。</p>
+<section id="zh-retention">
+<h2>10. 保存期限与安全</h2>
+<ul>
+<li>本地数据会一直留在你的设备上，直到你将其删除。卸载 App 不一定会删除媒体文件、影片库文件夹、备份或钥匙串项目。</li>
+<li>Nsurator 资料库不保存访问日志，只记录排查故障所需的错误。</li>
+<li>问题报告的附件 180 天后自动删除；报告文字、处理状态和开发者回复会保留，你可以写信要求删除。</li>
+<li>OAuth 授权结果仅在短期交付和重试窗口内保存，最长不超过 24 小时，之后会清除机密内容。为保证可靠性和防止滥用，最少量的终态交易记录和安全日志可能被短期保留。</li>
+<li>iCloud 里的数据存在你自己的 iCloud 账户里，直到你删除。</li>
+<li>你通过邮件发给我们的信息，会在解决问题和履行法律义务所需的期间内保存。</li>
+</ul>
+<p>在适用场景下，我们使用 HTTPS、系统钥匙串、沙盒辅助进程、加密的 OAuth 结果交付和报告的服务端加密等措施。任何安全措施都无法保证绝对安全；Mac 上私密空间的隐藏区域也不属于加密存储。</p>
+</section>
 
-    <h3>1. 本地影片库数据</h3>
-    <p>Nsurator 会在你的 Mac 上保存影片库信息，包括文件路径、标题及其他元数据、人物、合集、标签、评分、收藏、播放历史、缩略图、缓存、安全作用域书签和 App 设置。默认情况下，你的视频文件不会上传到 Nsurator 运营的服务器。</p>
-    <p>私密空间仅支持已归档到影片库的文件。私密文件会被移动到该影片库的 <code>.nsurator-private</code> 隐藏区域。该区域只是隐藏，<strong>没有加密</strong>。私密空间锁定后，App 会从界面中移除私密标题、封面以及相关无障碍元素。</p>
+<section id="zh-choices">
+<h2>11. 你的选择与权利</h2>
+<p>你可以在不启用任何可选联网功能的情况下使用本地影片库：关掉联网识别，不连接媒体源，不打开 iCloud 同步，不发送报告。你可以移除已配置的媒体源、撤销第三方授权、删除本地影片库数据、在 App 提供相关功能时清除历史和缓存，或在「访达」或「文件」里删除文件；iPhone、iPad 上还可以删除 iCloud 里的识别结果。要删除服务器上的问题报告，请写信并附上报告编号。</p>
+<p>根据你所在地区的法律，你还可能有权请求访问、更正、删除或限制由 Nsurator 运营服务处理的数据，并了解相关处理情况。</p>
+</section>
 
-    <h3>2. 文件与权限</h3>
-    <p>App 只访问你通过 macOS 选择或明确授权的文件夹和文件，并按你的操作进行扫描、播放、整理、重命名、移动、归档或删除。扫描文件夹本身不会触发文件移动或删除。</p>
+<section id="zh-contact">
+<h2>12. 未成年人、政策变更与联系</h2>
+<p>Nsuve 是面向普通用户的媒体工具，并非专门面向未成年人。我们不会故意通过 Nsurator 运营的服务收集儿童个人信息。</p>
+<p>当 App 功能或法律要求发生变化时，我们可能更新本政策，并同步更新页面顶部的日期。</p>
+<p>如有隐私问题或权利请求，请发送邮件至 <a href="mailto:support@nsurator.com">support@nsurator.com</a>，或访问<a href="/support.html">支持页面</a>。</p>
+</section>
+</main></div></section>
+<div style="border-top:1px solid var(--line);max-width:1120px;margin:0 auto"></div>
+<section id="english" lang="en" class="pv">
+<div class="ph">
+  <p class="eb">Legal · English</p>
+  <h1 class="t"><span class="zh-vh">Privacy Policy</span><span aria-hidden="true">Privacy Policy</span></h1>
+  <p class="lead">Nsuve is an app by Nsurator. This policy explains what data Nsuve processes on Mac, iPhone and iPad: what stays on your device, and what leaves it, where it goes and how long it is kept.</p>
+  <ul class="meta"><li>Effective November 9, 2026</li><li>Last updated November 9, 2026</li></ul>
+</div>
+<div class="wrap"><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#en-scope">1. Scope</a></li><li><a href="#en-device">2. What stays on your device</a></li><li><a href="#en-files">3. Files and permissions</a></li><li><a href="#en-library">4. Recognition: Nsurator Library DB and your TMDB key</a></li><li><a href="#en-reports">5. Problem reports</a></li><li><a href="#en-sources">6. NAS, media servers and cloud drives</a></li><li><a href="#en-icloud">7. iCloud sync</a></li><li><a href="#en-other">8. Other online features</a></li><li><a href="#en-tracking">9. What we don't do, and legacy trial builds</a></li><li><a href="#en-retention">10. Retention and security</a></li><li><a href="#en-choices">11. Your choices and rights</a></li><li><a href="#en-contact">12. Children, changes and contact</a></li></ol></nav><main class="doc"><section id="en-scope">
+<h2>1. Scope</h2>
+<p>Nsuve is a film library and player made by Nsurator. It is available for Mac and for iPhone and iPad (iPhone Duo uses the iPhone app); the Apple TV and Vision Pro versions are coming soon and will be covered by this policy when they launch. This policy also covers the services Nsurator runs for Nsuve (Nsurator Library DB, the problem-report service and the Baidu Netdisk authorization broker) and the nsurator.com website. "We" means Nsurator.</p>
+<p>You do not need a Nsurator account to use Nsuve.</p>
+</section>
 
-    <h3>3. 可选网络功能与第三方服务</h3>
-    <ul>
-      <li><strong>附近设备播放。</strong>当你选择 AirPlay、Chromecast、DLNA、Roku 或其他受支持的接收设备时，所选媒体数据、媒体元数据和播放控制消息可能通过你的网络发送到你选择的设备。播放期间可能使用临时本地服务器地址或内存访问令牌，并在会话结束后失效。</li>
-      <li><strong>远程媒体源。</strong>如果你添加 WebDAV、已挂载的 SMB、Emby、Jellyfin 或其他受支持的媒体源，Nsurator 会直接连接到你配置的服务器。连接配置保存在本地；在支持的情况下，密码和访问令牌存储在 macOS 钥匙串中。媒体源运营方会根据其自身隐私政策处理请求。</li>
-      <li><strong>百度网盘授权。</strong>如果你选择百度网盘，App 会通过浏览器使用百度官方 OAuth 流程完成授权。Nsurator 的授权中转服务会处理一次性交易标识和校验信息，并临时保存加密的授权结果，其中可能包含百度访问令牌和刷新令牌。结果仅用于交付和重试，通常不超过 24 小时；到期后会清除其中的机密令牌内容。中转服务使用的严格必要 Cookie 仅用于完成授权交易，不用于跟踪。交付到 App 的令牌保存在 macOS 钥匙串中。请参阅<a href="https://privacy.baidu.com/policy.html" target="_blank" rel="noopener noreferrer">《百度隐私权保护声明》</a>。</li>
-      <li><strong>购买。</strong>App Store 购买和订阅由 Apple 处理。Nsurator 只接收交易和权益状态并在本地保存权益信息，不会收到你的完整银行卡资料。请参阅<a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">《Apple 隐私政策》</a>。App 会从官网读取公开的价格显示配置文件，请求不附带账户、设备标识或购买记录等个人资料。</li>
-      <li><strong>可选模型下载。</strong>当你主动下载受支持的模型时，文件可能来自 Hugging Face、GitHub 或 Microsoft 等提供方。提供方会依据其政策接收正常网络请求信息，例如 IP 地址和请求元数据。</li>
-      <li><strong>Agent 集成。</strong>Agent 访问默认关闭，内置服务仅限本机回环地址。如果你连接第三方 AI 或自动化客户端，只有你授权的数据和操作会提供给该客户端。Nsurator 不会自动把影片库数据库上传到 AI 服务。</li>
-    </ul>
+<section id="en-device">
+<h2>2. What stays on your device</h2>
+<p>Nsuve stores library information on your device, including file paths, titles and other film and TV information, people, collections, tags, ratings, favorites, notes, watch history and progress, thumbnails, caches, security-scoped bookmarks and app settings. The free version's play count is also kept only on the device. On the Mac, face features and the face library, MetricKit performance records and on-device logs also stay on the Mac; the most recent part of the log is attached only when you send a problem report.</p>
+<p>Your video files are not uploaded to Nsurator-operated servers.</p>
+<h3>Private Space</h3>
+<ul>
+<li><b>Mac</b>: Private Space is available only for files archived into the movie library; files on a NAS can't be added. Private files are moved into the hidden <code>.nsurator-private</code> area of that library. This area is hidden but <b>not encrypted</b>. When Private Space is locked, the app removes private titles, artwork and related accessibility elements from lists, search, collections, Spotlight and the interface, and keeps no readable thumbnails.</li>
+<li><b>iPhone and iPad</b>: Private Space is an <b>encrypted</b> vault (256-bit key), unlocked with Face ID (or Touch ID) or the device passcode, and opened from the card at the root of Files.</li>
+<li>Unlocking is handled by the system's Keychain and biometrics. We don't hold those credentials and can't bypass them.</li>
+<li>AI agents, global search and iCloud sync never reach Private Space. The Apple TV and Vision Pro versions have no Private Space.</li>
+<li>One exception: the diagnostics in a problem report you choose to send may include names and paths from Private Space; see <a href="#en-reports">section 5</a>.</li>
+</ul>
+</section>
 
-    <h3>4. 数据收集、跟踪与旧版试用</h3>
-    <p>Nsurator 不出售个人数据，不展示行为广告，也不包含第三方广告跟踪器。当前 Mac App Store 版本不使用自建试用服务器。Nsurator 运营的网站和反向代理可能出于安全、防滥用和服务稳定性处理常规请求数据，例如 IP 地址、时间戳和浏览器标识。</p>
-    <p>部分较早的独立分发版本或中国区试用版本可能会把随机生成的持久设备标识、设备指纹哈希、平台与 App 版本以及试用令牌发送到 Nsurator 授权服务器，仅用于判断试用资格和防止重复试用滥用。</p>
+<section id="en-files">
+<h2>3. Files and permissions</h2>
+<ul>
+<li><b>Mac</b>: the app accesses only folders and files that you select or otherwise authorize through macOS. It uses that access to scan, play, organize, rename, move, archive or delete files when you request those actions. A file is never moved or deleted merely because a folder was scanned.</li>
+<li><b>iPhone and iPad</b>: the app uses only the files you choose: locations you authorize in the Files app, files you import and videos you pick from Photos. Importing stores a copy, and the original stays where it was.</li>
+<li><b>Camera</b>: used only to scan the Nsuve Link pairing code.</li>
+<li><b>Local network</b>: used for Nsuve Link, casting, finding DLNA devices and media servers on your network, and connecting to a NAS on your local network.</li>
+<li><b>Face ID and Touch ID</b>: the system performs the check; the app only learns whether it succeeded and never receives biometric data.</li>
+</ul>
+</section>
 
-    <h3>5. 保存期限与安全</h3>
-    <p>本地数据会保留在你的 Mac 上，直到你将其删除。卸载 App 不一定会删除媒体文件、影片库文件夹、备份或钥匙串项目。OAuth 授权结果仅在短期交付和重试窗口内保存，最长不超过 24 小时，之后会清除机密内容。为保证可靠性和防止滥用，最少量的终态交易记录和安全日志可能被短期保留。你主动发送给支持团队的信息会在解决问题和履行法律义务所需的期间内保存。</p>
-    <p>在适用场景下，我们使用 HTTPS、macOS 钥匙串、沙盒辅助进程和加密的 OAuth 结果交付等措施。任何安全措施都无法保证绝对安全，私密空间的隐藏区域也不属于加密存储。</p>
+<section id="en-library">
+<h2>4. Recognition: Nsurator Library DB and your TMDB key</h2>
+<h3>Nsurator Library DB</h3>
+<p>Online recognition is on by default. To recognize a film or show, the app sends the Nsurator Library DB service:</p>
+<ul>
+<li>search text, usually the title, year and season and episode numbers worked out from the file name;</li>
+<li>an external ID when you identify a title by one (such as a TMDB, IMDb or TVDB ID), and the languages you want the information and titles in;</li>
+<li>requests for posters, stills and other images, which are also fetched through the service.</li>
+</ul>
+<p>The app never sends your video files. The service runs in two regions: mainland China (<code>www.nsurator.com.cn</code>) and the United States (<code>meta-us.nsurator.com</code>). On devices that support it, the app uses Apple's App Attest to prove that requests come from a genuine copy of Nsuve, and receives an access token valid for 24 hours; this does not involve your Apple Account details.</p>
+<p>The service does not log full request URLs, titles, tokens or raw IP addresses; access logs for information and image requests are turned off, and only errors are recorded. To enforce rate limits, the service briefly uses your IP address while it handles a request. The data comes from TMDB and Bangumi: the service queries them over its own connections (in the mainland China region, through Nsurator's own outbound relay on Cloudflare), so they don't see your device or IP address.</p>
+<p>On iPhone and iPad, the app asks for your consent before its first online recognition. To turn online recognition off: on iPhone and iPad, turn off Recognize Online in Manage → Movie &amp; Show Info; on the Mac, set a folder's information source to Local only.</p>
+<h3>Your own TMDB key (optional)</h3>
+<p>Only if you add a key, and the Ask setting includes TMDB, does the app connect to TMDB directly, sending the search text and your key. The key is stored in the Keychain on that device, never passes through Nsurator's servers and is not synced to your other devices. TMDB processes these requests under its own <a href="https://www.themoviedb.org/privacy-policy">privacy policy</a>.</p>
+</section>
 
-    <h3>6. 你的选择与权利</h3>
-    <p>你可以在不启用任何可选网络服务的情况下使用本地影片库。你可以移除已配置的媒体源、撤销第三方授权、删除本地影片库数据、在 App 提供相关功能时清除历史和缓存，或通过 Finder 删除文件。根据你所在地区的法律，你还可能有权请求访问、更正、删除或限制由 Nsurator 运营服务处理的数据，并了解相关处理情况。</p>
+<section id="en-reports">
+<h2>5. Problem reports</h2>
+<h3>Mac</h3>
+<p>When you click Send, the report is uploaded to Nsurator's report service (<code>www.nsurator.com.cn</code>, located in mainland China). It contains the category you chose and what you wrote, the 0–3 screenshots or screen recordings you added, the app and system versions, diagnostics and the most recent part of the on-device log. Diagnostics and logs <b>may include the names and paths of items in Private Space</b>; credentials such as account names and passwords are filtered out. The app tells you this before you send.</p>
+<p>The report text, device and version details, developer replies, attachment names and attachment contents are stored encrypted on the server (AES-256-GCM). Attachments are deleted automatically after 180 days; the report text, its status and developer replies are kept so you can see them in Sent Reports. The service does not log request bodies, request IDs, query parameters or raw IP addresses; it briefly uses IP addresses to enforce rate limits.</p>
+<p>When you open Sent Reports or Notifications, and in an automatic check at most once a day, the app sends only the report's request ID to fetch its status and replies. The Sent Reports list syncs between your Macs through your own iCloud; see <a href="#en-icloud">section 7</a>.</p>
+<h3>iPhone and iPad</h3>
+<p>Reports are sent by Mail to support@nsurator.com, with diagnostics and the on-device playback log attached; these may also include names from Private Space. The email is carried and stored by your email provider and ours.</p>
+<h3>Use</h3>
+<p>Reports are used only to find and fix the problem you reported, and are never made public. To have a report deleted from the server, email us with its report number.</p>
+</section>
 
-    <h3>7. 未成年人、政策变更与联系</h3>
-    <p>Nsurator 是面向普通用户的媒体工具，并非专门面向未成年人。我们不会故意通过 Nsurator 运营的服务收集儿童个人信息。当 App 功能或法律要求发生变化时，我们可能更新本政策，并同步更新页面顶部日期。</p>
-    <p>如有隐私问题或权利请求，请发送邮件至 <a href="mailto:852310683@qq.com">852310683@qq.com</a>，或访问<a href="./support.html">支持页面</a>。</p>
-  </article>
+<section id="en-sources">
+<h2>6. NAS, media servers and cloud drives</h2>
+<p>For WebDAV, SMB (direct or mounted), NFS, SFTP, Emby, Jellyfin, Plex, fnOS, Synology, QNAP, Nextcloud, DLNA / UPnP and the other sources you add, the app connects directly to the server you configure. Connection settings are stored locally; where supported, passwords and access tokens are stored in the system Keychain. The operator of that source processes your requests under its own privacy policy.</p>
+<h3>Cloud-drive sign-in (Mac)</h3>
+<p>Direct cloud-drive connections are currently available only on the Mac. Except for Baidu Netdisk, sign-in takes place directly between your Mac and the provider, and tokens and file contents do not pass through Nsurator-operated servers; tokens are stored in the macOS Keychain.</p>
+<ul>
+<li><b>Microsoft OneDrive</b>: Nsuve currently supports personal OneDrive accounts. If you add OneDrive, sign-in takes place through Microsoft's official OAuth service. Nsuve requests the delegated <code>Files.Read</code> permission so it can list folders and video files, read file names, identifiers and playback metadata, and obtain short-lived download addresses to stream files you choose. It does not request permission to upload, edit, move or delete OneDrive files. Access and refresh tokens are stored in the macOS Keychain, and OneDrive requests travel directly between your Mac and Microsoft; Nsurator does not send those tokens or file contents to Nsurator-operated servers. Removing the source deletes its locally stored authorization. Microsoft processes sign-in and OneDrive requests under the <a href="https://privacy.microsoft.com/privacystatement">Microsoft Privacy Statement</a>.</li>
+<li><b>Dropbox</b>: signs in through Dropbox's official OAuth (PKCE) and requests read-only access only (account info, and reading file metadata and file contents).</li>
+<li><b>Google Drive</b>: signs in through Google's official OAuth (PKCE) and requests only the read-only <code>drive.readonly</code> scope; Nsuve cannot upload, modify or delete Drive files.</li>
+<li><b>pCloud</b>: signs in on pCloud's official authorization page; the app stores the access token pCloud returns.</li>
+<li><b>MEGA</b>: signs in to MEGA directly through MEGA's official SDK.</li>
+<li><b>123 Cloud, MagentaCLOUD, HiDrive, Koofr, Icedrive and kDrive</b>: connect directly to each provider's WebDAV service with the account and the WebDAV or app password you enter, which is stored in the macOS Keychain.</li>
+<li><b>Baidu Netdisk</b>: if you choose Baidu Netdisk, authorization takes place in your browser using Baidu's official OAuth flow. Nsurator's authorization broker (<code>www.nsurator.com.cn/oauth/baidu/</code>) processes a one-time transaction identifier and challenge and temporarily holds the encrypted authorization result, which may include Baidu access and refresh tokens. These results are normally retained only for delivery and retry, for no more than 24 hours, after which secret token payloads are cleared. The broker's strictly necessary cookie supports the authorization transaction and is not used for tracking. Delivered tokens are stored in your macOS Keychain. See <a href="https://privacy.baidu.com/policy.html">Baidu's Privacy Policy</a>.</li>
+</ul>
+<p>You can revoke Nsuve's access at any time from the provider's side.</p>
+</section>
 
-  <nav class="page-nav" aria-label="Site navigation">
-    <a href="./index.html">Home / 首页</a>
-    <a href="./support.html">Support / 支持</a>
-  </nav>
+<section id="en-icloud">
+<h2>7. iCloud sync</h2>
+<p>Synced data is kept in Nsuve's private database in your own iCloud account, which we cannot read; Apple processes iCloud data under its own privacy policy.</p>
+<ul>
+<li><b>iPhone and iPad</b>: when you turn on Sync Across My Devices in Manage → Movie &amp; Show Info, Nsuve syncs which file is which title, your manual corrections, merged versions, how each NAS is recognized, and how far you've watched titles on a NAS; NAS and file names are stored only as hashes. Posters, scan lists, NAS addresses and passwords, your TMDB key and Ask setting, and anything in Private Space are not synced. Delete Recognition Results from iCloud removes them from iCloud without touching this device.</li>
+<li><b>Mac</b>: the Sent Reports list syncs through your iCloud, with its text in encrypted fields.</li>
+</ul>
+<p>Nothing in iCloud includes passwords, Private Space, images, diagnostics, logs or screenshots.</p>
+</section>
 
-  <footer class="site-footer">
-    <div>Contact / 联系：<a href="mailto:852310683@qq.com">852310683@qq.com</a></div>
-    <div class="record-links">
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a>
-      <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a>
+<section id="en-other">
+<h2>8. Other online features</h2>
+<h3>Nsuve Link</h3>
+<p>To pair, your iPhone or iPad scans the code shown on the Mac, you compare 4 digits, and you click Allow on the Mac. After that, the iPhone or iPad reads the folders, library listing and posters the Mac shares over your local network and plays their videos directly; Send to Mac on the iPhone sends videos you choose to the Mac's Inbox over the local network. Devices find each other with Bonjour, connections are checked against a pinned certificate fingerprint, and everything stays on your local network with no cloud relay. Nothing in Private Space is shared.</p>
+<h3>Casting</h3>
+<p>When you choose AirPlay, Chromecast, DLNA, Roku or another supported receiver (on the Mac; AirPlay on iPhone and iPad), the selected media bytes, media information and playback-control messages may be sent over your network to the device you selected. Temporary local-server URLs or in-memory access tokens may be used during that session and expire when the session ends.</p>
+<h3>Recognition model downloads (Mac)</h3>
+<p>The first time you open people recognition, the app downloads two model files from Hugging Face and GitHub. Those providers receive ordinary network information such as your IP address and request metadata under their own policies. Recognition runs on your Mac, and images and face features never leave it.</p>
+<h3>AI tools (Mac)</h3>
+<p>AI connections are off by default, and the built-in service is limited to the local loopback interface. If you connect a third-party AI or automation tool, only the data and actions you authorize are made available to it, and Private Space never is. Nsuve does not automatically upload your library database to any AI service, but the tool you connect may send what it receives to its own remote model; that is handled by the tool's provider under its own policy.</p>
+<h3>Purchases</h3>
+<p>App Store purchases and subscriptions are processed by Apple. Nsuve receives transaction and entitlement status and stores entitlement state locally; it does not receive your full payment-card details. See <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</p>
+<p>At launch, and when it returns to the foreground more than an hour after the last check, the app reads a public purchase configuration file from the official website (<code>nsurator.com/app/nsuve-purchase.json</code>, mirrored on the China site), which sets whether the early-bird offer is on and which purchases are offered. The request carries no account information, device identifiers, purchase records or other personal data.</p>
+<h3>This website</h3>
+<p>nsurator.com is hosted on GitHub Pages and Alibaba Cloud. The hosts and Nsurator-operated reverse proxies may process ordinary request data, such as IP address, timestamp and user agent, for security, abuse prevention and service reliability. The site uses no analytics or tracking scripts, its fonts are served from our own site, and the language you choose is remembered only in your browser.</p>
+</section>
+
+<section id="en-tracking">
+<h2>9. What we don't do, and legacy trial builds</h2>
+<p>Nsurator does not sell personal data, show behavioral advertising, or include third-party advertising trackers or analytics SDKs. Nsuve is distributed only through the Mac App Store and the App Store and does not use a self-managed trial server.</p>
+<p>Some older direct-distribution or China-region trial builds of the earlier Nsurator app may send a randomly generated persistent device identifier, a device-fingerprint hash, platform and app version, and a trial token to a Nsurator authorization server solely to determine trial eligibility and prevent repeated-trial abuse. Nsuve does not.</p>
+</section>
+
+<section id="en-retention">
+<h2>10. Retention and security</h2>
+<ul>
+<li>Local data remains on your device until you delete it. Removing the app may not remove media files, library folders, backups or Keychain entries.</li>
+<li>Nsurator Library DB keeps no access logs, only the errors needed to troubleshoot the service.</li>
+<li>Problem-report attachments are deleted automatically after 180 days; the report text, status and developer replies are kept, and you can ask us to delete them.</li>
+<li>OAuth authorization results are retained only for their short delivery and retry window, up to 24 hours, and secret payloads are then cleared. Minimal terminal transaction records and security logs may be retained briefly for reliability and abuse prevention.</li>
+<li>Data in iCloud stays in your own iCloud account until you delete it.</li>
+<li>Information you email us is retained as needed to resolve the request and meet legal obligations.</li>
+</ul>
+<p>We use measures such as HTTPS, the system Keychain, sandboxed helper processes, encrypted OAuth result delivery and server-side encryption of reports where applicable. No security measure is absolute, and the hidden Private Space area on the Mac is not encryption.</p>
+</section>
+
+<section id="en-choices">
+<h2>11. Your choices and rights</h2>
+<p>You can use the local library without enabling any optional online feature: turn off online recognition, connect no sources, leave iCloud sync off and send no reports. You may remove a configured source, revoke third-party authorization, delete local library data, clear history and caches in the app where available, or delete files in Finder or Files; on iPhone and iPad you can also delete the recognition results stored in iCloud. To have a problem report deleted from the server, email us with its report number.</p>
+<p>Depending on where you live, you may have rights to request access, correction, deletion, restriction, or information about data processed by Nsurator-operated services.</p>
+</section>
+
+<section id="en-contact">
+<h2>12. Children, changes and contact</h2>
+<p>Nsuve is a general-audience media utility and is not directed to children. We do not knowingly collect children's personal information through Nsurator-operated services.</p>
+<p>We may update this policy when app features or legal requirements change, and will update the dates at the top of this policy.</p>
+<p>For privacy questions or requests, email <a href="mailto:support@nsurator.com">support@nsurator.com</a> or visit the <a href="/en/support.html">Support page</a>.</p>
+</section>
+</main></div></section></div>
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><img class="w" src="/home-assets/brand/nsuve-cream.svg" alt="Nsuve" width="96" height="30"><div class="ft-by">by <img src="/home-assets/brand/nsurator-swatch-cream.svg" alt="Nsurator" width="110" height="22"></div></div>
+      <nav class="ft-links" aria-label="页脚"><a href="/support.html">支持</a><a href="/privacy.html#zh-hans">隐私</a><a href="/support.html?doc=terms#terms">使用条款</a><a href="/guides/">使用攻略</a><a href="/support.html?doc=oss#oss">开源许可</a><a href="/credits.html">素材署名</a></nav>
     </div>
-  </footer>
+    <div class="ft-note"><span>影视资料与图片来自 TMDB。本产品使用 TMDB API，但未经 TMDB 认可或认证。</span><span>© 2026 Nsurator</span></div>
+    <div class="ft-reg"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
+  </div>
+</footer>
+<script>(function(){var q=new URLSearchParams(location.search),l=q.get('lang');if(!location.hash&&l==='en')location.replace('#english');else if(!location.hash&&l==='zh')location.replace('#zh-hans');})();</script><script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
 </body>
 </html>

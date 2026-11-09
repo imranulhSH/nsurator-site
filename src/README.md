@@ -1,5 +1,21 @@
 # 官网可编辑源文件
 
+
+## 2026-11-09 起：所有页面都由生成脚本出
+
+负责人 11-09：「除了首页，其他的都是之前老旧的了，都没更新，现在帮我都按照最新的项目功能等更新一波…guides 这些网页没支持英文版本，也支持一下」。
+
+- `src/home/` 是唯一的页面源：首页（`nsuve/`、`nsuve/en/`）和子页面都是生成出来的静态页，原样发布到站点根目录。子页面包括：
+  - 支持与常见问题、使用条款、开源许可：`support.html` / `en/support.html`；
+  - 素材署名：`credits.html` / `en/credits.html`；
+  - 中英双语的隐私政策：`privacy.html`，锚点 `#zh-hans` / `#english`；
+  - 使用攻略：`guides/`、`guides/en/`，8 篇加首页。
+- 生成脚本在 `w16-notes/web-redesign/wp-build/`：
+  - 首页用 `build-site.js`；
+  - 子页面用 `pages/build-pages.js`，内容在 `pages/content/<页>.<语言>.html`，格式见 `pages/CONTENT-SPEC.md`，截图在 `pages/shots/`，来自设计稿。
+  - 改完把 `site-home/` 和 `site-pages/` 一起换进 `src/home/`。
+- 旧地址都保留：`support.html?lang=en&doc=terms#s2`、`#terms`、`#oss`、旧的 `#privacy`（转到隐私政策）、`#guide`（转到使用攻略）；旧攻略的地址不变，`guides/credits.html` 转到 `credits.html`。由 `tests/pages.test.cjs` 检查。
+- 下面关于 DC 导出包、`src/support.html`、`src/guides/` 和独立维护 `privacy.html` 的说明是 11-09 以前的做法，留作记录。
 ## 首页（2026-11-09 起：D 整页）
 
 `src/home/` 是新首页：`nsuve/index.html`（中文，地址 nsurator.com/nsuve/）、`nsuve/en/index.html`（英文）和 `home-assets/`（图片、字体）；根目录的 `index.html` 和 `en/index.html` 只做跳转，带着查询参数和 `#` 跳到 `/nsuve/` 和 `/nsuve/en/`（2026-11-09 负责人：「域名地址改成 nsurator.com/nsuve，并且把这个作为首页」）。它们是生成出来的静态页，不再走 DC 导出包：

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var K='nsurator-site-lang',q=new URLSearchParams(location.search),want=q.get('lang');
+if(want!=='zh'&&want!=='en'){want=null;try{var s=localStorage.getItem(K);if(s==='zh'||s==='en')want=s}catch(e){}}else{try{localStorage.setItem(K,want)}catch(e){}}
+document.documentElement.dataset.lang="en";
+if(want&&want!=="en")location.replace("/guides/build-your-library.html"+location.search+location.hash);})();</script>
+<title>Build your library: from folders to a poster wall · Nsuve Guides</title>
+<meta name="description" content="Add folders, external drives and NAS shares to Nsuve and let it recognize your films and shows. Use local NFO files and artwork, fix a wrong match, and choose between the built-in Nsurator Library DB and your own TMDB key.">
+<link rel="canonical" href="https://nsurator.com/guides/en/build-your-library.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://nsurator.com/guides/build-your-library.html">
+<link rel="alternate" hreflang="en" href="https://nsurator.com/guides/en/build-your-library.html">
+<link rel="alternate" hreflang="x-default" href="https://nsurator.com/guides/build-your-library.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nsurator">
+<meta property="og:title" content="Build your library: from folders to a poster wall · Nsuve Guides">
+<meta property="og:description" content="Add folders, external drives and NAS shares to Nsuve and let it recognize your films and shows. Use local NFO files and artwork, fix a wrong match, and choose between the built-in Nsurator Library DB and your own TMDB key.">
+<meta property="og:url" content="https://nsurator.com/guides/en/build-your-library.html">
+<meta property="og:image" content="https://nsurator.com/home-assets/web/page-d-first.jpg">
+<meta name="theme-color" content="#EEE7DB">
+<link rel="icon" type="image/png" href="/home-assets/AppIcon-1024.png">
+<link rel="apple-touch-icon" href="/home-assets/AppIcon-1024.png">
+<link rel="preload" href="/home-assets/fonts/851GBaiMarker-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
+@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+:root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.8 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--rust);text-underline-offset:3px}
+img{max-width:100%}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
+.skip:focus{left:12px}
+.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
+/* header: the phone header's frosted bar, full width */
+.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-mark{display:block;line-height:0;margin-right:auto}
+.hd-mark img{height:28px;width:auto;display:block}
+.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav a[aria-current]{color:var(--rust)}
+.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
+.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
+.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
+@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
+  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
+@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* page head */
+.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
+.eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
+.eb a{color:inherit;text-decoration:none}
+h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
+h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+.lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+/* body: text column + table of contents */
+.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
+.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
+.toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
+.toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
+.doc{min-width:0;max-width:760px}
+.doc section{margin:0 0 56px}
+.doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+.doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
+.doc p,.doc li{color:var(--ink2);text-wrap:pretty}
+.doc p{margin:0 0 16px}
+.doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
+.doc li+li{margin-top:6px}
+.doc b,.doc strong{color:var(--ink);font-weight:700}
+.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
+.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
+.note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
+.note p:last-child{margin:0}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
+.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
+.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:700;color:var(--ink)}
+.tbl td{color:var(--ink2)}
+figure.shot{margin:8px 0 28px}
+figure.shot img{display:block;width:100%;height:auto;border-radius:14px;background:#1B1714}
+figure.shot.dev-phone img{max-width:360px;border-radius:28px}
+figure.shot.dev-tv img,figure.shot.dev-vision img{border-radius:18px}
+figure.shot figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink3)}
+details{margin:0 0 10px;border-radius:16px;background:rgba(255,255,255,.55)}
+details summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;font:700 17px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink)}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
+details[open] summary::after{content:'–'}
+details>div{padding:0 20px 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
+.cards a:hover{background:rgba(255,255,255,.8)}
+.cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
+.cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
+.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
+[data-doc][hidden]{display:none!important}
+.next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+/* footer: the homepage's dark end */
+.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.ft-in{max-width:1120px;margin:0 auto}
+.ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+.ft-brand img.w{height:30px;width:auto;display:block}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by img{height:22px;width:auto}
+.ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
+.ft-links a{color:#F2EBDF;text-decoration:none}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+/* zh titles drawn as SVG */
+.zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-g{white-space:nowrap}
+svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <a class="hd-mark" href="/nsuve/en/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
+  <nav class="hd-nav" aria-label="Main"><a href="/nsuve/en/">Home</a><a href="/guides/en/" aria-current="page">Guides</a><a href="/en/support.html">Support</a><a href="/privacy.html#english">Privacy</a></nav>
+  <div class="hd-lang"><a href="/guides/build-your-library.html?lang=zh" lang="zh-CN" hreflang="zh-Hans">中</a><a href="/guides/en/build-your-library.html?lang=en" lang="en" hreflang="en" aria-current="true">EN</a></div>
+  <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-en.svg" alt="Download on the Mac App Store" width="108" height="32"></a>
+</header>
+<div class="pg"><div class="ph">
+  <p class="eb"><a href="/guides/en/">Guides</a> · Getting started</p>
+  <h1 class="t">From folders to a poster wall</h1>
+  <p class="lead">Tell Nsuve where your films are. It reads the folders, recognizes what's inside and adds the artwork. Your files stay exactly where they are.</p>
+  <ul class="meta"><li>7 min read</li><li>For Mac, iPhone, iPad</li></ul>
+</div>
+<div class="wrap"><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#folders">Start with one folder</a></li><li><a href="#recognize">How Nsuve recognizes films</a></li><li><a href="#local">Use your local NFO files and artwork</a></li><li><a href="#fix">Fix a wrong match</a></li><li><a href="#sources">The built-in library or your own TMDB key</a></li></ol></nav><main class="doc" id="main"><section id="folders">
+<h2>Start with one folder</h2>
+<p>There's no need to add your whole collection on day one. Pick a folder with a few films you know well and make sure each one shows up in the list, has the right details and plays. Then add the rest.</p>
+<p>On the Mac:</p>
+<ol class="steps">
+<li>Open <b>List</b> in the Workbench sidebar, click the source menu at the top (it usually reads <b>All Sources</b>) and choose <b>Folders in List…</b>.</li>
+<li>For a folder on this Mac, click <b>Add Folder…</b>. For a folder on your NAS, click <b>Add NAS Folder…</b> (connect the NAS under Media Sources first). Subfolders are included.</li>
+<li>Answer <b>What's in…?</b>: Movies, TV Shows or Mixed.</li>
+<li>Pick <b>Where info comes from</b> (see the table below) and click <b>Add to List</b>. Nsuve starts scanning, and films appear in the list as they're recognized.</li>
+</ol>
+<p>External drives work the same way. Plug in a drive Nsuve hasn't seen while the app is open and it offers to add it. Unplug it and the drive shows as <b>Not connected</b>; everything Nsuve knows about those films stays, and they play again as soon as the drive is back.</p>
+<p>On iPhone and iPad, the poster wall comes from your NAS and media servers. Connect them under <b>Sources</b> and Nsuve recognizes the films on your NAS and lays them out as a library. See <a href="/guides/en/connect-sources.html">Connect your NAS, servers and drives</a>.</p>
+<aside class="note"><strong>Tip</strong><p>Folders in the list are indexed, never rearranged. If you want new downloads moved into your library by a set of rules, that's the Inbox's job; see <a href="/guides/en/organize-and-deduplicate.html">Inbox first, then duplicates</a>.</p></aside>
+</section>
+
+<section id="recognize">
+<h2>How Nsuve recognizes films</h2>
+<p>Nsuve starts with the file and folder names and reads out the title, year, season and episode. If there's an NFO or artwork next to the video, it reads those too. Then it looks the title up and fills in the overview, artwork and cast.</p>
+<p>By default it asks the <b>Nsurator Library DB</b>, which is built into Nsuve. Its data comes from TMDB and Bangumi, so recognition works without any key. What goes out is a query (title, year, season and episode numbers), never the video itself.</p>
+<p>When the same film sits in more than one place, say once on your NAS and once on Emby, Nsuve matches the copies by their TMDB, IMDb and TVDB IDs and shows the film once on the poster wall.</p>
+<figure class="shot dev-mac"><img src="/guides/assets/shots/build-your-library-1.jpg" alt="A title page in Nsuve for Mac: the backdrop, title and overview of Sintel, with two versions listed below" width="1440" height="900" loading="lazy" decoding="async"><figcaption>Every recognized title gets its own page, with the title, overview, the versions you have and where each one lives.</figcaption></figure>
+<p>Open a film and check three things: the title and year, whether the overview fits, and whether the version listed is the file you meant. If all three look right, hit <b>Play</b>.</p>
+</section>
+
+<section id="local">
+<h2>Use your local NFO files and artwork</h2>
+<p>If tools like Kodi or Jellyfin have tidied your collection before, you'll often find NFO files and images next to the videos. An NFO is a small text file with the title, year and overview. With one film per folder, this layout works:</p>
+<ul>
+<li><code>Interstellar (2014)/Interstellar.2014.mp4</code>: the film</li>
+<li><code>Interstellar (2014)/movie.nfo</code>: title, year and overview</li>
+<li><code>Interstellar (2014)/poster.jpg</code>: the portrait poster</li>
+<li><code>Interstellar (2014)/fanart.jpg</code>: the landscape backdrop</li>
+</ul>
+<p>If several films share a folder, name the extras after the video, like <code>Interstellar.2014.nfo</code> and <code>Interstellar.2014-poster.jpg</code>, so they aren't taken as info for the whole folder.</p>
+<p><b>Where info comes from</b> decides how local and online info mix:</p>
+<div class="tbl"><table>
+<thead><tr><th>Option</th><th>Good for</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td>Local first (default)</td><td>Some films already have NFO files and artwork</td><td>Uses the NFO and artwork when they're there, and fills the gaps online.</td></tr>
+<tr><td>Online first</td><td>You'd rather use the library's info</td><td>Looks online first; titles, overviews and artwork come from there.</td></tr>
+<tr><td>Local only</td><td>Your info is complete, or you'd rather stay offline</td><td>Never goes online: NFO files, artwork and file names only.</td></tr>
+</tbody>
+</table></div>
+<p>On the Mac you set this per folder in <b>Folders in List…</b>. On iPhone and iPad you set it per NAS, under <b>Recognition</b> in <b>Edit Source…</b>.</p>
+<p>Want other apps to see your work? On the Mac, <b>Settings → Library</b> has <b>Generate NFO Files for Videos</b>: a movie gets <code>movie.nfo</code>, a show gets <code>tvshow.nfo</code> plus one per episode, and Kodi and Jellyfin read them as they are.</p>
+</section>
+
+<section id="fix">
+<h2>Fix a wrong match</h2>
+<p>Films with the same name, remakes or a wrong year can now and then be matched to the wrong title. Fix those before you archive or reorganize, so the wrong name doesn't end up in your folders.</p>
+<ol class="steps">
+<li>Choose <b>Fix Match…</b> from the <b>⋯</b> menu on the title page, the right-click menu in the list, or the details sidebar.</li>
+<li>Say whether it's a movie or a TV show, adjust the title and year, and search. No luck? Try without the year, or another spelling.</li>
+<li>Pick the right result and confirm. If none of them fit, choose <b>Fill In Manually…</b>.</li>
+<li>To keep future refreshes from changing the title and poster you settled on, turn on <b>Lock Info</b>.</li>
+</ol>
+<p>Don't like the poster? Choose <b>Change Artwork…</b> and pick from the posters and backdrops on offer, drag in your own image, or use <b>Paste Copied Image</b>.</p>
+<p>iPhone and iPad have <b>Fix Match</b> too. When you tap <b>Recognize This NAS Again</b> in <b>Edit Source…</b>, the matches you fixed by hand are kept.</p>
+</section>
+
+<section id="sources">
+<h2>The built-in library or your own TMDB key</h2>
+<p>Nsuve recognizes films without anything filled in. If you'd like a second route, add your own TMDB key. It's optional, it stays in this device's keychain, and when Nsuve uses it, it talks to TMDB directly.</p>
+<ol class="steps">
+<li>On the Mac, open <b>Settings → Movies &amp; TV</b>; on iPhone and iPad, open <b>Manage → Movie &amp; Show Info</b>. Find <b>My TMDB Key</b>.</li>
+<li>Sign in at themoviedb.org (creating an account is free), open <b>Settings › API</b> and request a key.</li>
+<li>Copy the string next to <b>API Key</b> and paste it into Nsuve. On the Mac, clicking <b>Paste</b> checks the key straight away; when it says <b>Ready</b>, you're done.</li>
+</ol>
+<p>Once the key works, a new choice appears: <b>Ask</b>. It decides who is asked first when new films are recognized and when you search in <b>Fix Match</b>. Titles that are already recognized keep refreshing from wherever they were found.</p>
+<ul>
+<li><b>Nsurator Library DB First</b> (default): if it can't find a title or can't be reached, ask TMDB with your key.</li>
+<li><b>My TMDB First</b>: if TMDB can't find it or can't be reached, ask the Nsurator Library DB.</li>
+<li><b>Only Nsurator Library DB</b>: your key isn't used for now; it stays saved.</li>
+<li><b>Only My TMDB</b>: nothing is sent to the Nsurator Library DB.</li>
+</ul>
+<figure class="shot dev-mac"><img src="/guides/assets/shots/build-your-library-2.jpg" alt="Movies &amp; TV settings in Nsuve for Mac: the Nsurator Library DB and My TMDB Key both ready, with the four Ask options on the right" width="1440" height="900" loading="lazy" decoding="async"><figcaption>Settings → Movies &amp; TV. With both sources ready, all four Ask options are available.</figcaption></figure>
+<p>The same page sets the info language, the artwork language and how often info is refreshed. To keep a folder offline on the Mac, set its <b>Where info comes from</b> to <b>Local only</b>. On iPhone and iPad you can turn off <b>Recognize Online</b> on the same settings page, and the first time Nsuve wants to recognize online it asks you with a card.</p>
+</section>
+
+<div class="next"><h2>Read next</h2><ul class="cards"><li><a href="/guides/en/connect-sources.html"><em>Getting started</em><b>Connect your NAS, servers and drives</b><span>Connect a NAS (SMB, WebDAV, SFTP; Synology, QNAP, fnOS), Emby, Jellyfin, Plex and cloud drives to Nsuve and get one library. What each device can connect, and what happens when a source is offline.</span></a></li><li><a href="/guides/en/organize-and-deduplicate.html"><em>Organizing</em><b>Inbox first, then duplicates</b><span>On the Mac, let the Inbox recognize new downloads and archive them into your library by your rules, with Stop and Undo at hand; then use Duplicates to find spare copies and move them to the Trash.</span></a></li></ul></div>
+</main></div></div>
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><img class="w" src="/home-assets/brand/nsuve-cream.svg" alt="Nsuve" width="96" height="30"><div class="ft-by">by <img src="/home-assets/brand/nsurator-swatch-cream.svg" alt="Nsurator" width="110" height="22"></div></div>
+      <nav class="ft-links" aria-label="Footer"><a href="/en/support.html">Support</a><a href="/privacy.html#english">Privacy</a><a href="/en/support.html?doc=terms#terms">Terms</a><a href="/guides/en/">Guides</a><a href="/en/support.html?doc=oss#oss">Open source</a><a href="/en/credits.html">Credits</a></nav>
+    </div>
+    <div class="ft-note"><span>Film and TV data and images come from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</span><span>© 2026 Nsurator</span></div>
+    <div class="ft-reg"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
+  </div>
+</footer>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
+</body>
+</html>

@@ -109,11 +109,7 @@ function harness({ reducedMotion = false, count = 1, compact = false, types = []
   };
 }
 
-test('the support page still loads the motion runtime before DC mounts it', () => {
-  // The homepage moved to the static D page on 2026-11-09 and carries its own motion (tests/home.test.cjs).
-  const html = readFileSync(join(__dirname, '../src/support.html'), 'utf8');
-  assert.ok(html.indexOf('__SITE_MOTION__') < html.indexOf('<x-dc>'), 'motion must load before DC mounts the page');
-});
+// 2026-11-09: the support page is a static generated page now (tests/pages.test.cjs); no page mounts the DC runtime any more.
 
 test('mobile reduces travel while each entrance returns to the original layout', () => {
   const types = ['feature', 'screen', 'hero-title', 'diagnostic'];

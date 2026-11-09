@@ -1,1 +1,243 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>让 AI 帮你找片，从只读权限开始 · Nsurator 使用攻略</title><meta name="description" content="先分清读取、播放控制和修改权限，再把 Claude Code 等工具连接到 Nsurator。"><meta name="theme-color" content="#f8f6f2"><link rel="icon" href="assets/logo.png"><link rel="stylesheet" href="assets/style.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "让 AI 帮你找片，从只读权限开始", "description": "先分清读取、播放控制和修改权限，再把 Claude Code 等工具连接到 Nsurator。", "inLanguage": "zh-CN", "author": {"@type": "Organization", "name": "Nsurator"}, "dateModified": "2026-09-30"}</script><script defer src="assets/site.js"></script></head><body><a class="skip-link" href="#main">跳到正文</a><header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Nsurator 攻略首页"><img src="assets/logo.png" width="34" height="34" alt=""><span>Nsurator</span></a><span class="nav-divider"></span><a class="nav-title" href="index.html">使用攻略</a><nav aria-label="主导航"><a href="index.html#guides">全部攻略</a><a href="index.html#questions">常见问题</a><a href="/?lang=zh">官网首页</a></nav><a class="nav-cta" href="build-your-library.html">从这里开始 <span aria-hidden="true">→</span></a></div></header><div class="reading-progress" aria-hidden="true"></div><main id="main" class="article-page"><div class="article-heading wrap"><nav class="breadcrumb" aria-label="当前位置"><a href="index.html">使用攻略</a><span aria-hidden="true">/</span><span>进阶使用</span></nav><div class="article-label">AI 工具连接与权限</div><h1>让 AI 帮你找片，从只读权限开始</h1><p class="article-deck">先分清读取、播放控制和修改权限，再把 Claude Code 等工具连接到 Nsurator。</p><div class="article-meta"><span>约 6 分钟阅读</span><span>适用 macOS 版 5.9.17</span><button type="button" class="copy-link">复制文章链接 <span aria-hidden="true">↗</span></button></div></div><div class="wrap article-hero"><figure class="screen screen-lead"><img src="assets/screenshots/16-AI工具连接说明.png" alt="AI 工具 · Claude Code 连接说明" width="2938" height="1586" fetchpriority="high" decoding="async"><figcaption>工具连接说明：请从你自己的 App 复制命令，勿照抄图中路径。 <a href="credits.html">素材署名</a></figcaption></figure></div><div class="article-layout wrap"><aside class="toc"><details open><summary>本篇内容</summary><nav aria-label="文章目录"><a href="#scope">先看权限，再打开连接</a><a href="#connect">选择工具，复制这台 Mac 的命令</a><a href="#try">从一条不会改文件的请求开始</a><a href="#review">用最近活动核对结果</a></nav></details><a class="back-guides" href="index.html#guides">← 浏览全部攻略</a></aside><article class="prose"><p class="lead">AI 可以从一句自然语言开始找影片，但它能看到什么、能改什么，应当由你决定。第一次连接时，先完成一次只读查询，确认范围正确，再逐步开放确实需要的操作。</p><div class="learning"><strong>读完你可以</strong><ul><li>理解总开关与各项权限</li><li>从 App 复制本机连接命令</li><li>用只读查询检查连接结果</li></ul></div><section id="scope" class="article-section"><h2>先看权限，再打开连接</h2><p>AI 连接属于 Pro 功能。打开工作台侧栏「AI 智能体」，先阅读权限列表：读取普通影片库、读取播放状态、控制播放器、修改影片资料、人物识别、归档文件和清理重复项，分别控制不同能力。</p><figure class="screen "><img src="assets/screenshots/15-AI权限设置.png" alt="AI 智能体 · 权限设置" width="2938" height="1586" loading="lazy" decoding="async"><figcaption>AI 总开关关闭时，权限呈灰色。截图使用本地 Pro 预览，尚未启用连接。 <a href="credits.html">素材署名</a></figcaption></figure><p>确认拥有 Pro 后，打开「允许 AI 与自动化连接」。第一次使用，先只开放你需要的读取权限，再配置工具。查找片名通常需要读取普通影片库；知道当前播放到哪里，需要读取播放状态。让 AI 暂停或跳转影片，则还需要控制播放器。</p><p>修改影片资料和归档、清理文件，是更进一步的操作。等只读查询工作正常，并且你理解结果会写到哪里，再按任务开启。私密空间始终排除在 AI 接口之外，即使它在 App 中已经解锁。</p></section><section id="connect" class="article-section"><h2>选择工具，复制这台 Mac 的命令</h2><ol><li>确认需要使用的 AI 工具已经安装。</li><li>在 Nsurator 的「连接工具」中选择它，例如 Claude Code。</li><li>阅读对应说明，点击「复制命令」。</li><li>按页面提示在终端执行，随后在该工具中确认 Nsurator 连接是否可用。</li></ol><p>命令包含这台 Mac 的实际运行路径，应该从你自己的 App 里复制。不要照抄本文截图中的临时演示目录。不同 AI 工具的配置方式不完全相同，以选中工具后显示的说明为准。</p><p>「已检测到」表示 App 找到了工具，不等于连接已经成功。配置完成后还需要发起一次实际查询，再看返回结果和最近活动。</p><aside class="note"><strong>关于本地连接与模型服务</strong><p>Nsurator 的接口在这台 Mac 上提供。AI 工具如何把查询结果用于远程模型，取决于工具自身的工作方式与设置；“本地接口”不代表所有模型处理都留在本机。</p></aside></section><section id="try" class="article-section"><h2>从一条不会改文件的请求开始</h2><p>先选择一个结果容易核对的问题，例如：</p><blockquote>帮我列出影片库里已经有的 Blender 开放电影，只查询，不修改资料或文件。</blockquote><p>拿返回的片名与清单对照。结果正确以后，再尝试更明确的查询，例如按片名找文件，或在开放播放状态权限后询问当前播放进度。</p><p>你也可以请求一份片单建议，但“给建议”和“把建议保存为合集”需要的权限不同。只开放读取时，就先让 AI 返回文字片单，自己核对后再决定是否允许写入。</p><p>演示截图里的「最近活动」为空，因为这套截图环境没有连接真实 AI 工具。它用于说明界面入口和权限边界，不表示已经完成一次 AI 操作。</p></section><section id="review" class="article-section"><h2>用最近活动核对结果</h2><p>实际使用后，查看页面下方「最近活动」，检查工具请求了什么、是否执行成功。遇到权限提示时，先判断这个任务是否确实需要该权限，再去调整；不要为了消除提示一次打开所有权限。</p><p>不再需要 AI 访问时，可以关闭总开关。为不同工具管理访问时，页面还提供专属令牌相关入口，便于分别限制或撤销工具的访问。</p><p>如果准备让 AI 参与整理，建议先读归档与重复项攻略。你越清楚 App 如何比较文件、怎样预览归档结果，越容易审阅 AI 提交的操作建议。</p></section><div class="article-end"><span class="end-dot" aria-hidden="true"></span><p>步骤与界面依据 2026 年 9 月的本地版本核对。部分收藏与续播进度为演示数据，图片来源见<a href="credits.html">素材署名</a>。</p></div><section class="related"><h2>接下来可以读</h2><div class="related-list"><a class="related-item" href="build-your-library.html"><span>开始使用</span><h3>从文件夹到电影库</h3><span class="related-arrow" aria-hidden="true">↗</span></a><a class="related-item" href="watch-and-resume.html"><span>观看影片</span><h3>播放、续播与画面设置</h3><span class="related-arrow" aria-hidden="true">↗</span></a></div></section></article></div></main><footer class="site-footer"><div class="footer-top"><a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="30" height="30"><span>Nsurator</span></a><p>你的影片，你的观看方式。</p><div><a href="index.html">攻略首页</a><a href="credits.html">素材署名</a><a href="/support.html?lang=zh#support" target="_blank" rel="noopener">联系支持 ↗</a></div></div><div class="footer-bottom"><span>界面与步骤依据 macOS 版 5.9.17 (8) · 2026 年 9 月整理</span><span>电影图片与画面来自 Blender 开放电影 · <a href="credits.html">查看完整署名</a></span></div></footer><div class="toast" role="status" aria-live="polite"></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var K='nsurator-site-lang',q=new URLSearchParams(location.search),want=q.get('lang');
+if(want!=='zh'&&want!=='en'){want=null;try{var s=localStorage.getItem(K);if(s==='zh'||s==='en')want=s}catch(e){}}else{try{localStorage.setItem(K,want)}catch(e){}}
+document.documentElement.dataset.lang="zh";
+if(want&&want!=="zh")location.replace("/guides/en/connect-ai-tools.html"+location.search+location.hash);})();</script>
+<title>把 AI 工具连上 Nsuve · Nsuve 使用攻略</title>
+<meta name="description" content="在 Mac 的「AI 智能体」页打开本机连接，按需要一项项开权限，再把 Claude Code、Codex、Cursor 等工具接上来找片、控制播放。">
+<link rel="canonical" href="https://nsurator.com/guides/connect-ai-tools.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://nsurator.com/guides/connect-ai-tools.html">
+<link rel="alternate" hreflang="en" href="https://nsurator.com/guides/en/connect-ai-tools.html">
+<link rel="alternate" hreflang="x-default" href="https://nsurator.com/guides/connect-ai-tools.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nsurator">
+<meta property="og:title" content="把 AI 工具连上 Nsuve · Nsuve 使用攻略">
+<meta property="og:description" content="在 Mac 的「AI 智能体」页打开本机连接，按需要一项项开权限，再把 Claude Code、Codex、Cursor 等工具接上来找片、控制播放。">
+<meta property="og:url" content="https://nsurator.com/guides/connect-ai-tools.html">
+<meta property="og:image" content="https://nsurator.com/home-assets/web/page-d-first.jpg">
+<meta name="theme-color" content="#EEE7DB">
+<link rel="icon" type="image/png" href="/home-assets/AppIcon-1024.png">
+<link rel="apple-touch-icon" href="/home-assets/AppIcon-1024.png">
+<style>
+@font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
+@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+:root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.8 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--rust);text-underline-offset:3px}
+img{max-width:100%}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
+.skip:focus{left:12px}
+.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
+/* header: the phone header's frosted bar, full width */
+.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-mark{display:block;line-height:0;margin-right:auto}
+.hd-mark img{height:28px;width:auto;display:block}
+.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav a[aria-current]{color:var(--rust)}
+.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
+.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
+.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
+@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
+  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
+@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* page head */
+.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
+.eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
+.eb a{color:inherit;text-decoration:none}
+h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
+h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+.lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+/* body: text column + table of contents */
+.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
+.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
+.toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
+.toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
+.doc{min-width:0;max-width:760px}
+.doc section{margin:0 0 56px}
+.doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+.doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
+.doc p,.doc li{color:var(--ink2);text-wrap:pretty}
+.doc p{margin:0 0 16px}
+.doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
+.doc li+li{margin-top:6px}
+.doc b,.doc strong{color:var(--ink);font-weight:700}
+.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
+.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
+.note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
+.note p:last-child{margin:0}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
+.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
+.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:700;color:var(--ink)}
+.tbl td{color:var(--ink2)}
+figure.shot{margin:8px 0 28px}
+figure.shot img{display:block;width:100%;height:auto;border-radius:14px;background:#1B1714}
+figure.shot.dev-phone img{max-width:360px;border-radius:28px}
+figure.shot.dev-tv img,figure.shot.dev-vision img{border-radius:18px}
+figure.shot figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink3)}
+details{margin:0 0 10px;border-radius:16px;background:rgba(255,255,255,.55)}
+details summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;font:700 17px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink)}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
+details[open] summary::after{content:'–'}
+details>div{padding:0 20px 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
+.cards a:hover{background:rgba(255,255,255,.8)}
+.cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
+.cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
+.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
+[data-doc][hidden]{display:none!important}
+.next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+/* footer: the homepage's dark end */
+.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.ft-in{max-width:1120px;margin:0 auto}
+.ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+.ft-brand img.w{height:30px;width:auto;display:block}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by img{height:22px;width:auto}
+.ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
+.ft-links a{color:#F2EBDF;text-decoration:none}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+/* zh titles drawn as SVG */
+.zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-g{white-space:nowrap}
+svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="zg-8ba9" d="M247 -112Q213 -138 193 -163Q173 -188 173 -203Q173 -212 182 -251Q189 -281 196 -346Q202 -411 199 -420Q197 -424 193 -423Q189 -422 176 -416Q149 -402 124 -407Q98 -412 71 -436Q65 -441 58 -450Q52 -458 50 -463Q45 -473 45 -478Q45 -482 50 -494Q57 -514 80 -532Q102 -551 143 -570Q188 -592 212 -600Q235 -607 255 -607Q274 -607 284 -602Q295 -597 313 -579Q331 -561 336 -548Q341 -534 339 -510Q337 -482 329 -451Q319 -414 316 -402Q313 -391 313 -383Q313 -375 316 -376Q320 -376 372 -460Q382 -477 391 -490Q400 -502 402 -503Q404 -504 408 -502Q411 -501 414 -499Q419 -494 418 -488Q418 -482 414 -458Q407 -426 374 -327Q341 -228 323 -186Q303 -138 291 -118Q279 -98 272 -98Q269 -98 262 -102Q254 -106 247 -112ZM389 -184Q380 -187 376 -195Q374 -199 372 -210Q371 -220 371 -232Q371 -248 374 -260Q376 -272 382 -289Q391 -312 398 -318Q405 -323 413 -315Q419 -309 424 -309Q430 -309 450 -316Q471 -324 486 -326Q492 -327 496 -329Q501 -331 501 -333Q501 -338 494 -383Q490 -411 488 -454Q487 -498 487 -615Q487 -725 488 -767Q489 -809 492 -817Q500 -840 519 -856Q538 -871 553 -868Q563 -866 583 -848Q603 -830 613 -813L624 -795L623 -653Q623 -635 624 -630Q626 -626 629 -627Q648 -636 672 -642Q695 -649 707 -649Q719 -649 724 -648Q730 -646 733 -642Q740 -633 744 -611Q747 -589 745 -571Q742 -546 733 -530Q724 -515 704 -503Q684 -491 643 -475L612 -462L613 -422Q614 -386 616 -372Q618 -359 622 -359Q627 -359 682 -381Q737 -403 748 -408Q758 -414 766 -414Q774 -414 796 -389Q818 -364 830 -340Q844 -313 848 -291Q851 -278 851 -272Q851 -265 848 -259Q841 -246 826 -240Q810 -233 777 -230Q684 -221 640 -215Q596 -209 538 -197Q474 -184 438 -181Q403 -178 389 -184ZM236 -686Q218 -695 202 -713Q186 -731 180 -749Q175 -764 175 -789Q175 -804 176 -812Q178 -820 184 -829Q192 -843 209 -855Q226 -867 240 -869Q264 -874 290 -858Q316 -843 330 -817Q341 -797 344 -772Q346 -746 340 -730Q330 -707 310 -692Q289 -676 268 -676Q263 -676 254 -679Q244 -682 236 -686Z"/><path id="zg-5e2e" d="M405 -49Q397 -57 388 -67Q380 -77 376 -84Q372 -92 370 -100Q368 -110 368 -136L366 -219Q366 -268 364 -304Q363 -340 362 -341Q359 -345 334 -332Q310 -318 303 -309Q298 -304 296 -296Q295 -287 295 -268Q295 -230 286 -207Q277 -184 262 -184Q258 -184 250 -188Q242 -191 234 -196Q223 -204 216 -212Q210 -220 202 -235Q193 -253 190 -264Q188 -274 187 -300Q185 -332 188 -349Q192 -366 202 -375Q212 -384 234 -392Q252 -398 300 -419L347 -439L344 -475Q342 -511 344 -519Q346 -525 350 -526Q355 -527 370 -527Q394 -527 416 -521Q437 -515 438 -516Q440 -518 432 -549Q424 -580 420 -620Q416 -661 416 -725Q415 -764 415 -775Q416 -790 418 -796Q419 -803 425 -813Q436 -831 460 -847Q487 -864 548 -894Q609 -923 622 -925Q632 -926 638 -924Q645 -922 657 -913Q665 -908 674 -899Q683 -890 688 -883Q698 -869 700 -856Q701 -842 694 -822Q686 -803 666 -769Q651 -743 651 -741Q651 -739 664 -734Q677 -730 693 -716Q709 -703 713 -692Q722 -671 708 -637Q695 -603 670 -580Q650 -563 630 -551L605 -536Q601 -534 606 -528Q610 -522 625 -507Q640 -492 646 -482Q652 -473 657 -460Q664 -437 662 -417Q659 -397 639 -344Q619 -291 602 -260Q585 -229 570 -209Q554 -189 547 -188Q531 -186 497 -214Q489 -221 482 -225Q476 -229 474 -228Q473 -226 474 -155Q476 -84 471 -73Q466 -58 454 -44Q442 -31 434 -31Q430 -31 422 -36Q414 -41 405 -49ZM504 -296Q515 -313 526 -346Q538 -378 538 -394Q538 -402 536 -404Q534 -406 529 -406Q520 -406 495 -397L469 -389L470 -352Q471 -314 473 -294Q475 -282 476 -278Q478 -273 482 -273Q485 -273 491 -280Q497 -286 504 -296ZM148 -391Q127 -401 151 -445Q156 -453 159 -461Q162 -469 161 -471Q159 -476 136 -474Q122 -472 114 -474Q106 -475 94 -482Q78 -490 62 -506Q45 -523 45 -532Q45 -542 62 -550Q79 -559 122 -570Q202 -592 202 -601Q202 -604 198 -604Q193 -605 180 -604Q167 -602 162 -603Q157 -604 151 -610Q143 -619 135 -636Q128 -649 128 -656Q129 -663 138 -669Q146 -675 166 -683Q179 -689 188 -694Q198 -698 198 -700Q198 -703 168 -701Q145 -699 138 -700Q132 -702 118 -711Q100 -723 95 -734Q90 -745 98 -753Q105 -761 148 -784Q192 -806 196 -810Q201 -813 202 -855Q204 -889 209 -904Q214 -918 229 -931Q240 -940 258 -943Q275 -946 288 -942Q302 -937 316 -924Q329 -910 337 -892Q346 -872 362 -862Q377 -851 384 -834Q390 -816 387 -804Q384 -793 374 -779Q363 -765 350 -756Q335 -745 335 -741Q335 -737 349 -722Q363 -706 362 -694Q362 -681 346 -666Q340 -660 336 -654Q332 -649 334 -647Q335 -645 355 -647Q368 -648 374 -647Q379 -646 384 -641Q388 -637 390 -632Q393 -627 393 -624Q393 -610 327 -549Q305 -529 284 -493Q264 -459 240 -433Q215 -407 193 -397Q176 -389 167 -388Q158 -387 148 -391ZM549 -514Q573 -523 585 -528Q597 -534 593 -536Q589 -537 560 -566Q530 -594 528 -594Q525 -594 524 -586Q522 -577 521 -565Q518 -537 512 -522Q506 -508 506 -506Q506 -503 518 -505Q529 -507 549 -514ZM573 -637Q591 -640 602 -646Q612 -651 612 -659Q612 -664 595 -676Q578 -688 560 -696Q552 -700 546 -704Q540 -709 540 -712Q539 -714 542 -722Q544 -731 549 -741Q559 -760 560 -770Q562 -781 555 -781Q552 -781 546 -778Q541 -774 535 -768L522 -755L524 -628L536 -631Q547 -633 573 -637Z"/><path id="zg-4f60" d="M267 -119Q258 -127 247 -138Q236 -150 230 -159Q219 -176 217 -184Q215 -193 214 -223Q213 -264 217 -342Q221 -420 220 -422Q218 -423 186 -390Q153 -357 128 -344Q117 -339 107 -336Q97 -332 93 -332Q83 -332 64 -344Q45 -356 45 -362Q45 -368 55 -398L75 -463Q85 -497 170 -668Q220 -770 240 -807Q261 -844 271 -854Q284 -867 294 -872Q305 -876 316 -874Q325 -871 346 -854Q367 -838 380 -814Q394 -790 394 -770Q394 -735 357 -675Q337 -643 322 -613Q312 -595 310 -584Q307 -574 309 -560Q311 -548 320 -520Q325 -502 327 -490Q329 -474 330 -440Q331 -413 332 -330Q334 -228 333 -197Q332 -166 328 -152Q322 -133 312 -118Q303 -102 296 -102Q294 -102 285 -107Q276 -112 267 -119ZM590 -128Q562 -147 534 -175Q505 -203 490 -227Q478 -246 476 -246Q475 -246 464 -240Q452 -234 440 -236Q428 -238 406 -249Q369 -267 363 -296Q359 -319 397 -371Q414 -393 428 -406Q442 -418 452 -418Q462 -418 480 -408Q497 -398 507 -387Q517 -376 518 -363Q519 -350 510 -331Q502 -312 502 -302Q502 -293 512 -280Q522 -267 530 -264Q539 -261 543 -262Q547 -264 548 -273Q549 -282 548 -305L544 -368Q537 -467 537 -513Q538 -540 536 -550Q535 -559 532 -559Q526 -559 504 -542Q482 -524 455 -497L421 -464L412 -474Q401 -485 389 -510Q377 -534 377 -544Q377 -557 384 -580Q391 -603 419 -680Q451 -772 461 -813Q471 -854 476 -864Q480 -875 493 -887Q515 -906 544 -894Q560 -887 576 -875Q591 -863 598 -852Q604 -844 606 -836Q608 -829 608 -818Q608 -779 584 -734Q572 -711 573 -707Q574 -706 582 -709Q589 -712 599 -718Q635 -742 675 -758Q715 -773 737 -773Q749 -773 769 -762Q789 -751 810 -732Q846 -700 846 -669Q846 -659 840 -650Q833 -642 805 -615Q770 -580 748 -566Q725 -551 706 -551Q697 -551 691 -553Q685 -555 679 -562Q673 -568 672 -574Q670 -580 671 -600Q672 -628 670 -630Q668 -632 663 -630Q658 -628 653 -625L638 -616L641 -592Q643 -568 647 -508Q651 -447 654 -444Q656 -443 661 -446Q666 -448 672 -453Q678 -458 685 -462Q692 -465 696 -465Q705 -465 726 -456Q747 -448 785 -437Q801 -433 816 -428Q830 -422 834 -419Q846 -411 858 -384Q870 -358 872 -337Q875 -313 872 -299Q871 -293 866 -285Q862 -277 856 -271Q846 -260 841 -258Q836 -257 818 -259Q795 -261 766 -275Q737 -289 715 -309Q682 -339 667 -390Q663 -402 659 -406Q655 -409 655 -400Q655 -394 661 -342Q667 -291 665 -236Q664 -199 662 -184Q659 -170 650 -145Q644 -128 639 -118Q634 -107 632 -106Q629 -106 617 -112Q605 -119 590 -128Z"/><path id="zg-627e" d="M487 -888Q475 -873 470 -854Q466 -834 469 -799Q471 -767 481 -707Q485 -682 487 -664Q489 -646 487 -646Q476 -642 448 -622Q420 -602 394 -580Q351 -543 346 -543Q340 -543 342 -556Q344 -569 353 -582Q364 -600 384 -623Q400 -642 405 -649Q411 -658 411 -664Q411 -670 406 -682Q399 -701 375 -724L352 -747L347 -787Q342 -831 329 -852Q316 -873 287 -882Q273 -887 264 -886Q255 -885 244 -877Q229 -866 225 -858Q219 -848 217 -826Q215 -809 214 -757L212 -670L190 -660Q81 -614 59 -590Q53 -584 49 -577Q45 -570 45 -566Q45 -553 74 -530Q104 -508 134 -498Q148 -493 154 -494Q161 -494 178 -500Q203 -508 209 -508Q221 -508 221 -461V-439L155 -385Q100 -339 84 -324Q63 -306 57 -297Q53 -290 53 -280Q53 -250 64 -224Q76 -199 90 -199Q96 -199 119 -211Q138 -221 144 -220Q150 -220 150 -210Q150 -196 155 -188Q160 -181 173 -173Q191 -161 234 -127L237 -125Q269 -100 277 -93Q289 -84 293 -84Q297 -83 302 -87L303 -88Q310 -95 327 -126L344 -158L348 -396L367 -424Q394 -461 411 -475Q428 -489 460 -500Q476 -505 488 -508Q501 -510 503 -509Q508 -508 522 -478Q536 -449 542 -426Q547 -410 546 -405Q546 -400 540 -388Q531 -372 500 -332Q472 -296 462 -282Q450 -266 448 -260Q445 -255 448 -252Q453 -246 475 -240Q497 -234 511 -234Q538 -234 571 -260Q589 -273 592 -273Q595 -273 644 -208Q693 -144 714 -120Q734 -97 751 -87Q780 -68 810 -60Q841 -52 851 -60Q855 -63 855 -69Q855 -75 850 -97L833 -170Q807 -275 797 -328L783 -400Q780 -416 776 -424Q772 -432 769 -429Q766 -426 761 -371Q759 -348 756 -330Q753 -313 752 -311Q744 -303 717 -353L703 -378L718 -424Q732 -469 737 -496Q740 -514 740 -521Q739 -528 733 -540Q726 -555 710 -568Q694 -582 681 -585Q670 -587 670 -589Q670 -591 699 -619Q718 -637 724 -645Q729 -653 732 -667Q743 -719 727 -734L717 -743L729 -757Q737 -766 738 -771Q740 -776 738 -785Q734 -805 728 -816Q721 -827 706 -836Q687 -848 680 -846Q647 -838 636 -834Q624 -831 622 -827Q618 -820 620 -800Q621 -780 627 -765Q635 -744 635 -742Q635 -741 619 -734Q603 -728 602 -730Q600 -732 588 -778Q575 -830 557 -860Q539 -890 515 -899Q504 -903 500 -902Q496 -900 487 -888ZM650 -570Q650 -564 644 -550Q639 -535 637 -535Q635 -535 629 -545Q625 -551 624 -554Q624 -558 627 -563Q631 -571 636 -575Q642 -579 646 -578Q650 -577 650 -570ZM245 -264Q247 -249 244 -242Q240 -235 228 -231Q201 -222 187 -232Q180 -238 184 -245Q188 -252 207 -266Q226 -281 234 -280Q242 -279 245 -264Z"/><path id="zg-7247" d="M500 -68Q479 -82 469 -101Q461 -116 459 -151Q456 -186 456 -290Q455 -433 450 -438Q448 -441 441 -438Q433 -434 416 -423L349 -380Q311 -355 294 -339Q288 -333 278 -318Q268 -303 260 -289Q242 -254 233 -239Q211 -204 184 -179Q156 -154 128 -144Q110 -137 79 -134Q48 -131 45 -136Q44 -138 52 -156Q60 -174 73 -198Q121 -290 139 -332Q156 -374 167 -424Q172 -452 174 -510Q176 -567 172 -600Q168 -635 163 -685Q160 -718 161 -728Q161 -739 165 -748Q168 -753 174 -759Q179 -765 184 -768Q198 -775 220 -774Q242 -774 259 -766Q275 -759 284 -745Q292 -731 297 -701Q299 -690 302 -681Q304 -672 307 -670Q309 -669 328 -676Q347 -683 359 -690L368 -696L367 -798Q366 -900 370 -909Q372 -913 379 -918Q386 -924 393 -928Q404 -935 411 -936Q418 -938 430 -936Q447 -934 465 -926Q482 -919 493 -908Q512 -890 518 -864Q524 -837 519 -788Q515 -742 518 -740Q520 -737 546 -745Q578 -755 591 -756Q603 -757 616 -750Q637 -740 650 -720Q662 -701 663 -680Q664 -658 652 -643Q634 -620 545 -596Q460 -573 430 -564Q399 -554 365 -541Q318 -522 312 -516Q305 -511 305 -502Q305 -492 310 -492Q315 -492 341 -502Q367 -512 391 -523Q427 -539 456 -550Q485 -560 499 -562Q513 -563 518 -562Q523 -560 532 -550Q570 -513 581 -463Q589 -429 591 -393Q592 -357 588 -295Q580 -188 577 -157Q573 -126 565 -108Q557 -91 543 -75Q528 -59 521 -59Q514 -59 500 -68Z"/></defs></svg>
+<a class="skip" href="#main">跳到正文</a>
+<header class="hd">
+  <a class="hd-mark" href="/nsuve/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
+  <nav class="hd-nav" aria-label="主导航"><a href="/nsuve/">首页</a><a href="/guides/" aria-current="page">使用攻略</a><a href="/support.html">支持</a><a href="/privacy.html#zh-hans">隐私</a></nav>
+  <div class="hd-lang"><a href="/guides/connect-ai-tools.html?lang=zh" lang="zh-CN" hreflang="zh-Hans" aria-current="true">中</a><a href="/guides/en/connect-ai-tools.html?lang=en" lang="en" hreflang="en">EN</a></div>
+  <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-zh.svg" alt="在 Mac App Store 下载" width="108" height="32"></a>
+</header>
+<div class="pg"><div class="ph">
+  <p class="eb"><a href="/guides/">使用攻略</a> · 进阶</p>
+  <h1 class="t"><span class="zh-vh">让 AI 帮你找片</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.896em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 896 1000"><use href="#zg-8ba9"/></svg></span> AI <span class="zh-g"><svg class="zg" style="width:0.762em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 762 1000"><use href="#zg-5e2e"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.918em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 918 1000"><use href="#zg-4f60"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.9em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 900 1000"><use href="#zg-627e"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.708em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 708 1000"><use href="#zg-7247"/></svg></span></span></h1>
+  <p class="lead">接上以后，一句话就能让 AI 帮你找片、开播、建合集。它能看什么、能改什么，由你一项项决定。</p>
+  <ul class="meta"><li>约 6 分钟读完</li><li>适用 Mac · Pro</li></ul>
+</div>
+<div class="wrap"><nav class="toc" aria-label="本篇内容"><p>本篇内容</p><ol><li><a href="#before">先知道这几件事</a></li><li><a href="#turn-on">打开连接，再一项项开权限</a></li><li><a href="#connect">接上你的 AI 工具</a></li><li><a href="#ask">今天就能这样问</a></li><li><a href="#not-yet">现在还做不到的</a></li></ol></nav><main class="doc" id="main"><section id="before">
+<h2>先知道这几件事</h2>
+<ul>
+<li><b>这是 Mac 上的 Pro 功能。</b>免费版也能打开这一页，但连上来的工具只会收到「这是 Pro 功能」。iPhone、iPad 上没有 AI 智能体。</li>
+<li><b>只在这台 Mac 上连接。</b>Nsuve 在本机回环地址 127.0.0.1 上开服务，局域网和外网都连不进来。AI 工具通过 Nsuve 自带的 <code>nsuve</code> 命令行接入，碰不到你的资料库文件。</li>
+<li><b>私密空间始终排除在外</b>，即使它已经解锁。</li>
+<li><b>结果可能离开这台 Mac。</b>Nsuve 只把你开放的那部分资料交给工具；工具会不会把结果发给它远端的模型，取决于工具自己。</li>
+</ul>
+</section>
+
+<section id="turn-on">
+<h2>打开连接，再一项项开权限</h2>
+<ol class="steps">
+<li>在工作台侧栏「位置与工具」下面点「AI 智能体」。</li>
+<li>打开「允许 AI 与自动化连接」。下面一行显示「运行中 · 127.0.0.1」加端口号，就是开好了。</li>
+<li>在「权限」里只打开这次要用的几项。七个开关一开始都是关着的；第一次用，先只开「读取普通影片库」。</li>
+</ol>
+<figure class="shot dev-mac"><img src="/guides/assets/shots/connect-ai-tools-1.jpg" alt="Mac 上的「AI 智能体」页：「允许 AI 与自动化连接」已打开，运行在 127.0.0.1，下面是读取影片库、读取播放状态、控制播放器、修改影片资料四个权限开关" width="1600" height="582" loading="lazy" decoding="async"><figcaption>「AI 智能体」页：上面是总开关和运行状态，下面一项项给权限。</figcaption></figure>
+<div class="tbl"><table>
+<thead><tr><th>权限</th><th>打开以后，工具能</th></tr></thead>
+<tbody>
+<tr><td>读取普通影片库</td><td>检索影片、人物、标签、合集和文件路径</td></tr>
+<tr><td>读取播放状态</td><td>知道当前在放什么、进度和队列</td></tr>
+<tr><td>控制播放器</td><td>打开、播放、暂停、停止、定位、跳转、调音量和切换队列</td></tr>
+<tr><td>修改影片资料</td><td>改收藏、评分、标签、人物、备注与合集；不会移动文件</td></tr>
+<tr><td>人物识别</td><td>分析人脸、扫描影片库、确认或忽略识别建议</td></tr>
+<tr><td>归档文件</td><td>按归档规则把收件箱里的影片移进影片库，先预览再执行</td></tr>
+<tr><td>清理重复项</td><td>把多余的重复文件移到废纸篓，不会永久删除</td></tr>
+</tbody>
+</table></div>
+<p>每一项旁边的「查看具体方法」会列出它放出的工具方法。关掉总开关，所有权限一起失效，但各自的设置会记住；这时工具的每次调用都会被拒绝。</p>
+</section>
+
+<section id="connect">
+<h2>接上你的 AI 工具</h2>
+<p>「连接工具」里预设了十个：Claude Code、Codex、Cursor、Windsurf、VS Code、Gemini CLI、Qoder、WorkBuddy、Kimi CLI、Grok。这台 Mac 上装了的列在「已检测到」里，其余的收在「其它支持的工具」里，装好以后会自动出现。Nsuve 不会去改别的 App 的配置，只把命令或配置交给你。</p>
+<ol class="steps">
+<li>选中要接的工具。</li>
+<li>命令行一类的工具（比如 Claude Code、Codex、Gemini CLI），点「复制命令」，在终端里运行一次，之后每次启动都会自动连上。</li>
+<li>Cursor、Windsurf、WorkBuddy 用配置文件：点「复制配置」，合并进页面上写的那个文件，再重启这个工具；「显示配置文件」会在访达里找到它。Cursor 也可以直接点「在 Cursor 中安装」。</li>
+<li>回到工具里，问一个只读的问题，确认能连上。</li>
+</ol>
+<p>以 Claude Code 为例，复制出来的命令大致是 <code>claude mcp add --transport stdio --scope user nsuve -- …/nsuve mcp serve --client claude</code>。中间是这台 Mac 上 <code>nsuve</code> 命令行的路径，请从你自己的 App 里复制，不要照抄这里。</p>
+<h3>访问令牌</h3>
+<p>所有工具默认共用一个访问令牌，页面上只显示它的末四位。担心泄露，就点「轮换」换一个，已连接的工具下次调用时会自动用上新的。也可以给某个工具「签发专属令牌」，之后能单独把它设成「只读」，或者单独「撤销」。</p>
+</section>
+
+<section id="ask">
+<h2>今天就能这样问</h2>
+<p>先从一个结果容易核对的只读问题开始。每句后面写着它要用到的权限。</p>
+<ul>
+<li>「片库里有哪几部诺兰导演的电影？只列出来，什么都别改。」——读取普通影片库</li>
+<li>「NAS 上这周新到了哪些片？」——读取普通影片库</li>
+<li>「收件箱里还有几部没归档？」——读取普通影片库</li>
+<li>「片库里有没有重复的文件？先列给我看。」——读取普通影片库</li>
+<li>「我有哪些片子还没看完？列出来，我挑一部接着放。」——读取普通影片库、控制播放器</li>
+<li>「现在放的是哪一部，还剩多久？」——读取播放状态</li>
+<li>「暂停一下」「往后跳 10 分钟」「音量调小一点」——控制播放器</li>
+<li>「把《星际穿越》《沙丘2》《银翼杀手2049》建成一个合集，叫『周末科幻』。」——修改影片资料</li>
+</ul>
+<p>修改类的请求，一次 10 部以内会直接做。做完以后看看页面下方的「最近活动」：哪个工具做了什么、结果怎样，每次都写成一句话。</p>
+</section>
+
+<section id="not-yet">
+<h2>现在还做不到的</h2>
+<ul>
+<li><b>大批量和动文件的操作。</b>一次改超过 10 部、移动文件（归档、移到废纸篓）、重新识别整个文件夹，都要你在 Nsuve 里点一次「允许」。这张确认卡还没上线，所以这类请求现在不会被执行。「归档文件」和「清理重复项」打开后，AI 能先给你看预览，真正移动文件要等确认卡来了。</li>
+<li><b>修正识别。</b>让 AI 改认影片、刷新资料、换海报、写 NFO 的「修正识别」权限，开关以后才会加到权限列表里。</li>
+<li><b>添加媒体源。</b>要密码或授权的媒体源，AI 加不了，得你自己在 App 里加。</li>
+<li><b>私密空间。</b>AI 永远看不到，解锁了也一样。</li>
+</ul>
+<aside class="note"><strong>不想用了</strong><p>关掉「允许 AI 与自动化连接」，所有工具的调用都会被拒绝。只想停掉某一个，给它签发专属令牌，再点「撤销」。</p></aside>
+</section>
+
+<div class="next"><h2>接下来可以读</h2><ul class="cards"><li><a href="/guides/make-a-collection.html"><em>整理</em><b>为一个主题，留一份片单</b><span>用手动合集和按标签自动成组的智能合集整理片单；不想被别人看到的影片，放进私密空间。</span></a></li><li><a href="/guides/organize-and-deduplicate.html"><em>整理</em><b>先过收件箱，再清重复项</b><span>在 Mac 上用收件箱把新下载的片子认好、按规则归档进影片库，随时能停下、能撤销；再用重复项找出多余的副本，放进废纸篓。</span></a></li></ul></div>
+</main></div></div>
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><img class="w" src="/home-assets/brand/nsuve-cream.svg" alt="Nsuve" width="96" height="30"><div class="ft-by">by <img src="/home-assets/brand/nsurator-swatch-cream.svg" alt="Nsurator" width="110" height="22"></div></div>
+      <nav class="ft-links" aria-label="页脚"><a href="/support.html">支持</a><a href="/privacy.html#zh-hans">隐私</a><a href="/support.html?doc=terms#terms">使用条款</a><a href="/guides/">使用攻略</a><a href="/support.html?doc=oss#oss">开源许可</a><a href="/credits.html">素材署名</a></nav>
+    </div>
+    <div class="ft-note"><span>影视资料与图片来自 TMDB。本产品使用 TMDB API，但未经 TMDB 认可或认证。</span><span>© 2026 Nsurator</span></div>
+    <div class="ft-reg"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
+  </div>
+</footer>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
+</body>
+</html>

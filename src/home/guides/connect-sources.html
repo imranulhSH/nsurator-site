@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var K='nsurator-site-lang',q=new URLSearchParams(location.search),want=q.get('lang');
+if(want!=='zh'&&want!=='en'){want=null;try{var s=localStorage.getItem(K);if(s==='zh'||s==='en')want=s}catch(e){}}else{try{localStorage.setItem(K,want)}catch(e){}}
+document.documentElement.dataset.lang="zh";
+if(want&&want!=="zh")location.replace("/guides/en/connect-sources.html"+location.search+location.hash);})();</script>
+<title>连接来源：NAS、媒体服务器和网盘 · Nsuve 使用攻略</title>
+<meta name="description" content="把 NAS（SMB、WebDAV、SFTP，群晖、威联通、飞牛）、Emby、Jellyfin、Plex 和网盘连到 Nsuve，聚成一份片库；各端能连什么，连不上的时候会怎样。">
+<link rel="canonical" href="https://nsurator.com/guides/connect-sources.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://nsurator.com/guides/connect-sources.html">
+<link rel="alternate" hreflang="en" href="https://nsurator.com/guides/en/connect-sources.html">
+<link rel="alternate" hreflang="x-default" href="https://nsurator.com/guides/connect-sources.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nsurator">
+<meta property="og:title" content="连接来源：NAS、媒体服务器和网盘 · Nsuve 使用攻略">
+<meta property="og:description" content="把 NAS（SMB、WebDAV、SFTP，群晖、威联通、飞牛）、Emby、Jellyfin、Plex 和网盘连到 Nsuve，聚成一份片库；各端能连什么，连不上的时候会怎样。">
+<meta property="og:url" content="https://nsurator.com/guides/connect-sources.html">
+<meta property="og:image" content="https://nsurator.com/home-assets/web/page-d-first.jpg">
+<meta name="theme-color" content="#EEE7DB">
+<link rel="icon" type="image/png" href="/home-assets/AppIcon-1024.png">
+<link rel="apple-touch-icon" href="/home-assets/AppIcon-1024.png">
+<style>
+@font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
+@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+:root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.8 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--rust);text-underline-offset:3px}
+img{max-width:100%}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
+.skip:focus{left:12px}
+.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
+/* header: the phone header's frosted bar, full width */
+.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-mark{display:block;line-height:0;margin-right:auto}
+.hd-mark img{height:28px;width:auto;display:block}
+.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav a[aria-current]{color:var(--rust)}
+.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
+.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
+.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
+@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
+  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
+@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* page head */
+.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
+.eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
+.eb a{color:inherit;text-decoration:none}
+h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
+h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+.lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+/* body: text column + table of contents */
+.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
+.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
+.toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
+.toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
+.doc{min-width:0;max-width:760px}
+.doc section{margin:0 0 56px}
+.doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+.doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
+.doc p,.doc li{color:var(--ink2);text-wrap:pretty}
+.doc p{margin:0 0 16px}
+.doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
+.doc li+li{margin-top:6px}
+.doc b,.doc strong{color:var(--ink);font-weight:700}
+.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
+.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
+.note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
+.note p:last-child{margin:0}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
+.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
+.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:700;color:var(--ink)}
+.tbl td{color:var(--ink2)}
+figure.shot{margin:8px 0 28px}
+figure.shot img{display:block;width:100%;height:auto;border-radius:14px;background:#1B1714}
+figure.shot.dev-phone img{max-width:360px;border-radius:28px}
+figure.shot.dev-tv img,figure.shot.dev-vision img{border-radius:18px}
+figure.shot figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink3)}
+details{margin:0 0 10px;border-radius:16px;background:rgba(255,255,255,.55)}
+details summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;font:700 17px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink)}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
+details[open] summary::after{content:'–'}
+details>div{padding:0 20px 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
+.cards a:hover{background:rgba(255,255,255,.8)}
+.cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
+.cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
+.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
+[data-doc][hidden]{display:none!important}
+.next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+/* footer: the homepage's dark end */
+.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.ft-in{max-width:1120px;margin:0 auto}
+.ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+.ft-brand img.w{height:30px;width:auto;display:block}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by img{height:22px;width:auto}
+.ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
+.ft-links a{color:#F2EBDF;text-decoration:none}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+/* zh titles drawn as SVG */
+.zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-g{white-space:nowrap}
+svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="zg-8fde" d="M625 -85Q597 -88 570 -94Q544 -100 503 -112Q438 -130 404 -138Q371 -146 329 -151Q292 -155 272 -154Q253 -153 239 -146Q223 -138 191 -144Q160 -149 127 -166Q104 -178 75 -200Q47 -221 45 -228Q44 -235 65 -241Q87 -247 136 -254Q197 -262 203 -264Q221 -271 183 -345Q169 -373 158 -387Q153 -393 140 -402Q128 -412 115 -420Q90 -435 84 -444Q78 -453 84 -466Q91 -478 118 -505Q146 -532 164 -544Q187 -559 199 -559Q207 -559 214 -554Q221 -550 235 -536Q244 -527 253 -514Q263 -502 267 -493L276 -473L264 -452Q252 -430 252 -421Q252 -418 257 -405Q263 -392 271 -378Q279 -363 287 -343Q295 -323 299 -311Q307 -279 312 -275Q314 -273 333 -270Q353 -267 379 -264Q441 -257 479 -251Q517 -245 519 -247Q522 -249 514 -273Q506 -297 505 -309Q504 -343 492 -340Q484 -339 434 -318Q385 -297 380 -297Q376 -297 360 -314Q344 -332 338 -344Q330 -358 328 -370Q326 -383 330 -390Q331 -393 337 -397Q343 -401 350 -404Q367 -410 399 -424Q432 -437 460 -446Q488 -454 494 -457Q500 -460 501 -468Q502 -473 500 -475Q498 -477 493 -477Q483 -477 445 -463Q408 -449 402 -449Q397 -449 377 -474Q357 -500 355 -510Q352 -529 379 -607Q384 -623 385 -631Q386 -636 383 -637Q381 -638 371 -638Q362 -637 356 -638Q351 -640 346 -645Q336 -654 329 -671Q322 -688 322 -703Q322 -715 324 -720Q327 -725 335 -733Q347 -745 377 -760Q407 -775 420 -784Q434 -792 439 -800Q445 -807 458 -855Q463 -876 469 -893Q475 -910 478 -914Q486 -925 501 -933Q517 -941 530 -941Q544 -941 555 -936Q566 -930 579 -917Q603 -892 603 -857Q603 -844 604 -842Q606 -840 614 -842Q625 -845 645 -845Q657 -846 663 -844Q669 -842 676 -836Q689 -823 693 -810Q698 -798 698 -775Q697 -760 682 -746Q667 -731 635 -715Q597 -696 576 -690Q556 -683 556 -681Q556 -679 561 -677Q567 -675 575 -674Q587 -672 594 -668Q602 -663 616 -649Q638 -627 651 -616Q665 -606 670 -588Q672 -581 672 -572Q673 -564 672 -560Q667 -540 661 -532Q655 -524 639 -516Q617 -506 617 -498Q617 -493 619 -492Q622 -491 631 -491L671 -493Q690 -494 695 -492Q701 -491 709 -482Q717 -472 724 -452Q732 -432 732 -419Q732 -406 708 -394Q685 -382 628 -367L611 -363V-321Q611 -296 609 -284Q608 -272 603 -262Q599 -252 598 -248Q598 -245 601 -244Q614 -239 728 -268Q755 -275 776 -280Q798 -284 800 -283Q802 -282 808 -272Q814 -262 820 -249Q830 -228 833 -216Q836 -205 837 -184Q838 -163 836 -154Q835 -146 830 -138Q814 -112 774 -98Q748 -89 702 -85Q657 -81 625 -85ZM495 -585Q503 -594 508 -607Q514 -620 514 -631Q514 -637 512 -640Q511 -644 510 -643Q506 -640 494 -619Q482 -598 480 -589Q479 -583 479 -580Q480 -578 483 -578Q489 -578 495 -585ZM190 -657Q175 -664 147 -690Q119 -715 113 -727Q109 -734 109 -739Q109 -744 112 -754Q116 -769 130 -786Q144 -802 157 -807Q165 -811 172 -811Q179 -811 197 -807Q224 -801 239 -793Q255 -785 269 -772Q284 -760 289 -749Q295 -738 294 -720Q294 -703 286 -690Q271 -663 243 -654Q215 -644 190 -657Z"/><path id="zg-4e0a" d="M147 -126Q135 -130 123 -139Q111 -148 92 -168Q69 -190 62 -200Q56 -209 52 -225Q45 -249 45 -255Q45 -261 57 -275Q67 -286 83 -291Q99 -296 151 -303Q188 -308 258 -322Q327 -335 329 -338Q331 -340 326 -406Q321 -471 321 -643V-761Q321 -798 323 -810Q324 -821 328 -827Q336 -840 350 -850Q360 -857 365 -858Q370 -859 380 -855Q394 -851 411 -841Q428 -831 436 -822Q444 -814 455 -797Q462 -784 464 -772Q466 -759 467 -706L469 -633L484 -641Q517 -659 562 -672Q606 -684 621 -680Q628 -679 632 -674Q637 -669 643 -658Q649 -647 650 -637Q652 -627 652 -611Q652 -585 644 -568Q635 -551 614 -536Q594 -521 560 -504Q527 -487 495 -477L461 -465L460 -446Q459 -428 462 -391Q464 -371 465 -364Q466 -357 468 -355Q470 -353 475 -352Q486 -351 570 -368Q653 -386 686 -391Q707 -394 715 -394Q723 -394 731 -390Q743 -385 764 -358Q784 -332 791 -313Q794 -305 796 -294Q799 -282 799 -275Q799 -263 796 -258Q794 -252 784 -242Q775 -233 767 -229Q759 -225 742 -221Q714 -215 646 -211Q505 -203 416 -185Q383 -178 342 -166Q302 -154 232 -129Q218 -124 204 -120Q189 -117 183 -117Q168 -118 147 -126Z"/><path id="zg-3001" d="M45 -293Q57 -260 88 -230Q119 -200 147 -178Q164 -162 169 -158Q173 -155 195 -173Q219 -190 222 -210Q225 -229 219 -254Q207 -290 164 -302Q121 -315 83 -311Q44 -307 45 -293Z"/><path id="zg-670d" d="M66 -126Q56 -130 50 -144Q45 -159 45 -180Q45 -205 61 -314Q71 -384 74 -416Q77 -448 77 -492Q77 -547 73 -594Q69 -642 62 -666Q57 -685 57 -710Q57 -726 59 -732Q61 -739 69 -748Q82 -762 103 -777Q135 -799 184 -826Q233 -853 250 -859L273 -867L292 -856Q310 -847 326 -828Q343 -810 352 -791L361 -771L357 -621Q354 -471 354 -328Q354 -240 352 -209Q351 -178 348 -167Q333 -125 322 -125Q315 -125 284 -149Q252 -173 236 -190Q220 -207 214 -219Q207 -231 198 -258Q183 -301 175 -295Q171 -293 168 -275Q166 -257 158 -231Q151 -205 145 -189Q136 -168 123 -152Q110 -135 97 -129Q82 -121 78 -122Q74 -122 66 -126ZM746 -146Q726 -151 692 -165Q658 -179 624 -198Q592 -215 588 -215Q583 -215 570 -201Q562 -193 557 -190Q552 -187 542 -187Q526 -188 504 -200Q482 -211 480 -211Q477 -211 476 -206Q475 -200 475 -193Q475 -183 472 -176Q470 -169 465 -162Q455 -148 447 -148Q439 -148 424 -158Q409 -168 398 -180Q389 -190 382 -205Q378 -215 376 -234Q375 -253 374 -307Q373 -357 374 -392Q376 -426 381 -475Q384 -509 387 -561Q390 -613 391 -652Q393 -748 397 -763Q402 -783 446 -820Q489 -856 551 -893Q577 -908 601 -919Q625 -930 633 -930Q635 -930 643 -924Q651 -918 660 -910Q681 -890 692 -868Q699 -854 701 -844Q703 -835 703 -814Q702 -783 686 -720Q671 -658 660 -629Q652 -609 652 -604Q651 -599 656 -596Q685 -579 693 -572Q701 -564 708 -548Q715 -533 716 -524Q717 -514 716 -488Q714 -450 703 -389L702 -382Q696 -349 695 -339Q695 -326 700 -322Q704 -317 719 -312L723 -311Q749 -301 772 -288Q796 -275 804 -266Q812 -256 815 -245Q818 -234 821 -198Q823 -168 818 -154Q815 -144 812 -142Q808 -141 792 -141Q770 -141 746 -146ZM510 -264Q516 -272 520 -279Q525 -286 525 -289Q525 -295 505 -316Q485 -336 479 -336Q476 -336 476 -328Q475 -319 477 -294Q480 -252 481 -249Q487 -239 510 -264ZM251 -302Q248 -334 248 -347Q248 -352 246 -356Q245 -361 243 -362Q238 -364 212 -348Q186 -332 180 -324Q175 -316 177 -308Q179 -301 188 -301Q191 -301 200 -296Q210 -292 219 -285Q242 -270 246 -270Q251 -270 252 -276Q252 -282 251 -302ZM598 -412Q603 -439 604 -444Q605 -449 604 -453Q602 -457 598 -457Q595 -457 562 -435Q529 -413 531 -411Q535 -407 560 -396Q584 -384 589 -384Q594 -385 598 -412ZM241 -495Q250 -505 246 -508Q241 -511 224 -506Q194 -495 199 -483Q200 -479 204 -479Q207 -479 216 -481Q223 -483 230 -487Q237 -491 241 -495ZM521 -531Q551 -550 575 -562Q585 -567 592 -572Q600 -577 600 -578Q600 -580 596 -582Q591 -585 585 -588Q570 -594 562 -602Q554 -610 546 -627Q537 -646 537 -669Q537 -684 540 -690Q542 -696 550 -706Q562 -720 567 -729Q572 -738 576 -753Q580 -771 576 -774Q571 -776 554 -763Q536 -750 520 -736Q505 -721 501 -714Q500 -711 497 -683Q494 -655 492 -619Q487 -532 484 -522Q482 -512 486 -512Q491 -512 521 -531ZM230 -635Q243 -640 246 -642Q248 -645 246 -654Q244 -666 242 -686Q239 -706 234 -711Q229 -716 218 -709Q207 -702 198 -694Q193 -689 192 -682Q190 -676 190 -655V-624L200 -626Q211 -628 230 -635Z"/><path id="zg-52a1" d="M410 -66Q394 -81 385 -92Q376 -104 369 -119Q364 -129 358 -146Q353 -164 350 -178L344 -213L330 -190Q314 -163 298 -144Q282 -126 263 -111Q239 -93 213 -81Q198 -74 188 -72Q178 -69 164 -68Q139 -68 133 -75Q128 -80 128 -82Q128 -85 133 -92Q138 -100 156 -122Q174 -145 178 -148Q189 -158 226 -217Q264 -276 264 -283Q264 -287 260 -288Q257 -288 246 -286Q236 -285 232 -287Q227 -289 218 -297Q207 -307 196 -326Q186 -346 186 -356Q186 -366 204 -380Q222 -395 256 -411Q296 -432 305 -440Q314 -448 318 -470Q323 -493 321 -495Q319 -497 281 -466Q212 -411 155 -372Q124 -352 110 -345Q95 -338 85 -340Q75 -343 62 -355Q45 -370 45 -375Q45 -390 91 -424Q179 -491 232 -559Q257 -589 264 -602Q272 -614 270 -618Q267 -622 260 -620Q253 -618 239 -606Q227 -597 220 -594Q213 -592 202 -592Q183 -592 167 -603Q157 -609 154 -615Q150 -621 152 -630Q153 -640 161 -659Q167 -675 208 -762Q249 -849 271 -894Q278 -907 291 -920Q327 -956 376 -927Q389 -919 402 -906Q416 -892 421 -881Q425 -872 431 -869Q433 -869 440 -870Q446 -872 453 -876Q466 -882 470 -882Q475 -882 485 -878Q499 -871 518 -852Q537 -834 544 -820Q550 -807 548 -790Q546 -776 539 -763Q532 -750 500 -699Q471 -654 471 -649Q471 -648 477 -646Q483 -644 492 -643Q512 -640 589 -625Q637 -615 662 -608Q687 -601 700 -592Q713 -584 722 -570Q730 -557 737 -537Q744 -517 744 -506Q744 -495 736 -482Q728 -470 715 -463Q694 -450 662 -454Q630 -459 568 -484Q520 -503 479 -516Q438 -528 409 -540Q380 -551 378 -549Q376 -547 378 -542Q380 -538 424 -524Q469 -509 488 -506Q504 -504 525 -494Q546 -483 562 -469Q581 -452 588 -432Q594 -413 594 -372Q593 -331 586 -296Q578 -260 552 -186Q535 -135 522 -108Q510 -81 497 -67Q490 -59 470 -49Q451 -39 444 -39Q441 -39 431 -47Q421 -55 410 -66ZM426 -212Q437 -228 454 -282Q471 -335 477 -374Q479 -386 478 -388Q477 -391 469 -391Q458 -391 442 -380Q426 -368 418 -354Q409 -337 391 -296Q373 -255 373 -250Q373 -244 392 -224Q410 -203 415 -203Q420 -203 426 -212ZM334 -686Q342 -690 354 -704Q366 -718 366 -724Q366 -730 356 -726Q345 -721 333 -710Q313 -693 316 -686Q318 -680 320 -680Q323 -680 334 -686Z"/><path id="zg-5668" d="M248 -84Q234 -90 218 -106Q202 -121 195 -134Q188 -148 186 -166Q183 -184 181 -185Q179 -186 173 -182Q167 -179 160 -173Q145 -160 124 -150Q102 -140 87 -138Q71 -136 59 -141Q47 -146 45 -155Q43 -161 50 -172Q57 -182 81 -210Q120 -256 145 -289Q223 -393 226 -401Q227 -406 223 -406Q218 -406 203 -402Q187 -399 168 -404Q149 -410 136 -422Q126 -430 116 -448Q106 -466 106 -474Q106 -479 112 -483Q118 -487 145 -498L235 -533Q268 -545 285 -555Q302 -565 313 -579Q324 -593 337 -619Q346 -637 344 -639Q341 -641 304 -621Q281 -609 270 -606Q258 -602 247 -602Q236 -602 228 -604Q220 -607 210 -614Q192 -626 178 -644Q164 -661 144 -696Q124 -732 118 -750Q112 -769 117 -780Q122 -792 133 -802Q143 -811 199 -841Q254 -871 285 -884Q315 -896 338 -897Q354 -898 362 -896Q370 -894 386 -886Q402 -878 409 -872Q415 -867 420 -857L427 -842L433 -852Q444 -868 461 -880Q478 -891 518 -908Q567 -928 589 -936Q614 -945 627 -946Q640 -946 651 -940Q662 -934 681 -914Q700 -894 703 -885Q710 -868 707 -850Q703 -831 686 -798Q667 -760 646 -730Q625 -699 613 -692Q600 -684 589 -684Q585 -684 581 -682Q577 -680 576 -678Q575 -676 578 -669Q581 -662 586 -655Q597 -638 602 -634Q608 -628 616 -626Q622 -625 641 -626Q662 -627 668 -626Q674 -624 679 -617Q689 -606 687 -596Q685 -585 671 -572Q655 -556 640 -548Q634 -544 617 -538Q600 -532 581 -527Q537 -516 536 -510Q535 -505 558 -495Q593 -479 648 -462Q703 -445 719 -445Q732 -445 756 -441L788 -435Q793 -434 796 -428Q799 -423 803 -408Q809 -383 809 -375Q809 -372 806 -366Q803 -360 798 -356Q787 -344 766 -339Q751 -335 748 -332Q744 -330 743 -322Q741 -313 739 -310Q737 -307 731 -305Q724 -303 707 -299Q701 -298 700 -296Q698 -294 698 -288Q697 -282 696 -265Q696 -236 690 -206Q684 -175 675 -159Q672 -153 666 -146Q660 -140 655 -137Q640 -128 615 -122Q590 -117 559 -117Q537 -117 526 -118Q515 -119 507 -123Q494 -129 483 -141Q472 -153 466 -168Q456 -192 448 -207Q440 -222 438 -220Q435 -219 433 -198Q430 -173 416 -149Q402 -125 383 -112Q373 -106 334 -94Q294 -81 277 -80Q260 -78 248 -84ZM315 -192Q318 -197 320 -206Q322 -216 322 -224Q322 -239 321 -242Q319 -244 310 -245Q297 -247 286 -240Q274 -234 274 -225Q274 -216 278 -202Q282 -189 287 -181Q291 -175 294 -174Q296 -173 301 -176Q309 -180 315 -192ZM581 -212Q585 -216 590 -240Q594 -263 594 -276Q594 -285 593 -287Q591 -289 584 -289Q574 -289 561 -283Q551 -279 549 -276Q547 -273 547 -261Q547 -244 553 -225Q557 -214 560 -210Q563 -207 569 -207Q577 -207 581 -212ZM333 -333Q348 -341 362 -346Q376 -352 381 -352Q391 -352 413 -334Q434 -316 437 -316Q440 -316 451 -328Q460 -337 472 -342Q483 -348 523 -364Q536 -369 546 -374Q555 -379 555 -381Q555 -385 546 -394Q534 -405 484 -437Q434 -469 429 -469Q419 -469 406 -457Q393 -445 373 -419Q347 -385 314 -351Q267 -303 288 -312ZM483 -608Q500 -622 500 -644Q500 -652 498 -656Q495 -659 485 -664Q470 -672 461 -682Q452 -691 444 -712Q437 -730 425 -769L420 -786L402 -735Q383 -684 383 -678Q383 -668 408 -668Q420 -668 434 -660Q448 -653 453 -644Q457 -635 457 -618Q457 -607 459 -604Q460 -602 466 -602Q475 -602 483 -608ZM285 -720Q287 -721 288 -730Q289 -738 289 -747Q289 -761 288 -766Q287 -770 282 -770Q275 -770 271 -766Q266 -761 266 -748Q266 -736 269 -726Q272 -715 276 -715Q280 -715 285 -720ZM558 -769Q565 -787 569 -804Q573 -821 571 -825Q568 -829 558 -826Q547 -824 540 -816Q532 -809 532 -792Q532 -773 535 -766Q538 -758 546 -758Q554 -758 558 -769Z"/><path id="zg-548c" d="M317 -112Q300 -130 293 -143Q285 -156 283 -175Q281 -192 281 -228Q282 -277 281 -277Q279 -277 255 -245Q238 -221 217 -202Q195 -182 182 -178Q172 -175 152 -182Q132 -189 116 -200Q99 -212 96 -221Q95 -227 100 -236Q105 -244 123 -264Q180 -330 208 -381Q219 -400 223 -411Q226 -422 222 -422Q218 -422 173 -412Q137 -405 124 -406Q111 -406 92 -415Q82 -421 67 -437Q52 -453 47 -463Q44 -469 45 -472Q46 -476 52 -483Q69 -501 203 -555Q232 -567 254 -577Q276 -587 276 -589Q278 -594 274 -624Q270 -654 267 -657Q266 -658 255 -654Q244 -651 229 -644Q193 -629 184 -629Q174 -629 162 -644Q149 -659 150 -669Q150 -679 158 -692Q165 -704 190 -732L219 -768Q226 -775 260 -821Q290 -860 316 -887Q341 -914 352 -916Q362 -919 375 -916Q387 -912 399 -904Q410 -895 421 -876Q431 -857 436 -836Q440 -815 433 -794Q426 -774 405 -748L383 -721L385 -686Q388 -651 390 -650Q391 -648 415 -645Q435 -642 444 -634Q453 -626 458 -606Q460 -599 463 -594Q466 -588 468 -587Q470 -586 475 -588Q479 -591 482 -595Q491 -605 523 -616Q554 -626 630 -664Q662 -680 689 -692Q715 -704 721 -705Q734 -708 757 -702Q780 -695 801 -683Q827 -668 837 -658Q846 -647 853 -626L861 -600L845 -557Q829 -514 822 -478Q814 -442 804 -407Q793 -372 786 -361Q779 -350 767 -338L755 -327L715 -329Q675 -332 654 -328Q632 -325 592 -328Q560 -331 540 -338Q520 -344 504 -358L492 -368L482 -356Q471 -342 466 -338Q461 -334 455 -333Q448 -332 430 -333L398 -334L395 -246Q393 -183 391 -162Q388 -140 380 -125Q374 -113 363 -100Q351 -86 347 -86Q343 -86 317 -112ZM491 -460Q489 -488 484 -518Q478 -548 474 -552Q473 -553 470 -551Q466 -549 462 -545Q452 -535 426 -515Q403 -497 397 -488Q390 -478 395 -472Q400 -465 427 -455Q454 -445 468 -438Q482 -431 487 -430Q492 -429 493 -435Q493 -441 491 -460ZM652 -473 667 -488 668 -529Q669 -556 669 -564Q668 -571 663 -573Q656 -575 639 -566Q622 -557 616 -542Q609 -527 612 -500Q614 -473 618 -464Q622 -454 630 -456Q637 -458 652 -473Z"/><path id="zg-7f51" d="M634 -103Q608 -112 591 -121Q560 -137 534 -166Q508 -195 495 -227Q481 -264 490 -274Q499 -284 528 -262Q549 -246 554 -246Q556 -246 559 -248Q562 -251 564 -254Q565 -257 567 -278Q569 -299 570 -324L571 -365Q571 -379 570 -383Q569 -387 566 -387Q560 -387 549 -365Q542 -350 538 -344Q533 -338 528 -338Q523 -337 515 -341Q501 -348 484 -364Q467 -379 463 -379Q462 -379 454 -368Q445 -356 435 -340Q425 -323 416 -311Q407 -299 404 -298Q401 -297 387 -304Q372 -311 327 -337Q296 -355 292 -355Q290 -355 286 -351Q282 -347 279 -341Q267 -322 246 -298Q224 -274 218 -274Q215 -274 209 -278Q202 -281 197 -285Q183 -297 179 -297Q174 -297 170 -248Q167 -215 164 -202Q161 -188 152 -169Q138 -141 132 -141Q125 -141 107 -154Q89 -167 74 -184Q56 -204 49 -226Q46 -239 45 -250Q44 -264 46 -297Q48 -323 53 -404Q64 -550 65 -659Q65 -702 67 -714Q68 -725 73 -731Q83 -741 101 -751Q119 -761 161 -779Q213 -802 284 -835Q386 -883 457 -908Q528 -932 553 -928Q569 -925 595 -911Q621 -897 639 -882Q660 -864 677 -840Q693 -816 700 -794Q714 -749 703 -687Q699 -662 699 -395Q698 -284 697 -200Q696 -117 695 -110Q692 -98 690 -96Q687 -94 675 -94Q659 -94 634 -103ZM189 -371Q192 -377 202 -405Q209 -423 210 -429Q211 -435 208 -441Q204 -447 194 -452Q184 -458 182 -456Q180 -453 178 -408Q177 -380 178 -372Q178 -363 182 -364Q186 -366 189 -371ZM570 -499Q567 -593 557 -662Q546 -730 530 -765Q523 -781 516 -784Q508 -787 488 -778Q473 -771 425 -743Q387 -720 277 -678Q231 -660 212 -648Q202 -642 197 -636Q192 -631 189 -622Q184 -605 181 -581Q178 -557 180 -552Q182 -547 202 -547Q211 -547 221 -545Q231 -543 238 -541Q247 -537 250 -537Q253 -537 256 -540Q259 -545 259 -558Q259 -570 263 -590Q266 -601 271 -610Q275 -618 284 -627Q301 -645 311 -645Q321 -645 335 -634Q348 -624 359 -609Q370 -590 386 -584Q401 -578 411 -570Q420 -563 423 -563Q430 -563 441 -613Q447 -642 457 -663Q466 -684 473 -684Q486 -684 507 -663Q528 -642 531 -626Q533 -614 531 -584Q528 -553 523 -526Q517 -499 517 -496Q517 -492 533 -476Q548 -459 555 -447Q566 -426 571 -426Q573 -426 570 -499ZM390 -447Q392 -453 386 -466Q380 -479 368 -492Q356 -504 353 -502Q351 -501 350 -495Q349 -489 349 -482Q349 -471 351 -466Q353 -460 360 -453Q369 -444 379 -442Q388 -440 390 -447Z"/><path id="zg-76d8" d="M117 -55Q102 -62 79 -82Q56 -103 50 -114Q45 -125 45 -132Q45 -140 52 -142Q144 -169 180 -177Q197 -182 204 -184Q211 -186 212 -188Q214 -191 214 -195Q214 -205 205 -264Q201 -289 199 -308Q197 -326 199 -327Q201 -330 232 -332Q251 -334 266 -338Q280 -343 309 -356Q355 -376 410 -394Q464 -412 469 -420Q471 -425 471 -433Q471 -441 467 -460Q461 -493 456 -490Q451 -488 443 -449Q440 -435 437 -430Q434 -424 426 -420Q417 -415 414 -415Q410 -415 401 -419Q389 -426 379 -444Q369 -461 366 -480Q364 -500 360 -506Q356 -511 348 -502Q340 -493 325 -468Q295 -417 264 -387Q234 -357 208 -353Q199 -352 196 -353Q192 -354 190 -359Q185 -367 184 -385Q183 -403 186 -419L194 -461H164Q119 -461 98 -480Q86 -490 77 -505Q68 -520 68 -530Q68 -540 75 -544Q82 -548 107 -555Q138 -562 181 -575Q224 -588 227 -591Q230 -594 230 -602Q230 -611 227 -633Q219 -683 218 -704Q217 -725 221 -737Q226 -752 254 -782Q277 -806 292 -832Q307 -859 321 -902Q331 -936 345 -949Q354 -959 360 -960Q365 -961 385 -960Q396 -959 409 -956Q422 -953 429 -950Q454 -939 464 -916Q474 -893 465 -868Q459 -851 460 -848Q462 -846 468 -848Q475 -849 484 -852Q509 -861 522 -859Q536 -857 553 -843Q583 -819 596 -788Q609 -758 605 -725Q604 -716 604 -710Q605 -703 606 -702Q610 -700 628 -704Q645 -708 660 -702Q674 -697 691 -681Q702 -669 706 -663Q709 -657 709 -647Q709 -640 707 -633Q705 -626 703 -622Q695 -611 674 -602Q653 -593 630 -591Q603 -589 597 -584Q594 -582 590 -566Q587 -549 582 -509Q573 -439 577 -434Q581 -430 596 -426Q611 -421 629 -405Q647 -389 655 -374Q660 -364 661 -356Q662 -348 661 -330Q660 -319 657 -305Q654 -291 650 -282Q643 -262 644 -262Q644 -261 684 -260Q711 -259 720 -258Q729 -256 739 -249Q754 -238 763 -226Q772 -214 778 -198Q783 -181 783 -166Q783 -150 774 -142Q762 -131 742 -128Q721 -124 667 -125Q575 -125 482 -112Q390 -99 238 -65Q160 -47 146 -47Q141 -47 132 -49Q123 -51 117 -55ZM333 -201Q335 -203 330 -218Q326 -233 326 -243Q326 -251 321 -258Q316 -266 311 -266Q308 -266 306 -234Q303 -202 305 -198Q307 -195 318 -196Q330 -198 333 -201ZM428 -233Q428 -249 425 -267Q422 -285 419 -285Q416 -285 416 -256Q416 -228 420 -224Q423 -221 426 -224Q428 -226 428 -233ZM524 -250Q530 -256 538 -284Q545 -313 545 -327Q545 -332 543 -334Q541 -336 536 -336Q532 -336 528 -334Q524 -333 522 -330Q520 -328 518 -316Q515 -304 513 -290L509 -251Q508 -243 512 -242Q517 -242 524 -250ZM472 -503Q475 -509 476 -536Q478 -563 476 -568Q473 -572 470 -571Q467 -570 456 -562Q446 -555 442 -550Q439 -545 439 -539Q439 -527 445 -514Q448 -506 452 -503Q455 -500 460 -500Q470 -500 472 -503ZM365 -640Q365 -650 360 -660Q354 -670 354 -681Q353 -692 348 -690Q344 -689 342 -664Q341 -639 343 -634Q344 -632 348 -630Q351 -629 356 -629Q361 -629 363 -631Q365 -633 365 -640ZM463 -655 476 -662V-732H462Q447 -732 438 -729Q428 -726 428 -721Q428 -716 436 -698Q444 -679 441 -668Q439 -659 440 -654Q442 -648 446 -648Q449 -649 463 -655Z"/></defs></svg>
+<a class="skip" href="#main">跳到正文</a>
+<header class="hd">
+  <a class="hd-mark" href="/nsuve/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
+  <nav class="hd-nav" aria-label="主导航"><a href="/nsuve/">首页</a><a href="/guides/" aria-current="page">使用攻略</a><a href="/support.html">支持</a><a href="/privacy.html#zh-hans">隐私</a></nav>
+  <div class="hd-lang"><a href="/guides/connect-sources.html?lang=zh" lang="zh-CN" hreflang="zh-Hans" aria-current="true">中</a><a href="/guides/en/connect-sources.html?lang=en" lang="en" hreflang="en">EN</a></div>
+  <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-zh.svg" alt="在 Mac App Store 下载" width="108" height="32"></a>
+</header>
+<div class="pg"><div class="ph">
+  <p class="eb"><a href="/guides/">使用攻略</a> · 开始使用</p>
+  <h1 class="t"><span class="zh-vh">连上 NAS、服务器和网盘</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.882em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 882 1000"><use href="#zg-8fde"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.844em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 844 1000"><use href="#zg-4e0a"/></svg></span> NAS<span class="zh-g"><svg class="zg" style="width:0.568em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 568 1000"><use href="#zg-3001"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.867em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 867 1000"><use href="#zg-670d"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.789em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 789 1000"><use href="#zg-52a1"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.854em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 854 1000"><use href="#zg-5668"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.906em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 906 1000"><use href="#zg-548c"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.753em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 753 1000"><use href="#zg-7f51"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.828em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 828 1000"><use href="#zg-76d8"/></svg></span></span></h1>
+  <p class="lead">片子放在哪儿都行。连上以后，Nsuve 只读目录、认片、建索引，文件留在原处，点开就边下边放。</p>
+  <ul class="meta"><li>约 6 分钟读完</li><li>适用 Mac、iPhone、iPad</li></ul>
+</div>
+<div class="wrap"><nav class="toc" aria-label="本篇内容"><p>本篇内容</p><ol><li><a href="#how">连上，不搬</a></li><li><a href="#add">添加一个来源</a></li><li><a href="#servers">媒体服务器：连上就有一页</a></li><li><a href="#cloud">网盘：只在 Mac 上</a></li><li><a href="#offline">连不上的时候</a></li></ol></nav><main class="doc" id="main"><section id="how">
+<h2>连上，不搬</h2>
+<p>连上一个来源，Nsuve 会读它的目录，认出电影和剧集，在这台设备上建一份索引。文件一个都不动，也不用先下载：点开一部，就从来源那边边下边放。</p>
+<p>几个来源的片子聚成同一份片库。同一部片子在 NAS 和媒体服务器上各有一份，也只算一部。Mac 上「清单」顶上的来源菜单能切换「全部来源」「这台 Mac」和每一台 NAS，只看其中一处。</p>
+<p>在 iPhone、iPad 上，NAS 片库的匹配结果、手动修正、选定的版本、每台 NAS 的设置和看到哪儿，可以经你自己的 iCloud 在你的设备之间同步。NAS 的地址和密码不同步。</p>
+</section>
+
+<section id="add">
+<h2>添加一个来源</h2>
+<p>在 Mac 上：</p>
+<ol class="steps">
+<li>在工作台侧栏的「媒体源」下打开「全部媒体源」，点「新增位置」；也可以在侧栏的「媒体源」上点右键，选「添加媒体源…」。</li>
+<li>在「添加媒体源」里按类型选：本机、NAS 与服务器、媒体服务器、云盘。</li>
+<li>填表。只有主机必填，端口有默认值；用户名和密码都空着，就按访客登录。SMB 会列出共享文件夹给你选。</li>
+<li>点「测试连接」看一下，再点「保存」。</li>
+</ol>
+<p>在 iPhone、iPad 上：</p>
+<ol class="steps">
+<li>点「＋」选「添加媒体源」，或者在「媒体源」页点「添加媒体源」。</li>
+<li>最上面是「这个网络里找到的」：同一个网络里的 NAS 和媒体服务器会自己出现，点一下就带上了地址。也可以从下面的「NAS 与服务器」「媒体服务器」「自家设备」里选。</li>
+<li>填好，保存。</li>
+</ol>
+<figure class="shot dev-phone"><img src="/guides/assets/shots/connect-sources-2.jpg" alt="iPhone 上的添加媒体源：这个网络里找到的客厅 NAS 和书房 Jellyfin，下面是 SMB、WebDAV、SFTP、Jellyfin、Emby、Plex 和 Mac · Nsuve 互联" width="804" height="1748" loading="lazy" decoding="async"><figcaption>iPhone 上的「添加媒体源」。同一个网络里的 NAS 和服务器排在最上面。</figcaption></figure>
+<p>两边能连的不完全一样：</p>
+<div class="tbl"><table>
+<thead><tr><th>来源</th><th>Mac</th><th>iPhone、iPad</th></tr></thead>
+<tbody>
+<tr><td>SMB、WebDAV、SFTP</td><td>能</td><td>能</td></tr>
+<tr><td>群晖、威联通、飞牛 fnOS</td><td>有专门的入口</td><td>用 SMB 或 WebDAV 连同一台 NAS</td></tr>
+<tr><td>已挂载的共享（SMB / NFS）、DLNA / UPnP、Nextcloud</td><td>能</td><td>—</td></tr>
+<tr><td>Emby、Jellyfin、Plex</td><td>能</td><td>能</td></tr>
+<tr><td>外置硬盘、本机文件夹</td><td>能</td><td>本机文件和「文件」App 里的位置</td></tr>
+<tr><td>网盘</td><td>能（见下文）</td><td>—</td></tr>
+<tr><td>Mac（Nsuve 互联）</td><td>—</td><td>能</td></tr>
+</tbody>
+</table></div>
+<p>几个细节：Plex 可以用账号登录后选服务器，也可以手动填服务器地址；SFTP 可以用私钥登录；媒体服务器可以加自定义请求头。iPhone、iPad 上的媒体服务器还能多存几个地址，哪个连得上用哪个。FTP 不再出现在添加列表里，以前加过的 FTP 来源照常能用。</p>
+<p>想在 iPhone、iPad 上看 Mac 片库里的片子，选「自家设备」里的「Mac · Nsuve 互联」：在 Mac 上打开侧栏的「互联」，用手机扫 Mac 上的二维码，核对 4 位数字，再在 Mac 上点「允许」。互联只在同一个局域网里，不经过云端。</p>
+</section>
+
+<section id="servers">
+<h2>媒体服务器：连上就有一页</h2>
+<p>Emby、Jellyfin、Plex 连上以后，Nsuve 会给它自动生成一页，样子像 Apple TV App 的首页：最上面是精选，下面是继续观看、各个媒体库和按类型。</p>
+<figure class="shot dev-mac"><img src="/guides/assets/shots/connect-sources-1.jpg" alt="Nsuve Mac 版里书房 Jellyfin 的聚合页：上面是《流浪地球2》的精选，下面是继续观看" width="1440" height="900" loading="lazy" decoding="async"><figcaption>Mac 上「书房 Jellyfin」的一页。左上角写着连接状态，下面接着是继续观看、媒体库和最近添加。</figcaption></figure>
+<p>点进一个库，就是这台服务器上的海报墙。服务器上的海报、简介和片名标志直接拿来用；影视页里的演职人员可以点开，看照片、作品和简介。在 Mac 上按 <kbd>⌘K</kbd> 搜索时，每个媒体源的结果单独成一节。</p>
+<p>iPhone、iPad 上也有同样的一页。</p>
+</section>
+
+<section id="cloud">
+<h2>网盘：只在 Mac 上</h2>
+<p>Mac 能直接连这些网盘：百度网盘、123 云盘、OneDrive、Google Drive、Dropbox、MEGA、pCloud，还有 Nextcloud、MagentaCLOUD、HiDrive、Koofr、Icedrive、kDrive。和别的来源一样，Nsuve 只读目录、建索引，片子点开就边下边放。</p>
+<p>Dropbox、OneDrive、Google Drive、pCloud 走各家官方的登录授权，MEGA 用官方的 SDK 登录，令牌都不经过 Nsurator 的服务器。百度网盘的授权要经过 Nsurator 的一个中转服务，结果加密暂存，最多 24 小时后清掉。</p>
+<p>已经用各家客户端同步到 Mac 上的文件夹，比如 iCloud 云盘，或者 <code>~/Library/CloudStorage</code> 下面的同步文件夹，选「本机云盘文件夹」加进来就行。</p>
+<aside class="note"><strong>提示</strong><p>iPhone、iPad 现在不能直连网盘。115、夸克、阿里云盘还没开放。</p></aside>
+</section>
+
+<section id="offline">
+<h2>连不上的时候</h2>
+<p>片库的资料存在这台设备上，来源连不上时照样能翻、能搜；要放片子，得等来源连上。</p>
+<ul>
+<li>外置硬盘拔掉后显示「未连接」，资料都留着。</li>
+<li>NAS 连不上时，「清单」来源菜单里它的名字后面会写「连不上」。</li>
+<li>媒体服务器连不上时，它那一页留着上次读到的内容，变暗显示。</li>
+<li>Mac 上「全部媒体源」页的「全部检查」，能一次查一遍每个来源。</li>
+</ul>
+<p>网慢的时候，播放器会显示缓冲进度，卡住以后先攒够再放；慢的连接会换成快的。播放的更多事，见<a href="/guides/watch-and-resume.html">从停下的地方接着看</a>。</p>
+</section>
+
+<div class="next"><h2>接下来可以读</h2><ul class="cards"><li><a href="/guides/watch-and-resume.html"><em>观看</em><b>从停下的地方接着看</b><span>在 Nsuve 里接着上次看、设好连播和「算看完」，选字幕和音轨、调画面；它能放哪些格式，哪些走硬件解码；放得不顺时按 ⌥⌘I 看播放诊断。</span></a></li><li><a href="/guides/every-screen.html"><em>观看</em><b>一份片库，六块屏</b><span>Mac、iPhone、iPad、iPhone Duo 各做什么；怎样用 Nsuve 互联在手机上看 Mac 里的片子；Pro 怎样买一次、各端通用。</span></a></li></ul></div>
+</main></div></div>
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><img class="w" src="/home-assets/brand/nsuve-cream.svg" alt="Nsuve" width="96" height="30"><div class="ft-by">by <img src="/home-assets/brand/nsurator-swatch-cream.svg" alt="Nsurator" width="110" height="22"></div></div>
+      <nav class="ft-links" aria-label="页脚"><a href="/support.html">支持</a><a href="/privacy.html#zh-hans">隐私</a><a href="/support.html?doc=terms#terms">使用条款</a><a href="/guides/">使用攻略</a><a href="/support.html?doc=oss#oss">开源许可</a><a href="/credits.html">素材署名</a></nav>
+    </div>
+    <div class="ft-note"><span>影视资料与图片来自 TMDB。本产品使用 TMDB API，但未经 TMDB 认可或认证。</span><span>© 2026 Nsurator</span></div>
+    <div class="ft-reg"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
+  </div>
+</footer>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
+</body>
+</html>

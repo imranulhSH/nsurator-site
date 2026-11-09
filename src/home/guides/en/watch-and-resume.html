@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var K='nsurator-site-lang',q=new URLSearchParams(location.search),want=q.get('lang');
+if(want!=='zh'&&want!=='en'){want=null;try{var s=localStorage.getItem(K);if(s==='zh'||s==='en')want=s}catch(e){}}else{try{localStorage.setItem(K,want)}catch(e){}}
+document.documentElement.dataset.lang="en";
+if(want&&want!=="en")location.replace("/guides/watch-and-resume.html"+location.search+location.hash);})();</script>
+<title>Watch: resume, subtitles and picture · Nsuve Guides</title>
+<meta name="description" content="Resume where you left off in Nsuve, set autoplay and when a video counts as watched, pick subtitles and audio, adjust the picture, see which formats play and which use hardware decoding, and open Playback Diagnostics with ⌥⌘I.">
+<link rel="canonical" href="https://nsurator.com/guides/en/watch-and-resume.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://nsurator.com/guides/watch-and-resume.html">
+<link rel="alternate" hreflang="en" href="https://nsurator.com/guides/en/watch-and-resume.html">
+<link rel="alternate" hreflang="x-default" href="https://nsurator.com/guides/watch-and-resume.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nsurator">
+<meta property="og:title" content="Watch: resume, subtitles and picture · Nsuve Guides">
+<meta property="og:description" content="Resume where you left off in Nsuve, set autoplay and when a video counts as watched, pick subtitles and audio, adjust the picture, see which formats play and which use hardware decoding, and open Playback Diagnostics with ⌥⌘I.">
+<meta property="og:url" content="https://nsurator.com/guides/en/watch-and-resume.html">
+<meta property="og:image" content="https://nsurator.com/home-assets/web/page-d-first.jpg">
+<meta name="theme-color" content="#EEE7DB">
+<link rel="icon" type="image/png" href="/home-assets/AppIcon-1024.png">
+<link rel="apple-touch-icon" href="/home-assets/AppIcon-1024.png">
+<link rel="preload" href="/home-assets/fonts/851GBaiMarker-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
+@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+:root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.8 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--rust);text-underline-offset:3px}
+img{max-width:100%}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
+.skip:focus{left:12px}
+.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
+/* header: the phone header's frosted bar, full width */
+.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-mark{display:block;line-height:0;margin-right:auto}
+.hd-mark img{height:28px;width:auto;display:block}
+.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav a[aria-current]{color:var(--rust)}
+.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
+.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
+.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
+@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
+  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
+@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* page head */
+.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
+.eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
+.eb a{color:inherit;text-decoration:none}
+h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
+h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+.lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+/* body: text column + table of contents */
+.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
+.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
+.toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
+.toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
+.doc{min-width:0;max-width:760px}
+.doc section{margin:0 0 56px}
+.doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+.doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
+.doc p,.doc li{color:var(--ink2);text-wrap:pretty}
+.doc p{margin:0 0 16px}
+.doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
+.doc li+li{margin-top:6px}
+.doc b,.doc strong{color:var(--ink);font-weight:700}
+.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
+.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
+.note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
+.note p:last-child{margin:0}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
+.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
+.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:700;color:var(--ink)}
+.tbl td{color:var(--ink2)}
+figure.shot{margin:8px 0 28px}
+figure.shot img{display:block;width:100%;height:auto;border-radius:14px;background:#1B1714}
+figure.shot.dev-phone img{max-width:360px;border-radius:28px}
+figure.shot.dev-tv img,figure.shot.dev-vision img{border-radius:18px}
+figure.shot figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink3)}
+details{margin:0 0 10px;border-radius:16px;background:rgba(255,255,255,.55)}
+details summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;font:700 17px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink)}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
+details[open] summary::after{content:'–'}
+details>div{padding:0 20px 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
+.cards a:hover{background:rgba(255,255,255,.8)}
+.cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
+.cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
+.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
+[data-doc][hidden]{display:none!important}
+.next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+/* footer: the homepage's dark end */
+.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.ft-in{max-width:1120px;margin:0 auto}
+.ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+.ft-brand img.w{height:30px;width:auto;display:block}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by img{height:22px;width:auto}
+.ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
+.ft-links a{color:#F2EBDF;text-decoration:none}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+/* zh titles drawn as SVG */
+.zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-g{white-space:nowrap}
+svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <a class="hd-mark" href="/nsuve/en/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
+  <nav class="hd-nav" aria-label="Main"><a href="/nsuve/en/">Home</a><a href="/guides/en/" aria-current="page">Guides</a><a href="/en/support.html">Support</a><a href="/privacy.html#english">Privacy</a></nav>
+  <div class="hd-lang"><a href="/guides/watch-and-resume.html?lang=zh" lang="zh-CN" hreflang="zh-Hans">中</a><a href="/guides/en/watch-and-resume.html?lang=en" lang="en" hreflang="en" aria-current="true">EN</a></div>
+  <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-en.svg" alt="Download on the Mac App Store" width="108" height="32"></a>
+</header>
+<div class="pg"><div class="ph">
+  <p class="eb"><a href="/guides/en/">Guides</a> · Watching</p>
+  <h1 class="t">Pick up where you left off</h1>
+  <p class="lead">Organizing is for watching. Anything you didn't finish is one click away, and subtitles, audio and picture all live in the player's side panel.</p>
+  <ul class="meta"><li>7 min read</li><li>For Mac, iPhone, iPad</li></ul>
+</div>
+<div class="wrap"><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#resume">Resume where you left off</a></li><li><a href="#tracks">Subtitles and audio</a></li><li><a href="#picture">When the picture looks off</a></li><li><a href="#formats">What plays</a></li><li><a href="#diagnose">When playback stutters: Playback Diagnostics</a></li></ol></nav><main class="doc" id="main"><section id="resume">
+<h2>Resume where you left off</h2>
+<p>On the Mac, press <kbd>⌘1</kbd> to switch to <b>Play</b>. The <b>Continue Watching</b> row holds everything you're partway through: pick one with the arrow keys and press Return. To get back to your files, press <kbd>⌘2</kbd> for the <b>Workbench</b>. <b>Play</b> on a title page also starts from where you stopped, and older viewings are under <b>History</b> in the sidebar.</p>
+<p>On iPhone and iPad, the <b>History</b> row on <b>Home</b> shows what you've been watching; tap one to carry on. Tap the row's heading to see everything, with <b>Resume playback</b> and <b>Play from beginning</b> right there.</p>
+<p>On the Mac, <b>Settings → Playback</b> decides when something counts as watched and what happens next:</p>
+<ul>
+<li><b>When a Video Counts as Completed</b>: past this point the resume point clears and the video counts as watched. If films drop out of Continue Watching before the credits end, or linger after you've finished them, adjust this.</li>
+<li><b>Autoplay Next Item</b>: a show goes on to the next episode; movies and personal videos follow the order of the current list. An 8-second countdown comes first.</li>
+</ul>
+<aside class="note"><strong>Tip</strong><p>No resume point? Check that <b>Playback Position &amp; Watch History</b> is on in <b>Settings → Appearance</b>. Clearing your watch history clears resume points too.</p></aside>
+</section>
+
+<section id="tracks">
+<h2>Subtitles and audio</h2>
+<p>Along the bottom of the Mac player: volume on the left, play/pause and skipping in the middle, and subtitles, audio, speed, more and full screen on the right. Click subtitles or audio and the side panel opens. It has seven pages, Episodes, Subtitles, Audio, Picture, Playback Options, Output and Info, and <kbd>⌥⌘1</kbd> through <kbd>⌥⌘7</kbd> jump straight to each one. (Episodes appears only when there's a next episode or a playlist.)</p>
+<figure class="shot dev-mac"><img src="/guides/assets/shots/watch-and-resume-1.jpg" alt="The Nsuve player on the Mac with the side panel open on Subtitles: embedded Chinese and English tracks and an ASS file that sits next to the film" width="1440" height="810" loading="lazy" decoding="async"><figcaption>The player's side panel, Subtitles page. Embedded tracks and subtitle files next to the film are listed together.</figcaption></figure>
+<ul>
+<li><b>Main</b>: embedded subtitle tracks and matching subtitle files next to the video, all in one list. Click one to switch.</li>
+<li><b>Second</b>: add a second track, shown at the top of the picture. Handy for comparing two languages.</li>
+<li><b>Style &amp; Timing</b>: if subtitles run early or late, press <kbd>⌥[</kbd> to bring them forward or <kbd>⌥]</kbd> to delay them, 0.1 seconds at a time.</li>
+<li><b>Add Subtitles from File…</b>: pick an SRT, ASS, SSA or VTT file on your Mac, or an IDX + SUB pair. Added subtitles are for this playback only.</li>
+</ul>
+<p>To get it right every time, set <b>Subtitle Language Priority</b> and <b>Audio Track Priority</b> in <b>Settings → Playback</b>, and turn on <b>Remember My Subtitle Choice</b>, <b>Remember My Audio Choice</b> or <b>Load Sidecar Subtitles</b> if you like. Font, color and position live in <b>Subtitle Appearance</b> and apply to every film.</p>
+<p>On iPhone and iPad, switch tracks with the subtitle and audio buttons while a film plays; default languages and the look of subtitles are under <b>Manage → Subtitles</b> and <b>Manage → Sound</b>.</p>
+</section>
+
+<section id="picture">
+<h2>When the picture looks off</h2>
+<p>Black bars above and below a film usually aren't a fault; plenty of films are simply wider than your screen. Watch in the original shape first. If you really want to fill the screen, change <b>Aspect</b> on the side panel's <b>Picture</b> page and watch for stretched faces or cropped edges. The same page adjusts brightness, contrast and saturation.</p>
+<p>For HDR10, HDR10+, Dolby Vision and HDR Vivid, Nsuve tone-maps to what your display can show, so the same film can look different on different screens.</p>
+<p>On iPhone and iPad, picture settings are under <b>Manage → Video</b>.</p>
+</section>
+
+<section id="formats">
+<h2>What plays</h2>
+<p>Nsuve has its own playback engine, so nearly everything you're likely to have plays as it is, with no converting and no extra player:</p>
+<div class="tbl"><table>
+<thead><tr><th>Type</th><th>Supported</th></tr></thead>
+<tbody>
+<tr><td>Containers</td><td>30-plus, including MKV, MP4, MOV, AVI, RMVB, WMV, FLV, TS / M2TS and VOB</td></tr>
+<tr><td>Video</td><td>H.264, HEVC (10-bit too), AV1 and VP9, through to RV30 / RV40, VC-1 and Theora</td></tr>
+<tr><td>Audio</td><td>AAC, AC-3 / E-AC-3, TrueHD and DTS-HD, through to FLAC, ALAC, APE and DSD</td></tr>
+<tr><td>Subtitles</td><td>13 formats, including SRT, ASS / SSA (with effects), PGS, WebVTT and TTML; embedded or external, and external files that aren't UTF-8 display correctly</td></tr>
+<tr><td>HDR</td><td>HDR10, HDR10+, Dolby Vision, HDR Vivid</td></tr>
+<tr><td>Discs</td><td>Unencrypted Blu-ray folders (BDMV), ISO images and DVD VIDEO_TS folders, with titles, chapters and menus</td></tr>
+</tbody>
+</table></div>
+<p><b>Hardware decoding</b>: HEVC, AV1 and 4K use Apple's hardware decoder (VideoToolbox). 8-bit H.264 at 1080p and below goes to multithreaded software decoding on purpose. AV1 hardware decoding needs a chip that has it, which on Apple devices means M3 or A17 Pro and later.</p>
+<p><b>Films on the network</b> play as they download. On a slow connection the player shows how much is buffered, and after a stall it waits until it has enough to carry on. On the Mac, <b>Settings → Playback</b> also has <b>Cache While Watching</b> and <b>Buffer the Next Episode Early</b>.</p>
+<p><b>On the TV</b>: the Mac can send to AirPlay, Chromecast, DLNA and Roku devices from the side panel's <b>Output</b> page; formats the receiver can't play are converted to HLS on the fly. iPhone and iPad use AirPlay.</p>
+</section>
+
+<section id="diagnose">
+<h2>When playback stutters: Playback Diagnostics</h2>
+<p>On the Mac, with the player window in front, press <kbd>⌥⌘I</kbd> to open <b>Playback Diagnostics</b>. The top line says whether playback is healthy. Below it are the last 60 seconds of speed, bitrate and buffer ahead, the <b>Decoding route</b> (hardware or software this time) and how many times it rebuffered. If something's wrong, <b>Things to try</b> suggests what to do.</p>
+<figure class="shot dev-mac"><img src="/guides/assets/shots/watch-and-resume-2.jpg" alt="Playback Diagnostics open over the Mac player: playback is healthy, HEVC Main 10 is hardware decoded, with Copy Diagnostics and Report This Problem buttons at the bottom" width="1440" height="900" loading="lazy" decoding="async"><figcaption>Playback Diagnostics, opened with ⌥⌘I. This 4K HDR10 HEVC film is hardware decoded.</figcaption></figure>
+<ul>
+<li><b>Copy Diagnostics</b>: copies the details without file paths or accounts, ready to paste anywhere.</li>
+<li><b>Report This Problem…</b>: sends the diagnostics straight to the developer. A report may include titles and paths from your Private Space; they're used only to fix the problem and are never made public.</li>
+</ul>
+<p>A 1080p H.264 film showing software decoding is by design, not a fault. For a file that just won't open, you can set a <b>Fallback External Player</b> in <b>Settings → Playback</b>.</p>
+<aside class="note"><strong>Free plan</strong><p>The free plan includes 15 plays a month. A play counts once a video has actually played for 10 seconds; pausing and seeking don't count. The count resets on the 1st of each month, and each device keeps its own. When you start a 16th play you're asked to upgrade, but nothing that's already playing is interrupted. Nsuve Pro has no limit; see <a href="/nsuve/en/#pricing">pricing</a>.</p></aside>
+</section>
+
+<div class="next"><h2>Read next</h2><ul class="cards"><li><a href="/guides/en/every-screen.html"><em>Watching</em><b>One library. Six screens.</b><span>What the Mac, iPhone, iPad and iPhone Duo each do, how Nsuve Link plays your Mac's films on a phone, and how one Pro purchase covers your devices.</span></a></li><li><a href="/guides/en/make-a-collection.html"><em>Organizing</em><b>One theme, one list</b><span>Group films by hand, let a tag build a smart collection for you, and keep what's private in Private Space.</span></a></li></ul></div>
+</main></div></div>
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><img class="w" src="/home-assets/brand/nsuve-cream.svg" alt="Nsuve" width="96" height="30"><div class="ft-by">by <img src="/home-assets/brand/nsurator-swatch-cream.svg" alt="Nsurator" width="110" height="22"></div></div>
+      <nav class="ft-links" aria-label="Footer"><a href="/en/support.html">Support</a><a href="/privacy.html#english">Privacy</a><a href="/en/support.html?doc=terms#terms">Terms</a><a href="/guides/en/">Guides</a><a href="/en/support.html?doc=oss#oss">Open source</a><a href="/en/credits.html">Credits</a></nav>
+    </div>
+    <div class="ft-note"><span>Film and TV data and images come from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</span><span>© 2026 Nsurator</span></div>
+    <div class="ft-reg"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
+  </div>
+</footer>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
+</body>
+</html>

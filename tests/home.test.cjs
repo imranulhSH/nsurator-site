@@ -70,7 +70,7 @@ for (const lang of ['zh', 'en']) {
   test(`${lang} homepage: links out go to the shared pages in the same language`, () => {
     const html = read(lang);
     const privacy = lang === 'zh' ? '/privacy.html?lang=zh#zh-hans' : '/privacy.html?lang=en#english';
-    for (const href of [privacy, '/support.html?lang=' + lang, '/credits.html?lang=' + lang, '/support.html?lang=' + lang + '&amp;doc=oss', '/support.html?lang=' + lang + '&amp;doc=terms', '/guides/']) {
+    for (const href of [privacy, '/support.html?lang=' + lang, '/credits.html?lang=' + lang, '/support.html?lang=' + lang + '&amp;doc=oss', '/support.html?lang=' + lang + '&amp;doc=terms', lang === 'zh' ? '/guides/' : '/guides/en/']) {
       assert.ok(html.includes('href="' + href + '"'), lang + ' homepage links to ' + href);
     }
     assert.ok(html.includes('href="https://apps.apple.com/app/id6763750134?mt=12"'), 'App Store link');

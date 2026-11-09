@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var K='nsurator-site-lang',q=new URLSearchParams(location.search),want=q.get('lang');
+if(want!=='zh'&&want!=='en'){want=null;try{var s=localStorage.getItem(K);if(s==='zh'||s==='en')want=s}catch(e){}}else{try{localStorage.setItem(K,want)}catch(e){}}
+document.documentElement.dataset.lang="en";
+if(want&&want!=="en")location.replace("/guides/every-screen.html"+location.search+location.hash);})();</script>
+<title>One library on every screen · Nsuve Guides</title>
+<meta name="description" content="What the Mac, iPhone, iPad and iPhone Duo each do, how Nsuve Link plays your Mac's films on a phone, and how one Pro purchase covers your devices.">
+<link rel="canonical" href="https://nsurator.com/guides/en/every-screen.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://nsurator.com/guides/every-screen.html">
+<link rel="alternate" hreflang="en" href="https://nsurator.com/guides/en/every-screen.html">
+<link rel="alternate" hreflang="x-default" href="https://nsurator.com/guides/every-screen.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nsurator">
+<meta property="og:title" content="One library on every screen · Nsuve Guides">
+<meta property="og:description" content="What the Mac, iPhone, iPad and iPhone Duo each do, how Nsuve Link plays your Mac's films on a phone, and how one Pro purchase covers your devices.">
+<meta property="og:url" content="https://nsurator.com/guides/en/every-screen.html">
+<meta property="og:image" content="https://nsurator.com/home-assets/web/page-d-first.jpg">
+<meta name="theme-color" content="#EEE7DB">
+<link rel="icon" type="image/png" href="/home-assets/AppIcon-1024.png">
+<link rel="apple-touch-icon" href="/home-assets/AppIcon-1024.png">
+<link rel="preload" href="/home-assets/fonts/851GBaiMarker-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
+@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+:root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.8 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--rust);text-underline-offset:3px}
+img{max-width:100%}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
+.skip:focus{left:12px}
+.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
+/* header: the phone header's frosted bar, full width */
+.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-mark{display:block;line-height:0;margin-right:auto}
+.hd-mark img{height:28px;width:auto;display:block}
+.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav a[aria-current]{color:var(--rust)}
+.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
+.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
+.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
+@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
+  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
+@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* page head */
+.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
+.eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
+.eb a{color:inherit;text-decoration:none}
+h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
+h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+.lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+/* body: text column + table of contents */
+.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
+.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
+.toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
+.toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
+.doc{min-width:0;max-width:760px}
+.doc section{margin:0 0 56px}
+.doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+.doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
+.doc p,.doc li{color:var(--ink2);text-wrap:pretty}
+.doc p{margin:0 0 16px}
+.doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
+.doc li+li{margin-top:6px}
+.doc b,.doc strong{color:var(--ink);font-weight:700}
+.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
+.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
+.note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
+.note p:last-child{margin:0}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
+.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
+.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:700;color:var(--ink)}
+.tbl td{color:var(--ink2)}
+figure.shot{margin:8px 0 28px}
+figure.shot img{display:block;width:100%;height:auto;border-radius:14px;background:#1B1714}
+figure.shot.dev-phone img{max-width:360px;border-radius:28px}
+figure.shot.dev-tv img,figure.shot.dev-vision img{border-radius:18px}
+figure.shot figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink3)}
+details{margin:0 0 10px;border-radius:16px;background:rgba(255,255,255,.55)}
+details summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;font:700 17px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink)}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
+details[open] summary::after{content:'–'}
+details>div{padding:0 20px 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
+.cards a:hover{background:rgba(255,255,255,.8)}
+.cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
+.cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
+.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
+[data-doc][hidden]{display:none!important}
+.next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+/* footer: the homepage's dark end */
+.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.ft-in{max-width:1120px;margin:0 auto}
+.ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+.ft-brand img.w{height:30px;width:auto;display:block}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by img{height:22px;width:auto}
+.ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
+.ft-links a{color:#F2EBDF;text-decoration:none}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+/* zh titles drawn as SVG */
+.zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-g{white-space:nowrap}
+svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <a class="hd-mark" href="/nsuve/en/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
+  <nav class="hd-nav" aria-label="Main"><a href="/nsuve/en/">Home</a><a href="/guides/en/" aria-current="page">Guides</a><a href="/en/support.html">Support</a><a href="/privacy.html#english">Privacy</a></nav>
+  <div class="hd-lang"><a href="/guides/every-screen.html?lang=zh" lang="zh-CN" hreflang="zh-Hans">中</a><a href="/guides/en/every-screen.html?lang=en" lang="en" hreflang="en" aria-current="true">EN</a></div>
+  <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-en.svg" alt="Download on the Mac App Store" width="108" height="32"></a>
+</header>
+<div class="pg"><div class="ph">
+  <p class="eb"><a href="/guides/en/">Guides</a> · Watching</p>
+  <h1 class="t">One library. Six screens.</h1>
+  <p class="lead">The Mac is home base for your library; iPhone and iPad are the half you carry around. They can connect to your NAS and media servers on their own, or use Nsuve Link to play what's on your Mac.</p>
+  <ul class="meta"><li>7 min read</li><li>For Mac, iPhone, iPad</li></ul>
+</div>
+<div class="wrap"><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#screens">What each screen does</a></li><li><a href="#phone">On iPhone and iPad</a></li><li><a href="#link">Nsuve Link: your Mac's films on your phone</a></li><li><a href="#pro">Buy Pro once, use it everywhere</a></li></ol></nav><main class="doc" id="main"><section id="screens">
+<h2>What each screen does</h2>
+<p>Nsuve has the same name and the same purchase on every screen. The Mac version comes first. iPhone and iPad share one app, which iPhone Duo uses too, and Apple TV and Vision Pro versions are on the way.</p>
+<div class="tbl"><table>
+<thead><tr><th>Screen</th><th>Status and requirements</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Mac</td><td>macOS 14 or later, Apple silicon only</td><td>Home base: the Inbox, organizing and duplicates, person recognition, AI agents, Nsuve Link, and backup and moving all live here. Cloud drives such as Baidu Netdisk, 123 Cloud, OneDrive, Dropbox and Google Drive connect directly only on the Mac.</td></tr>
+<tr><td>iPhone</td><td>Coming soon · iOS 17 or later</td><td>Plays films straight from your NAS and media servers; Send to Mac; Save to Nsuve from other apps' share sheets; Picture in Picture.</td></tr>
+<tr><td>iPad</td><td>Coming soon · same app as iPhone</td><td>Two columns, with the right one tucked away until you need it.</td></tr>
+<tr><td>iPhone Duo</td><td>Coming soon · uses the iPhone app</td><td>Folded, it looks like a phone; unfolded, it opens into two columns. The outer screen can play films while folded.</td></tr>
+<tr><td>Apple TV</td><td>Coming soon</td><td>Already included in Lifetime Pro for all platforms. No Private Space.</td></tr>
+<tr><td>Vision Pro</td><td>Coming soon</td><td>Already included in Lifetime Pro for all platforms. No Private Space.</td></tr>
+</tbody>
+</table></div>
+<figure class="shot dev-phone"><img src="/guides/assets/shots/every-screen-2.jpg" alt="The series page for The Long Season on iPhone: the title artwork, a Continue E02 button and the source, a Jellyfin server in the study" width="560" height="1218" loading="lazy" decoding="async"><figcaption>A series page on iPhone, playing straight from a Jellyfin server. Screenshots on this page show the app in Chinese.</figcaption></figure>
+</section>
+
+<section id="phone">
+<h2>On iPhone and iPad</h2>
+<p>The tab bar has Home, Sources, Files and Manage, plus a ＋ button. On iPad they sit in the sidebar on the left.</p>
+<p>On a phone you can connect WebDAV, SMB, SFTP, Emby, Jellyfin and Plex, as well as files on the device and locations in the Files app. A Mac you've paired shows up under Sources too. Cloud drives and DLNA are Mac-only.</p>
+<figure class="shot dev-ipad"><img src="/guides/assets/shots/every-screen-1.jpg" alt="A wall of film posters from a Jellyfin server on iPad; the sidebar lists the Jellyfin server, a NAS and a paired MacBook Pro under Sources" width="1280" height="890" loading="lazy" decoding="async"><figcaption>On iPad, NAS drives, media servers and a paired Mac sit side by side under Sources.</figcaption></figure>
+<h3>Sync between your iPhone and iPad with iCloud</h3>
+<p>In a source's settings, under Sync to Other Devices, turn on Sync This Source with iCloud. That source's recognition results, the matches you fixed by hand, the versions you picked, that NAS's settings and your watch progress then stay in step across the iPhones and iPads signed in to the same Apple Account. It all lives in your own iCloud, readable only by your devices. Passwords, Private Space and images are never synced.</p>
+<p>Your Mac's library doesn't sync through iCloud. To watch your Mac's films on a phone, use Nsuve Link.</p>
+</section>
+
+<section id="link">
+<h2>Nsuve Link: your Mac's films on your phone</h2>
+<p>Nsuve Link makes your Mac the center of your home library. A paired iPhone or iPad can browse the folders and posters the Mac shares and play them directly. By default it only accepts connections from your local network, and nothing goes through a cloud relay.</p>
+<ol class="steps">
+<li>On the Mac, click Nsuve Link in the workbench sidebar and turn on "Let other devices play videos from this Mac". It turns on by itself on your home network and pauses on other networks.</li>
+<li>Under Shared Folders, check the folders other devices may see. Click Add Device…, then Scan with iPhone. A QR code appears on the Mac.</li>
+<li>In Nsuve on your iPhone or iPad, go to Sources and choose Connect a Mac (the first time you open the app, Home also offers Connect Your Mac). Tap Scan and point at the QR code on the Mac's screen. If scanning doesn't work, try Look Nearby.</li>
+<li>The Mac shows that your phone wants to connect, along with a check code. If it matches the number on the phone, click Allow. Before you do, you can choose the folders it can see and whether to allow Save to Device, Convert on the Mac and Send to Inbox.</li>
+</ol>
+<p>Once paired, the Mac appears under Sources on the phone; tap it to browse and play. A few things to know:</p>
+<ul>
+<li>Only videos in your library folders are shared. Videos in Sources (external drives, local folders, NAS, cloud drives) won't appear on other devices, and Private Space and the Inbox are never shared.</li>
+<li>When the Mac sleeps or Nsuve quits, other devices can't see anything. While it's playing to a device, the Mac won't go to sleep on its own.</li>
+<li>When you watch your Mac's films on a phone, where you stop is remembered only on that phone.</li>
+<li>To cut a device off, click Revoke… next to it in Nsuve Link on the Mac. Copies it already saved can't be taken back.</li>
+</ul>
+<h3>Send videos from your phone to the Mac</h3>
+<p>On iPhone, a file's ⋯ menu has Send to Mac. The video lands in the Mac's Inbox; once you file it into a shared folder on the Mac, the rest of the household can watch it too. Only videos can be sent, and subtitles don't go along for now. Keep Nsuve open while it sends; if the transfer breaks off, it picks up where it stopped. The Mac has to allow Send to Inbox for that device first.</p>
+</section>
+
+<section id="pro">
+<h2>Buy Pro once, use it everywhere</h2>
+<p>Pro belongs to your Apple Account, not to one device.</p>
+<ul>
+<li><b>Pro yearly</b>: free for the first 7 days, and it works on all your devices.</li>
+<li><b>Lifetime Pro</b>: for Mac, for iPhone + iPad, or for all platforms. All platforms covers Mac, iPhone and iPad, plus the Apple TV and Vision Pro versions when they arrive.</li>
+<li>If you own one single-platform lifetime, you can upgrade to all platforms. If you own both the Mac and the iPhone + iPad lifetimes, you already have all platforms.</li>
+<li>With only the iPhone + iPad lifetime, Nsuve on the Mac stays on Free.</li>
+<li>Family Sharing isn't available at launch.</li>
+</ul>
+<p>Free includes everything except AI tool connections, with 15 plays a month. A play counts once a video has actually played for 10 seconds; pausing and scrubbing don't count. The count resets on the 1st of each month, and each device keeps its own. Pro has no limit.</p>
+<p>See <a href="/nsuve/en/#pricing">pricing on the home page</a>. The App Store shows the final price.</p>
+</section>
+
+<div class="next"><h2>Read next</h2><ul class="cards"><li><a href="/guides/en/connect-sources.html"><em>Getting started</em><b>Connect your NAS, servers and drives</b><span>Connect a NAS (SMB, WebDAV, SFTP; Synology, QNAP, fnOS), Emby, Jellyfin, Plex and cloud drives to Nsuve and get one library. What each device can connect, and what happens when a source is offline.</span></a></li><li><a href="/guides/en/watch-and-resume.html"><em>Watching</em><b>Pick up where you left off</b><span>Resume where you left off in Nsuve, set autoplay and when a video counts as watched, pick subtitles and audio, adjust the picture, see which formats play and which use hardware decoding, and open Playback Diagnostics with ⌥⌘I.</span></a></li></ul></div>
+</main></div></div>
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><img class="w" src="/home-assets/brand/nsuve-cream.svg" alt="Nsuve" width="96" height="30"><div class="ft-by">by <img src="/home-assets/brand/nsurator-swatch-cream.svg" alt="Nsurator" width="110" height="22"></div></div>
+      <nav class="ft-links" aria-label="Footer"><a href="/en/support.html">Support</a><a href="/privacy.html#english">Privacy</a><a href="/en/support.html?doc=terms#terms">Terms</a><a href="/guides/en/">Guides</a><a href="/en/support.html?doc=oss#oss">Open source</a><a href="/en/credits.html">Credits</a></nav>
+    </div>
+    <div class="ft-note"><span>Film and TV data and images come from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</span><span>© 2026 Nsurator</span></div>
+    <div class="ft-reg"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
+  </div>
+</footer>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
+</body>
+</html>

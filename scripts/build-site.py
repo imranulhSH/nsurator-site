@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Extract the two bundled pages once, then build editable HTML with local assets.
 
-Python standard library only. Never reads or writes privacy.html or CNAME.
+Python standard library only. Never reads or writes CNAME. Since 2026-11-09 privacy.html is generated with the
+other pages into src/home/ and published from there.
 """
 
 import argparse
@@ -18,11 +19,14 @@ from urllib.parse import unquote, urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 BUNDLED_PAGES = ("index.html", "support.html")
-# 2026-11-09: the homepage is the D page (src/home/, generated from the design source, see src/README.md);
-# only the support and credits pages still run on the extracted DC export.
-PAGES = ("support.html", "credits.html")
+# 2026-11-09: every page is now a static page generated from the design source into src/home/ (see src/README.md):
+# the homepage, support (+ terms, open source), credits, privacy and the guides, in Chinese and English.
+# The extracted DC export (src/support.html, src/credits.html) is gone, so no page is bundled any more.
+PAGES = ()
 # 2026-11-09: the homepage lives at /nsuve/ (zh) and /nsuve/en/ (en); / and /en/ are small redirect pages to them.
-HOME_PAGES = ("nsuve/index.html", "nsuve/en/index.html", "index.html", "en/index.html")
+HOME_PAGES = ("nsuve/index.html", "nsuve/en/index.html", "index.html", "en/index.html",
+              "support.html", "en/support.html", "credits.html", "en/credits.html", "privacy.html",
+              "guides/index.html", "guides/en/index.html")
 UUID = re.compile(r"\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b")
 # Source/attribution links may contain their own /assets/ paths. Only collect
 # root-relative local URLs, including those inside CSS and DC expressions.
@@ -289,7 +293,7 @@ def validate_sources():
         "unique_asset_bytes": asset_bytes,
         "output_bytes_excluding_report": page_bytes + asset_bytes,
         "raw_bytes_saved": original_bytes - page_bytes - asset_bytes,
-        "raw_size_reduction_percent": round(100 * (original_bytes - page_bytes - asset_bytes) / original_bytes, 2),
+        "raw_size_reduction_percent": round(100 * (original_bytes - page_bytes - asset_bytes) / original_bytes, 2) if original_bytes else 0,
         "original_asset_entries": original_asset_count,
         "unique_asset_files": len(assets),
         "generated_assets": {
@@ -452,7 +456,8 @@ def main():
         if args.extract_bundles:
             extract_bundles()
         pages, assets, report = validate_sources()
-        guides = guide_sources()
+        # 2026-11-09: the guides are generated into src/home/guides/ with the other pages; the old src/guides/ is gone
+        guides = guide_sources() if (ROOT / "src" / "guides").is_dir() else {}
         report["guides"] = {
             "pages": sorted(name for name in guides if name.endswith(".html")),
             "files": len(guides),

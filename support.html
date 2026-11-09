@@ -1,805 +1,623 @@
-<!DOCTYPE html>
-<html><head>
+<!doctype html>
+<html lang="zh-CN">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Local resource map: keep before the DC runtime. -->
-<script data-local-resources>
-window.__resources = {
-  "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "/assets/35f4f974f4b2bcd44da73963347f8952e341f83909e4498227d4e26b98f66f0d.js",
-  "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "/assets/d949f1c3687aedadcedac85261865f29b17cd273997e7f6b2bfc53b2f9d4c4dd.js"
-};
-</script>
-<!-- End local resource map. -->
-<script src="/assets/e8c97ec42794208d0d1cfa37ff334933cf3617f6ee12e9ecef2af6bd82a9a449.js"></script>
-<script src="/assets/8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var K='nsurator-site-lang',q=new URLSearchParams(location.search),want=q.get('lang');
+if(want!=='zh'&&want!=='en'){want=null;try{var s=localStorage.getItem(K);if(s==='zh'||s==='en')want=s}catch(e){}}else{try{localStorage.setItem(K,want)}catch(e){}}
+document.documentElement.dataset.lang="zh";
+if(want&&want!=="zh")location.replace("/en/support.html"+location.search+location.hash);})();</script>
+<title>支持与常见问题 · Nsuve</title>
+<meta name="description" content="Nsuve 的支持页：怎么报告问题、怎么联系我们，以及设备、价格、购买、媒体源、认片、格式、隐私和备份的常见问题。">
+<link rel="canonical" href="https://nsurator.com/support.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://nsurator.com/support.html">
+<link rel="alternate" hreflang="en" href="https://nsurator.com/en/support.html">
+<link rel="alternate" hreflang="x-default" href="https://nsurator.com/support.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nsurator">
+<meta property="og:title" content="支持与常见问题 · Nsuve">
+<meta property="og:description" content="Nsuve 的支持页：怎么报告问题、怎么联系我们，以及设备、价格、购买、媒体源、认片、格式、隐私和备份的常见问题。">
+<meta property="og:url" content="https://nsurator.com/support.html">
+<meta property="og:image" content="https://nsurator.com/home-assets/web/page-d-first.jpg">
+<meta name="theme-color" content="#EEE7DB">
+<link rel="icon" type="image/png" href="/home-assets/AppIcon-1024.png">
+<link rel="apple-touch-icon" href="/home-assets/AppIcon-1024.png">
+<style>
+@font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
+@font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+:root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
+  color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.8 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--rust);text-underline-offset:3px}
+img{max-width:100%}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
+.skip:focus{left:12px}
+.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
+/* header: the phone header's frosted bar, full width */
+.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-mark{display:block;line-height:0;margin-right:auto}
+.hd-mark img{height:28px;width:auto;display:block}
+.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav a[aria-current]{color:var(--rust)}
+.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
+.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
+.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
+@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
+  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
+@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* page head */
+.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
+.eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
+.eb a{color:inherit;text-decoration:none}
+h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
+h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+.lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+/* body: text column + table of contents */
+.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
+.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
+.toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
+.toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
+.doc{min-width:0;max-width:760px}
+.doc section{margin:0 0 56px}
+.doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+.doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
+.doc p,.doc li{color:var(--ink2);text-wrap:pretty}
+.doc p{margin:0 0 16px}
+.doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
+.doc li+li{margin-top:6px}
+.doc b,.doc strong{color:var(--ink);font-weight:700}
+.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
+.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
+ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
+.note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
+.note p:last-child{margin:0}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
+.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
+.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:700;color:var(--ink)}
+.tbl td{color:var(--ink2)}
+figure.shot{margin:8px 0 28px}
+figure.shot img{display:block;width:100%;height:auto;border-radius:14px;background:#1B1714}
+figure.shot.dev-phone img{max-width:360px;border-radius:28px}
+figure.shot.dev-tv img,figure.shot.dev-vision img{border-radius:18px}
+figure.shot figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--ink3)}
+details{margin:0 0 10px;border-radius:16px;background:rgba(255,255,255,.55)}
+details summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;font:700 17px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink)}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
+details[open] summary::after{content:'–'}
+details>div{padding:0 20px 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
+.cards a:hover{background:rgba(255,255,255,.8)}
+.cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
+.cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
+.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
+[data-doc][hidden]{display:none!important}
+.next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+/* footer: the homepage's dark end */
+.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.ft-in{max-width:1120px;margin:0 auto}
+.ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+.ft-brand img.w{height:30px;width:auto;display:block}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by img{height:22px;width:auto}
+.ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
+.ft-links a{color:#F2EBDF;text-decoration:none}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+/* zh titles drawn as SVG */
+.zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-g{white-space:nowrap}
+svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-<x-dc>
-<helmet data-dc-atomics="">
-<meta name="description" content="Nsurator 支持与法律：联系支持、使用说明、隐私政策、使用条款与开源许可。">
-<link rel="icon" type="image/png" href="/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png">
-<style>/* Organic — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
-/* latin-ext */
-@font-face {
-  font-family: 'Caprasimo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/8cbef7cdad7bfe1fd7dc1958f3eca65b6e4e58c34b2f5a366d3e659d6d3efad1.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Caprasimo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/8be0594f223844d398b066640ab4303555978a8a72c6558ff769251007bd431a.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/f153aa07c1b16fbb12391c2512860c97819a0a9fd014f338b2b3f12496479d13.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/8330490a01c60c196eae00b823de8102275aaa5862e7b76a7af21b8745338928.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/assets/f153aa07c1b16fbb12391c2512860c97819a0a9fd014f338b2b3f12496479d13.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/assets/8330490a01c60c196eae00b823de8102275aaa5862e7b76a7af21b8745338928.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/assets/f153aa07c1b16fbb12391c2512860c97819a0a9fd014f338b2b3f12496479d13.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/assets/8330490a01c60c196eae00b823de8102275aaa5862e7b76a7af21b8745338928.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-
-:root {
-  --color-bg: #f5ead8;
-  --color-surface: #ebddc5;
-  --color-text: #201e1d;
-  --color-accent: #c67139;
-  --color-accent-2: #7a8a5e;
-  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
-
-  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
-     same step of any role matches the others in visual value. */
-  --color-neutral-100: #f9f4ed;
-  --color-neutral-200: #eee7db;
-  --color-neutral-300: #dcd3c4;
-  --color-neutral-400: #c0b6a5;
-  --color-neutral-500: #a19786;
-  --color-neutral-600: #82796a;
-  --color-neutral-700: #645c50;
-  --color-neutral-800: #474238;
-  --color-neutral-900: #2e2b25;
-
-  --color-accent-100: #fff2eb;
-  --color-accent-200: #ffe1d0;
-  --color-accent-300: #ffc6a5;
-  --color-accent-400: #f6a06b;
-  --color-accent-500: #d67f48;
-  --color-accent-600: #b2622d;
-  --color-accent-700: #8c491a;
-  --color-accent-800: #643312;
-  --color-accent-900: #402310;
-
-  --color-accent-2-100: #f0fae1;
-  --color-accent-2-200: #e1eecc;
-  --color-accent-2-300: #ccdbb2;
-  --color-accent-2-400: #aebf92;
-  --color-accent-2-500: #8fa073;
-  --color-accent-2-600: #728157;
-  --color-accent-2-700: #56633f;
-  --color-accent-2-800: #3d472b;
-  --color-accent-2-900: #272e1b;
-
-  --font-heading: "Caprasimo", system-ui, sans-serif;
-  --font-heading-weight: 400;
-  --font-body: "Figtree", system-ui, sans-serif;
-
-  --space-1: 4.4px;
-  --space-2: 8.8px;
-  --space-3: 13.2px;
-  --space-4: 17.6px;
-  --space-6: 26.4px;
-  --space-8: 35.2px;
-
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 28px;
-
-  /* Elevation — derived from the ground: soft ink-tinted shadows on a
-     light theme, a hairline edge + ambient darkness on a dark one. */
-  --shadow-sm: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
-  --shadow-md: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
-  --shadow-lg: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
-}
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-}
-h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
-
-.washed{filter:saturate(0.6) contrast(0.85) brightness(1.1) opacity(0.94)}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   Components — built with the tokens above. Plain CSS
-   on plain HTML: no JavaScript, no build step. Each class is documented in
-   readme.md and demonstrated in foundations/ and components/.
-   ══════════════════════════════════════════════════════════════════════ */
-
-*, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
-}
-h1 { font-size: 42px; }
-h2 { font-size: 32px; }
-h3 { font-size: 25px; }
-h4 { font-size: 20px; }
-h5 { font-size: 16px; }
-h6 { font-size: 13px; }
-h6 { letter-spacing: 0.08em; text-transform: uppercase; }
-p { margin: 0 0 var(--space-3); }
-a { color: var(--color-accent); text-underline-offset: 3px; }
-img { display: block; max-width: 100%; }
-figure { margin: 0; }
-figcaption {
-  font-size: 11px; margin-top: var(--space-1);
-  color: color-mix(in srgb, var(--color-text) 55%, transparent);
-}
-.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
-:focus { outline: none; }
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
-
-/* — rules — */
-.hr {
-  height: 1px; border: 0; margin: var(--space-4) 0;
-  background: var(--color-divider);
-}
-
-/* — buttons — */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  cursor: pointer; text-decoration: none;
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 14px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
-     the pair sits side by side in sign-up rows */
-  background: transparent; border: 1px solid transparent;
-  padding: var(--space-2) calc(var(--space-3) * 1.2);
-  border-radius: var(--radius-md);
-}
-.btn svg { display: block; }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn-primary { background: var(--color-accent); color: var(--color-bg); }
-.btn-primary:hover { background: var(--color-accent-600); }
-.btn-primary:active { background: var(--color-accent-700); }
-.btn-secondary { border-color: var(--color-divider); }
-.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
-.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
-.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
-.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
-.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
-.btn-icon { width: 36px; height: 36px; padding: 0; }
-.btn-block { width: 100%; margin-top: var(--space-2); }
-
-/* — forms — */
-.field > label {
-  display: block; font-size: 12px; margin-bottom: 5px;
-  color: color-mix(in srgb, var(--color-text) 70%, transparent);
-}
-.input {
-  width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
-  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
-  background: var(--color-surface);
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
-}
-.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
-.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
-textarea.input { min-height: 90px; resize: vertical; }
-.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
-.radio input, .seg-opt input {
-  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
-}
-.radio .dot {
-  width: 16px; height: 16px; flex: none; border-radius: 50%;
-  border: 1.5px solid var(--color-divider);
-}
-.radio:hover .dot { border-color: var(--color-accent); }
-.radio input:checked + .dot {
-  border-color: var(--color-accent); background: var(--color-accent);
-  box-shadow: inset 0 0 0 4px var(--color-bg);
-}
-.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-.seg {
-  display: inline-flex; overflow: hidden;
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
-}
-.seg-opt {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 12px; font-size: 13px; cursor: pointer;
-}
-.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
-.seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
-.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
-.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
-
-/* — cards — */
-.card {
-  display: flex; flex-direction: column; gap: var(--space-2);
-  padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
-}
-.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
-.card-title {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 17px; line-height: 1.2;
-}
-.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
-.card-meta {
-  display: flex; align-items: center; gap: 6px; font-size: 11px;
-  color: color-mix(in srgb, var(--color-text) 50%, transparent);
-}
-.elev-sm { box-shadow: var(--shadow-sm); }
-.elev-md { box-shadow: var(--shadow-md); }
-.elev-lg { box-shadow: var(--shadow-lg); }
-
-/* — tags — */
-.tag {
-  display: inline-flex; align-items: center; font-size: 11px;
-  letter-spacing: 0.02em; padding: 3px 10px;
-  border-radius: calc(var(--radius-md) * 0.75);
-}
-.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
-.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
-.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
-.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
-
-/* — navigation — */
-.nav {
-  display: flex; align-items: center; gap: var(--space-4);
-  padding: var(--space-3) var(--space-4);
-  border-bottom: none;
-}
-.nav-brand {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 18px; margin-right: auto;
-}
-.nav a { color: inherit; text-decoration: none; font-size: 14px; }
-.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
-
-/* — tables — */
-.table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.table th {
-  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-text) 60%, transparent);
-  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
-}
-.table td {
-  padding: var(--space-2);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
-}
-.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
-
-/* — dialog — */
-.dialog-backdrop {
-  position: fixed; inset: 0; display: grid; place-items: center;
-  padding: var(--space-4);
-  background: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
-}
-.dialog {
-  width: min(440px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
-  padding: var(--space-4); border-radius: var(--radius-lg);
-  background: var(--color-surface); box-shadow: var(--shadow-lg);
-}
-.dialog-title {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 20px;
-}
-.dialog-body { font-size: 14px; opacity: 0.85; }
-.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
-
-/* — rounded frame: everything softens, small controls go pill — */
-.card, .dialog { border-radius: calc(var(--radius-lg) * 1.15); }
-.btn, .tag, .seg, .input { border-radius: 999px; }
-.input { padding-inline: 14px; }
-
-</style>
-<script src="/assets/df4cc8303200853711b209fd67543dfcf2540c250d8a7cee0f76730d271401eb.js"></script>
-
-<style>
-html{scroll-behavior:smooth}
-[data-section-link][aria-current="location"]{color:var(--color-text)!important;font-weight:700;background:var(--color-accent-2-100)}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--color-neutral-100);color:var(--color-text);font-family:var(--font-body),'PingFang SC','Hiragino Sans GB',sans-serif}
-a{color:inherit;text-decoration:none}a:hover{opacity:.8}
-.language-button{appearance:none;border:0;background:transparent;font-family:inherit;min-height:32px;min-width:34px}
-.language-button:focus-visible{outline:2px solid #F9F4ED;outline-offset:3px}
-.mn{font-family:ui-monospace,"SF Mono",Menlo,monospace}
-.cap{font-family:var(--font-heading),sans-serif;font-weight:400}
-.hd{font-family:var(--font-heading),'PingFang SC','Hiragino Sans GB',sans-serif;font-weight:400;letter-spacing:-.01em}
-[data-lang="zh"] .hd{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;font-weight:800;letter-spacing:-.02em}
-.rail{scrollbar-width:none}.rail::-webkit-scrollbar{display:none}
-@container page (max-width:820px){
-.m-hide{display:none!important}.m-show{display:flex!important}
-.shell{grid-template-columns:minmax(0,1fr)!important;gap:28px!important}
-.rail{position:static!important;max-height:none!important;overflow:visible!important;padding-top:0!important}
-.rail-nav{flex-direction:row!important;flex-wrap:wrap!important;gap:6px 14px!important}
-.rail-grp{flex-direction:row!important;flex-wrap:wrap!important;gap:6px!important}
-.rail-lbl,.rail-toc{display:none!important}
-.two,.tr,.kv,.fcols{grid-template-columns:minmax(0,1fr)!important}
-.tr{gap:4px!important}.tr-h{display:none!important}.kv{gap:2px!important}
-.sb{padding-left:0!important}
-}
-</style></helmet>
-<div class="pg" data-lang="{{ lang }}" style="container-type:inline-size;container-name:page;min-height:100vh;background:var(--color-neutral-100);color:var(--color-text);font-size:16px;line-height:1.6">
-
-  <div style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:#24211f;color:var(--color-neutral-100)">
-    <div style="display:flex;align-items:center;gap:20px;height:64px;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px)">
-      <a href="index.html?lang={{ lang }}" style="display:flex;align-items:center;gap:10px;flex:none"><span style="width:26px;height:26px;border-radius:7px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat;box-shadow:0 2px 6px rgba(0,0,0,.35)"></span><span class="cap" style="font-size:19px;line-height:1">Nsurator</span></a>
-      <div class="m-hide" style="flex:1;display:flex;justify-content:center;gap:26px;font-size:14px;font-weight:600;color:var(--color-neutral-400)"><a href="index.html?lang={{ lang }}#top">{{ t.navProduct }}</a><a href="/guides/">{{ t.navGuides }}</a><span style="color:var(--color-neutral-100)">{{ t.navSupport }}</span></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
-        <div role="group" aria-label="{{ languageLabel }}" style="display:flex;padding:3px;border-radius:999px;background:rgba(249,244,237,.1)"><button type="button" class="language-button" aria-label="中文" aria-pressed="{{ zh }}" sc-camel-on-click="{{ setZh }}" style="{{ zhStyle }}">中</button><button type="button" class="language-button" aria-label="English" aria-pressed="{{ en }}" sc-camel-on-click="{{ setEn }}" style="{{ enStyle }}">EN</button></div>
-        <a class="m-hide" href="https://apps.apple.com/app/id6763750134?mt=12" style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;background:var(--color-neutral-100);color:var(--color-text);font-size:13px;font-weight:700;transition:transform .2s" style-active="transform:scale(.97)">{{ t.navCta }}</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="shell" style="max-width:1200px;margin:0 auto;padding:calc(64px + clamp(40px,5cqi,80px)) clamp(20px,5cqi,72px) clamp(72px,9cqi,140px);display:grid;grid-template-columns:216px minmax(0,1fr);gap:40px clamp(40px,6cqi,96px);align-items:start">
-
-    <div class="rail" style="position:sticky;top:96px;max-height:calc(100vh - 120px);overflow:auto;display:flex;flex-direction:column;gap:24px;padding-top:8px">
-      <div class="rail-nav" style="display:flex;flex-direction:column;gap:22px">
-        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
-        <div class="rail-grp" style="display:flex;flex-direction:column;gap:2px">
-          <span class="rail-lbl" style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--color-neutral-600);padding:0 0 8px 12px">{{ g.h }}</span>
-          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3"><a href="{{ it.href }}" sc-camel-on-click="{{ it.go }}" style="{{ it.style }}" style-hover="background:var(--color-neutral-200)"><span style="{{ it.dot }}"></span>{{ it.t }}</a></sc-for>
-        </div>
-        </sc-for>
-      </div>
-      <a href="/guides/" style="display:block;padding:12px;border-radius:10px;background:var(--color-neutral-200);font-size:14px;font-weight:700;color:var(--color-accent-2-700)">{{ t.navGuides }} →</a>
-      <sc-if value="{{ hasToc }}" hint-placeholder-val="{{ false }}">
-      <div class="rail-toc" style="display:flex;flex-direction:column;gap:2px;padding-top:22px;border-top:1px solid var(--color-neutral-300)">
-        <span style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--color-neutral-600);padding:0 0 8px 12px">{{ t.tocH }}</span>
-        <sc-for list="{{ toc }}" as="i" hint-placeholder-count="8"><a href="{{ i.href }}" data-section-link="{{ i.id }}" style="{{ i.style }}" style-hover="background:var(--color-neutral-200)"><span class="cap" style="font-size:12px;color:var(--color-accent-2-600);flex:none;min-width:20px">{{ i.n }}</span><span>{{ i.title }}</span></a></sc-for>
-      </div>
-      </sc-if>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:clamp(40px,5cqi,64px);min-width:0">
-
-      <div style="display:flex;flex-direction:column;gap:14px;max-width:760px">
-        <span style="font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--color-accent-2-700)">{{ head.kicker }}</span>
-        <h1 class="hd" style="margin:0;font-size:clamp(34px,4.2cqi,56px);line-height:1.1;text-wrap:pretty">{{ head.title }}</h1>
-        <p style="margin:0;font-size:clamp(17px,1.4cqi,19px);line-height:1.6;color:var(--color-neutral-700);max-width:56ch;text-wrap:pretty">{{ head.sub }}</p>
-        <span class="mn" style="font-size:12.5px;color:var(--color-neutral-600)">{{ head.meta }}</span>
-      </div>
-
-      <sc-if value="{{ isSupport }}" hint-placeholder-val="{{ true }}">
-      <div style="display:flex;flex-direction:column;gap:clamp(44px,5.5cqi,72px);max-width:760px">
-
-        <div class="two" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 40px">
-          <sc-for list="{{ routes }}" as="r" hint-placeholder-count="2">
-          <div style="display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:2px solid var(--color-text)">
-            <div style="display:flex;align-items:baseline;gap:12px"><span class="cap" style="font-size:24px;color:var(--color-accent-2-600);flex:none">{{ r.n }}</span><span style="font-size:13px;font-weight:700;color:var(--color-neutral-600)">{{ r.k }}</span><sc-if value="{{ r.rec }}" hint-placeholder-val="{{ false }}"><span style="margin-left:auto;padding:3px 10px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);font-size:11.5px;font-weight:700">{{ t.rec }}</span></sc-if></div>
-            <sc-if value="{{ r.isLink }}" hint-placeholder-val="{{ false }}"><a class="hd" href="{{ r.href }}" style="{{ r.tStyle }}">{{ r.t }}</a></sc-if><sc-if value="{{ r.isText }}" hint-placeholder-val="{{ true }}"><span class="hd" style="{{ r.tStyle }}">{{ r.t }}</span></sc-if>
-            <p style="margin:0;font-size:15.5px;line-height:1.75;color:var(--color-neutral-800);text-wrap:pretty">{{ r.d }}</p>
-            <span class="mn" style="font-size:12.5px;color:var(--color-neutral-600)">{{ r.path }}</span>
-          </div>
-          </sc-for>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:18px">
-          <h2 class="hd" style="margin:0;font-size:clamp(22px,2.2cqi,28px);line-height:1.25">{{ t.beforeH }}</h2>
-          <div style="display:flex;flex-direction:column">
-            <sc-for list="{{ before }}" as="b" hint-placeholder-count="3">
-            <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 14px;padding:16px 0;border-top:1px solid var(--color-neutral-300)">
-              <span class="cap" style="font-size:22px;line-height:1.2;color:var(--color-accent-2-600)">{{ b.n }}</span>
-              <div style="display:flex;flex-direction:column;gap:4px">
-                <span style="font-size:16px;font-weight:700">{{ b.t }}</span>
-                <span style="font-size:15px;line-height:1.7;color:var(--color-neutral-700);text-wrap:pretty">{{ b.d }}</span>
-                <span class="mn" style="font-size:12.5px;color:var(--color-neutral-600);padding-top:4px">{{ b.where }}</span>
-              </div>
-            </div>
-            </sc-for>
-          </div>
-          <div class="mn" style="padding:18px 20px;border-radius:var(--radius-md);background:#1E1C1B;color:var(--color-neutral-400);font-size:12.5px;line-height:1.85;overflow-x:auto;white-space:pre">{{ diag }}</div>
-          <p style="margin:0;font-size:14.5px;line-height:1.7;color:var(--color-neutral-600);max-width:60ch;text-wrap:pretty">{{ t.diagNote }}</p>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <h2 class="hd" style="margin:0;font-size:clamp(22px,2.2cqi,28px);line-height:1.25">{{ t.appleH }}</h2>
-          <p style="margin:0;font-size:16px;line-height:1.8;color:var(--color-neutral-900);max-width:60ch;text-wrap:pretty">{{ t.appleP }}</p>
-          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;padding-top:4px">
-            <a href="https://reportaproblem.apple.com" style="display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 20px;border-radius:999px;background:var(--color-text);color:var(--color-neutral-100);font-size:14px;font-weight:700;transition:transform .2s" style-hover="transform:translateY(-1px)" style-active="transform:scale(.97)">{{ t.appleBtn }}<svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
-            <span class="mn" style="font-size:12.5px;color:var(--color-neutral-600)">{{ t.appleManage }}</span>
-          </div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <h2 class="hd" style="margin:0;font-size:clamp(22px,2.2cqi,28px);line-height:1.25">{{ t.lookH }}</h2>
-          <div style="display:flex;flex-direction:column">
-            <sc-for list="{{ lookups }}" as="lk" hint-placeholder-count="5"><a href="{{ lk.href }}" sc-camel-on-click="{{ lk.go }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-top:1px solid var(--color-neutral-300);font-size:16px;color:var(--color-text)"><span>{{ lk.t }}</span><span style="flex:none;display:flex;align-items:center;gap:6px;font-size:13.5px;color:var(--color-neutral-600)">{{ lk.where }}<svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></sc-for>
-          </div>
-        </div>
-
-      </div>
-      </sc-if>
-
-      <sc-if value="{{ isDoc }}" hint-placeholder-val="{{ false }}">
-      <div style="display:flex;flex-direction:column;gap:clamp(44px,5.5cqi,64px);max-width:760px">
-        <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="6">
-        <div id="{{ sec.id }}" data-sec="{{ sec.id }}" style="display:flex;flex-direction:column;gap:16px;scroll-margin-top:96px">
-          <div style="display:flex;gap:14px;align-items:baseline">
-            <span class="cap" style="font-size:20px;color:var(--color-accent-2-600);flex:none;min-width:30px">{{ sec.n }}</span>
-            <h2 class="hd" style="margin:0;font-size:clamp(22px,2.3cqi,30px);line-height:1.25;text-wrap:pretty">{{ sec.title }}</h2>
-          </div>
-          <div class="sb" style="display:flex;flex-direction:column;gap:14px;padding-left:44px">
-            <sc-for list="{{ sec.blocks }}" as="b" hint-placeholder-count="2">
-              <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font-size:16px;line-height:1.85;color:var(--color-neutral-900);text-wrap:pretty">{{ b.text }}</p></sc-if>
-              <sc-if value="{{ b.isA }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:16px;line-height:1.85;overflow-wrap:anywhere"><a href="{{ b.href }}" style="font-weight:700;color:var(--color-accent-700);text-decoration:underline;text-decoration-color:var(--color-accent-300);text-underline-offset:4px">{{ b.text }}</a></p></sc-if>
-              <sc-if value="{{ b.isL }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3"><div style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:6px;height:6px;border-radius:50%;background:var(--color-accent-2-500);margin-top:11px"></span><span style="font-size:15.5px;line-height:1.8;color:var(--color-neutral-900);text-wrap:pretty">{{ it.t }}</span></div></sc-for></div></sc-if>
-              <sc-if value="{{ b.isO }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column"><sc-for list="{{ b.items }}" as="st" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:0 14px;padding:14px 0;border-top:1px solid var(--color-neutral-300)"><span class="cap" style="font-size:20px;line-height:1.3;color:var(--color-accent-2-600)">{{ st.n }}</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700">{{ st.t }}</span><span style="font-size:15px;line-height:1.7;color:var(--color-neutral-800);text-wrap:pretty">{{ st.d }}</span><span class="mn" style="font-size:12.5px;color:var(--color-neutral-600);padding-top:2px">{{ st.path }}</span></div></div></sc-for></div></sc-if>
-              <sc-if value="{{ b.isN }}" hint-placeholder-val="{{ false }}"><div style="padding:16px 20px;border-radius:var(--radius-md);background:var(--color-accent-2-100);color:var(--color-accent-2-900);font-size:15.5px;line-height:1.75;text-wrap:pretty">{{ b.text }}</div></sc-if>
-              <sc-if value="{{ b.isM }}" hint-placeholder-val="{{ false }}"><div class="mn" style="padding:18px 20px;border-radius:var(--radius-md);background:#1E1C1B;color:var(--color-neutral-400);font-size:12.5px;line-height:1.85;overflow-x:auto;white-space:pre">{{ b.text }}</div></sc-if>
-              <sc-if value="{{ b.isT }}" hint-placeholder-val="{{ false }}">
-              <div style="display:flex;flex-direction:column;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--color-neutral-300)">
-                <div class="tr tr-h" style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,3fr) minmax(0,5fr);gap:14px;padding:11px 18px;background:var(--color-neutral-200)"><sc-for list="{{ b.head }}" as="h" hint-placeholder-count="3"><span style="font-size:12.5px;font-weight:700;color:var(--color-neutral-800)">{{ h.h }}</span></sc-for></div>
-                <sc-for list="{{ b.rows }}" as="r" hint-placeholder-count="3"><div class="tr" style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,3fr) minmax(0,5fr);gap:14px;padding:14px 18px;border-top:1px solid var(--color-neutral-300);align-items:start"><span style="font-size:14.5px;font-weight:700;color:var(--color-text)">{{ r.a }}</span><span style="font-size:14px;line-height:1.6;color:var(--color-neutral-700)">{{ r.b }}</span><span style="font-size:14px;line-height:1.6;color:var(--color-neutral-700)">{{ r.c }}</span></div></sc-for>
-              </div>
-              </sc-if>
-              <sc-if value="{{ b.isK }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column"><sc-for list="{{ b.rows }}" as="k" hint-placeholder-count="6"><div class="kv" style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--color-neutral-300);align-items:baseline"><span class="mn" style="font-size:13px;color:var(--color-text)">{{ k.k }}</span><span style="font-size:15.5px;color:var(--color-neutral-800)">{{ k.v }}</span></div></sc-for></div></sc-if>
-              <sc-if value="{{ b.isPk }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column"><sc-for list="{{ b.rows }}" as="p" hint-placeholder-count="3"><div style="display:flex;flex-wrap:wrap;gap:6px 14px;padding:14px 0;border-top:1px solid var(--color-neutral-300);align-items:baseline"><span class="mn" style="font-size:14.5px;font-weight:600;color:var(--color-text)">{{ p.name }}</span><span style="padding:3px 10px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);font-size:11.5px;font-weight:700">{{ p.lic }}</span><span style="flex:1 1 100%;font-size:14.5px;line-height:1.65;color:var(--color-neutral-700)">{{ p.use }}</span></div></sc-for></div></sc-if>
-            </sc-for>
-          </div>
-        </div>
-        </sc-for>
-
-        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;padding-top:28px;border-top:2px solid var(--color-text)">
-          <span style="font-size:15.5px;line-height:1.6;color:var(--color-neutral-700);max-width:44ch;text-wrap:pretty">{{ docFoot }}</span>
-          <a href="{{ docMail }}" style="font-size:15.5px;font-weight:700;color:var(--color-accent-700);text-decoration:underline;text-decoration-color:var(--color-accent-300);text-underline-offset:4px">{{ docMailText }}</a>
-        </div>
-      </div>
-      </sc-if>
-
-    </div>
-  </div>
-
-  <footer style="background:#1E1C1B;color:var(--color-neutral-100);padding:clamp(44px,5cqi,72px) 0 34px">
-    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5cqi,72px);display:flex;flex-direction:column;gap:36px">
-      <div class="fcols" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px">
-        <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><div style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:6px;background:url(&quot;/assets/6e34988e7e36d7ebad1a8ddafa3c2bc003a7e63b1269b072859e458dc2e3ad79.png&quot;) center/124.6% no-repeat"></span><span class="cap" style="font-size:18px">Nsurator</span></div><p style="margin:0;font-size:14px;line-height:1.55;color:var(--color-neutral-500);max-width:26ch">{{ t.brandLine }}</p></div>
-        <sc-for list="{{ fcols }}" as="col" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--color-neutral-500)">{{ col.h }}</span><sc-for list="{{ col.links }}" as="lk" hint-placeholder-count="3"><a href="{{ lk.href }}" sc-camel-on-click="{{ lk.go }}" style="font-size:14.5px;color:var(--color-neutral-100)">{{ lk.t }}</a></sc-for></div></sc-for>
-      </div>
-      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--color-neutral-500);padding-top:20px;border-top:1px solid rgba(249,244,237,.1)"><span>© 2026 Nsurator</span><span>{{ t.footNote }}</span></div>
-    </div>
-
-    <div class="site-registration" style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;padding-top:18px;font-size:12px;line-height:1.6;color:#A19786;text-align:center"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
-</footer>
-
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="zg-652f" d="M98 -62Q89 -66 75 -82Q61 -99 61 -107Q61 -115 115 -170L170 -226L222 -287Q229 -294 229 -298Q229 -302 205 -324Q195 -333 186 -343Q178 -353 175 -360Q172 -366 166 -370Q161 -375 150 -380Q138 -386 132 -391Q126 -396 122 -403Q113 -422 116 -436Q120 -451 138 -468Q155 -485 192 -510Q237 -540 243 -548Q245 -552 246 -560Q248 -567 248 -575Q248 -587 247 -590Q246 -594 240 -594Q232 -594 178 -576Q123 -559 111 -559Q105 -559 98 -563Q91 -567 80 -578Q45 -613 45 -634Q45 -644 60 -656Q75 -668 102 -678Q129 -688 186 -713Q244 -738 249 -738Q254 -738 256 -754Q259 -771 259 -816L260 -890Q260 -903 274 -918Q288 -933 305 -937Q338 -947 370 -926Q388 -915 396 -897Q401 -886 403 -875Q405 -864 405 -842Q406 -805 409 -801Q410 -798 419 -799Q428 -800 449 -806Q464 -810 479 -812Q494 -814 499 -813Q512 -811 530 -792Q549 -773 551 -759Q554 -747 550 -732Q546 -718 538 -709Q529 -698 508 -686Q488 -673 461 -663Q425 -648 420 -648Q416 -648 405 -643Q399 -640 396 -634Q393 -628 390 -613Q385 -589 387 -586Q389 -584 402 -589Q415 -594 422 -594Q429 -594 452 -578Q476 -561 486 -548Q498 -534 504 -517Q507 -508 508 -501Q508 -494 506 -486Q502 -472 469 -406Q436 -339 436 -331Q436 -323 480 -309Q523 -295 594 -281Q636 -273 651 -266Q666 -258 678 -242Q691 -227 696 -208Q702 -189 702 -152Q703 -116 698 -106Q696 -103 688 -96Q681 -90 672 -84L651 -70L611 -71Q582 -72 572 -74Q561 -77 535 -90Q521 -97 487 -118Q453 -139 420 -161Q386 -183 361 -198Q336 -214 334 -213Q330 -210 314 -195Q267 -153 222 -120Q176 -86 146 -73Q127 -64 116 -62Q105 -59 98 -62ZM322 -410Q330 -425 330 -431Q330 -437 322 -438Q315 -438 306 -433Q297 -428 284 -424Q270 -420 269 -416Q268 -411 282 -403Q297 -395 306 -395Q315 -395 322 -410Z"/><path id="zg-6301" d="M662 -55Q641 -59 614 -75Q587 -91 571 -110Q554 -128 543 -149Q532 -170 530 -186Q527 -203 535 -208Q543 -213 571 -213H601L605 -230Q610 -248 610 -316Q609 -385 608 -390Q606 -395 600 -395Q594 -395 550 -372L507 -350L529 -345Q548 -342 566 -332Q583 -321 583 -314Q583 -308 561 -281Q539 -254 530 -248Q520 -241 503 -241Q486 -241 477 -248Q467 -254 459 -268Q450 -283 450 -293Q450 -296 456 -305Q462 -314 471 -322Q479 -331 484 -338Q489 -344 486 -344Q481 -344 456 -337Q440 -333 433 -333Q426 -333 418 -336Q407 -341 401 -354Q395 -367 398 -380Q404 -407 435 -431Q448 -442 489 -463Q529 -484 561 -496Q586 -507 595 -517Q603 -527 593 -535Q587 -540 567 -534Q546 -527 497 -504Q473 -492 454 -484Q435 -477 432 -477Q423 -477 409 -485Q401 -490 399 -490Q396 -491 395 -488Q393 -484 390 -472Q389 -468 381 -454Q373 -439 362 -423L336 -385L339 -309Q342 -242 342 -212Q341 -183 337 -163Q334 -147 320 -122Q305 -98 299 -98Q289 -98 209 -164Q184 -185 172 -197Q160 -209 155 -220Q145 -238 142 -238Q138 -238 130 -230Q122 -221 122 -218Q122 -215 114 -211Q109 -208 105 -210Q100 -213 89 -223Q71 -240 65 -252Q59 -264 50 -270Q47 -273 46 -276Q44 -278 45 -280Q46 -281 49 -280Q51 -279 54 -277Q57 -274 59 -274Q60 -275 60 -279L62 -295Q62 -302 69 -310Q76 -319 97 -337Q116 -352 161 -388Q224 -438 227 -444Q229 -450 223 -482Q220 -502 218 -508Q215 -514 211 -514Q206 -515 199 -513Q192 -511 185 -508Q169 -500 157 -500Q141 -500 115 -513Q88 -526 68 -544Q61 -551 59 -556Q56 -562 56 -569Q56 -582 68 -594Q79 -605 108 -619Q136 -633 190 -654Q206 -661 212 -664Q218 -667 220 -670Q221 -672 221 -678L217 -752Q215 -815 219 -829Q223 -841 235 -852Q247 -864 261 -870Q269 -873 274 -873Q279 -873 287 -870Q300 -866 315 -857Q329 -848 339 -828Q348 -808 351 -783Q354 -756 359 -742Q363 -729 374 -717Q393 -695 400 -673Q407 -651 399 -635Q394 -627 370 -601Q360 -591 352 -580Q344 -569 343 -565Q340 -553 343 -540Q346 -527 351 -527Q354 -527 364 -536Q374 -544 385 -556Q402 -573 415 -582Q428 -592 450 -603Q490 -624 504 -633Q517 -642 517 -648Q517 -653 514 -654Q510 -656 500 -656Q483 -656 472 -664Q461 -671 452 -686Q442 -702 442 -713Q442 -724 454 -736Q465 -747 496 -767L526 -787L528 -846Q530 -886 532 -898Q533 -909 538 -917Q547 -928 562 -937Q571 -942 578 -944Q584 -945 593 -943Q629 -938 648 -901Q654 -888 656 -880Q657 -873 656 -864Q653 -848 656 -842Q657 -839 663 -835Q668 -831 675 -828Q685 -823 691 -818Q696 -812 701 -802Q705 -792 707 -784Q708 -776 707 -764Q706 -751 704 -744Q701 -737 694 -730Q683 -718 665 -708Q653 -702 646 -694Q639 -685 639 -678Q639 -672 648 -672Q653 -672 682 -681Q708 -690 736 -695Q763 -700 772 -698Q781 -696 792 -684Q803 -673 810 -660Q816 -647 819 -630Q822 -613 819 -602Q814 -579 758 -570Q729 -565 721 -560Q713 -555 712 -549Q711 -543 717 -541Q722 -539 755 -542Q788 -546 801 -542Q814 -539 821 -523Q825 -517 827 -508Q829 -500 829 -494Q829 -480 823 -467Q817 -454 808 -448Q802 -444 777 -436Q751 -428 731 -424L722 -422L721 -151Q720 -117 718 -103Q717 -93 712 -81Q703 -58 694 -54Q684 -51 681 -51ZM232 -246Q243 -250 243 -260Q243 -270 239 -280Q235 -289 230 -289Q225 -289 205 -272Q185 -256 185 -247Q185 -240 188 -239Q190 -238 203 -239Q222 -242 232 -246Z"/><path id="zg-4e0e" d="M500 -65Q498 -67 478 -72Q458 -77 433 -93Q407 -109 385 -131Q337 -175 337 -195Q337 -206 347 -215Q354 -222 363 -224Q371 -225 402 -225H447L460 -238Q484 -262 501 -317Q509 -344 514 -366Q518 -389 523 -428Q528 -467 529 -491Q529 -515 525 -518Q523 -519 510 -514Q497 -509 481 -502Q437 -482 349 -452Q260 -422 248 -423Q239 -423 235 -428Q230 -432 221 -448Q216 -457 211 -470Q206 -483 205 -492Q202 -505 204 -522Q206 -539 216 -589Q231 -666 238 -723Q247 -808 252 -834Q257 -861 268 -876Q275 -887 292 -894Q308 -902 322 -902Q336 -902 352 -894Q368 -887 378 -876Q387 -864 392 -847Q397 -830 394 -816Q393 -810 394 -805Q394 -800 396 -799Q397 -798 407 -801Q416 -804 428 -810Q473 -831 508 -838Q542 -844 554 -833Q562 -826 571 -812Q580 -798 580 -774Q580 -749 572 -736Q564 -722 542 -706Q519 -689 492 -676L427 -645Q367 -617 355 -593Q347 -578 354 -577Q361 -576 387 -587Q446 -613 494 -629Q542 -645 562 -645Q568 -645 576 -643Q583 -641 587 -638Q601 -629 625 -602Q649 -576 659 -559Q677 -528 683 -502Q689 -475 684 -437Q680 -403 663 -340Q648 -284 618 -214Q588 -145 564 -110Q547 -85 528 -71Q508 -57 500 -65ZM103 -246Q79 -267 62 -288Q44 -309 45 -316Q46 -322 78 -328Q109 -335 144 -350Q224 -383 313 -414Q401 -445 417 -445Q426 -445 432 -442Q438 -438 451 -425Q470 -405 472 -393Q477 -367 447 -343Q416 -319 353 -299Q320 -288 237 -255Q203 -242 175 -232Q147 -223 142 -223Q136 -223 127 -228Q118 -233 103 -246Z"/><path id="zg-5e38" d="M407 -52Q391 -63 382 -74Q373 -85 366 -100Q362 -110 360 -131Q359 -152 358 -213Q357 -253 356 -283Q355 -313 353 -314Q350 -318 322 -302Q295 -285 290 -276Q286 -268 283 -236Q278 -182 256 -177Q246 -174 229 -184Q212 -193 200 -208Q177 -235 167 -270Q157 -304 166 -324Q168 -329 172 -335Q177 -341 182 -344Q193 -352 225 -363Q257 -374 288 -386Q320 -399 323 -402Q325 -404 320 -412Q315 -419 305 -430Q284 -453 267 -486Q250 -519 249 -540Q248 -553 249 -559Q250 -565 256 -571Q259 -576 271 -584Q283 -592 296 -598Q322 -611 368 -630Q414 -648 437 -655Q459 -661 477 -658Q495 -656 512 -644Q526 -635 537 -624Q549 -613 549 -608Q549 -604 528 -552Q507 -499 501 -490Q498 -484 491 -478Q484 -471 478 -467Q454 -452 462 -450Q470 -448 508 -459Q569 -477 595 -464Q621 -450 637 -425Q654 -400 654 -375Q654 -368 650 -354Q647 -339 643 -326Q633 -297 604 -246Q576 -195 566 -189Q557 -183 545 -186Q534 -189 514 -202Q499 -212 488 -225Q478 -238 478 -247Q478 -250 481 -254Q485 -259 490 -262Q502 -272 514 -295Q527 -318 531 -340Q537 -365 537 -370Q537 -383 496 -370L468 -361V-129Q468 -99 466 -88Q465 -78 461 -72Q453 -60 443 -50Q433 -39 429 -39Q425 -39 407 -52ZM97 -476Q87 -482 77 -490Q67 -499 63 -505Q53 -518 48 -536Q40 -565 56 -602Q72 -638 101 -658Q116 -669 125 -672Q134 -674 161 -676Q191 -679 215 -684Q239 -690 246 -696Q250 -699 249 -700Q248 -702 240 -706Q228 -711 208 -730Q188 -749 180 -764Q168 -784 170 -804Q173 -825 187 -838Q202 -852 224 -852Q239 -852 261 -842Q283 -832 290 -821Q302 -803 305 -780Q309 -756 300 -742Q295 -732 295 -728Q295 -724 300 -726Q306 -728 313 -734Q321 -739 324 -744Q328 -750 329 -758Q330 -765 328 -782Q325 -811 319 -846Q314 -881 314 -892Q314 -903 328 -918Q342 -933 357 -937Q372 -941 381 -941Q393 -941 412 -930Q431 -919 439 -908Q445 -898 447 -889Q449 -880 450 -855Q451 -827 453 -820Q456 -812 462 -823Q469 -834 484 -869Q501 -911 512 -927Q519 -938 522 -940Q526 -942 537 -940Q552 -938 575 -922Q595 -908 605 -892Q616 -876 613 -865Q612 -861 602 -848Q592 -836 580 -823Q549 -790 549 -788Q549 -786 555 -787L586 -793Q610 -798 637 -796Q664 -795 687 -783Q710 -771 728 -755Q743 -742 755 -722Q768 -701 765 -694Q762 -686 717 -660Q699 -651 647 -630Q595 -609 588 -609Q577 -609 568 -616Q560 -623 560 -632Q560 -640 568 -662Q572 -671 573 -678Q575 -686 574 -688Q571 -692 541 -690Q512 -687 480 -680Q442 -671 376 -650Q311 -630 288 -619Q277 -614 264 -606Q251 -598 244 -592Q238 -586 228 -572Q218 -558 210 -544Q202 -530 189 -513Q177 -496 168 -486Q153 -471 146 -466Q139 -461 132 -461Q120 -461 97 -476ZM393 -532Q409 -540 418 -550Q427 -559 427 -566Q428 -574 419 -574Q410 -574 387 -562Q365 -549 363 -543Q361 -537 364 -530Q368 -523 372 -523Q377 -523 393 -532Z"/><path id="zg-89c1" d="M57 -107Q49 -115 46 -120Q44 -125 46 -131Q48 -137 58 -152Q68 -167 105 -218Q124 -245 150 -288Q176 -331 185 -349Q188 -356 185 -362Q182 -368 165 -387Q155 -399 144 -414Q134 -428 130 -437Q125 -449 123 -457Q121 -468 120 -492Q119 -510 118 -572Q117 -635 116 -653Q115 -678 113 -690Q111 -699 105 -716Q94 -746 96 -756Q99 -767 118 -780Q137 -792 175 -808Q223 -828 293 -863Q413 -923 451 -928Q461 -930 468 -928Q475 -927 484 -923Q500 -914 517 -896Q535 -878 542 -861Q552 -840 553 -816Q555 -792 549 -750Q546 -722 544 -681Q542 -640 542 -558L540 -459Q540 -428 538 -416Q537 -408 532 -401Q520 -381 500 -380Q480 -379 457 -396Q448 -403 442 -410Q437 -418 432 -431Q428 -444 426 -468Q424 -493 422 -568Q420 -686 417 -718L414 -751L403 -749Q390 -746 332 -716Q275 -687 264 -678L251 -666L248 -513Q248 -494 249 -490Q250 -485 252 -490Q258 -504 264 -532Q271 -560 274 -588L278 -626Q278 -629 290 -642Q300 -654 313 -658Q326 -661 339 -656Q352 -651 367 -638Q382 -624 387 -612Q393 -601 392 -587Q391 -573 383 -519Q380 -494 380 -485Q381 -476 387 -456Q396 -428 399 -377Q403 -326 409 -293Q415 -258 427 -244Q439 -231 466 -231Q498 -230 543 -249Q588 -268 612 -292Q631 -311 642 -336Q663 -382 669 -395Q676 -408 680 -412Q685 -417 687 -417Q690 -417 694 -414Q700 -409 700 -406Q700 -403 727 -347Q751 -297 764 -258Q778 -220 778 -202Q778 -191 776 -186Q775 -181 769 -178Q761 -172 716 -160Q671 -148 617 -131Q563 -114 530 -109Q497 -104 467 -109Q417 -117 387 -132Q358 -146 337 -172Q321 -193 313 -220Q305 -246 304 -284Q304 -321 302 -322Q301 -323 297 -317Q293 -311 289 -302Q271 -266 231 -212Q191 -158 167 -138Q151 -125 120 -110Q90 -94 80 -94Q70 -94 57 -107Z"/><path id="zg-95ee" d="M628 -101Q571 -121 530 -165Q512 -185 504 -198Q496 -212 492 -232Q487 -251 490 -262Q493 -273 503 -273Q513 -273 522 -269Q530 -265 539 -270Q547 -275 549 -286Q561 -341 556 -535Q552 -668 550 -714Q547 -759 542 -760Q540 -761 530 -756Q519 -752 506 -745Q476 -728 417 -698Q380 -679 364 -673Q346 -667 337 -669Q328 -671 316 -683Q302 -697 294 -716Q286 -735 288 -747Q289 -751 294 -758Q298 -766 303 -772Q317 -789 381 -824Q440 -858 501 -885Q566 -914 584 -914Q597 -914 618 -902Q639 -890 655 -873Q675 -853 690 -824Q704 -795 711 -763L717 -734L695 -670L692 -408Q690 -228 689 -183Q687 -138 682 -119Q678 -103 675 -97Q672 -91 667 -91Q659 -90 628 -101ZM120 -160Q74 -196 54 -236Q46 -251 45 -260Q44 -268 46 -294Q48 -330 52 -459Q53 -512 56 -556Q58 -600 60 -609Q64 -630 72 -647Q79 -664 83 -664Q91 -664 123 -636Q155 -607 164 -591Q170 -581 173 -568Q175 -555 177 -519Q181 -462 181 -360Q180 -257 177 -227Q172 -192 164 -166Q156 -141 150 -141Q147 -141 139 -146Q130 -152 120 -160ZM317 -332Q304 -336 289 -344Q274 -353 265 -362Q246 -379 227 -417Q208 -455 205 -480Q203 -497 209 -510Q215 -522 229 -533Q241 -542 294 -571Q346 -600 387 -620L424 -638L441 -629Q458 -619 486 -596Q514 -572 521 -561Q525 -554 527 -548Q528 -541 527 -531Q525 -513 505 -458Q484 -403 475 -389Q465 -375 446 -362Q427 -348 404 -340Q386 -333 358 -330Q330 -327 317 -332ZM368 -435Q376 -444 380 -466Q384 -489 382 -493Q375 -503 348 -480Q340 -474 335 -467Q329 -460 329 -457Q329 -451 339 -438Q349 -426 354 -426Q359 -426 368 -435ZM169 -697Q155 -702 140 -712Q124 -721 103 -728Q71 -739 64 -762Q62 -771 62 -799Q62 -821 68 -836Q73 -850 86 -865Q97 -876 113 -884Q128 -892 152 -892Q175 -892 195 -883Q212 -876 228 -861Q244 -846 252 -830Q257 -821 259 -810Q261 -800 261 -779Q261 -753 259 -746Q257 -738 249 -726Q232 -702 213 -695Q193 -688 169 -697Z"/><path id="zg-9898" d="M694 -67Q660 -70 590 -88Q520 -106 470 -125Q408 -148 352 -166Q297 -184 274 -189Q248 -195 224 -197Q208 -199 202 -198Q196 -196 189 -188Q183 -182 168 -159Q150 -131 136 -117Q127 -107 122 -104Q116 -102 105 -102Q72 -102 54 -128L45 -142L54 -148Q81 -166 98 -192Q116 -219 140 -279Q152 -309 156 -316Q161 -323 172 -327Q180 -330 184 -334Q188 -338 189 -344Q191 -354 200 -361Q209 -368 218 -368Q226 -367 228 -358Q233 -339 228 -301L225 -276L242 -279Q259 -282 263 -286Q267 -289 262 -302Q257 -314 255 -349Q252 -402 241 -402Q233 -402 210 -388Q187 -373 181 -364Q173 -352 168 -350Q162 -347 134 -345Q119 -344 110 -344Q101 -345 95 -349Q83 -355 70 -368Q58 -381 58 -387Q58 -401 91 -426Q124 -452 185 -486Q234 -513 264 -528Q294 -542 329 -556Q356 -567 370 -570Q385 -574 394 -571Q403 -568 412 -557Q421 -546 421 -530Q421 -522 419 -517Q417 -512 410 -503Q403 -497 384 -479Q362 -457 354 -448Q347 -439 347 -432Q347 -424 349 -423Q351 -422 362 -423Q376 -426 398 -428Q417 -430 422 -426Q428 -422 434 -402Q437 -390 436 -385Q436 -380 430 -370Q426 -364 416 -354Q405 -345 393 -337Q365 -319 356 -312Q348 -304 348 -293Q347 -282 354 -278Q361 -274 392 -268Q424 -262 437 -262Q447 -262 454 -266Q460 -270 470 -285Q478 -297 495 -329Q507 -352 507 -358Q507 -360 500 -370Q494 -381 484 -393Q466 -416 459 -431Q450 -449 445 -478Q441 -501 434 -561Q433 -574 434 -582Q436 -590 442 -602Q452 -623 476 -654Q496 -682 512 -707Q527 -732 525 -735Q523 -738 509 -733Q501 -731 494 -732Q487 -733 472 -739Q448 -748 443 -754Q438 -760 436 -774Q434 -789 443 -802Q452 -815 478 -833Q501 -849 560 -880Q618 -910 646 -920Q690 -937 715 -924Q726 -918 738 -900Q750 -881 750 -868Q750 -829 700 -804Q689 -798 676 -784Q663 -771 657 -760Q651 -748 633 -722Q626 -711 622 -702Q617 -694 618 -693Q619 -692 626 -696Q634 -701 645 -709Q661 -721 668 -724Q675 -726 684 -725Q698 -723 714 -712Q730 -700 742 -682Q754 -665 756 -644Q758 -622 751 -528Q744 -434 739 -419Q734 -404 734 -396Q734 -393 738 -388Q741 -383 745 -380Q756 -372 762 -353Q769 -334 769 -310Q769 -294 767 -288Q765 -281 757 -272Q746 -259 746 -254Q746 -250 773 -250Q789 -250 795 -248Q801 -247 804 -243Q811 -230 818 -198Q825 -165 826 -144Q826 -124 824 -118Q822 -113 811 -104Q805 -98 796 -93Q786 -88 780 -86Q773 -85 765 -81Q757 -77 754 -72Q750 -68 744 -66Q739 -63 736 -63ZM704 -242Q709 -244 712 -246Q714 -248 714 -251Q714 -254 660 -308Q605 -363 601 -363Q597 -363 588 -344Q578 -326 552 -291Q527 -256 527 -252Q527 -247 563 -241Q599 -235 647 -236Q695 -238 704 -242ZM658 -425Q643 -454 646 -510Q647 -530 646 -534Q646 -538 644 -529Q641 -517 634 -472Q628 -426 628 -419Q628 -415 644 -411Q661 -407 662 -410Q664 -414 658 -425ZM552 -471Q555 -482 558 -520Q560 -543 562 -554Q565 -565 570 -573Q580 -586 586 -588Q593 -590 606 -583Q619 -576 632 -562L647 -546L650 -563Q652 -580 651 -611Q650 -630 648 -636Q647 -643 644 -644Q641 -644 634 -640Q627 -636 619 -629Q601 -614 575 -596Q553 -582 544 -574Q535 -565 534 -558Q533 -550 536 -514Q539 -479 541 -470Q543 -461 546 -462Q550 -462 552 -471ZM175 -534Q162 -549 150 -574Q139 -600 126 -643Q112 -686 103 -725Q96 -757 96 -766Q95 -774 99 -783Q103 -791 116 -802Q128 -812 157 -831Q203 -863 232 -879Q260 -895 284 -903Q308 -911 324 -910Q341 -909 362 -898Q405 -876 420 -845Q424 -837 424 -828Q425 -820 424 -805Q421 -781 412 -733Q402 -685 394 -660Q378 -606 350 -586Q335 -575 305 -562Q275 -550 245 -535Q232 -528 220 -524Q207 -520 200 -520Q193 -520 188 -522Q183 -525 175 -534ZM283 -653Q290 -659 292 -666Q294 -672 289 -672Q284 -672 274 -663Q265 -654 265 -649Q265 -644 270 -645Q276 -646 283 -653ZM299 -752Q303 -753 304 -764Q305 -775 304 -786Q302 -798 298 -800Q294 -801 266 -788Q238 -774 229 -767Q222 -761 222 -756Q222 -753 224 -752Q226 -750 229 -749Q234 -747 264 -748Q293 -750 299 -752Z"/><path id="zg-4f7f" d="M548 -938Q527 -928 518 -902Q509 -876 509 -823V-779L473 -760Q400 -722 378 -695Q356 -668 376 -641Q383 -631 404 -630Q424 -629 460 -636Q516 -648 517 -641Q518 -634 463 -604Q410 -576 393 -565Q372 -551 368 -542Q364 -533 368 -518Q374 -499 387 -474Q400 -450 415 -430Q425 -415 435 -406Q445 -398 460 -389Q486 -374 486 -372Q486 -369 477 -368Q467 -367 454 -366L422 -365L407 -316L421 -296Q435 -275 435 -271Q435 -267 402 -211Q368 -155 368 -152Q368 -146 380 -141Q392 -136 410 -134Q427 -132 443 -134Q458 -137 481 -154Q503 -171 522 -193Q541 -215 550 -215Q558 -215 595 -193Q632 -171 685 -135Q730 -104 752 -93Q773 -82 796 -78L828 -72Q836 -70 840 -72Q843 -73 848 -80Q852 -88 854 -100Q855 -111 854 -146Q854 -204 847 -230Q839 -256 820 -267Q813 -271 792 -278Q770 -286 746 -293Q699 -305 666 -318Q632 -331 620 -341Q613 -346 612 -350Q611 -355 612 -369Q615 -389 623 -398Q630 -408 653 -420Q700 -447 726 -472Q751 -496 770 -534Q781 -556 784 -572Q787 -588 783 -604Q779 -618 767 -635Q755 -652 744 -660Q733 -669 710 -672Q687 -675 665 -672Q633 -668 635 -677Q636 -686 671 -707Q685 -715 698 -724Q711 -734 715 -740Q731 -758 731 -778Q730 -799 714 -814Q698 -830 671 -834Q653 -837 647 -844Q640 -850 638 -869Q634 -895 620 -914Q605 -934 586 -941Q566 -948 548 -938ZM260 -843Q246 -830 235 -812Q221 -790 193 -731Q171 -683 109 -545Q82 -485 65 -438Q47 -392 45 -372Q44 -358 46 -354Q47 -350 56 -344Q73 -334 85 -334Q96 -333 116 -343Q126 -348 143 -359Q159 -370 172 -381Q204 -406 208 -406Q216 -406 208 -257L203 -180L214 -162Q225 -144 251 -116Q268 -98 275 -94Q281 -90 286 -95Q291 -100 301 -120Q308 -135 310 -150Q312 -164 314 -216Q317 -291 317 -371L318 -451L305 -482Q296 -505 295 -519Q294 -535 301 -557Q307 -575 327 -619Q349 -671 363 -709Q376 -747 376 -760Q376 -772 365 -794Q353 -815 342 -825Q331 -835 311 -845Q290 -855 282 -855Q279 -855 273 -852Q266 -848 260 -843ZM644 -552Q646 -547 640 -539Q634 -531 630 -534Q626 -536 627 -543Q627 -550 632 -554Q636 -559 639 -558Q641 -558 644 -552ZM518 -517Q525 -511 525 -502Q524 -492 517 -488Q509 -484 502 -490Q495 -496 494 -506Q493 -515 500 -519Q507 -523 509 -523Q511 -523 518 -517Z"/><path id="zg-7528" d="M586 -113Q562 -124 543 -140Q524 -155 500 -182Q478 -210 468 -229Q460 -244 459 -260Q458 -277 462 -277Q468 -277 492 -273Q510 -269 515 -270Q520 -270 524 -275Q532 -287 526 -372Q524 -396 523 -403Q522 -410 517 -410Q512 -410 490 -400Q466 -390 450 -381Q444 -377 442 -370Q440 -363 438 -333Q436 -291 436 -234Q436 -188 431 -168Q426 -148 414 -130Q402 -116 392 -118Q382 -119 366 -136Q344 -157 336 -176Q328 -196 326 -235Q322 -279 322 -314V-338Q320 -345 319 -346Q318 -347 314 -346Q304 -343 268 -325L230 -307L198 -244Q186 -218 172 -194Q160 -171 154 -164Q148 -156 139 -149Q130 -142 124 -139Q112 -133 90 -132Q68 -132 54 -137Q46 -140 46 -143Q44 -146 46 -159Q46 -167 54 -188Q60 -210 70 -232Q108 -329 124 -393Q132 -421 137 -461Q142 -501 142 -528Q142 -561 134 -638Q126 -714 130 -724Q134 -733 148 -746Q154 -751 188 -769Q220 -787 262 -807Q362 -856 425 -880Q488 -905 526 -909Q540 -910 548 -908Q556 -907 572 -900Q582 -895 596 -886Q610 -876 618 -868Q650 -840 664 -804Q680 -768 676 -733Q672 -709 670 -695Q664 -673 658 -626Q652 -579 650 -528Q648 -487 648 -452Q648 -416 650 -362Q660 -181 650 -141Q640 -101 620 -102Q608 -102 586 -113ZM296 -466Q330 -482 324 -492Q322 -496 314 -496Q306 -495 288 -490Q272 -486 265 -478Q258 -471 260 -463Q264 -457 272 -458Q280 -458 296 -466ZM522 -542Q522 -553 520 -562Q518 -571 517 -572Q516 -573 510 -571Q506 -569 500 -564Q488 -553 466 -544Q450 -536 444 -532Q440 -527 440 -519Q440 -515 446 -514Q454 -513 480 -513L522 -514ZM316 -627Q320 -633 320 -638Q320 -644 318 -658Q314 -680 308 -680Q302 -680 285 -675Q268 -670 265 -667Q262 -664 265 -642Q268 -620 274 -616Q276 -612 281 -612Q286 -612 294 -614Q302 -616 308 -620Q314 -623 316 -627ZM516 -677Q516 -716 514 -734Q510 -752 504 -753Q498 -754 470 -740Q444 -726 441 -720Q438 -714 444 -691Q446 -673 452 -668Q458 -664 476 -664Q484 -664 488 -662Q492 -659 497 -654Q502 -648 506 -644Q510 -641 512 -641Q514 -641 516 -648Q516 -655 516 -677Z"/><path id="zg-6761" d="M436 -48Q412 -57 390 -70Q367 -82 356 -94Q344 -106 328 -132Q322 -143 316 -151Q309 -159 306 -160Q304 -160 300 -156Q295 -151 291 -144Q275 -118 252 -103Q228 -88 209 -92Q199 -95 186 -107Q174 -119 172 -128Q169 -140 184 -166Q198 -191 222 -216Q245 -242 267 -255Q287 -267 293 -269Q301 -273 306 -270Q312 -266 322 -252Q338 -231 338 -226Q338 -221 328 -213Q321 -208 320 -205Q319 -202 322 -196Q325 -190 340 -184Q356 -178 360 -181Q365 -184 369 -206Q373 -227 374 -254Q375 -296 374 -310Q372 -324 367 -324Q362 -324 312 -301Q291 -291 275 -284Q259 -278 257 -278Q253 -279 237 -313Q221 -347 221 -356Q221 -358 225 -364Q229 -370 234 -374Q248 -386 286 -408Q324 -431 340 -436Q347 -439 354 -442Q360 -446 361 -449Q364 -455 360 -482Q355 -510 350 -509Q346 -508 281 -457Q216 -406 178 -374Q136 -339 118 -328Q101 -316 90 -318Q80 -320 62 -332Q45 -343 45 -348Q45 -353 58 -366Q72 -380 135 -437Q203 -500 270 -581Q289 -603 294 -610Q301 -620 301 -624Q301 -629 296 -634Q288 -642 278 -638Q268 -634 246 -613Q201 -570 180 -570Q170 -570 156 -580Q143 -590 143 -598Q143 -605 148 -619Q154 -633 172 -668Q189 -703 203 -729Q216 -752 256 -828Q272 -860 288 -886Q303 -912 308 -917Q320 -930 342 -936Q355 -940 362 -940Q370 -941 380 -938Q394 -934 410 -926Q425 -917 431 -910Q437 -902 444 -890V-888Q448 -882 450 -880Q453 -878 461 -878Q466 -878 486 -881H490Q502 -883 508 -881Q514 -879 524 -870Q542 -856 552 -840Q561 -825 560 -810Q560 -794 550 -766Q539 -738 522 -706Q502 -671 502 -664V-663Q502 -659 506 -658Q509 -656 525 -652L586 -641Q666 -625 696 -618Q732 -609 747 -601Q759 -593 767 -578Q773 -568 775 -558Q777 -549 777 -530Q777 -512 775 -503Q773 -494 766 -488Q758 -483 741 -476Q728 -471 718 -470Q708 -469 691 -470Q664 -472 625 -486Q474 -539 470 -539Q468 -539 472 -534Q475 -530 481 -523Q492 -513 498 -510Q505 -506 523 -504Q549 -500 560 -494Q574 -487 586 -473Q597 -459 598 -447Q601 -427 584 -414Q568 -400 520 -381L492 -371L494 -248Q495 -170 494 -142Q493 -115 489 -97Q483 -74 476 -58Q470 -42 466 -41Q461 -40 436 -48ZM589 -187Q571 -196 556 -208Q540 -221 529 -236Q518 -252 516 -263Q513 -274 518 -285Q522 -296 539 -310Q556 -324 572 -329Q587 -334 608 -328Q629 -322 648 -308Q666 -294 676 -276Q690 -250 686 -224Q681 -198 660 -189Q647 -184 626 -182Q614 -180 606 -182Q598 -183 589 -187ZM416 -555Q416 -556 414 -558Q411 -559 408 -559Q405 -559 403 -558Q401 -556 402 -555Q405 -551 410 -551Q416 -551 416 -555ZM376 -705Q384 -714 391 -726Q395 -734 395 -738Q395 -741 392 -743Q388 -745 380 -741Q372 -737 357 -724Q335 -704 345 -694Q348 -690 358 -694Q369 -698 376 -705Z"/><path id="zg-6b3e" d="M297 -63Q289 -71 268 -85Q239 -104 210 -126Q181 -149 176 -157Q173 -162 170 -165Q167 -168 165 -168Q163 -168 160 -164Q157 -160 155 -155Q150 -141 135 -124L120 -108L99 -114Q77 -121 63 -137Q57 -143 53 -150Q49 -157 49 -160Q49 -163 57 -173Q65 -183 77 -194Q104 -221 110 -232Q116 -244 126 -252Q132 -257 136 -258Q139 -259 143 -257Q151 -252 162 -256Q172 -261 182 -274Q193 -290 188 -292Q184 -294 160 -284Q137 -275 105 -274Q91 -274 80 -274Q68 -275 65 -277Q59 -280 52 -296Q45 -311 45 -321Q45 -331 60 -342Q75 -353 112 -369L190 -405Q219 -419 238 -426Q257 -434 294 -451Q334 -470 348 -474Q363 -477 379 -473Q387 -470 394 -466Q402 -462 405 -457Q410 -451 411 -446Q412 -440 411 -428Q410 -420 408 -412Q405 -405 402 -401Q395 -394 373 -379Q345 -360 331 -340Q317 -320 326 -311Q329 -309 335 -310Q341 -311 355 -316Q379 -324 389 -324Q399 -324 410 -319Q422 -314 428 -307Q439 -293 447 -312Q451 -322 463 -376Q475 -430 488 -472Q502 -513 502 -517Q502 -521 498 -520Q493 -518 487 -511Q478 -502 467 -482Q456 -463 450 -458Q440 -450 426 -460Q413 -470 408 -489Q404 -506 404 -532Q405 -557 410 -580Q416 -607 436 -668Q456 -730 468 -776Q479 -822 484 -833Q488 -844 498 -852Q503 -857 508 -858Q514 -859 521 -857Q544 -853 562 -838Q579 -823 583 -805Q585 -791 582 -760Q580 -728 574 -705Q571 -695 570 -686Q569 -678 570 -677Q571 -676 586 -682Q600 -688 619 -698Q665 -722 681 -727Q691 -730 697 -730Q703 -729 714 -723Q731 -715 749 -696Q767 -678 779 -658Q791 -638 791 -625Q791 -612 776 -590Q761 -569 736 -545Q703 -514 674 -494Q637 -469 620 -454Q604 -439 597 -425Q591 -414 590 -409Q589 -404 592 -400Q597 -392 629 -367Q661 -342 690 -323Q723 -302 762 -282Q801 -261 810 -252Q815 -247 818 -239Q821 -231 823 -215Q827 -186 825 -163Q824 -149 822 -142Q820 -136 814 -132Q808 -127 802 -126Q795 -125 777 -126Q750 -128 728 -138Q706 -147 677 -170Q650 -192 605 -236Q550 -289 546 -289Q543 -289 540 -283Q537 -277 537 -270Q537 -262 516 -219Q504 -195 496 -183Q487 -171 478 -164Q463 -151 448 -151Q433 -151 422 -157Q414 -160 412 -164Q410 -169 409 -183L408 -203L391 -202Q380 -202 374 -204Q368 -207 356 -216Q339 -230 336 -230Q334 -230 334 -214Q333 -199 333 -176Q335 -138 334 -125Q332 -112 324 -88Q320 -74 316 -64Q311 -55 309 -55Q304 -55 297 -63ZM245 -197Q237 -277 234 -292Q232 -301 224 -300Q219 -299 216 -294Q214 -290 211 -279Q206 -260 205 -229V-199L218 -193Q231 -188 238 -189Q246 -190 245 -197ZM161 -425Q155 -432 149 -444Q143 -457 141 -468Q139 -476 140 -480Q142 -484 148 -489Q158 -499 173 -505Q261 -543 287 -552Q313 -562 326 -562Q335 -562 339 -560Q343 -558 347 -551Q353 -542 354 -529Q354 -516 350 -508Q345 -500 316 -482Q288 -463 258 -450Q234 -439 204 -428Q175 -418 170 -418Q167 -418 161 -425ZM600 -525Q605 -541 614 -560Q623 -580 622 -582Q620 -584 614 -582Q607 -580 599 -577L562 -561Q545 -554 545 -546Q545 -543 546 -541Q547 -539 550 -539Q553 -539 571 -522Q579 -514 585 -510Q591 -506 592 -507Q595 -510 600 -525ZM138 -523Q131 -528 123 -546Q115 -565 114 -578Q114 -585 116 -588Q117 -592 122 -596Q128 -600 144 -610Q177 -630 190 -640Q202 -650 198 -654Q194 -657 165 -651Q132 -644 120 -642Q108 -641 100 -644Q89 -648 78 -660Q66 -673 62 -686Q57 -698 60 -706Q62 -713 77 -723Q90 -731 125 -748Q184 -777 191 -783Q196 -787 197 -795Q198 -803 198 -830Q197 -869 204 -886Q210 -904 230 -916Q242 -923 249 -924Q256 -926 270 -925Q283 -924 290 -922Q296 -919 303 -912Q314 -902 322 -887Q330 -872 330 -862Q330 -849 334 -842Q339 -835 350 -831Q360 -827 364 -822Q369 -817 375 -804Q385 -783 385 -765Q385 -754 383 -748Q381 -742 375 -735Q365 -723 342 -706Q332 -700 326 -694Q319 -687 319 -685Q319 -680 335 -678Q351 -675 364 -662Q377 -649 377 -636Q377 -626 372 -615Q366 -604 357 -595Q353 -591 338 -584Q323 -577 305 -571Q262 -556 220 -539Q154 -514 138 -523Z"/><path id="zg-5f00" d="M482 -65Q460 -84 450 -102Q440 -120 436 -149Q432 -178 428 -305Q425 -387 423 -415Q422 -450 420 -460Q418 -469 412 -469Q407 -469 385 -455Q371 -447 365 -440Q359 -434 353 -421Q349 -410 338 -379Q326 -345 310 -309Q295 -273 284 -254Q274 -236 255 -216Q244 -205 236 -199Q227 -193 215 -190Q200 -185 194 -185Q188 -185 179 -188L164 -194L165 -219Q165 -234 170 -253Q175 -272 189 -312Q212 -381 215 -388Q217 -392 216 -394Q214 -395 210 -395Q202 -395 188 -389Q175 -383 149 -379Q133 -376 125 -376Q117 -376 106 -380Q89 -386 75 -396Q61 -407 53 -420Q45 -432 45 -448Q45 -464 53 -474Q56 -478 67 -485Q78 -492 89 -497Q111 -508 161 -527Q211 -546 226 -549Q236 -552 240 -556Q244 -561 241 -606L238 -650L213 -649Q198 -649 190 -650Q183 -651 177 -655Q159 -668 145 -692Q131 -716 131 -737Q131 -747 133 -752Q135 -758 141 -763Q145 -767 164 -776Q182 -785 203 -793Q254 -814 313 -843Q363 -868 399 -882Q435 -897 474 -908Q535 -925 560 -912Q570 -907 582 -894Q595 -880 601 -868Q604 -863 606 -854Q608 -844 608 -836Q609 -813 594 -794Q578 -776 539 -755H538Q534 -753 533 -749Q532 -745 532 -731L536 -679Q537 -661 538 -649Q540 -637 542 -637Q545 -637 579 -645Q613 -653 643 -658Q661 -662 668 -662Q676 -661 682 -658Q700 -649 716 -618Q733 -587 732 -563Q732 -548 728 -540Q724 -532 712 -528Q700 -524 675 -519Q581 -504 553 -498L544 -496L547 -425Q551 -354 551 -238V-123L541 -102Q532 -84 520 -70Q508 -55 502 -55Q495 -55 482 -65ZM405 -643Q405 -667 404 -678Q403 -688 400 -692Q397 -695 391 -695Q380 -695 376 -686Q373 -678 373 -648Q373 -611 376 -608Q379 -605 393 -606L406 -607Z"/><path id="zg-6e90" d="M581 -100Q550 -113 523 -132Q495 -150 485 -164Q475 -179 470 -181Q468 -182 463 -180Q458 -177 453 -173Q442 -163 430 -163Q417 -163 402 -170Q386 -178 378 -187Q373 -192 372 -198Q371 -203 372 -216Q375 -237 395 -273Q414 -309 414 -312Q414 -316 422 -322Q430 -328 434 -326Q438 -324 446 -308Q454 -293 462 -293Q470 -293 500 -308Q529 -322 531 -327Q534 -336 527 -344Q519 -352 505 -357Q485 -364 468 -383Q460 -390 453 -400Q446 -410 443 -417Q437 -432 435 -472Q434 -489 433 -500Q431 -510 430 -509Q427 -506 415 -458Q402 -410 391 -382Q380 -354 358 -290Q335 -225 326 -203Q316 -181 302 -163Q288 -145 276 -139Q268 -135 264 -134Q259 -134 253 -137Q239 -144 235 -151Q231 -158 231 -176Q231 -193 239 -224Q246 -255 272 -342Q309 -469 325 -553Q331 -583 333 -608Q334 -632 334 -690Q334 -749 336 -766Q337 -783 341 -790Q351 -805 403 -838Q454 -871 534 -913Q588 -941 617 -947Q646 -953 671 -941Q688 -932 704 -915Q719 -898 723 -884Q726 -873 726 -868Q725 -862 720 -851Q714 -840 708 -834Q702 -828 689 -821Q666 -810 645 -803Q619 -795 611 -791Q602 -787 602 -783Q602 -779 616 -767Q621 -762 625 -756Q629 -751 629 -748Q629 -741 613 -712L611 -708Q603 -693 602 -689Q600 -685 605 -686Q609 -686 625 -692L629 -693Q661 -705 699 -686Q732 -669 745 -643Q751 -632 753 -612Q754 -600 753 -588Q751 -576 745 -556Q724 -486 705 -449Q697 -433 683 -420Q668 -407 657 -404Q646 -402 639 -394Q634 -389 634 -374Q633 -360 635 -300Q638 -221 637 -184Q636 -147 631 -128Q620 -86 615 -86Q612 -87 581 -100ZM133 -123Q100 -144 82 -158Q64 -173 56 -186Q48 -200 46 -216Q43 -232 47 -244Q51 -255 68 -272Q85 -290 110 -309Q139 -331 162 -356Q184 -381 203 -414Q221 -444 229 -451Q237 -458 240 -444Q243 -431 241 -393Q238 -312 217 -224Q208 -189 202 -171Q196 -153 185 -129Q174 -105 168 -105Q162 -105 133 -123ZM750 -193Q734 -197 721 -206Q708 -215 692 -234Q675 -252 661 -279Q646 -306 648 -314Q652 -323 669 -338Q685 -353 698 -358Q724 -368 750 -358Q776 -348 794 -322Q804 -307 814 -276Q824 -245 825 -226Q826 -213 824 -208Q822 -203 816 -197Q809 -191 803 -190Q797 -188 786 -188Q768 -188 750 -193ZM533 -226Q535 -232 536 -268Q537 -286 537 -292Q536 -299 535 -301Q533 -303 529 -304Q520 -305 498 -285Q485 -272 481 -266Q477 -260 477 -252Q477 -243 480 -239Q483 -235 495 -229Q529 -211 533 -226ZM111 -426Q100 -432 88 -448Q75 -465 68 -480Q62 -494 62 -516Q62 -538 68 -553Q71 -559 77 -566Q82 -574 87 -578Q94 -583 102 -586Q110 -588 124 -589Q166 -592 187 -573Q196 -565 205 -546Q214 -528 217 -513Q218 -507 218 -499Q217 -491 215 -487Q207 -465 180 -442Q153 -418 135 -418Q130 -418 123 -420Q116 -423 111 -426ZM585 -477Q601 -485 608 -498Q614 -512 612 -514Q610 -517 596 -509L566 -494Q553 -487 549 -482Q544 -476 546 -470Q550 -460 585 -477ZM591 -573 625 -575V-594Q625 -614 620 -615Q618 -616 607 -612Q596 -608 583 -602Q551 -586 548 -586Q544 -586 538 -578Q532 -571 535 -568Q537 -566 547 -568Q557 -571 591 -573ZM473 -649Q486 -668 501 -698Q516 -729 516 -736Q516 -742 512 -742Q507 -742 496 -736Q484 -729 458 -712L438 -699V-674Q438 -632 446 -626Q454 -620 473 -649ZM140 -675Q125 -684 108 -699Q91 -714 84 -724Q73 -742 82 -775Q87 -792 100 -807Q112 -822 127 -828Q142 -835 164 -836Q186 -836 207 -830Q233 -822 251 -802Q269 -781 273 -756Q277 -730 264 -709Q257 -696 243 -685Q228 -674 212 -669Q198 -664 179 -664Q159 -664 140 -675Z"/><path id="zg-8bb8" d="M586 -63Q578 -67 567 -82Q557 -95 553 -114Q548 -134 546 -174Q544 -210 542 -286Q541 -365 540 -392Q538 -419 535 -420Q532 -421 521 -417Q509 -413 495 -407Q426 -375 401 -375Q394 -375 390 -378Q385 -380 380 -387Q376 -391 373 -394Q370 -397 368 -396Q365 -394 365 -381Q365 -368 356 -338Q346 -308 321 -256Q295 -205 285 -194Q280 -190 275 -187Q269 -184 265 -184Q252 -184 234 -195Q215 -206 201 -222Q181 -244 177 -260Q173 -277 177 -317Q181 -357 181 -397Q181 -420 180 -428Q179 -437 176 -437Q172 -437 160 -430Q155 -426 148 -424Q140 -422 134 -422Q120 -422 102 -430Q84 -439 71 -452Q49 -473 46 -490Q42 -508 54 -527Q74 -558 133 -591Q163 -608 192 -618Q221 -629 235 -629Q247 -629 257 -624Q267 -618 284 -603Q316 -575 320 -546Q321 -539 320 -528Q319 -516 317 -506Q301 -437 298 -415Q294 -393 297 -390Q300 -387 303 -387Q305 -387 308 -391Q313 -396 320 -415Q326 -434 347 -472Q368 -510 375 -516Q379 -519 381 -518Q383 -518 387 -512Q389 -509 393 -506Q396 -504 399 -504Q405 -504 451 -526Q496 -549 513 -556L529 -563L527 -591Q526 -603 524 -612Q522 -621 520 -622Q516 -624 508 -620Q499 -617 471 -600Q439 -581 420 -579Q409 -578 404 -580Q399 -581 394 -586Q389 -591 388 -598Q387 -606 387 -626Q387 -646 391 -664Q394 -681 406 -717Q425 -775 436 -812Q447 -850 458 -871Q467 -889 484 -904Q500 -918 512 -918Q524 -918 544 -908Q564 -898 573 -887Q583 -875 588 -861Q591 -851 591 -832Q590 -814 586 -802Q583 -793 590 -794Q596 -794 620 -806Q646 -820 667 -824Q681 -828 687 -828Q693 -827 701 -822Q715 -814 724 -796Q732 -778 732 -755Q732 -732 726 -719Q719 -706 702 -693Q684 -680 665 -673Q657 -670 651 -666Q644 -663 643 -661Q641 -656 648 -638Q654 -620 654 -604Q654 -595 655 -592Q656 -590 661 -592Q680 -599 712 -608Q743 -618 755 -619Q775 -622 785 -615Q795 -608 807 -584Q819 -559 821 -532Q822 -513 821 -508Q820 -502 812 -494Q804 -485 795 -482Q786 -478 754 -473L655 -456V-305Q656 -206 655 -176Q653 -146 649 -129Q643 -109 630 -88Q616 -68 604 -63Q595 -59 594 -59ZM224 -691Q206 -700 190 -712Q174 -725 166 -736Q153 -755 155 -779Q156 -803 171 -824Q185 -846 209 -858Q229 -868 255 -862Q280 -856 302 -835Q315 -822 325 -802Q334 -782 334 -765Q334 -755 332 -748Q329 -741 322 -732Q304 -706 279 -690Q270 -684 254 -684Q237 -684 224 -691Z"/><path id="zg-53ef" d="M545 -91Q509 -111 484 -128Q459 -145 437 -166Q417 -184 410 -198Q403 -212 406 -229Q409 -244 412 -250Q414 -255 420 -256Q427 -258 444 -258Q471 -258 478 -262Q481 -263 484 -268Q488 -273 490 -278Q495 -295 498 -346Q502 -398 502 -467Q502 -544 497 -600Q492 -656 480 -706Q479 -711 476 -713Q473 -715 467 -715Q455 -715 424 -705Q392 -695 328 -671Q260 -645 209 -629Q158 -613 144 -613Q128 -613 106 -628Q83 -644 59 -672Q51 -681 48 -688Q45 -695 45 -703Q45 -716 52 -729Q60 -742 71 -748Q82 -753 133 -768Q221 -793 322 -837Q363 -855 388 -864Q436 -883 513 -904Q590 -926 610 -926Q625 -926 650 -913Q675 -900 693 -883Q709 -867 718 -848Q728 -829 728 -812Q728 -803 726 -797Q723 -791 716 -782Q708 -774 697 -768Q686 -763 660 -755L617 -740L616 -719Q615 -698 619 -659Q624 -611 630 -445Q635 -279 633 -225Q631 -158 625 -135Q620 -116 606 -93Q593 -70 588 -70Q582 -70 545 -91ZM245 -310Q213 -321 185 -350Q165 -373 150 -412Q135 -451 135 -482Q135 -493 136 -500Q138 -506 143 -512Q164 -536 258 -583Q356 -632 376 -627Q387 -624 400 -614Q414 -604 438 -581Q458 -561 462 -554Q467 -548 467 -537Q467 -522 452 -479Q437 -436 423 -410Q418 -401 408 -388Q399 -376 391 -368Q374 -352 344 -336Q313 -319 287 -311Q266 -305 264 -305Q262 -305 245 -310ZM309 -437Q318 -451 320 -465Q323 -479 318 -481Q312 -483 296 -476Q281 -470 274 -463Q261 -450 275 -427Q280 -418 283 -416Q286 -415 291 -418Q299 -422 309 -437Z"/></defs></svg>
+<a class="skip" href="#main">跳到正文</a>
+<header class="hd">
+  <a class="hd-mark" href="/nsuve/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
+  <nav class="hd-nav" aria-label="主导航"><a href="/nsuve/">首页</a><a href="/guides/">使用攻略</a><a href="/support.html" aria-current="page">支持</a><a href="/privacy.html#zh-hans">隐私</a></nav>
+  <div class="hd-lang"><a href="/support.html?lang=zh" lang="zh-CN" hreflang="zh-Hans" aria-current="true">中</a><a href="/en/support.html?lang=en" lang="en" hreflang="en">EN</a></div>
+  <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-zh.svg" alt="在 Mac App Store 下载" width="108" height="32"></a>
+</header>
+<div class="pg"><div class="ph" style="padding-bottom:0"><nav class="tabs" aria-label="文档"><a href="?doc=support#support" data-go="support">支持与常见问题</a><a href="?doc=terms#terms" data-go="terms">使用条款</a><a href="?doc=oss#oss" data-go="oss">开源许可</a><a href="/privacy.html#zh-hans">隐私政策</a><a href="/guides/">使用攻略</a></nav></div>
+<div data-doc="support" id="support" data-title="支持与常见问题 · Nsuve">
+<div class="ph">
+  <p class="eb">支持</p>
+  <h1 class="t"><span class="zh-vh">支持与常见问题</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.748em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 748 1000"><use href="#zg-652f"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.874em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 874 1000"><use href="#zg-6301"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.731em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 731 1000"><use href="#zg-4e0e"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.81em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 810 1000"><use href="#zg-5e38"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.823em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 823 1000"><use href="#zg-89c1"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.762em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 762 1000"><use href="#zg-95ee"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.871em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 871 1000"><use href="#zg-9898"/></svg></span></span></h1>
+  <p class="lead">在 App 里报告问题，或者写信给我们，都会直接送到开发者手里。下面先回答最常被问到的几件事。</p>
+  <ul class="meta"><li>更新日期 2026-11-09</li><li>适用于 Mac、iPhone、iPad 版 Nsuve</li></ul>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;support&quot;,&quot;guide&quot;,&quot;privacy&quot;,&quot;terms&quot;,&quot;oss&quot;],&quot;default&quot;:&quot;support&quot;,&quot;tsType&quot;:&quot;'support' | 'guide' | 'privacy' | 'terms' | 'oss'&quot;,&quot;section&quot;:&quot;页面&quot;,&quot;label&quot;:&quot;当前页&quot;},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;zh&quot;,&quot;en&quot;],&quot;default&quot;:&quot;zh&quot;,&quot;tsType&quot;:&quot;'zh' | 'en'&quot;,&quot;section&quot;:&quot;页面&quot;,&quot;label&quot;:&quot;语言&quot;},&quot;updated&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-10-09&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;法律页&quot;,&quot;label&quot;:&quot;更新日期&quot;},&quot;version&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;6.0.0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;法律页&quot;,&quot;label&quot;:&quot;对应版本&quot;}}">
-class Component extends DCLogic {
-  state = { page: this.initialPage(), active: "", lang: this.initialLanguage() };
-  initialPage() {
-    const pages = ["support", "guide", "privacy", "terms", "oss"];
-    const fragment = location.hash.slice(1);
-    const doc = new URLSearchParams(location.search).get("doc");
-    return pages.includes(fragment) ? fragment : pages.includes(doc) ? doc : null;
-  }
-  initialLanguage() {
-    // App links take precedence over a language previously chosen in this browser.
-    const requested = new URLSearchParams(location.search).get("lang");
-    if (requested === "zh" || requested === "en") {
-      try { localStorage.setItem("nsurator-site-lang", requested); } catch (e) {}
-      return requested;
-    }
-    try { const saved = localStorage.getItem("nsurator-site-lang"); if (saved === "zh" || saved === "en") return saved; } catch (e) {}
-    return null;
-  }
-  componentDidMount() {
-    this.onLocation = () => {
-      const page = this.initialPage() ?? this.props.page ?? "support";
-      const lang = this.initialLanguage() ?? this.props.lang ?? "zh";
-      if (page === "privacy") { location.replace(this.pageURL(page, "", lang)); return; }
-      // Keep document identity while native section links change the fragment.
-      const url = new URL(location.href);
-      url.searchParams.set("doc", page);
-      try { history.replaceState(null, "", url); } catch (e) {}
-      this.pendingSection = /^#s[1-9]\d*$/.test(location.hash) ? location.hash.slice(1) : "";
-      this.setState({ page, lang, active: this.pendingSection });
-    };
-    window.addEventListener("hashchange", this.onLocation);
-    window.addEventListener("popstate", this.onLocation);
-    window.addEventListener("pageshow", this.onLocation);
-    this.onLocation();
-    this.syncTitle();
-    window.NsuratorMotion?.mount();
-    this.restoreSection();
-  }
-  componentDidUpdate(prev) { if (prev.page !== this.props.page && this.state.page !== null) this.setState({ page: null, active: "" }); this.syncTitle(); window.NsuratorMotion?.mount(); this.restoreSection(); }
-  restoreSection() {
-    if (!this.pendingSection) return;
-    const section = document.getElementById(this.pendingSection);
-    if (section) { section.scrollIntoView({ block: "start", behavior: "instant" }); this.pendingSection = ""; }
-  }
-  syncTitle() {
-    const page = this.state.page ?? this.props.page ?? "support", lang = this.state.lang ?? this.props.lang ?? "zh";
-    const T = { zh: { support: "联系支持", guide: "使用说明", privacy: "隐私政策", terms: "使用条款", oss: "开源许可" }, en: { support: "Contact support", guide: "User guide", privacy: "Privacy Policy", terms: "Terms of Use", oss: "Open-Source Licenses" } };
-    try { document.title = "Nsurator · " + (T[lang][page] || ""); document.documentElement.lang = lang === "en" ? "en" : "zh-CN"; } catch (e) {}
-  }
-  componentWillUnmount() {
-    window.removeEventListener("hashchange", this.onLocation);
-    window.removeEventListener("popstate", this.onLocation);
-    window.removeEventListener("pageshow", this.onLocation);
-  }
-  pageURL(page, section = "", lang = this.state.lang ?? this.props.lang ?? "zh") {
-    const url = new URL(location.href);
-    url.searchParams.set("lang", lang);
-    if (page === "privacy") {
-      url.pathname = url.pathname.replace(/[^/]*$/, "privacy.html");
-      url.searchParams.delete("doc");
-      url.hash = lang === "en" ? "english" : "zh-hans";
-    } else {
-      url.searchParams.set("doc", page);
-      url.hash = section || page;
-    }
-    return url.pathname + url.search + url.hash;
-  }
-  go(p) {
-    if (!["support", "guide", "privacy", "terms", "oss"].includes(p)) return;
-    if (p === "privacy") { location.assign(this.pageURL(p)); return; }
-    try { history.pushState(null, "", this.pageURL(p)); } catch (e) {}
-    this.onLocation();
-    window.scrollTo({ top: 0 });
-  }
-  setLang(l) {
-    if (l !== "zh" && l !== "en") return;
-    this.setState({ lang: l });
-    try { localStorage.setItem("nsurator-site-lang", l); } catch (e) {}
-    // Keep refreshes and copied links consistent with a manual language change.
-    try { const url = new URL(location.href); url.searchParams.set("lang", l); history.replaceState(null, "", url); } catch (e) {}
-  }
-  renderVals() {
-    const page = this.state.page ?? this.props.page ?? "support";
-    const lang = this.state.lang ?? this.props.lang ?? "zh";
-    const en = lang === "en";
-    const updated = this.props.updated ?? "2026-10-09";
-    const version = this.props.version ?? "6.0.0";
-    const SITE = "index.html?lang=" + lang;
-    const nav = (t, k) => ({ t, href: this.pageURL(k), go: (e) => {
-      if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0)) return;
-      if (e) e.preventDefault(); this.go(k);
-    } });
-    const site = (t, h) => ({ t, href: SITE + h, go: () => {} });
 
-    const P = (text) => ({ isP: 1, text });
-    const A = (text, href) => ({ isA: 1, text, href });
-    const L = (items) => ({ isL: 1, items: items.map((t) => ({ t })) });
-    const O = (items) => ({ isO: 1, items: items.map(([t, d, path], i) => ({ n: String(i + 1), t, d, path })) });
-    const N = (text) => ({ isN: 1, text });
-    const M = (text) => ({ isM: 1, text });
-    const T = (head, rows) => ({ isT: 1, head: head.map((h) => ({ h })), rows: rows.map(([a, b, c]) => ({ a, b, c })) });
-    const K = (rows) => ({ isK: 1, rows: rows.map(([k, v]) => ({ k, v })) });
-    const PK = (rows) => ({ isPk: 1, rows: rows.map(([name, lic, use]) => ({ name, lic, use })) });
-    const routeTitle = "font-size:clamp(20px,2.2cqi,26px);line-height:1.2;color:var(--color-text);align-self:flex-start;word-break:break-all";
-    const mailTitle = routeTitle + ";text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:#D9523F;text-underline-offset:7px";
-    const diag = `Nsurator ${version} (241) · macOS 15.2 · Apple M2 Pro\nLibrary   schema 31 · db 42.8 MB\nFile      MKV · HEVC Main10 · 3840x2160 · 23.976\nAudio     E-AC-3 5.1 · 640 kbps\nDecode    hardware (VideoToolbox)\n14:06:23  play.frameDrop    312 / 00:04:12\n14:06:23  volume.read       42 MB/s (external)`;
+<div class="wrap"><nav class="toc" aria-label="本篇内容"><p>本篇内容</p><ol><li><a href="#support-s1">联系我们</a></li><li><a href="#support-s2">常见问题</a></li><li><a href="#support-s3">其他页面</a></li></ol></nav><main class="doc" id="main"><section id="support-s1" data-s="s1">
+<h2>联系我们</h2>
+<p>问题、建议、合作，都可以写信到 <a href="mailto:support@nsurator.com">support@nsurator.com</a>，中文、英文都行。App 能打开的话，在 App 里报告问题更省事：版本和诊断信息会自动附上，你只要说清楚发生了什么。</p>
 
-    const ZH = {
-      t: { navFeatures: "功能", navPlay: "播放", navFormats: "格式", navLog: "更新", navFaq: "常见问题", navProduct: "产品", navGuides: "图文攻略", navSupport: "支持", navCta: "下载", tocH: "目录", rec: "推荐", beforeH: "写邮件时，请附上以下信息", diagNote: "诊断信息仅包含系统、版本与该次播放的技术参数，不含文件名、路径和人物姓名。请勿在邮件中附带影片文件；如确需样本，我们会另行说明传送方式。", appleH: "订阅、退款与发票", appleP: "Nsurator 仅在 Mac App Store 上架，购买、续订、取消与发票均由 Apple 处理。我们无法查看你的 Apple 账户，也无权代为退款，直接向 Apple 提交申请更为快捷。如申请过程中遇到困难，可以写信给我们，我们会协助说明情况。", appleBtn: "向 Apple 申请退款", appleManage: "管理订阅：App Store › 账户 › 订阅", lookH: "常见问题的现有说明", brandLine: "放在你自己硬盘上的影片资料馆。", footNote: "仅在 Mac App Store 分发" },
-      groups: [["支持", [["support", "联系支持"], ["guide", "使用说明"]]], ["法律", [["privacy", "隐私政策"], ["terms", "使用条款"], ["oss", "开源许可"]]]],
-      fcols: [["产品", [site("功能", "#features"), site("格式与要求", "#formats"), site("更新记录", "#log")]], ["支持", [nav("联系支持", "support"), nav("使用说明", "guide"), site("常见问题", "#faq")]], ["法律", [nav("隐私政策", "privacy"), nav("使用条款", "terms"), nav("开源许可", "oss")]]],
-      head: {
-        support: { kicker: "支持", title: "联系支持", sub: "问题会直接送到开发者。请尽量写清楚发生了什么，多数情况一次回复即可解决。", meta: "工作日 48 小时内回复 · 支持中文与英文" },
-        guide: { kicker: "支持", title: "使用说明", sub: "从首次设置到更换硬盘，共十章。全程不需要账号，也不需要联网。", meta: `对应版本 ${version} · 随版本更新` },
-        privacy: { kicker: "法律", title: "隐私政策", sub: "查看正式隐私政策，了解本地数据与可选在线功能。", meta: `更新日期 ${updated} · 适用于 Nsurator ${version} 及以后` },
-        terms: { kicker: "法律", title: "使用条款", sub: "从 Mac App Store 下载并使用 Nsurator，即表示接受本条款。我们尽量写得简短、易读。", meta: `更新日期 ${updated} · 适用于 Nsurator ${version} 及以后` },
-        oss: { kicker: "法律", title: "开源许可", sub: "Nsurator 使用了以下开源项目。清单按工程里实际链接、附带与下载的组件逐项核对，随版本更新。", meta: `对应版本 ${version} · 许可证全文随 app 分发` },
-      },
-      routes: [
-        { n: "1", k: "在 app 里", rec: true, t: "报告问题", isText: true, tStyle: routeTitle, d: "版本、系统信息和最近的诊断日志会自动附上，你只需描述发生了什么；如有截图，一并添加。报告通过 Nsurator 自己的接口提交，不经过邮件。", path: "设置 › 关于 › 报告问题 · 播放中 ⌘⌥D › 报告这个问题" },
-        { n: "2", k: "写邮件", rec: false, t: "support@nsurator.com", href: "mailto:support@nsurator.com", isLink: true, tStyle: mailTitle, d: "适用于建议、合作，或应用无法打开的情况。主题请写明问题类型，便于更快处理。", path: "主题示例：问题：4K HEVC 播放掉帧（macOS 15.2 / M2）" },
-      ],
-      before: [
-        { n: "1", t: "系统与版本", d: "macOS 版本、机型与芯片、Nsurator 版本号。", where: "设置 › 关于 · 第一行" },
-        { n: "2", t: "复现步骤", d: "简要的操作步骤，或一段 15 秒左右的录屏。", where: "⌘⇧5 录屏 · 随邮件附件发送" },
-        { n: "3", t: "播放问题：诊断信息", d: "容器、编码、音轨、解码方式与出现问题的时间点，可在诊断面板中一键复制。", where: "播放中 ⌘⌥D › 复制" },
-      ],
-      lookups: [
-        { ...nav("首次设置：四步开始使用", "guide"), where: "使用说明" },
-        { ...nav("播放卡顿、无声音、4K 掉帧的排查方法", "guide"), where: "使用说明" },
-        { ...nav("文件是否会被上传", "privacy"), where: "隐私政策" },
-        { ...nav("免费版限制、Pro 与退款", "terms"), where: "使用条款" },
-      ],
-      guide: [
-        { title: "快速上手", blocks: [P("首次打开时的引导即为以下四步，这里是详细说明。"), O([
-          ["指一个地方放影片", "媒体库位置可以是本机文件夹、外置硬盘，或已挂载的网盘。Nsurator 不搬走你现有的目录结构——它记住路径，按你设定的规则整理。外置盘拔掉也不会丢数据，资料和标签都还在。", "设置 › 整理媒体库 › 媒体库位置"],
-          ["把下载文件夹交给收件箱", "选一个要监听的文件夹，通常就是「下载」。新文件下载完成后出现在收件箱，分成三列：待归档、待确认、暂不可归档。", "设置 › 整理媒体库 › 监听文件夹"],
-          ["归档第一批", "在「待归档」列点「全部归档」，文件按人物、年份或系列进入清单。同名按你设定的规则处理，不会静默覆盖。首次使用建议先归档少量影片，确认规则符合预期。", "收件箱 › 全部归档"],
-          ["双击播放", "自研播放核心直接播三十余种容器，从 RMVB 到 HEVC、AV1；蓝光 BDMV、ISO 目录也能当一部影片打开；HEVC、AV1 与 4K 走硬件解码。免费版每月可播 15 次；整理、归档、识别、备份都不限次。", "任意影片 › 双击 / 空格"]])] },
-        { title: "收件箱", blocks: [P("收件箱只看你指定的监听文件夹，其他目录一概不碰。新文件要等下载完成、大小稳定后才会出现，所以不会归进半个文件。"), L(["待归档：本机可以直接处理的，一键全部归档。", "待确认：识别出多个候选人物或年份，需要你点一下选哪个。", "暂不可归档：目标硬盘没接、文件正被别的程序占用。原因写在每一行，条件满足后自动回到「待归档」。"]), P("同名文件不视为错误。在「同名处理」中设定一次规则：跳过、覆盖或添加序号；之后遇到同名文件按此规则处理，并在结果中列出。")] },
-        { title: "清单与合集", blocks: [P("清单按媒体库分组，一部影片只属于一个清单，位置就是它在硬盘上的位置。合集是另一层：一部影片可以进任意多个合集，不动文件。"), P("智能合集写一条规则，自己更新。规则由「人物 · 年份 · 分辨率 · 标签 · 看过 / 未看 · 加入时间」组合，比如「未看 · 2024 年后 · 4K」。规则改了，合集立即重算。"), N("换硬盘、改目录结构，合集不受影响——它记的是影片本身，不是路径。")] },
-        { title: "播放与字幕", blocks: [P("双击或空格开始播放。多音轨、多字幕在播放器右下角切换，记住每部影片上次的选择。"), L(["外挂字幕：与影片同名的 .srt / .ass / .sup 自动匹配；放在同目录任意位置的字幕，可以在详情面板「伴随文件」里手动添加。", "伴随文件跟着影片走：归档、移动、重命名时，字幕和 NFO 一起动。", "续播：从上次停下的地方继续；看到片尾自动标记为已看。"]), P("免费版每月可播放 15 次，每月 1 日重新计数；Pro 不限次。计数只在本机，我们看不到。")] },
-        { title: "播放诊断", blocks: [P("播放中按 ⌘⌥D 打开诊断面板。它显示容器、编码、音轨、当前解码方式、掉帧数和读取速率——出问题时先看这几项，通常就能判断是文件、硬盘还是 app 的事。"), K([["掉帧持续上升", "多半是读取速率跟不上：外置盘、网盘、USB Hub 都常见。拷到本机播一次对比。"], ["没有声音", "看音轨编码：TrueHD / DTS-HD 部分机型只能转码输出，切另一条音轨试试。"], ["解码显示 software", "这个编码组合没走硬件解码，4K 会吃 CPU。HEVC 10-bit 与 AV1 在 M 系列芯片上都应显示 hardware。"], ["字幕不同步", "外挂字幕的时间轴问题，播放器里可以整体偏移；内封字幕不同步请报告。"]]), P("面板中的「报告这个问题」会自动附上本次诊断信息；「复制」可将其放入剪贴板，用于邮件。")] },
-        { title: "识别人物", blocks: [P("识别在你的 Mac 上完成：首次开启时下载一次模型文件，之后画面与特征向量均不离开设备。首次分析一部影片需要数十秒到数分钟，之后为增量分析。"), L(["参考照片：给一个人物加一两张正面照，识别会更稳；照片只存在本机资料库。", "合并与重命名：同一个人被分成两位时，拖一位到另一位上合并；改名对所有相关影片生效。", "关闭识别：设置里关掉后，app 停止分析新影片；删除某个人物时，对应的特征向量一并删除。"])] },
-        { title: "私密空间", blocks: [P("把影片移入私密空间，它会同时从清单、搜索、合集和 Spotlight 索引中消失，需要 Touch ID 或系统密码才能看见。锁定时不保留可读的缩略图。"), L(["自动锁定：切到别的 app、屏幕休眠、或空闲一段时间后自动上锁，时间在设置里选。", "立即锁定：⌘⌥L。", "移出：解锁后在影片上右键「移出私密空间」，它回到原来的清单。"]), N("解锁凭据由 macOS 钥匙串与本机生物识别管理，我们不持有也无法绕过。因此不存在「找回」流程：若失去对这台 Mac 的访问能力，私密空间中的资料将无法恢复。这是有意的设计取舍。")] },
-        { title: "AI 智能体", blocks: [P("Pro 功能。开启后，Nsurator 在本机回环地址上提供 MCP 服务；Claude Code、Codex、Cursor、Windsurf、Gemini、Kimi 等客户端复制一行配置即可连接，用自然语言查询片库、创建合集、批量添加标签。"), L(["权限逐条开关：读片库、写标签、建合集、移动文件，各自独立；默认只开「读」。", "调用留痕：每次调用记录时间、来源与动作，在设置里可以查看和清空。", "只在本机：服务只接受这台 Mac 上的连接，不对局域网或公网开放。"]), N("私密空间永远在 AI 智能体的可见范围之外，任何权限组合都读不到。")] },
-        { title: "备份与搬家", blocks: [P("在「备份与搬家」里随时手动备份资料库到你指定的位置。备份里是资料——标签、人物、合集、观看记录——不含视频文件本身，所以很小。"), O([
-          ["换硬盘", "把影片拷到新盘，然后在「媒体库位置」指向新盘。Nsurator 按文件内容重新对上，标签和人物都跟过去。", "设置 › 整理媒体库 › 媒体库位置"],
-          ["用备份覆盖现在的资料", "先做一次预演，列出会改动什么；确认后写入。合并是全有或全无的：哪一步出错就整笔撤回，一行不写。", "设置 › 备份与搬家 › 用备份恢复"]]),
-          P("合并时若有个别项无法写入（例如备份中某条记录损坏），Nsurator 会列出具体项目与原因，并提供「跳过这 N 项，继续合并」；其余内容照常合并，结果中会列出未合并的项目。磁盘空间不足、资料库被占用等原因无法跳过，需处理后重试。")] },
-        { title: "键盘快捷键", blocks: [K([["空格", "播放 / 暂停"], ["← →", "后退 / 前进 10 秒"], ["⌘1 ⌘2 ⌘3", "影片 / 合集 / 收件箱"], ["⌘F", "搜索整个片库"], ["⌘⇧A", "把待归档的全部归档"], ["⌘⌥D", "打开播放诊断"], ["⌘⌥L", "立即锁定私密空间"], ["⌘⌫", "把选中影片移到废纸篓"]]), P("完整列表见菜单栏「帮助 › 键盘快捷键」。")] },
-      ],
-      terms: [
-        { title: "你和谁在订这份约", blocks: [P("本条款是你与 Nsurator 开发者之间关于使用 Nsurator for macOS 的协议。你从 Mac App Store 下载、安装或使用本应用，即表示接受本条款。"), P("同时，你与 Apple 之间的《Apple 媒体服务条款》，以及 App Store 上本应用页面所列的最终用户许可协议，同样适用。它们与本条款如有冲突，以它们为准；但下文「开源组件（LGPL）」一段是我们额外给你的许可，不因此减少。Apple 不是本条款的当事方，但有权作为第三方受益人主张本条款。")] },
-        { title: "授权范围", blocks: [P("我们授予你一项个人、非独占、不可转让的许可，可在你拥有或控制的 Apple 设备上使用本应用，范围以 App Store 的使用规则（含家庭共享）为准。"), P("你不得：反向工程、反编译或试图提取源码（法律明确允许的情形以及下一段所述情形除外）；绕过、篡改授权与内购校验；将本应用或其组件再分发、转售、出租；移除任何版权或署名标识。"), P("开源组件（LGPL）：本应用包含以 GNU 宽通用公共许可证（LGPL）2.1 版或更新版本授权的程序库，即「开源许可」页与应用内许可声明中标为 LGPL 的组件。这些程序库由各自的版权人依 LGPL 授权给你，你对它们的使用、修改与再分发受 LGPL 约束，而非本条款。本条款以及我们提供本应用所依据的任何其他许可协议，都不限制 LGPL 给你的权利；尤其是，尽管有上一段的限制，你可以为自己使用而修改本应用中的这些程序库（包括用你修改过的版本替换它们，供本应用使用），也可以为调试此类修改而对本应用进行反向工程。这些程序库的对应源代码（含我们的修改）按版本公开在："), A("github.com/imranulhSH/lgpl-sources", "https://github.com/imranulhSH/lgpl-sources")] },
-        { title: "免费版与 Pro", blocks: [P("免费版可以完整使用整理、归档、人物识别、备份与搬家等功能，播放则限每月 15 次，每月 1 日重新计数。"), P("Pro 解锁不限次播放与 AI 智能体连接，有两种付费方式：免费试用结束后按年自动续订，或一次性买断并包含之后的所有更新。价格、试用期限与可用地区以 App Store 内购页面显示为准。"), L(["试用期内取消不产生费用；自动续订会在当期结束前 24 小时内扣费。", "取消续订在 App Store › 账户 › 订阅中操作，取消后当期仍可使用至到期。", "终身买断是一次付款，不会自动续订。"]), N("不同地区的定价、税费与货币由 Apple 按当地 storefront 计算，本页不列金额。")] },
-        { title: "退款", blocks: [P("所有购买由 Apple 收款并处理，退款亦由 Apple 决定。请通过 reportaproblem.apple.com 提交申请。我们无法查看你的交易记录，也无权直接退款；如申请遇到困难，可以写信给我们，我们会协助说明情况。")] },
-        { title: "你的文件，你负责", blocks: [P("本应用是一个本地影片资料馆与播放器。它不提供、不托管、不索引、不推荐任何影视内容，也不内置任何在线片源、下载器、种子或串流目录。你用它整理和播放的每一个文件，都来自你自己的设备或你自己接入的存储。"), P("你需要自行确保：对这些文件拥有合法的持有、复制与观看权利；你的使用方式符合所在地区关于版权、内容分级与信息传播的法律。因处理违法内容而产生的一切责任由你承担；我们没有能力也没有义务审查你库中的内容。"), N("简单来说：Nsurator 是书架，不是书店。书架不决定你放上去什么，但你需要为放上去的内容负责。")] },
-        { title: "不得这样用", blocks: [L(["规避、破解任何数字版权保护措施；", "把本应用用于盗版内容的批量整理与分发；", "将 AI 智能体接口通过端口转发、反向代理等方式暴露到公网，供你之外的人访问你的片库；", "利用本应用从事任何违法活动，或干扰他人对本应用的正常使用。"]), P("违反上述条款，我们可以终止你的许可；已支付的费用不因此退还（法律另有规定的除外）。")] },
-        { title: "第三方内容与服务", blocks: [P("影片资料补全使用 TMDB 的公开数据，该项功能的使用同时受 TMDB 条款约束；相关资料的准确性由数据源决定，我们不作保证。本应用未获 TMDB 认可或背书。"), P("你选择连接的 AI 客户端由其提供方负责。它们如何处理你的输入与输出，取决于你与那家公司的协议，与本条款无关。")] },
-        { title: "不作担保", blocks: [P("本应用按「现状」和「现有可用」提供。我们会尽力让它稳定，但不保证在所有硬件、所有 macOS 版本、所有编码组合的文件上都能正常工作，也不保证无中断或无错误。"), N("对文件进行操作前，请自行保留一份备份。应用内的备份功能是辅助手段；整理、重组、移动等操作都涉及真实文件，建议先小范围试用。")] },
-        { title: "责任限制", blocks: [P("在适用法律允许的最大范围内，我们不对数据丢失、文件损坏、利润损失或任何间接、附带、惩罚性损失承担责任。我们的累计责任上限为你在索赔事由发生前 12 个月内为本应用实际支付的金额。"), P("部分地区不允许排除某些默示担保或限制责任，上述限制在这些地区仅在法律允许的范围内适用；你依当地法律享有的强制性权利不受影响。")] },
-        { title: "变更与终止", blocks: [P("功能可能随版本增减。涉及付费权益的实质调整，我们会提前在应用内和本页说明；已买断的用户不会因此失去已获得的权益。你可以随时删除本应用以终止本条款；条款中关于责任限制的部分在终止后继续有效。")] },
-        { title: "适用法律与争议解决", blocks: [P("本条款适用中华人民共和国内地法律（不含冲突法规则）。发生争议先友好协商；协商不成，提交开发者所在地有管辖权的法院。你依当地强制性消费者保护法享有的权利不受本条影响。"), P("条款相关问题请发送至 support@nsurator.com。")] },
-      ],
-      oss: [
-        { title: "怎么读这一页", blocks: [P(`以下是 Nsurator ${version} 实际链接、附带或首次使用时下载的第三方组件，按工程里的依赖锁定与静态库配置逐项核对，随版本更新。`), P("播放核心 NsuratorPlayerCore 与 AI 智能体的回环服务 NsuratorAgentProtocol 是我们自己写的，不属于第三方组件，因此不在此列；它们用到的开源库列在下面。"), P("每条许可证的完整文本随应用一起分发：在 Nsurator.app 包内 Contents/Resources/ThirdPartyPlayback（NOTICE 与各 COPYING 文件）以及 Contents/Resources/Visuals/AgentIcons-ATTRIBUTION.md 中可以逐条查看。")] },
-        { title: "播放核心 · 进程内", blocks: [P("NsuratorPlayerCore 以静态链接方式包含以下组件，其中 FFmpeg 与 libbluray 经过我们修改（补丁与修改说明见下文「LGPL 组件的源码获取」）；硬件解码走系统的 VideoToolbox，不在此列。"), PK([["FFmpeg 8.1.2", "LGPL-2.1-or-later", "容器解析、软解码回退、字幕解码。按 LGPL 配置构建：不含 --enable-gpl / --enable-nonfree 组件。"], ["dav1d 1.5.3", "BSD-2-Clause", "AV1 软解码。"], ["libbluray 1.4.1", "LGPL-2.1-or-later", "蓝光（BDMV）结构解析。"], ["libudfread 1.2.0", "LGPL-2.1-or-later", "UDF 文件系统读取，供 libbluray 使用。"]])] },
-        { title: "播放与媒体 · 附带的命令行工具", blocks: [P("随 app 附带的 ffmpeg / ffprobe 是独立的命令行程序，以子进程方式调用，用于截图、导出、探测与转码。它们静态链入以下组件："), PK([["FFmpeg 8.1.2", "LGPL-2.1-or-later", "同上。不含 x264 / x265，H.264 编码走 VideoToolbox。"], ["libass 0.17.5", "ISC", "ASS / SSA 字幕的排版与渲染。"], ["FreeType 2.14.3", "FreeType License（FTL）", "字幕字体栅格化。Portions of this software are copyright © The FreeType Project (www.freetype.org). All rights reserved."], ["FriBidi 1.0.16", "LGPL-2.1-or-later", "双向文本（阿拉伯文、希伯来文等）排版。"], ["HarfBuzz 14.3.0", "MIT（Old MIT）", "字体 shaping。"], ["libunibreak 7.0", "zlib", "字幕换行位置计算。"], ["libpng 1.6.58", "PNG Reference Library License", "PNG 截图编码。"]])] },
-        { title: "资料库与数据", blocks: [PK([["SQLite", "Public Domain", "资料库存储引擎，使用 macOS 自带的 libsqlite3，不另行打包。"]])] },
-        { title: "本机识别", blocks: [P("识别在你的 Mac 上完成。运行时随 app 分发；两个模型文件在你首次开启识别时下载到本机，此后不再联网。"), PK([["ONNX Runtime 1.23.2", "MIT", "Microsoft。在本机执行人脸检测与特征提取模型。"], ["AuraFace-v1（glintr100.onnx · af6d057）", "Apache-2.0", "fal.ai。人脸特征提取模型，首次使用时下载。"], ["YuNet（face_detection_yunet_2023mar.onnx）", "MIT", "OpenCV Zoo / Shiqi Yu。人脸检测模型，首次使用时下载。"]])] },
-        { title: "媒体源与网络", blocks: [P("连接 SMB 共享、SFTP 与 MEGA 网盘所用的组件。FTP、WebDAV 与其他网盘走 macOS 自带的 libcurl，不另行打包。"), PK([["SMBClient 0.3.1", "MIT", "kishikawakatsumi。SMB 共享访问。"], ["swift-nio 2.102.0 · swift-nio-ssh 0.15.0", "Apache-2.0", "网络事件循环与 SSH / SFTP 传输。"], ["swift-crypto 4.5.2", "Apache-2.0", "加密原语；内含 BoringSSL（ISC 与 OpenSSL 许可）。"], ["swift-asn1 1.7.2 · swift-atomics 1.3.1 · swift-collections 1.6.0 · swift-system 1.8.1", "Apache-2.0", "上述 Swift 包的基础依赖。"], ["MEGA SDK 10.18.0", "BSD-2-Clause", "Mega Limited。MEGA 网盘访问。"], ["MEGA SDK 静态链入：Crypto++ · libsodium · libcurl · SQLite · ICU · zlib · zstd", "BSL-1.0 · ISC · curl · Public Domain · Unicode-ICU · zlib · BSD-3-Clause", "版本由 vcpkg 锁定，仅供 MEGA SDK 内部使用。"]])] },
-        { title: "AI 智能体", blocks: [P("MCP 回环服务 NsuratorAgentProtocol 为自研实现，不使用第三方 MCP SDK 或日志库；其网络层依赖即上文的 swift-nio 与 swift-crypto。")] },
-        { title: "界面", blocks: [P("界面图标使用 Apple 的 SF Symbols（系统资源，非开源，不在此列）；app 不打包任何第三方字体。"), PK([["Simple Icons", "CC0-1.0", "仅用于 AI 智能体设置里 Claude、Codex（OpenAI 标志）、Cursor、Windsurf、Gemini、Kimi 六个客户端的小图标。"], ["Lucide", "ISC", "首启引导中的一枚对勾图形按其 24 格网格描绘。"]])] },
-        { title: "本站使用的字体（非 app 依赖）", blocks: [PK([["Figtree", "SIL OFL 1.1", "官网正文字体。"], ["Caprasimo", "SIL OFL 1.1", "官网标题字体。"]])] },
-        { title: "LGPL 组件的源码获取", blocks: [P("FFmpeg、libbluray、libudfread 与 FriBidi 以 LGPL 2.1 或更新版本许可使用。我们修改了进程内播放核心中的 FFmpeg（7 个补丁）与 libbluray（3 个补丁）；libudfread 以及附带的 ffmpeg / ffprobe 所用的源码均未修改。附带的 ffmpeg / ffprobe 是独立程序，可以直接用同版本的自编译二进制替换；进程内播放核心中的 FFmpeg、libbluray、libudfread 为静态链接，我们按 LGPL 第 6 条提供重新链接所需的材料。"), P("构建时使用的确切源码包、我们的补丁与带日期的修改说明、打完补丁后实际编译的源码树、配置行与编译脚本，按应用版本公开在下面的 GitHub Releases 中，每个 Release 写明对应的应用版本。"), A("lgpl-sources · 各版本的 LGPL 对应源代码", "https://github.com/imranulhSH/lgpl-sources/releases"), P("如需用于重新链接的目标文件，请发送邮件至 support@nsurator.com 并注明应用版本号。"), M(`$ ffmpeg -version            # app 附带的命令行版本\nffmpeg version 8.1.2 … libavutil license: LGPL version 2.1 or later\n\n# 各版本的对应源代码\nhttps://github.com/imranulhSH/lgpl-sources/releases`)] },
-        { title: "没有用到的东西", blocks: [P("为免误会，在此说明：本应用不包含任何分析或追踪 SDK，不包含广告组件，也不包含 App Store 之外的自更新框架，更新一律通过 Mac App Store 分发；播放组件不含 x264 / x265 等 GPL 编码器，H.264 编码走系统 VideoToolbox。")] },
-        { title: "致谢与纠错", blocks: [P("如果你是上述任一项目的维护者，发现署名、许可证或用途描述有误，请发送邮件至 support@nsurator.com，我们会在下一个版本更正。")] },
-      ],
-      foot: { guide: ["未涵盖的内容欢迎来信询问。使用说明会随版本更新。", "support@nsurator.com"], privacy: ["如有任何一条表述不清，欢迎来信指出，我们会修订。", "support@nsurator.com"], terms: ["如对条款中的任何一条有疑问，欢迎来信。", "support@nsurator.com"], oss: ["如清单有遗漏或署名有误，欢迎来信，我们会在下一版本更正。", "support@nsurator.com"] },
-    };
+<h3>在 Mac 上报告问题</h3>
+<ol class="steps">
+<li>打开菜单栏的「帮助 → 报告问题…」。播放出了问题时，也可以在播放器窗口在前时按 <kbd>⌥⌘I</kbd> 打开播放诊断，点里面的「报告这个问题…」；播放出错的卡片上也有「报告这个问题」。</li>
+<li>选一个类别，写一句发生了什么；有截图或录屏的话一起加上（最多 3 个）。</li>
+<li>点「发送」。报告直接上传到 Nsurator 自己的报告服务，不经过邮件。没联网时会先存着，联网后自动补发。发出后你会拿到一个像 4F2A-9C1E 这样的编号。</li>
+</ol>
+<p>在「帮助 → 已反馈的问题」里能看到每份报告走到哪一步（已收到 → 在处理 → 已解决）和开发者的回复，也能点「补充…」再说几句。开发者回复时，菜单栏的铃铛和「窗口 → 消息」里会有提示。</p>
 
-    const EN = {
-      t: { navFeatures: "Features", navPlay: "Playback", navFormats: "Formats", navLog: "Updates", navFaq: "FAQ", navProduct: "Product", navGuides: "Guides (Chinese)", navSupport: "Support", navCta: "Download", tocH: "On this page", rec: "Recommended", beforeH: "When emailing, please include", diagNote: "Diagnostics contain only the system, the version and the technical parameters of that playback — no file names, paths or people's names. Please do not attach video files to email; if a sample is needed, we will explain how to send it.", appleH: "Subscriptions, refunds and invoices", appleP: "Nsurator is sold only on the Mac App Store; purchases, renewals, cancellations and invoices are all handled by Apple. We cannot see your Apple account and cannot issue refunds ourselves — submitting a request to Apple directly is faster. If you run into trouble with the request, write to us and we will help explain the situation.", appleBtn: "Request a refund from Apple", appleManage: "Manage subscriptions: App Store › Account › Subscriptions", lookH: "Answers that may already exist", brandLine: "A film library that lives on your own drive.", footNote: "Available only on the Mac App Store" },
-      groups: [["Support", [["support", "Contact support"], ["guide", "User guide"]]], ["Legal", [["privacy", "Privacy Policy"], ["terms", "Terms of Use"], ["oss", "Open source"]]]],
-      fcols: [["Product", [site("Features", "#features"), site("Formats", "#formats"), site("Release notes", "#log")]], ["Support", [nav("Contact support", "support"), nav("User guide", "guide"), site("FAQ", "#faq")]], ["Legal", [nav("Privacy Policy", "privacy"), nav("Terms of Use", "terms"), nav("Open source", "oss")]]],
-      head: {
-        support: { kicker: "Support", title: "Contact support", sub: "Your message goes straight to the developer. Describe what happened as clearly as you can; most cases are resolved in a single reply.", meta: "Replies within 48 hours on business days · Chinese and English" },
-        guide: { kicker: "Support", title: "User guide", sub: "From first setup to moving to a new drive, in ten short chapters. No account and no internet connection required.", meta: `For version ${version} · Updated with each release` },
-        privacy: { kicker: "Legal", title: "Privacy Policy", sub: "Read the privacy policy for local data and optional online features.", meta: `Updated ${updated} · Applies to Nsurator ${version} and later` },
-        terms: { kicker: "Legal", title: "Terms of Use", sub: "Downloading and using Nsurator from the Mac App Store means you accept these terms. We have kept them short and readable.", meta: `Updated ${updated} · Applies to Nsurator ${version} and later` },
-        oss: { kicker: "Legal", title: "Open-Source Licenses", sub: "Nsurator is built on the following open-source projects. The list is checked item by item against what each version actually links, bundles or downloads, and updated with each release.", meta: `For version ${version} · Full license texts ship with the app` },
-      },
-      routes: [
-        { n: "1", k: "In the app", rec: true, t: "Report a Problem", isText: true, tStyle: routeTitle, d: "Version, system information and the recent diagnostic log are attached automatically; you only describe what happened, and add a screenshot if you have one. Reports go through Nsurator's own endpoint, not email.", path: "Settings › About › Report a Problem · During playback ⌘⌥D › Report this" },
-        { n: "2", k: "By email", rec: false, t: "support@nsurator.com", href: "mailto:support@nsurator.com", isLink: true, tStyle: mailTitle, d: "For suggestions, partnerships, or when the app will not open. Please state the type of issue in the subject line so it can be handled faster.", path: "Example subject: Issue: 4K HEVC frame drops (macOS 15.2 / M2)" },
-      ],
-      before: [
-        { n: "1", t: "System and version", d: "macOS version, Mac model and chip, Nsurator version.", where: "Settings › About · first line" },
-        { n: "2", t: "Steps to reproduce", d: "Brief steps, or a screen recording of about 15 seconds.", where: "⌘⇧5 to record · attach to the email" },
-        { n: "3", t: "Playback issues: diagnostic info", d: "Container, codecs, audio track, decoding path and the time the problem occurred — one click to copy from the diagnostics panel.", where: "During playback ⌘⌥D › Copy" },
-      ],
-      lookups: [
-        { ...nav("First setup: four steps to get started", "guide"), where: "User guide" },
-        { ...nav("Troubleshooting stutter, missing audio and 4K frame drops", "guide"), where: "User guide" },
-        { ...nav("Whether files are ever uploaded", "privacy"), where: "Privacy" },
-        { ...nav("Free-tier limits, Pro and refunds", "terms"), where: "Terms" },
-      ],
-      guide: [
-        { title: "Getting started", blocks: [P("The first-launch setup walks through these four steps; this is the detailed version."), O([
-          ["Choose where your films live", "The library location can be a local folder, an external drive or a mounted network share. Nsurator does not move your existing folder structure — it remembers paths and organizes by the rules you set. Unplugging an external drive loses nothing; metadata and tags stay.", "Settings › Organize › Library location"],
-          ["Hand your download folder to the Inbox", "Pick a folder to watch, usually Downloads. Once a download finishes, the file appears in the Inbox in one of three columns: To archive, Review, Not archivable.", "Settings › Organize › Watched folder"],
-          ["Archive the first batch", "In the To archive column, click Archive all. Files go into lists by person, year or series. Same-name files follow the rule you set; nothing is overwritten silently. Start with a few films to confirm the rules behave as expected.", "Inbox › Archive all"],
-          ["Double-click to play", "Our own playback core plays 30+ containers directly, from RMVB to HEVC and AV1; Blu-ray BDMV and ISO folders open as a single film; HEVC, AV1 and 4K go through hardware decoding. The free tier allows 15 plays per month; organizing, archiving, recognition and backup are unlimited.", "Any film › double-click / Space"]])] },
-        { title: "Inbox", blocks: [P("The Inbox only watches the folders you specify and never touches other directories. New files appear only once the download has finished and the size is stable, so a half-downloaded file is never archived."), L(["To archive: ready to process on this Mac; archive all with one click.", "Review: several candidate people or years were detected; pick one.", "Not archivable: the target drive is disconnected or the file is in use by another app. The reason is shown on each row; the file returns to To archive once the condition clears."]), P("Same-name files are not errors. Set the rule once under Same-name handling — skip, overwrite or add a number — and it is applied every time, with the affected files listed in the result.")] },
-        { title: "Lists and collections", blocks: [P("Lists group by library; a film belongs to exactly one list, which mirrors its location on disk. Collections are a separate layer: a film can be in any number of collections without moving the file."), P("A smart collection is a rule that maintains itself. Combine person, year, resolution, tags, watched or unwatched and date added — for example, Unwatched · after 2024 · 4K. Change the rule and the collection updates immediately."), N("Changing drives or folder structures does not affect collections — they refer to the film itself, not its path.")] },
-        { title: "Playback and subtitles", blocks: [P("Double-click or press Space to play. Audio and subtitle tracks switch from the lower-right corner of the player, and the last choice is remembered per film."), L(["External subtitles: .srt, .ass and .sup files with the same name as the film are matched automatically; subtitles elsewhere in the same folder can be added under Companion files in the detail panel.", "Companion files travel with the film: archiving, moving or renaming carries subtitles and NFO files along.", "Resume: playback continues where you left off; reaching the end marks the film as watched."]), P("The free tier allows 15 plays per month, counted from the 1st; Pro is unlimited. The count is kept on this Mac only — we cannot see it.")] },
-        { title: "Playback diagnostics", blocks: [P("Press ⌘⌥D during playback to open the diagnostics panel. It shows the container, codecs, audio track, current decoding path, dropped frames and read rate — check these first, and it is usually clear whether the file, the drive or the app is at fault."), K([["Dropped frames keep rising", "Usually the read rate cannot keep up: external drives, network shares and USB hubs are common causes. Copy the file to the internal disk and compare."], ["No audio", "Check the audio codec: TrueHD and DTS-HD can only be transcoded on some Macs; try another audio track."], ["Decoding shows software", "This codec combination is not hardware-decoded and 4K will load the CPU. HEVC 10-bit and AV1 should both show hardware on Apple silicon."], ["Subtitles out of sync", "External subtitles can be offset as a whole in the player; embedded subtitles that drift should be reported."]]), P("Report this in the panel attaches that playback's diagnostics automatically; Copy places them on the clipboard for email.")] },
-        { title: "People", blocks: [P("Recognition runs on your Mac: the model files are downloaded once when you first enable it, and after that frames and feature vectors never leave the device. The first pass over a film takes tens of seconds to a few minutes; after that it is incremental."), L(["Reference photos: one or two front-facing photos make recognition more reliable; photos are stored only in the local library.", "Merge and rename: when one person appears as two, drag one onto the other to merge; renaming applies to all related films.", "Turn off recognition: once disabled in Settings, the app stops analyzing new films; deleting a person also deletes their feature vectors."])] },
-        { title: "Private Space", blocks: [P("Films moved into the Private Space disappear from lists, search, collections and the Spotlight index at the same time, and require Touch ID or your system password to see. No readable thumbnails are kept while locked."), L(["Auto-lock: locks when you switch apps, the display sleeps or after a period of inactivity; choose the interval in Settings.", "Lock now: ⌘⌥L.", "Move out: after unlocking, right-click a film and choose Remove from Private Space; it returns to its original list."]), N("Unlock credentials are managed by the macOS Keychain and on-device biometrics; we do not hold them and cannot bypass them. There is therefore no recovery: if you lose access to this Mac, the contents of the Private Space cannot be restored. This is a deliberate design decision.")] },
-        { title: "AI agents", blocks: [P("A Pro feature. When enabled, Nsurator runs an MCP server on the local loopback address; clients such as Claude Code, Codex, Cursor, Windsurf, Gemini and Kimi connect by pasting one line of configuration, and can then search the library, create collections and tag in bulk using natural language."), L(["Per-permission switches: reading the library, writing tags, creating collections and moving files are independent; only Read is on by default.", "Call log: every call records its time, source and action, and can be viewed or cleared in Settings.", "Local only: the server accepts connections from this Mac only and is not exposed to the local network or the internet."]), N("The Private Space is always outside the reach of AI agents; no combination of permissions can read it.")] },
-        { title: "Backup and moving", blocks: [P("Back up the library at any time from Backup & moving to a location you choose. Backups contain metadata only — tags, people, collections, watch history — not the video files, so they stay small."), O([
-          ["Changing drives", "Copy the films to the new drive, then point Library location at it. Nsurator re-matches files by content, and tags and people follow.", "Settings › Organize › Library location"],
-          ["Replacing current data with a backup", "A rehearsal runs first and lists what will change; writing begins after you confirm. Merging is all-or-nothing: if any step fails, the whole run is rolled back and nothing is written.", "Settings › Backup & moving › Restore from backup"]]),
-          P("If a few items cannot be written during a merge (for example a damaged record in the backup), Nsurator lists the items and the reasons and offers Skip these N items and continue; the rest merges as normal and the result lists what was left out. Causes such as a full disk or a locked library cannot be skipped and must be resolved before retrying.")] },
-        { title: "Keyboard shortcuts", blocks: [K([["Space", "Play / pause"], ["← →", "Back / forward 10 seconds"], ["⌘1 ⌘2 ⌘3", "Films / Collections / Inbox"], ["⌘F", "Search the whole library"], ["⌘⇧A", "Archive everything in To archive"], ["⌘⌥D", "Open playback diagnostics"], ["⌘⌥L", "Lock the Private Space now"], ["⌘⌫", "Move selected films to the Trash"]]), P("The full list is under Help › Keyboard Shortcuts in the menu bar.")] },
-      ],
-      terms: [
-        { title: "Who this agreement is between", blocks: [P("These terms are an agreement between you and the developer of Nsurator regarding your use of Nsurator for macOS. Downloading, installing or using the App from the Mac App Store constitutes acceptance of these terms."), P("Apple's Media Services Terms and Conditions, and the end-user license agreement shown on the App's App Store page, also apply. Where they conflict with these terms, they prevail, except that the \"Open-source components (LGPL)\" paragraph below is an additional permission from us and is not reduced by them. Apple is not a party to these terms but may enforce them as a third-party beneficiary.")] },
-        { title: "Scope of the license", blocks: [P("We grant you a personal, non-exclusive, non-transferable license to use the App on Apple devices you own or control, within the App Store Usage Rules (including Family Sharing)."), P("You may not: reverse-engineer, decompile or attempt to extract the source code (except where expressly permitted by law or by the next paragraph); circumvent or tamper with licensing or in-app purchase verification; redistribute, resell or rent the App or its components; or remove any copyright or attribution notices."), P("Open-source components (LGPL): the App includes libraries licensed under the GNU Lesser General Public License (LGPL), version 2.1 or later, namely the components marked LGPL on the Open-Source Licenses page and in the notices inside the App. Their copyright holders license them to you under the LGPL, and your use, modification and redistribution of those libraries are governed by the LGPL, not by these terms. Nothing in these terms, or in any other license agreement under which we provide the App, restricts the rights the LGPL gives you. In particular, notwithstanding the previous paragraph, you may modify those libraries in the App for your own use (including replacing them with your own modified versions for the App to use), and you may reverse-engineer the App to debug such modifications. The corresponding source code of those libraries, including our changes, is published for each version at:"), A("github.com/imranulhSH/lgpl-sources", "https://github.com/imranulhSH/lgpl-sources")] },
-        { title: "Free tier and Pro", blocks: [P("The free tier includes organizing, archiving, people recognition, backup and moving in full; playback is limited to 15 plays per month, reset on the 1st."), P("Pro unlocks unlimited playback and AI-agent connections, in two forms: an automatically renewing annual subscription after a free trial, or a one-time purchase that includes all future updates. Prices, trial length and availability are as shown on the App Store purchase screen."), L(["Cancelling during the trial incurs no charge; renewals are charged within 24 hours before the current period ends.", "Cancel renewals under App Store › Account › Subscriptions; access continues until the end of the current period.", "The lifetime purchase is a single payment and does not renew."]), N("Regional pricing, taxes and currency are determined by Apple for the local storefront; this page does not list amounts.")] },
-        { title: "Refunds", blocks: [P("All purchases are collected and processed by Apple, and refunds are decided by Apple. Please submit requests at reportaproblem.apple.com. We cannot see your transaction history or issue refunds directly; if you encounter difficulty, write to us and we will help explain the situation.")] },
-        { title: "Your files are your responsibility", blocks: [P("The App is a local film library and player. It does not provide, host, index or recommend any video content, and includes no online sources, downloaders, torrents or streaming catalogs. Every file you organize and play comes from your own device or storage you have connected yourself."), P("You are responsible for ensuring that you have the legal right to possess, copy and view these files, and that your use complies with the copyright, content-rating and information laws of your region. You bear all liability arising from handling unlawful content; we have neither the ability nor the obligation to review what is in your library."), N("Put simply: Nsurator is a bookshelf, not a bookstore. The shelf does not decide what you put on it, but you are responsible for what you do.")] },
-        { title: "Prohibited use", blocks: [L(["Circumventing or breaking any digital rights management;", "Using the App to organize or distribute pirated content at scale;", "Exposing the AI-agent interface to the public internet through port forwarding, reverse proxies or similar, so that others can access your library;", "Using the App for any unlawful activity, or interfering with others' normal use of it."]), P("If you breach these terms, we may terminate your license; fees already paid are not refunded on that account, except where the law provides otherwise.")] },
-        { title: "Third-party content and services", blocks: [P("Metadata lookup uses public data from TMDB and is also subject to TMDB's terms; the accuracy of that data is determined by its source and we make no guarantee. The App is not endorsed or certified by TMDB."), P("AI clients you choose to connect are the responsibility of their providers. How they handle your input and output is governed by your agreement with that company, not by these terms.")] },
-        { title: "No warranty", blocks: [P("The App is provided as is and as available. We work to keep it stable, but do not guarantee that it functions on every hardware configuration, every macOS version or every codec combination, nor that it is free of interruptions or errors."), N("Keep your own backup before operating on files. The in-app backup is an aid, not insurance; organizing, restructuring and moving all touch real files, so try them on a small scale first.")] },
-        { title: "Limitation of liability", blocks: [P("To the maximum extent permitted by applicable law, we are not liable for data loss, file damage, lost profits, or any indirect, incidental or punitive damages. Our aggregate liability is limited to the amount you actually paid for the App in the 12 months before the event giving rise to the claim."), P("Some jurisdictions do not allow the exclusion of certain implied warranties or the limitation of liability; in those places the above applies only to the extent permitted by law, and your mandatory rights under local law are unaffected.")] },
-        { title: "Changes and termination", blocks: [P("Features may be added or removed between versions. Material changes affecting paid entitlements will be announced in advance in the app and on this page; lifetime purchasers will not lose entitlements already acquired. You may terminate these terms at any time by deleting the App; the limitation-of-liability provisions survive termination.")] },
-        { title: "Governing law and disputes", blocks: [P("These terms are governed by the laws of mainland China, excluding conflict-of-law rules. Disputes should first be resolved through good-faith negotiation; failing that, they are submitted to the competent court where the developer is located. Your rights under mandatory local consumer-protection law are unaffected."), P("Questions about these terms: support@nsurator.com.")] },
-      ],
-      oss: [
-        { title: "How to read this page", blocks: [P(`Below are the third-party components that Nsurator ${version} actually links, bundles or downloads on first use, checked item by item against the project's dependency locks and static-library configuration, and updated with each release.`), P("The playback core, NsuratorPlayerCore, and the AI-agent loopback service, NsuratorAgentProtocol, are written by us and are not third-party components, so they do not appear here; the open-source libraries they use are listed below."), P("The full text of each license ships with the app: see Contents/Resources/ThirdPartyPlayback (NOTICE and COPYING files) and Contents/Resources/Visuals/AgentIcons-ATTRIBUTION.md inside Nsurator.app.")] },
-        { title: "Playback core · in-process", blocks: [P("NsuratorPlayerCore statically links the following components; we modified FFmpeg and libbluray (the patches and change notices are linked under \"Obtaining source for LGPL components\" below). Hardware decoding uses the system's VideoToolbox, which is not listed."), PK([["FFmpeg 8.1.2", "LGPL-2.1-or-later", "Container parsing, software-decoding fallback, subtitle decoding. Built under the LGPL configuration: no --enable-gpl or --enable-nonfree components."], ["dav1d 1.5.3", "BSD-2-Clause", "AV1 software decoding."], ["libbluray 1.4.1", "LGPL-2.1-or-later", "Blu-ray (BDMV) structure parsing."], ["libudfread 1.2.0", "LGPL-2.1-or-later", "UDF file-system reading, used by libbluray."]])] },
-        { title: "Playback and media · bundled command-line tools", blocks: [P("The bundled ffmpeg / ffprobe are separate command-line programs, run as subprocesses for thumbnails, export, probing and transcoding. They statically link the following:"), PK([["FFmpeg 8.1.2", "LGPL-2.1-or-later", "As above. No x264 / x265; H.264 encoding uses VideoToolbox."], ["libass 0.17.5", "ISC", "ASS / SSA subtitle layout and rendering."], ["FreeType 2.14.3", "FreeType License (FTL)", "Subtitle font rasterization. Portions of this software are copyright © The FreeType Project (www.freetype.org). All rights reserved."], ["FriBidi 1.0.16", "LGPL-2.1-or-later", "Bidirectional text (Arabic, Hebrew and others)."], ["HarfBuzz 14.3.0", "MIT (Old MIT)", "Text shaping."], ["libunibreak 7.0", "zlib", "Line-break opportunities for subtitles."], ["libpng 1.6.58", "PNG Reference Library License", "PNG encoding for thumbnails."]])] },
-        { title: "Library and data", blocks: [PK([["SQLite", "Public Domain", "Library storage engine; uses the libsqlite3 that ships with macOS, not bundled separately."]])] },
-        { title: "On-device recognition", blocks: [P("Recognition runs on your Mac. The runtime ships with the app; the two model files are downloaded once, when you first enable recognition, and no network is used afterwards."), PK([["ONNX Runtime 1.23.2", "MIT", "Microsoft. Runs the face-detection and feature-extraction models on device."], ["AuraFace-v1 (glintr100.onnx · af6d057)", "Apache-2.0", "fal.ai. Face feature-extraction model, downloaded on first use."], ["YuNet (face_detection_yunet_2023mar.onnx)", "MIT", "OpenCV Zoo / Shiqi Yu. Face-detection model, downloaded on first use."]])] },
-        { title: "Media sources and networking", blocks: [P("Components used to connect to SMB shares, SFTP and MEGA. FTP, WebDAV and other cloud drives use the libcurl that ships with macOS, not bundled separately."), PK([["SMBClient 0.3.1", "MIT", "kishikawakatsumi. SMB share access."], ["swift-nio 2.102.0 · swift-nio-ssh 0.15.0", "Apache-2.0", "Networking event loop and SSH / SFTP transport."], ["swift-crypto 4.5.2", "Apache-2.0", "Cryptographic primitives; includes BoringSSL (ISC and OpenSSL licenses)."], ["swift-asn1 1.7.2 · swift-atomics 1.3.1 · swift-collections 1.6.0 · swift-system 1.8.1", "Apache-2.0", "Supporting dependencies of the Swift packages above."], ["MEGA SDK 10.18.0", "BSD-2-Clause", "Mega Limited. MEGA cloud access."], ["Statically linked into the MEGA SDK: Crypto++ · libsodium · libcurl · SQLite · ICU · zlib · zstd", "BSL-1.0 · ISC · curl · Public Domain · Unicode-ICU · zlib · BSD-3-Clause", "Versions pinned by vcpkg; used internally by the MEGA SDK only."]])] },
-        { title: "AI agents", blocks: [P("The MCP loopback service, NsuratorAgentProtocol, is our own implementation and uses no third-party MCP SDK or logging library; its networking relies on the swift-nio and swift-crypto packages above.")] },
-        { title: "Interface", blocks: [P("Interface icons are Apple's SF Symbols (a system resource, not open source, not listed); the app bundles no third-party fonts."), PK([["Simple Icons", "CC0-1.0", "Only the six small client icons — Claude, Codex (OpenAI mark), Cursor, Windsurf, Gemini, Kimi — in the AI-agent settings."], ["Lucide", "ISC", "One check-mark glyph in the first-launch setup, drawn on its 24-unit grid."]])] },
-        { title: "Fonts used on this website (not app dependencies)", blocks: [PK([["Figtree", "SIL OFL 1.1", "Website body typeface."], ["Caprasimo", "SIL OFL 1.1", "Website heading typeface."]])] },
-        { title: "Obtaining source for LGPL components", blocks: [P("FFmpeg, libbluray, libudfread and FriBidi are used under the LGPL 2.1 or later. We modified FFmpeg (7 patches) and libbluray (3 patches) in the in-process playback core; libudfread and the sources of the bundled ffmpeg / ffprobe are unmodified. The bundled ffmpeg / ffprobe are separate programs and can be replaced directly with your own builds of the same version; FFmpeg, libbluray and libudfread inside the in-process playback core are statically linked, and we provide the materials required for relinking under LGPL section 6."), P("The exact source archives used in our build, our patches with dated change notices, the patched source tree that was compiled, the configure line and the build scripts are published per app version as the GitHub Releases below; each release names the app versions it covers."), A("lgpl-sources · LGPL corresponding source for each version", "https://github.com/imranulhSH/lgpl-sources/releases"), P("For the object files needed for relinking, email support@nsurator.com with the app version number."), M(`$ ffmpeg -version            # the bundled command-line build\nffmpeg version 8.1.2 … libavutil license: LGPL version 2.1 or later\n\n# Corresponding source for each version\nhttps://github.com/imranulhSH/lgpl-sources/releases`)] },
-        { title: "What is not included", blocks: [P("To avoid misunderstanding: the App contains no analytics or tracking SDKs, no advertising components, and no self-update framework outside the App Store — updates are distributed only through the Mac App Store. The playback components include no GPL encoders such as x264 / x265; H.264 encoding uses the system's VideoToolbox.")] },
-        { title: "Credits and corrections", blocks: [P("If you maintain one of the projects above and find an attribution, license or description error, email support@nsurator.com and we will correct it in the next release.")] },
-      ],
-      foot: { guide: ["Anything not covered here? Write to us. The guide is updated with each release.", "support@nsurator.com"], privacy: ["If any clause is unclear, let us know and we will revise it.", "support@nsurator.com"], terms: ["Questions about any of these terms are welcome.", "support@nsurator.com"], oss: ["If the list is missing something or an attribution is wrong, let us know and we will correct it in the next release.", "support@nsurator.com"] },
-    };
+<h3>在 iPhone、iPad 上报告问题</h3>
+<ol class="steps">
+<li>打开「管理 → 报告问题」（「帮助」里也有这一项）。</li>
+<li>写一句发生了什么，点「发送」。</li>
+<li>报告通过「邮件」发到 support@nsurator.com，诊断信息作为附件附上。这台设备没有设置「邮件」的话，直接写信给我们也可以。</li>
+</ol>
 
-    const C = en ? EN : ZH;
-    const railItem = (on) => `display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:999px;font-size:14px;line-height:1.4;transition:background .2s,color .2s;${on ? "color:var(--color-text);font-weight:700;background:var(--color-neutral-200)" : "color:var(--color-neutral-700)"}`;
-    const dot = (on) => `flex:none;width:6px;height:6px;border-radius:50%;background:${on ? "#D9523F" : "transparent"}`;
-    const groups = C.groups.map(([h, items]) => ({ h, items: items.map(([k, t]) => ({ ...nav(t, k), style: railItem(page === k), dot: dot(page === k) })) }));
-    const fcols = C.fcols.map(([h, links]) => ({ h, links }));
-    const SRC = { guide: C.guide, terms: C.terms, oss: C.oss }[page] || [];
-    const active = this.state.active;
-    const sections = SRC.map((s, i) => ({ id: `s${i + 1}`, n: String(i + 1).padStart(2, "0"), title: s.title, blocks: s.blocks }));
-    const toc = sections.map((s) => ({ id: s.id, n: s.n, title: s.title, href: this.pageURL(page, s.id),
-      style: `display:flex;gap:10px;align-items:baseline;padding:6px 12px;border-radius:12px;font-size:13.5px;line-height:1.45;transition:background .2s,color .2s;${active === s.id ? "color:var(--color-text);font-weight:700;background:var(--color-accent-2-100)" : "color:var(--color-neutral-600)"}` }));
-    const foot = C.foot[page] || ["", ""];
-    const segOn = "padding:6px 11px;border-radius:999px;background:#F9F4ED;color:#201e1d;font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:background .2s,color .2s";
-    const segOff = "padding:6px 11px;border-radius:999px;color:#C0B6A5;font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:background .2s,color .2s";
+<h3>报告里有什么</h3>
+<ul>
+<li>你选的类别和写的描述，以及你加的截图或录屏。</li>
+<li>App 版本、设备和系统版本、诊断信息和本机播放日志的最近一段。</li>
+<li>诊断和日志里<b>可能有私密空间里的片名和路径</b>。账号、密码这类凭据会被滤掉。App 里的原话是：「报告会附上诊断信息，可能包含私密空间里的名称，只用来修这个问题，不会公开。」</li>
+</ul>
+<p>请不要把影片文件附在报告或邮件里。确实需要样本时，我们会另外告诉你怎么传。报告怎么保存、保存多久，见<a href="/privacy.html#zh-reports">隐私政策</a>。</p>
 
-    return { lang, zh: !en, en, languageLabel: en ? "Language" : "语言", t: C.t, groups, fcols, head: C.head[page], routes: C.routes, before: C.before, diag, lookups: C.lookups, sections, toc,
-      hasToc: page !== "support", isSupport: page === "support", isDoc: page !== "support",
-      docFoot: foot[0], docMail: "mailto:" + foot[1], docMailText: foot[1],
-      setZh: () => this.setLang("zh"), setEn: () => this.setLang("en"), zhStyle: en ? segOff : segOn, enStyle: en ? segOn : segOff };
-  }
-}
-</script>
+<h3>写邮件时，请附上</h3>
+<ul>
+<li>设备型号、系统版本和 Nsuve 的版本号（Mac 上在「设置 → 账号和关于」里）。</li>
+<li>发生了什么、怎么操作会出现；能录一段 15 秒左右的屏幕就更好了。</li>
+<li>播放问题：Mac 上按 <kbd>⌥⌘I</kbd> 打开播放诊断，截一张图。</li>
+</ul>
 
+<h3>订阅、退款与发票</h3>
+<p>Nsuve 的购买、续订、取消和发票都由 Apple 处理。我们看不到你的 Apple 账户，也无权代为退款，直接<a href="https://reportaproblem.apple.com">向 Apple 申请退款</a>最快。申请遇到困难，可以写信给我们，我们会协助说明情况。</p>
+<ul>
+<li>管理订阅：iPhone、iPad 上在「设置 → Apple 账户 → 订阅」；Mac 上在 App Store 的账户设置里。App 里的「管理订阅」（Mac 上在「设置 → 账号和关于」）也能打开同一个页面。</li>
+<li>买了终身 Pro 以后，年订阅不会自己停，要你去关掉；App 会提醒一次，但不能替你取消，也不会自动退款。</li>
+<li>首发时不开放家庭共享。</li>
+</ul>
+</section>
 
-</body></html>
+<section id="support-s2" data-s="s2">
+<h2>常见问题</h2>
+
+<details><summary>哪些设备能用？要什么系统？</summary><div>
+<p>Nsuve 有 Mac 版和 iPhone / iPad 版：</p>
+<ul>
+<li><b>Mac</b>：macOS 14 或更新，只支持 Apple 芯片的 Mac。</li>
+<li><b>iPhone、iPad</b>：iOS 17 / iPadOS 17 或更新，是同一个 App。iPad 上是双栏。</li>
+<li><b>iPhone Duo</b>：用的就是 iPhone 版，合上是手机的样子，展开是双栏。</li>
+<li><b>Apple TV、Vision Pro</b>：即将推出。</li>
+</ul>
+<p>Mac 版在 Mac App Store 下载，iPhone / iPad 版在 App Store 下载，下载都免费。各端能做什么，见<a href="/guides/every-screen.html">使用攻略里讲多设备的一篇</a>。</p>
+</div></details>
+
+<details><summary>免费版和 Pro 有什么区别？多少钱？</summary><div>
+<p><b>免费版</b>除了 AI 工具连接，什么都能用，每月可以播放 15 次：</p>
+<ul>
+<li>实际播放超过 10 秒才算一次，暂停和拖动进度不算。</li>
+<li>按日历月计，每月 1 日重新开始。</li>
+<li>次数存在这台设备上，每台设备各算各的。</li>
+<li>第 16 次开始新的播放时会出现购买页；正在播的不会被打断。</li>
+</ul>
+<p><b>Nsuve Pro</b> 不限播放次数，还能连接 AI 工具（AI 智能体目前在 Mac 上）。现在的价格：</p>
+<div class="tbl"><table>
+<thead><tr><th>方案</th><th>价格</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>免费</td><td>¥0</td><td>除 AI 工具连接外全部功能，每月 15 次播放</td></tr>
+<tr><td>Pro 年订阅</td><td>¥34 / 年</td><td>前 7 天免费，所有设备通用；早鸟期间订的，之后一直按早鸟价续费</td></tr>
+<tr><td>终身 Pro · Mac</td><td>¥49</td><td>一次付清，同一个 Apple 账户的 Mac</td></tr>
+<tr><td>终身 Pro · iPhone + iPad</td><td>¥49</td><td>一次付清，同一个 Apple 账户的 iPhone 和 iPad</td></tr>
+<tr><td>终身 Pro · 全平台</td><td>¥84</td><td>一次付清，Mac、iPhone、iPad，以后上线的 Apple TV、Vision Pro 版也包含</td></tr>
+</tbody>
+</table></div>
+<p>早鸟优惠 · 限时。价格由 App Store 设定，以 App Store 显示的为准；App 里显示的价格也取自 App Store。终身 Pro 解锁购买时已有的 Pro 功能，不承诺以后新增的 Pro 功能都包含在内。完整规则见<a href="/support.html?doc=terms#s3">使用条款</a>。</p>
+</div></details>
+
+<details><summary>买一次，别的设备能用吗？</summary><div>
+<p>能，只要用同一个 Apple 账户：</p>
+<ul>
+<li>年订阅：所有设备通用。</li>
+<li>终身 Pro · Mac：这个 Apple 账户下的 Mac 都能用。</li>
+<li>终身 Pro · iPhone + iPad：这个 Apple 账户下的 iPhone、iPad 都能用。</li>
+<li>终身 Pro · 全平台：Mac、iPhone、iPad 都能用。</li>
+</ul>
+<p>已经有 Mac 和 iPhone + iPad 两个单端终身的，直接算全平台。只有 iPhone + iPad 终身的，在 Mac 上按免费版用，可以在 Mac 上买「升级到全平台」。首发时不开放家庭共享。</p>
+</div></details>
+
+<details><summary>换了设备，怎么恢复购买？</summary><div>
+<p>在新设备上登录同一个 Apple 账户，打开 Nsuve，点「恢复购买」：</p>
+<ul>
+<li>Mac：在「设置 → 账号和关于」里，购买页上也有。</li>
+<li>iPhone、iPad：在「管理」最上面的 Pro 卡片里，购买页上也有。</li>
+</ul>
+<p>不需要再付一次。恢复不了的话，先确认 App Store 里登录的是买的时候那个账户，再在 App 里报告问题。</p>
+</div></details>
+
+<details><summary>每台设备能连哪些媒体源？</summary><div>
+<p>连上以后，Nsuve 只读目录、认片、建索引，文件留在原处，点开边下边放。</p>
+<ul>
+<li><b>Mac</b>：外置硬盘和本机文件夹；WebDAV、已挂载的共享（SMB / NFS）、SMB 直连、SFTP；Emby、Jellyfin、Plex；飞牛 fnOS、群晖、威联通、Nextcloud；DLNA / UPnP；百度网盘、123 云盘、OneDrive、Dropbox、Google Drive、MEGA、pCloud、MagentaCLOUD、HiDrive、Koofr、Icedrive、kDrive；以及 iCloud 云盘和其他网盘在本机的同步文件夹。</li>
+<li><b>iPhone、iPad</b>：WebDAV、SMB、SFTP，Emby、Jellyfin、Plex，本机文件和「文件」App 里的位置。群晖、威联通、飞牛这类 NAS 用 SMB、WebDAV 或 SFTP 连。还可以通过 Nsuve 互联，看同一局域网里 Mac 上的片库。</li>
+</ul>
+<p>网盘直连目前只有 Mac 有。115、夸克、阿里云盘还没开放。FTP 不能再新加，以前加的照常能用。</p>
+<p>Emby、Jellyfin、Plex 连上以后会自动出一页聚合页；服务器暂时连不上时，这一页留着上次读到的内容，连上就能接着放。具体步骤见<a href="/guides/connect-sources.html">连接媒体源的攻略</a>。</p>
+</div></details>
+
+<details><summary>连不上 NAS 或媒体服务器，怎么办？</summary><div>
+<ul>
+<li>先确认这台设备和 NAS 在同一个网络里，地址写对了。</li>
+<li>添加时只有主机是必填的：端口留空就用默认端口，用户名留空就按访客登录。</li>
+<li>NAS 上要打开对应的服务（SMB、WebDAV、SFTP），账号要有这个共享文件夹的读取权限。</li>
+</ul>
+<p>还是不行，就在 App 里报告问题，诊断信息会随报告一起发给我们。</p>
+</div></details>
+
+<details><summary>Nsuve 怎么认出片子？一定要填 TMDB 密钥吗？</summary><div>
+<p>不用填。Nsuve 自带 <b>Nsurator 资料库</b>，资料来自 TMDB 和 Bangumi 番组计划，由 Nsurator 自己的服务转给 App，打开就能认片。认片时 App 发出的是搜索用的文字，通常是从文件名里解析出的片名、年份和季集号，不会上传影片文件。</p>
+<p>文件夹里有 NFO 和海报的，可以先用本地的：每个文件夹能选「本地优先」「联网优先」或「只用本地」。</p>
+<p>想用自己的 TMDB 密钥，Mac 上在「设置 → 影视资料 → 联网识别」里填，iPhone、iPad 上在「管理 → 影视资料」里填。密钥存在本机的钥匙串里，App 用它直接连 TMDB。存了能用的密钥以后，「问哪边」有四项：Nsurator 资料库优先（默认）、我的 TMDB 优先、只用 Nsurator 资料库、只用我的 TMDB。</p>
+<p>不想联网认片：iPhone、iPad 上关掉「影视资料」里的「联网识别」；Mac 上把文件夹设成「只用本地」。</p>
+</div></details>
+
+<details><summary>支持哪些格式？</summary><div>
+<ul>
+<li>容器三十余种：MKV、MP4、MOV、AVI、RMVB、WMV、FLV、TS / M2TS、VOB 等。</li>
+<li>视频：H.264、HEVC（含 10-bit）、AV1、VP9，到 RV30 / RV40、VC-1、Theora 这类老编码。</li>
+<li>音频：AAC、AC-3 / E-AC-3、TrueHD、DTS-HD，到 FLAC、ALAC、APE、DSD。</li>
+<li>HDR10、HDR10+、杜比视界、HDR Vivid，按显示器的能力做色调映射。</li>
+<li>光盘：没有加密的蓝光 BDMV、ISO 和 DVD 的 VIDEO_TS，能选标题、章节和菜单。</li>
+<li>字幕：SRT、ASS / SSA（带特效）、PGS、WebVTT、TTML 等 13 种，内嵌和外挂的都行；外挂字幕不是 UTF-8 编码也能显示。</li>
+</ul>
+<p>HEVC、AV1 和 4K 走硬件解码；AV1 的硬件解码要 M3、A17 Pro 及以后的芯片。1080p 及以下的 8-bit H.264 是有意用多线程软件解码的。</p>
+</div></details>
+
+<details><summary>我的文件和资料会上传吗？</summary><div>
+<p>影片文件不会上传到 Nsurator 的服务器。片库资料、观看记录、笔记和人脸特征都留在你的设备上，用 Nsuve 也不需要注册账号。</p>
+<p>会离开设备的，是你用到的那部分：认片时发给 Nsurator 资料库的搜索文字；你自己连的 NAS、媒体服务器和网盘；你打开的 iCloud 同步；你主动发出的问题报告。每一项发什么、发去哪儿，<a href="/privacy.html#zh-hans">隐私政策</a>里都写清楚了。</p>
+</div></details>
+
+<details><summary>AI 智能体怎么用？</summary><div>
+<p>AI 智能体是 Mac 上的 Pro 功能。在工作台侧栏的「AI 智能体」页里打开「允许 AI 与自动化连接」，按页面给的命令或配置片段，接上你已经在用的工具。预设了 10 个：Claude Code、Codex、Cursor、Windsurf、VS Code、Gemini CLI、Qoder、WorkBuddy、Kimi、Grok。Nsuve 不会去改这些工具的配置。</p>
+<ul>
+<li>服务只在本机回环地址（127.0.0.1）上，不对局域网和公网开放。</li>
+<li>七个权限各自开关：读取影片库、读取播放状态、控制播放、修改资料、人物、归档文件、移到废纸篓。</li>
+<li>「最近活动」记下每次调用了什么，可以撤销。</li>
+<li>AI 永远看不到私密空间，也不能添加需要密码或授权的媒体源。</li>
+<li>一次要改超过 10 条、要动文件或写 NFO、要整个文件夹重新识别的请求，需要你在 App 里点「允许」。这张确认卡还没上线，所以这类请求暂时不会执行。</li>
+<li>免费版里服务照样能连上，但只会回答「这是 Pro 功能」。</li>
+</ul>
+<p>步骤见<a href="/guides/connect-ai-tools.html">连接 AI 工具的攻略</a>。</p>
+</div></details>
+
+<details><summary>换了 Mac 或硬盘，资料能带走吗？</summary><div>
+<p>能。Mac 上在「设置 → 备份与搬家」里：</p>
+<ul>
+<li>备份包里有资料库、海报与剧照、改过的影视资料、人脸底库、合集与收藏、加入清单的文件夹信息；<b>不含视频本身</b>，也不含 TMDB 密钥、订阅与授权和预览缓存。</li>
+<li>私密空间默认不放进备份；打开开关时要用 Touch ID 验证一次。</li>
+<li>恢复只合并，不覆盖：先预演，列出会改动什么；个别项写不进去时，可以「跳过这 N 项，继续合并」。</li>
+<li>自动备份可以选每天或每周，在 App 开着时进行，保留最近 5 份。</li>
+<li>换 Mac：用「打一个包带走…」，到新 Mac 上恢复。换硬盘：把影片拷到新盘，再把媒体库位置指向新盘，Nsuve 会按文件重新对上。</li>
+</ul>
+<p>备份文件是 <code>.nsuvebackup</code>，以前的 <code>.nsuratorbackup</code> 照样能打开。iPhone、iPad 在「管理 → 备份与恢复」里，格式是 <code>.nsbackup</code>，私密空间单独存成 <code>.nsprivate</code>；Mac 和 iPhone、iPad 的备份格式不同。详见<a href="/guides/backup-and-move.html">备份与搬家的攻略</a>。</p>
+</div></details>
+
+<details><summary>我买过旧版 Nsurator，怎么办？</summary><div>
+<p>Nsuve 是一个新的 App，旧版 Nsurator（Mac App Store 上的「Nsurator - Local video manager」）里的购买不会自动转过来。买过旧版 Nsurator Pro 的，请写信到 <a href="mailto:support@nsurator.com">support@nsurator.com</a>，我们会单独和你联系。</p>
+</div></details>
+</section>
+
+<section id="support-s3" data-s="s3">
+<h2>其他页面</h2>
+<ul>
+<li><a href="/guides/">使用攻略</a>：从建片库、连媒体源到备份搬家，一步一步讲。</li>
+<li><a href="/privacy.html#zh-hans">隐私政策</a>：哪些资料留在设备上，哪些会离开、去了哪里。</li>
+<li><a href="/support.html?doc=terms#terms">使用条款</a>：免费版与 Pro、退款、你和我们各自的责任。</li>
+<li><a href="/support.html?doc=oss#oss">开源许可</a>：Nsuve 用到的开源组件，以及 LGPL 组件的源代码。</li>
+<li><a href="/credits.html">素材署名</a>：网站的字体、影视资料和截图素材的出处。</li>
+<li><a href="/nsuve/">Nsuve 首页</a></li>
+</ul>
+</section>
+</main></div>
+</div>
+<div data-doc="terms" id="terms" hidden data-title="使用条款 · Nsuve">
+<div class="ph">
+  <p class="eb">法律</p>
+  <h1 class="t"><span class="zh-vh">使用条款</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.9em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 900 1000"><use href="#zg-4f7f"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.721em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 721 1000"><use href="#zg-7528"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.822em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 822 1000"><use href="#zg-6761"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.871em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 871 1000"><use href="#zg-6b3e"/></svg></span></span></h1>
+  <p class="lead">从 Mac App Store 或 App Store 下载并使用 Nsuve，即表示接受本条款。我们尽量写得简短、易读。</p>
+  <ul class="meta"><li>更新日期 2026-11-09</li><li>适用于 Mac、iPhone、iPad 版 Nsuve</li></ul>
+</div>
+
+<div class="wrap"><nav class="toc" aria-label="本篇内容"><p>本篇内容</p><ol><li><a href="#terms-s1">你和谁在订这份约</a></li><li><a href="#terms-s2">授权范围</a></li><li><a href="#terms-s3">免费版与 Pro</a></li><li><a href="#terms-s4">退款</a></li><li><a href="#terms-s5">你的文件，你负责</a></li><li><a href="#terms-s6">不得这样用</a></li><li><a href="#terms-s7">第三方内容与服务</a></li><li><a href="#terms-s8">不作担保</a></li><li><a href="#terms-s9">责任限制</a></li><li><a href="#terms-s10">变更与终止</a></li><li><a href="#terms-s11">适用法律与争议解决</a></li></ol></nav><main class="doc"><section id="terms-s1" data-s="s1">
+<h2>你和谁在订这份约</h2>
+<p>本条款是你与 Nsurator（Nsuve 的开发者，下称「我们」）之间关于使用 Nsuve 的协议。Nsuve 目前有 Mac 版和 iPhone / iPad 版（iPhone Duo 使用 iPhone 版）；Apple TV 与 Vision Pro 版即将推出，上线后同样适用本条款。你从 Mac App Store 或 App Store 下载、安装或使用本应用，即表示接受本条款。</p>
+<p>同时，你与 Apple 之间的《Apple 媒体服务条款》，以及 App Store 上本应用页面所列的最终用户许可协议，同样适用。它们与本条款如有冲突，以它们为准；但下文「开源组件（LGPL）」一段是我们额外给你的许可，不因此减少。Apple 不是本条款的当事方，但有权作为第三方受益人主张本条款。</p>
+</section>
+
+<section id="terms-s2" data-s="s2">
+<h2>授权范围</h2>
+<p>我们授予你一项个人、非独占、不可转让的许可，可在你拥有或控制的 Apple 设备上使用本应用，范围以 App Store 的使用规则为准。Nsuve Pro 首发时不开放家庭共享。</p>
+<p>你不得：反向工程、反编译或试图提取源码（法律明确允许的情形以及下一段所述情形除外）；绕过、篡改授权与内购校验；将本应用或其组件再分发、转售、出租；移除任何版权或署名标识。</p>
+<p>开源组件（LGPL）：本应用包含以 GNU 宽通用公共许可证（LGPL）2.1 版或更新版本授权的程序库，即「<a href="/support.html?doc=oss#oss">开源许可</a>」页与应用内许可声明中标为 LGPL 的组件。这些程序库由各自的版权人依 LGPL 授权给你，你对它们的使用、修改与再分发受 LGPL 约束，而非本条款。本条款以及我们提供本应用所依据的任何其他许可协议，都不限制 LGPL 给你的权利；尤其是，尽管有上一段的限制，你可以为自己使用而修改本应用中的这些程序库（包括用你修改过的版本替换它们，供本应用使用），也可以为调试此类修改而对本应用进行反向工程。这些程序库的对应源代码（含我们的修改）按平台、按版本公开在：</p>
+<p><a href="https://github.com/imranulhSH/lgpl-sources">github.com/imranulhSH/lgpl-sources</a></p>
+</section>
+
+<section id="terms-s3" data-s="s3">
+<h2>免费版与 Pro</h2>
+<p>免费版可以使用除 AI 工具连接以外的全部功能，播放限每月 15 次：实际播放超过 10 秒才算一次，暂停和拖动进度不算；每月 1 日重新计数；次数按设备分别计算。第 16 次开始新的播放时会出现购买页，正在播放的不会被打断。</p>
+<p>Nsuve Pro 解锁不限次播放与 AI 工具连接，有以下几种购买方式：</p>
+<ul>
+<li><b>Pro 年订阅</b>：前 7 天免费，之后按年自动续订；同一个 Apple 账户的所有设备通用。</li>
+<li><b>终身 Pro · Mac</b>：一次付款，用于同一个 Apple 账户的 Mac。</li>
+<li><b>终身 Pro · iPhone + iPad</b>：一次付款，用于同一个 Apple 账户的 iPhone 与 iPad。</li>
+<li><b>终身 Pro · 全平台</b>：一次付款，用于 Mac、iPhone、iPad，以及之后上线的 Apple TV 与 Vision Pro 版。</li>
+<li><b>升级到全平台</b>：只提供给已有一个单端终身 Pro 的用户，购买后等同终身 Pro · 全平台。</li>
+</ul>
+<p>同时拥有终身 Pro · Mac 与终身 Pro · iPhone + iPad 的，直接算全平台。只有终身 Pro · iPhone + iPad 的，在 Mac 上按免费版使用。</p>
+<p>价格、试用期限与可用地区以 App Store 内购页面显示为准；App 里显示的价格也取自 App Store，当前价格见<a href="/support.html#s2">支持页</a>。上架初期有早鸟优惠，限时；早鸟期间开始的年订阅，在持续续订期间按早鸟价续费。</p>
+<ul>
+<li>试用期内取消不产生费用；自动续订会在当期结束前 24 小时内扣费。</li>
+<li>取消续订：iPhone、iPad 上在「设置 → Apple 账户 → 订阅」，Mac 上在 App Store 的账户设置里，App 里的「管理订阅」也能打开同一页面。取消后，当期仍可使用至到期。</li>
+<li>终身 Pro 是一次付款，不会自动续订。购买终身 Pro 不会自动取消年订阅，需要你自己去关；App 会提醒一次，但不能替你取消，也不会自动退款。</li>
+<li>终身 Pro 解锁购买时已有的 Pro 功能，长期有效。以后新增的 Pro 功能是否包含在终身 Pro 里，我们不作承诺。</li>
+</ul>
+<aside class="note"><strong>说明</strong><p>不同地区的定价、税费与货币由 Apple 按当地 storefront 计算，最终以 App Store 显示的价格为准。</p></aside>
+</section>
+
+<section id="terms-s4" data-s="s4">
+<h2>退款</h2>
+<p>所有购买由 Apple 收款并处理，退款亦由 Apple 决定。请通过 <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> 提交申请。我们无法查看你的交易记录，也无权直接退款；如申请遇到困难，可以写信给我们，我们会协助说明情况。</p>
+</section>
+
+<section id="terms-s5" data-s="s5">
+<h2>你的文件，你负责</h2>
+<p>本应用是一个影片库与播放器。它不提供、不托管、不索引、不推荐任何影视内容，也不内置任何在线片源、下载器、种子或串流目录。你用它整理和播放的每一个文件，都来自你自己的设备，或你自己接入的存储、NAS、媒体服务器与网盘。</p>
+<p>你需要自行确保：对这些文件拥有合法的持有、复制与观看权利；你的使用方式符合所在地区关于版权、内容分级与信息传播的法律。因处理违法内容而产生的一切责任由你承担；我们没有能力也没有义务审查你库中的内容。</p>
+<aside class="note"><strong>简单来说</strong><p>Nsuve 是书架，不是书店。书架不决定你放上去什么，但你需要为放上去的内容负责。</p></aside>
+</section>
+
+<section id="terms-s6" data-s="s6">
+<h2>不得这样用</h2>
+<ul>
+<li>规避、破解任何数字版权保护措施；</li>
+<li>把本应用用于盗版内容的批量整理与分发；</li>
+<li>将 AI 智能体接口通过端口转发、反向代理等方式暴露到公网，供你之外的人访问你的片库；</li>
+<li>利用本应用从事任何违法活动，或干扰他人对本应用的正常使用。</li>
+</ul>
+<p>违反上述条款，我们可以终止你的许可；已支付的费用不因此退还（法律另有规定的除外）。</p>
+</section>
+
+<section id="terms-s7" data-s="s7">
+<h2>第三方内容与服务</h2>
+<p>影视资料默认来自 Nsurator 资料库：这是由 Nsurator 运营的资料服务，资料来自 TMDB 与 Bangumi 番组计划。相关资料的准确性由数据源决定，我们不作保证。本产品使用 TMDB API，但未经 TMDB 认可或认证。</p>
+<p>如果你填写自己的 TMDB 密钥，App 会用它直接连接 TMDB，这部分使用同时受 TMDB 条款约束。</p>
+<p>你接入的 NAS、媒体服务器（如 Emby、Jellyfin、Plex）与网盘（如百度网盘、OneDrive、Dropbox、Google Drive、MEGA）由各自的提供方运营，你对它们的使用同时受各自条款约束。</p>
+<p>你选择连接的 AI 客户端由其提供方负责。它们如何处理你的输入与输出，取决于你与那家公司的协议，与本条款无关。</p>
+</section>
+
+<section id="terms-s8" data-s="s8">
+<h2>不作担保</h2>
+<p>本应用按「现状」和「现有可用」提供。我们会尽力让它稳定，但不保证在所有硬件、所有系统版本、所有媒体源和所有编码组合的文件上都能正常工作，也不保证无中断或无错误。</p>
+<aside class="note"><strong>提示</strong><p>对文件进行操作前，请自行保留一份备份。应用内的备份功能是辅助手段；整理、重组、移动等操作都涉及真实文件，建议先小范围试用。</p></aside>
+</section>
+
+<section id="terms-s9" data-s="s9">
+<h2>责任限制</h2>
+<p>在适用法律允许的最大范围内，我们不对数据丢失、文件损坏、利润损失或任何间接、附带、惩罚性损失承担责任。我们的累计责任上限为你在索赔事由发生前 12 个月内为本应用实际支付的金额。</p>
+<p>部分地区不允许排除某些默示担保或限制责任，上述限制在这些地区仅在法律允许的范围内适用；你依当地法律享有的强制性权利不受影响。</p>
+</section>
+
+<section id="terms-s10" data-s="s10">
+<h2>变更与终止</h2>
+<p>功能可能随版本增减。涉及付费权益的实质调整，我们会提前在应用内和本页说明；已购买终身 Pro 的用户不会因此失去已获得的权益。你可以随时删除本应用以终止本条款；条款中关于责任限制的部分在终止后继续有效。</p>
+</section>
+
+<section id="terms-s11" data-s="s11">
+<h2>适用法律与争议解决</h2>
+<p>本条款适用中华人民共和国内地法律（不含冲突法规则）。发生争议先友好协商；协商不成，提交开发者所在地有管辖权的法院。你依当地强制性消费者保护法享有的权利不受本条影响。</p>
+<p>条款相关问题请发送至 <a href="mailto:support@nsurator.com">support@nsurator.com</a>。</p>
+</section>
+</main></div>
+</div>
+<div data-doc="oss" id="oss" hidden data-title="开源许可 · Nsuve">
+<div class="ph">
+  <p class="eb">法律</p>
+  <h1 class="t"><span class="zh-vh">开源许可</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.777em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 777 1000"><use href="#zg-5f00"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.871em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 871 1000"><use href="#zg-6e90"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.867em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 867 1000"><use href="#zg-8bb8"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.773em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 773 1000"><use href="#zg-53ef"/></svg></span></span></h1>
+  <p class="lead">Nsuve 用到了下面这些开源项目。清单按每一端实际链接、附带与下载的组件逐项核对，随版本更新。</p>
+  <ul class="meta"><li>更新日期 2026-11-09</li><li>适用于 Mac、iPhone、iPad 版 Nsuve · 许可证全文随 App 分发</li></ul>
+</div>
+
+<div class="wrap"><nav class="toc" aria-label="本篇内容"><p>本篇内容</p><ol><li><a href="#oss-s1">怎么读这一页</a></li><li><a href="#oss-s2">Mac · 播放核心</a></li><li><a href="#oss-s3">Mac · 附带的命令行工具</a></li><li><a href="#oss-s4">Mac · 资料库与本机识别</a></li><li><a href="#oss-s5">Mac · 媒体源与网络</a></li><li><a href="#oss-s6">iPhone 与 iPad · 播放组件</a></li><li><a href="#oss-s7">iPhone 与 iPad · 媒体源与网络</a></li><li><a href="#oss-s8">App 里的字体与图标</a></li><li><a href="#oss-s9">LGPL 组件的源码获取</a></li><li><a href="#oss-s10">Apple TV 与 Vision Pro</a></li><li><a href="#oss-s11">没有用到的东西</a></li><li><a href="#oss-s12">致谢与纠错</a></li></ol></nav><main class="doc"><section id="oss-s1" data-s="s1">
+<h2>怎么读这一页</h2>
+<p>下面按平台列出 Nsuve 实际链接、附带或首次使用时下载的第三方组件，按工程里的依赖锁定与构建记录逐项核对，随版本更新。Mac 版和 iPhone / iPad 版是两个工程，用到的组件和版本不完全一样，所以分开列。</p>
+<p>播放核心 NsuratorPlayerCore 和 Mac 上 AI 智能体的本机服务是我们自己写的，不属于第三方组件，因此不在此列；它们用到的开源库列在下面。</p>
+<p>每条许可证的完整文本随 App 一起分发：Mac 上在 Nsuve.app 包内的 Contents/Resources 中；iPhone、iPad 上在「管理 → 帮助 → 隐私与许可」的「开放源代码许可」里，可以逐条查看。</p>
+</section>
+
+<section id="oss-s2" data-s="s2">
+<h2>Mac · 播放核心</h2>
+<p>从 2026 年 10 月 9 日起，Mac 版的 FFmpeg、libbluray、libudfread 与 dav1d 打包在一个动态框架 <code>NsuratorPlayerCoreFFmpegRuntime.framework</code> 里（构建 2026.10.09.1），放在 <code>Nsuve.app/Contents/Frameworks</code> 中，由 App 和它的解码辅助进程加载，不再静态链接进 App 本身。硬件解码走系统的 VideoToolbox，不在此列。</p>
+<div class="tbl"><table>
+<thead><tr><th>组件</th><th>许可</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>FFmpeg 8.1.2</td><td>LGPL-2.1-or-later</td><td>容器解析、软件解码回退、字幕解码。按 LGPL 配置构建：不含 --enable-gpl / --enable-nonfree 组件。</td></tr>
+<tr><td>dav1d 1.5.3</td><td>BSD-2-Clause</td><td>AV1 软件解码。</td></tr>
+<tr><td>libbluray 1.4.1</td><td>LGPL-2.1-or-later</td><td>蓝光（BDMV）结构解析。</td></tr>
+<tr><td>libudfread 1.2.0</td><td>LGPL-2.1-or-later</td><td>UDF 文件系统读取，供 libbluray 使用。</td></tr>
+</tbody>
+</table></div>
+<p>我们修改了其中的 FFmpeg（7 个补丁，其中 2 个参与编译）与 libbluray（3 个补丁）；libudfread 与 dav1d 未修改。</p>
+</section>
+
+<section id="oss-s3" data-s="s3">
+<h2>Mac · 附带的命令行工具</h2>
+<p>随 Mac 版附带的 ffmpeg / ffprobe 是独立的命令行程序，以子进程方式调用，用于截图、导出、生成缩略图、探测与投送时的转码，不加载进 Nsuve 的进程。它们静态链入以下组件，均未修改：</p>
+<div class="tbl"><table>
+<thead><tr><th>组件</th><th>许可</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>FFmpeg 8.1.2</td><td>LGPL-2.1-or-later</td><td>同上。不含 x264 / x265，H.264 编码走 VideoToolbox。</td></tr>
+<tr><td>libass 0.17.5</td><td>ISC</td><td>ASS / SSA 字幕的排版与渲染。</td></tr>
+<tr><td>FreeType 2.14.3</td><td>FreeType License（FTL）</td><td>字幕字体栅格化。Portions of this software are copyright © The FreeType Project (www.freetype.org). All rights reserved.</td></tr>
+<tr><td>FriBidi 1.0.16</td><td>LGPL-2.1-or-later</td><td>双向文本（阿拉伯文、希伯来文等）排版。</td></tr>
+<tr><td>HarfBuzz 14.3.0</td><td>MIT（Old MIT）</td><td>字体 shaping。</td></tr>
+<tr><td>libunibreak 7.0</td><td>zlib</td><td>字幕换行位置计算。</td></tr>
+<tr><td>libpng 1.6.58</td><td>PNG Reference Library License</td><td>PNG 截图编码。</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="oss-s4" data-s="s4">
+<h2>Mac · 资料库与本机识别</h2>
+<p>资料库使用 macOS 自带的 SQLite（Public Domain），不另行打包。人物识别在你的 Mac 上完成：运行时随 App 分发；两个模型文件在你第一次打开识别时下载到本机。</p>
+<div class="tbl"><table>
+<thead><tr><th>组件</th><th>许可</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>ONNX Runtime 1.23.2</td><td>MIT</td><td>Microsoft。在本机执行人脸检测与特征提取模型。</td></tr>
+<tr><td>AuraFace-v1（glintr100.onnx · af6d057）</td><td>Apache-2.0</td><td>fal.ai。人脸特征提取模型，首次使用时从 Hugging Face 下载。</td></tr>
+<tr><td>YuNet（face_detection_yunet_2023mar.onnx）</td><td>MIT</td><td>OpenCV Zoo / Shiqi Yu。人脸检测模型，首次使用时从 GitHub 下载。</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="oss-s5" data-s="s5">
+<h2>Mac · 媒体源与网络</h2>
+<p>连接 SMB、SFTP 与 MEGA 所用的组件。FTP 走 macOS 自带的 libcurl；WebDAV、媒体服务器和其他网盘用系统自带的网络组件，都不另行打包。</p>
+<div class="tbl"><table>
+<thead><tr><th>组件</th><th>许可</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>SMBClient 0.3.1</td><td>MIT</td><td>kishikawakatsumi。SMB 直连。我们加了一处修改，让访客会话不签名。</td></tr>
+<tr><td>swift-nio 2.102.0 · swift-nio-ssh 0.15.0</td><td>Apache-2.0</td><td>网络事件循环与 SSH / SFTP 传输。</td></tr>
+<tr><td>swift-crypto 4.5.2</td><td>Apache-2.0</td><td>加密原语；内含 BoringSSL（ISC 与 OpenSSL 许可）。</td></tr>
+<tr><td>swift-asn1 1.7.2 · swift-atomics 1.3.1 · swift-collections 1.6.0 · swift-system 1.8.1</td><td>Apache-2.0</td><td>上述 Swift 包的基础依赖。</td></tr>
+<tr><td>Citadel 中的 bcrypt PBKDF 与 Blowfish</td><td>MIT · OpenBSD（BSD 风格）许可</td><td>只编译这两部分，用于解开带口令的 OpenSSH 私钥。</td></tr>
+<tr><td>MEGA SDK 10.18.0</td><td>BSD-2-Clause</td><td>Mega Limited。MEGA 网盘访问。</td></tr>
+<tr><td>MEGA SDK 静态链入：Crypto++ · libsodium · libcurl · SQLite · ICU · zlib · zstd</td><td>BSL-1.0 · ISC · curl · Public Domain · Unicode-ICU · zlib · BSD-3-Clause</td><td>版本由 vcpkg 锁定，仅供 MEGA SDK 内部使用。</td></tr>
+</tbody>
+</table></div>
+<p>AI 智能体的本机 MCP 服务是自研实现，不使用第三方 MCP SDK 或日志库；它的网络层依赖即上文的 swift-nio 与 swift-crypto。</p>
+</section>
+
+<section id="oss-s6" data-s="s6">
+<h2>iPhone 与 iPad · 播放组件</h2>
+<p>iPhone、iPad 版把 FFmpeg、libbluray（含 libudfread）与 dav1d 链接成一个动态框架 <code>NsuratorPlayerCoreFFmpegRuntime.framework</code>（运行时 2026.10.10.1），LGPL 程序库因此留在 App 主程序之外。使用的源码包与 Mac 版相同。</p>
+<div class="tbl"><table>
+<thead><tr><th>组件</th><th>许可</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>FFmpeg 8.1.2</td><td>LGPL-2.1-or-later</td><td>容器解析、软件解码回退、字幕解码。不含 GPL、version3 与 nonfree 组件。</td></tr>
+<tr><td>dav1d 1.5.3</td><td>BSD-2-Clause</td><td>AV1 软件解码。</td></tr>
+<tr><td>libbluray 1.4.1</td><td>LGPL-2.1-or-later</td><td>蓝光（BDMV）结构解析。</td></tr>
+<tr><td>libudfread 1.2.0</td><td>LGPL-2.1-or-later</td><td>UDF 文件系统读取，供 libbluray 使用。</td></tr>
+</tbody>
+</table></div>
+<p>我们修改了其中的 FFmpeg（13 个补丁）与 libbluray（4 个补丁）；libudfread 与 dav1d 未修改。</p>
+</section>
+
+<section id="oss-s7" data-s="s7">
+<h2>iPhone 与 iPad · 媒体源与网络</h2>
+<div class="tbl"><table>
+<thead><tr><th>组件</th><th>许可</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>AMSMB2</td><td>LGPL-2.1（Swift 源文件头为 MIT）</td><td>Amir Abbas Mousavian。SMB 共享访问，以动态框架交付。我们加了访客会话、只读文件句柄和断开连接时的修正。</td></tr>
+<tr><td>libsmb2 2.3.0</td><td>LGPL-2.1</td><td>Ronnie Sahlberg。AMSMB2 使用的 SMB2/3 协议实现。我们加了访客会话和断开连接时的修正。</td></tr>
+<tr><td>swift-nio（提交 a931f2c）· swift-nio-ssh（提交 3ec2814）</td><td>Apache-2.0</td><td>网络事件循环与 SSH / SFTP 传输。</td></tr>
+<tr><td>swift-crypto 4.5.2</td><td>Apache-2.0</td><td>加密原语；在 Apple 平台上使用系统的 CryptoKit。</td></tr>
+<tr><td>swift-asn1 1.7.3 · swift-atomics 1.3.1 · swift-collections 1.7.1 · swift-system 1.8.1</td><td>Apache-2.0</td><td>上述 Swift 包的基础依赖。</td></tr>
+<tr><td>Citadel 中的 bcrypt PBKDF 与 Blowfish</td><td>MIT · OpenBSD（BSD 风格）许可</td><td>只编译这两部分，用于解开带口令的 OpenSSH 私钥。</td></tr>
+</tbody>
+</table></div>
+<p>WebDAV、Emby、Jellyfin、Plex 和 Nsuve 互联用系统自带的网络组件，不另行打包。</p>
+</section>
+
+<section id="oss-s8" data-s="s8">
+<h2>App 里的字体与图标</h2>
+<div class="tbl"><table>
+<thead><tr><th>项目</th><th>许可</th><th>用在哪</th></tr></thead>
+<tbody>
+<tr><td>Caprasimo</td><td>SIL OFL 1.1</td><td>The Caprasimo Project Authors。Mac、iPhone、iPad 上「Pro」等标题字。</td></tr>
+<tr><td>Figtree</td><td>SIL OFL 1.1</td><td>The Figtree Project Authors。iPhone、iPad 的界面文字，页面标题也用它。</td></tr>
+<tr><td>Simple Icons</td><td>CC0-1.0</td><td>Mac 上 AI 智能体页里 Claude、Cursor、Windsurf、Google Gemini、Kimi 五个客户端的小图标。</td></tr>
+<tr><td>Lucide</td><td>ISC</td><td>Mac 上少数几枚图形（如首次打开时的对勾、收起详情栏的图标）按它的 24 格网格描绘。</td></tr>
+</tbody>
+</table></div>
+<p>其余界面图标使用 Apple 的 SF Symbols（系统资源，非开源，不在此列）。AI 智能体页里 Codex、VS Code、Qoder、WorkBuddy、Grok 的图标是各家的官方图形，不属于开源许可，只用来标明可以连接的工具；这些标志归各自的所有者，不代表对方认可或赞助 Nsuve。</p>
+<p>网站上用到的字体见<a href="/credits.html">素材署名</a>。</p>
+</section>
+
+<section id="oss-s9" data-s="s9">
+<h2>LGPL 组件的源码获取</h2>
+<p>FFmpeg、libbluray、libudfread、FriBidi（Mac），以及 AMSMB2 与 libsmb2（iPhone、iPad）以 LGPL 2.1 或更新版本许可使用。构建时使用的确切源码包、我们的补丁与带日期的修改说明、打完补丁后实际编译的源码树、配置行与编译脚本、构建记录，按平台和构建公开在下面的 GitHub Releases 中，每个 Release 写明对应的 App 版本。</p>
+<div class="tbl"><table>
+<thead><tr><th>平台</th><th>内容</th><th>Release</th></tr></thead>
+<tbody>
+<tr><td>Mac</td><td>播放核心的运行时框架（2026.10.09.1）</td><td><a href="https://github.com/imranulhSH/lgpl-sources/releases/tag/macos-ffmpeg-artifact-2026.10.09.1">macos-ffmpeg-artifact-2026.10.09.1</a></td></tr>
+<tr><td>Mac</td><td>附带的 ffmpeg / ffprobe</td><td><a href="https://github.com/imranulhSH/lgpl-sources/releases/tag/macos-media-tools-ffmpeg-8.1.2-lgpl-arm64-2026.08.10.1">macos-media-tools-ffmpeg-8.1.2-lgpl-arm64-2026.08.10.1</a></td></tr>
+<tr><td>iPhone、iPad</td><td>播放组件的运行时框架（2026.10.10.1）</td><td><a href="https://github.com/imranulhSH/lgpl-sources/releases/tag/ios-ffmpeg-runtime-2026.10.10.1-80fcefa1">ios-ffmpeg-runtime-2026.10.10.1-80fcefa1</a></td></tr>
+<tr><td>iPhone、iPad</td><td>AMSMB2 与 libsmb2</td><td><a href="https://github.com/imranulhSH/lgpl-sources/releases/tag/ios-1.0.1-amsmb2-4.0.3-libsmb2-aff9fa6">ios-1.0.1-amsmb2-4.0.3-libsmb2-aff9fa6</a></td></tr>
+</tbody>
+</table></div>
+<p>更早的 Mac 构建把播放核心静态链接在 App 里，它们对应的是 <a href="https://github.com/imranulhSH/lgpl-sources/releases/tag/macos-ffmpeg-artifact-2026.09.24.1">macos-ffmpeg-artifact-2026.09.24.1</a>。全部 Release 见 <a href="https://github.com/imranulhSH/lgpl-sources/releases">lgpl-sources</a>。</p>
+<p>Mac 上，这些程序库以动态方式链接：App 和它的解码辅助进程从 <code>Contents/Frameworks/NsuratorPlayerCoreFFmpegRuntime.framework</code> 加载它们，你可以用对应源代码构建的框架（改过或没改过都行）替换它，不需要重新链接 App；附带的 ffmpeg / ffprobe 是独立程序，可以直接换成你自己用同一份源码构建的版本。各 Release 的说明里写了怎么构建、怎么替换，以及替换后怎么重新签名。</p>
+<p>在终端里对 Mac 版附带的 ffmpeg 运行 <code>ffmpeg -version</code>，能看到 <code>libavutil license: LGPL version 2.1 or later</code>。</p>
+<p>获取源码遇到问题，请写信到 <a href="mailto:support@nsurator.com">support@nsurator.com</a>，并注明平台和 App 版本号。</p>
+</section>
+
+<section id="oss-s10" data-s="s10">
+<h2>Apple TV 与 Vision Pro</h2>
+<p>这两端的 Nsuve 即将推出。上线时，它们用到的组件和对应源代码会补进这一页。</p>
+</section>
+
+<section id="oss-s11" data-s="s11">
+<h2>没有用到的东西</h2>
+<p>为免误会，在此说明：Nsuve 不包含任何分析或追踪 SDK，不包含广告组件，也不包含 App Store 之外的自更新框架，更新一律通过 Mac App Store 和 App Store 分发；播放组件不含 x264 / x265 等 GPL 编码器，H.264 编码走系统的 VideoToolbox。</p>
+</section>
+
+<section id="oss-s12" data-s="s12">
+<h2>致谢与纠错</h2>
+<p>如果你是上述任一项目的维护者，发现署名、许可证或用途描述有误，请发送邮件至 <a href="mailto:support@nsurator.com">support@nsurator.com</a>，我们会在下一个版本更正。</p>
+</section>
+</main></div>
+</div></div>
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><img class="w" src="/home-assets/brand/nsuve-cream.svg" alt="Nsuve" width="96" height="30"><div class="ft-by">by <img src="/home-assets/brand/nsurator-swatch-cream.svg" alt="Nsurator" width="110" height="22"></div></div>
+      <nav class="ft-links" aria-label="页脚"><a href="/support.html">支持</a><a href="/privacy.html#zh-hans">隐私</a><a href="/support.html?doc=terms#terms">使用条款</a><a href="/guides/">使用攻略</a><a href="/support.html?doc=oss#oss">开源许可</a><a href="/credits.html">素材署名</a></nav>
+    </div>
+    <div class="ft-note"><span>影视资料与图片来自 TMDB。本产品使用 TMDB API，但未经 TMDB 认可或认证。</span><span>© 2026 Nsurator</span></div>
+    <div class="ft-reg"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026029765号</a><a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002019488" target="_blank" rel="noopener noreferrer">浙公网安备33011002019488号</a></div>
+  </div>
+</footer>
+<script>(function(){var DOCS=["support","terms","oss"],L="zh";
+function route(scroll){var q=new URLSearchParams(location.search),h=location.hash.slice(1),d=q.get('doc');
+ if(h==='privacy'||(d==='privacy'&&DOCS.indexOf(h)<0)){location.replace('/privacy.html'+location.search+(L==='en'?'#english':'#zh-hans'));return}
+ if(h==='guide'||(d==='guide'&&DOCS.indexOf(h)<0)){location.replace("/guides/");return}
+ var doc=DOCS.indexOf(h)>=0?h:(DOCS.indexOf(d)>=0?d:'support');
+ [].forEach.call(document.querySelectorAll('[data-doc]'),function(e){e.hidden=e.getAttribute('data-doc')!==doc});
+ [].forEach.call(document.querySelectorAll('[data-go]'),function(a){if(a.getAttribute('data-go')===doc)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+ var box=document.getElementById(doc);document.title=box.getAttribute('data-title');
+ if(scroll!==false){var t=/^s\d+$/.test(h)?document.getElementById(doc+'-'+h):(DOCS.indexOf(h)>=0&&h!=='support'?box:null);if(t)t.scrollIntoView();else if(scroll==='top')window.scrollTo(0,0)}}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-go]');if(!a||e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();
+ var q=new URLSearchParams(location.search),g=a.getAttribute('data-go');q.set('doc',g);history.pushState(null,'','?'+q.toString()+'#'+g);route('top')});
+window.addEventListener('popstate',function(){route()});window.addEventListener('hashchange',function(){route()});route();})();</script><script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
+var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
+</body>
+</html>
