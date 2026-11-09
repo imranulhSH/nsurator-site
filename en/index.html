@@ -1680,6 +1680,28 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 .wm-end-h2{font-size:clamp(32px,9vw,50px);line-height:1.12}
 .wm-end-links a{font-family:Figtree,'PingFang SC',sans-serif}
 
+:root{
+  --mist-l:linear-gradient(180deg,#EEE7DB,rgba(238,231,219,0) 14%,rgba(238,231,219,0) 86%,#EEE7DB),radial-gradient(46% 52% at 16% 38%,rgba(246,200,180,.95),rgba(246,200,180,0) 70%),radial-gradient(44% 52% at 88% 47%,rgba(203,221,180,.92),rgba(203,221,180,0) 70%),radial-gradient(40% 44% at 58% 60%,rgba(244,179,158,.7),rgba(244,179,158,0) 70%),radial-gradient(44% 46% at 20% 80%,rgba(234,217,189,.95),rgba(234,217,189,0) 70%),radial-gradient(38% 42% at 90% 88%,rgba(203,221,180,.7),rgba(203,221,180,0) 70%),#EEE7DB;
+  --mist-d:linear-gradient(180deg,#1C1916,rgba(28,25,22,0) 14%,rgba(28,25,22,0) 86%,#1C1916),radial-gradient(46% 52% at 16% 38%,rgba(91,42,28,.85),rgba(91,42,28,0) 70%),radial-gradient(44% 52% at 88% 47%,rgba(31,58,55,.85),rgba(31,58,55,0) 70%),radial-gradient(40% 44% at 58% 60%,rgba(122,52,35,.5),rgba(122,52,35,0) 70%),radial-gradient(44% 46% at 20% 80%,rgba(59,38,48,.8),rgba(59,38,48,0) 70%),radial-gradient(38% 42% at 90% 88%,rgba(31,58,55,.6),rgba(31,58,55,0) 70%),#1C1916;
+  --glass-l:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.38) 55%,rgba(255,255,255,.48));
+}
+/* desktop: every section ground, the side bleed and the hero's paper half */
+.wp-site .wp-sec[data-tone=light],.wp-site .wp-s-hero{background:var(--mist-l)!important}
+.wp-site .wp-sec[data-tone=dark]{background:var(--mist-d)!important}
+.wp-site .wp-sec[data-tone=light]{box-shadow:-1440px 0 0 0 #EEE7DB,1440px 0 0 0 #EEE7DB,-2880px 0 0 0 #EEE7DB,2880px 0 0 0 #EEE7DB}
+.wp-site .wp-sec[data-tone=dark]{box-shadow:-1440px 0 0 0 #1C1916,1440px 0 0 0 #1C1916,-2880px 0 0 0 #1C1916,2880px 0 0 0 #1C1916}
+.wp-site .wp-s-hero{box-shadow:-1440px 0 0 0 #EEE7DB,1440px 0 0 0 #1C1916,-2880px 0 0 0 #EEE7DB,2880px 0 0 0 #1C1916}
+html[data-layout=desktop] body{background:#1C1916}
+/* paper panels become light frosted glass (no outline, no shadow; one top highlight and a hairline inside) */
+.wp-site .wp-faq-area{background:var(--glass-l)!important;-webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 .5px rgba(255,255,255,.55)}
+/* phone: the same two mists */
+.wm-root,.wm-light{background:var(--mist-l)}
+.wm-dark{background:var(--mist-d)}
+html[data-layout=phone] body{background:#EEE7DB}
+.wm-head{background:rgba(238,231,219,.62)}
+.wm-head[data-tone=dark]{background:rgba(28,25,22,.6)}
+@media (prefers-reduced-transparency: reduce){ .wp-site .wp-faq-area{background:#F9F4ED!important;-webkit-backdrop-filter:none;backdrop-filter:none} }
+
 </style>
 </head>
 <body>
