@@ -1,6 +1,7 @@
 // The D homepage (2026-11-09): src/home/nsuve/index.html (zh) and src/home/nsuve/en/index.html (en), static pages that carry
-// both the 1440 desktop comp and the phone column. These checks cover the parts that must not regress:
-// the language choice shared with support / credits / privacy, the layout pick, and the links out of the page.
+// both the 1440 desktop comp and the one-column layout (phone and, since 11-10, tablet). These checks cover the parts
+// that must not regress: the language choice shared with support / credits / privacy, the layout pick, the links out of
+// the page, the fonts, and that a window only downloads the pictures of the layout it shows.
 const assert = require('node:assert/strict');
 const { readFileSync, existsSync, readdirSync } = require('node:fs');
 const { join } = require('node:path');
@@ -58,13 +59,41 @@ for (const lang of ['zh', 'en']) {
     assert.deepEqual(boot(lang, { query: '?lang=' + other, blocked: true }).replaced, [otherPath + '?lang=' + other]);
   });
 
-  test(`${lang} homepage: the comp shows when it fits at 62 % or more, else the phone column`, () => {
-    assert.equal(boot(lang, { width: 1440, height: 900 }).layout, 'desktop');
-    assert.equal(boot(lang, { width: 1280, height: 720 }).layout, 'desktop');
-    assert.equal(boot(lang, { width: 1180, height: 820 }).layout, 'desktop');
-    assert.equal(boot(lang, { width: 820, height: 1180 }).layout, 'phone');
-    assert.equal(boot(lang, { width: 390, height: 844 }).layout, 'phone');
-    assert.equal(boot(lang, { width: 1440, height: 500 }).layout, 'phone');
+  // 2026-11-10 (owner 「全部都改」, review items 1, 2, 4): the comp no longer shrinks with the window's height. It shows from
+  // 1280 px wide at min(width / 1440, max(height / 900, 0.9), 1.5); anything narrower gets the column, which is also the
+  // tablet layout. A short window scrolls inside a section instead of making the text small.
+  test(`${lang} homepage: the comp from 1280 px wide, the column (phone and tablet) below, whatever the height`, () => {
+    for (const [width, height] of [[1440, 900], [1280, 720], [1366, 650], [1440, 500], [1920, 1080], [3440, 1440]]) assert.equal(boot(lang, { width, height }).layout, 'desktop', width + ' × ' + height);
+    for (const [width, height] of [[1279, 900], [1180, 820], [1024, 768], [820, 1180], [700, 900], [390, 844]]) assert.equal(boot(lang, { width, height }).layout, 'phone', width + ' × ' + height);
+  });
+
+  test(`${lang} homepage: the comp never goes under 90 % on a short window, and stops growing at 150 %`, () => {
+    const zoom = (width, height) => Number(boot(lang, { width, height }).zoom);
+    const near = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, a + ' ≠ ' + b);
+    near(zoom(1440, 900), 1);
+    near(zoom(1440, 500), 0.9);          // short and wide: 90 %, the sections scroll
+    near(zoom(1366, 650), 0.9);
+    near(zoom(1280, 720), 1280 / 1440);  // the width is the tighter side
+    near(zoom(1920, 1080), 1.2);
+    near(zoom(1920, 900), 1);            // room left and right instead of a bigger page
+    near(zoom(3440, 1440), 1.5);
+  });
+
+  // Both layouts are in the one document. A lazy image in the hidden layout is never fetched, so a phone does not
+  // download the desktop comp's posters and device screenshots (about 3 MB before 11-10).
+  test(`${lang} homepage: the desktop comp's pictures are lazy, so the column layout does not download them`, () => {
+    const html = read(lang);
+    const from = html.indexOf('<div class="wp-root wp-site"'), to = html.indexOf('<div class="wm-root"');
+    assert.ok(from > 0 && to > from, 'the desktop comp comes first, then the column');
+    const imgs = html.slice(from, to).match(/<img\b[^>]*>/g) || [];
+    assert.ok(imgs.length > 30, 'found the comp\'s pictures');
+    // The nav bar's wordmarks and store badge load at once; the column's own header shows the same files, so they cost
+    // a phone nothing extra.
+    const lazy = (t) => /\sloading="lazy"/.test(t), src = (t) => (t.match(/\ssrc="([^"]+)"/) || [])[1];
+    const shared = new Set((html.slice(to).match(/<img\b[^>]*>/g) || []).filter((t) => !lazy(t)).map(src));
+    const eager = imgs.filter((t) => !lazy(t));
+    assert.ok(eager.length <= 3, 'only the nav bar loads at once');
+    assert.deepEqual(eager.filter((t) => !shared.has(src(t))), []);
   });
 
   test(`${lang} homepage: links out go to the shared pages in the same language`, () => {
@@ -130,11 +159,25 @@ test('en homepage: the headings use 851 GBai Marker, preloaded, and need nothing
   for (const f of ['851GBaiMarker-latin.woff2', '851GBaiMarker-NOTICE.txt']) assert.ok(existsSync(join(FONTS, f)), f);
 });
 
+// 2026-11-10 (review items 5, 6): Caprasimo has no Chinese, so Chinese beside it fell back to thin system text. The zh
+// page now ships a subset of 智勇大同体 (SIL OFL 1.1) holding exactly the Chinese characters set in Caprasimo elements.
 test('zh homepage: no heading web font, and the 斯科墨韵榜书 file never ships', () => {
   const html = read('zh');
   assert.equal(html.includes('851GBaiMarker'), false);
-  assert.equal(/@font-face\{font-family:'?(?!Caprasimo|Figtree)/.test(html), false, 'only Caprasimo and Figtree are web fonts');
-  assert.deepEqual(readdirSync(FONTS).filter((f) => /\.(ttf|otf|woff2?)$/.test(f) && !/^(Caprasimo|Figtree|851GBaiMarker)/.test(f)), []);
+  assert.equal(/@font-face\{font-family:'?(?!Caprasimo|Figtree|ZhiyongDatong)/.test(html), false, 'only Caprasimo, Figtree and the 智勇大同体 subset are web fonts');
+  assert.deepEqual(readdirSync(FONTS).filter((f) => /\.(ttf|otf|woff2?)$/.test(f) && !/^(Caprasimo|Figtree|851GBaiMarker|ZhiyongDatong-[0-9a-f]{6}\.woff2$)/.test(f)), []);
+  assert.deepEqual(readdirSync(FONTS).filter((f) => /sike|斯科/i.test(f) && !/NOTICE/.test(f)), []);
+});
+
+test('zh homepage: Chinese set beside Caprasimo falls to the 智勇大同体 subset, which ships with its licence', () => {
+  const html = read('zh');
+  const face = html.match(/@font-face\{font-family:ZhiyongDatong;src:url\("\/home-assets\/fonts\/(ZhiyongDatong-[0-9a-f]{6}\.woff2)"\) format\("woff2"\)/);
+  assert.ok(face, 'the subset is declared');
+  assert.ok(existsSync(join(FONTS, face[1])), face[1]);
+  assert.ok(existsSync(join(FONTS, 'ZhiyongDatong-OFL.txt')), 'its licence text');
+  assert.deepEqual(readdirSync(FONTS).filter((f) => /^ZhiyongDatong-.*\.woff2$/.test(f)), [face[1]], 'one subset, the one the page names');
+  assert.equal(/font-family:[^;{}]*Caprasimo(?!,ZhiyongDatong)[,;}]/.test(html.replace(/@font-face\{[^}]*\}/g, '')), false, 'every Caprasimo stack continues with ZhiyongDatong');
+  assert.equal(read('en').includes('ZhiyongDatong'), false, 'the English page does not load it');
 });
 
 const zhDrawn = read('zh').includes('class="zg"');

@@ -21,9 +21,10 @@
 `src/home/` 是新首页：`nsuve/index.html`（中文，地址 nsurator.com/nsuve/）、`nsuve/en/index.html`（英文）和 `home-assets/`（图片、字体）；根目录的 `index.html` 和 `en/index.html` 只做跳转，带着查询参数和 `#` 跳到 `/nsuve/` 和 `/nsuve/en/`（2026-11-09 负责人：「域名地址改成 nsurator.com/nsuve，并且把这个作为首页」）。它们是生成出来的静态页，不再走 DC 导出包：
 
 - 设计源在读稿第二册「官网」页的 D 整页（第四版），生成脚本在 `w16-notes/web-redesign/wp-build/`（`build.js` 拼 1440 × 900 桌面稿，`build-site.js` 出官网页）。改首页先改那边的 `sections/`，再跑 `node build-site.js`，把 `site-home/` 整个换进 `src/home/`。
-- 一个文件同时带桌面稿和手机单栏：页面在首帧前按窗口选版式（宽 ≥ 1000 且缩放 ≥ 0.62 用桌面稿，桌面稿按 `min(宽 / 1440, 高 / 900)` 等比缩放、跟文档滚动），否则用手机单栏。
+- 一个文件同时带桌面稿和单栏版式（2026-11-10 起）：窗口宽 ≥ 1280 用桌面稿，按 `min(宽 / 1440, max(高 / 900, 0.9), 1.5)` 缩放，不再随窗口高度缩小，矮窗口在区块内滚动；底色、海报墙、撕边通到窗口两侧，只有内容居中。更窄的窗口用单栏，700 以上是平板版式（两栏、网格），940–1279 首屏左右分栏。两套版式的图片都是懒加载，隐藏的那套不下载。
 - 语言：`?lang=zh|en` 优先，其次是和支持页、署名页共用的 `nsurator-site-lang` 记忆，都没有就用本页语言；和本页不同时在首帧前跳到 `/nsuve/` 或 `/nsuve/en/`，保留查询参数和 `#`。旧链接 `/?lang=en`、`index.html?lang=en` 都照常可用。
 - 字体自带（`home-assets/fonts/`，Caprasimo 与 Figtree，均为 SIL OFL，许可文本在同一目录），不连 Google Fonts，中国站也能显示。
+- 粗体中文（2026-11-10）：Caprasimo 没有中文，中文页把所有 Caprasimo 字体栈接上 `ZhiyongDatong`，随页带一份智勇大同体子集（`ZhiyongDatong-<哈希>.woff2`，只含页面里用到的字，SIL OFL 1.1，许可文本在同目录）。需要和大号 Caprasimo 一样重的中文（格式云等）用 `zh-brush` 类，和标题一样画成内嵌 SVG。
 - 标题字体（2026-11-09 负责人定）：英文页标题用 851 GBai 马克笔体（`851GBaiMarker-latin.woff2`，只含基本拉丁字母，空格和标点收窄过，说明在同目录的 NOTICE）。中文页标题用斯科墨韵榜书，它的免费商用不含网页嵌入，所以不放字体文件：生成脚本把标题里的每个中文字画成内嵌 SVG，原文留给读屏和搜索。字体原件放在生成脚本那边的 `fonts/src/`，没有它时中文标题保持苹方。
 - `node --test tests/*.test.cjs` 里的 `home.test.cjs` 检查语言跳转、版式选择、链接和资源。
 

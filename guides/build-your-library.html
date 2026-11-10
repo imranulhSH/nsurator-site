@@ -25,7 +25,10 @@ if(want&&want!=="zh")location.replace("/guides/en/build-your-library.html"+locat
 <style>
 @font-face{font-family:Figtree;src:url("/home-assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");font-weight:300 900;font-display:swap}
 @font-face{font-family:'851 GBai Marker';src:url("/home-assets/fonts/851GBaiMarker-latin.woff2") format("woff2");font-display:swap}
+@property --fl{syntax:'<length>';inherits:false;initial-value:0px}
+@property --fr{syntax:'<length>';inherits:false;initial-value:0px}
 :root{--ink:#201E1D;--ink2:#474238;--ink3:#645C50;--paper:#EEE7DB;--coral:#D9523F;--rust:#8C491A;--line:rgba(32,30,29,.12);
+  --gl:max(24px,env(safe-area-inset-left,0px));--gr:max(24px,env(safe-area-inset-right,0px));
   --mist-l:linear-gradient(180deg,rgba(238,231,219,0) 70%,#EEE7DB),radial-gradient(46% 40% at 12% 8%,rgba(246,200,180,.85),rgba(246,200,180,0) 70%),radial-gradient(44% 40% at 92% 14%,rgba(203,221,180,.8),rgba(203,221,180,0) 70%),radial-gradient(40% 30% at 60% 22%,rgba(244,179,158,.45),rgba(244,179,158,0) 70%),#EEE7DB;
   color-scheme:light}
 *{box-sizing:border-box}
@@ -35,42 +38,58 @@ a{color:var(--rust);text-underline-offset:3px}
 img{max-width:100%}
 .skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--ink);color:#F9F4ED;padding:8px 14px;border-radius:8px}
 .skip:focus{left:12px}
-.pg{background:var(--mist-l) no-repeat;background-size:100% 900px}
-/* header: the phone header's frosted bar, full width */
-.hd{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:22px;padding:0 max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
-  background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
-.hd-mark{display:block;line-height:0;margin-right:auto}
+.pg{background:var(--mist-l);background-repeat:no-repeat;background-size:100% 900px}
+/* header: one frosted bar the width of the window; what is in it keeps the page's 1120 column and gutters. On a phone the
+   same box is two rows tall: a second layer with its own backdrop-filter gets no blur of the page in Chrome. */
+.hd{position:sticky;top:0;z-index:50;background:rgba(238,231,219,.82);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+.hd-in{max-width:1120px;min-height:64px;margin:0 auto;padding:0 var(--gr) 0 var(--gl);display:flex;align-items:center;gap:0 22px}
+.hd-mark{display:flex;align-items:center;height:44px;margin-right:auto}
 .hd-mark img{height:28px;width:auto;display:block}
-.hd-nav{display:flex;gap:22px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
-.hd-nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd-nav{display:flex;gap:2px;margin:0 -10px;font:600 14.5px/1 Figtree,'PingFang SC',sans-serif}
+.hd-nav a{display:flex;align-items:center;height:44px;padding:0 10px;color:var(--ink);text-decoration:none;white-space:nowrap}
 .hd-nav a[aria-current]{color:var(--rust)}
-.hd-lang{display:flex;height:30px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 12.5px/1 Figtree,sans-serif}
-.hd-lang a{min-width:34px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang{display:flex;height:32px;padding:3px;border-radius:999px;background:rgba(32,30,29,.08);font:700 13px/1 Figtree,sans-serif}
+.hd-lang a{position:relative;min-width:38px;padding:0 9px;border-radius:999px;display:grid;place-items:center;color:var(--ink3);text-decoration:none}
+.hd-lang a::after{content:'';position:absolute;inset:-9px 0}
 .hd-lang a[aria-current]{background:var(--ink);color:#F9F4ED}
-.hd-badge{display:block;line-height:0}.hd-badge img{height:32px;width:auto}
-@media (max-width:820px){.hd{gap:12px;height:58px}.hd-badge{display:none}.hd-nav{position:absolute;left:0;right:0;top:58px;height:42px;padding:0 max(16px,env(safe-area-inset-left,0px));gap:18px;align-items:center;overflow-x:auto;scrollbar-width:none;background:rgba(238,231,219,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line)}
-  .hd-nav::-webkit-scrollbar{display:none}.hd-mark img{height:24px}html{scroll-padding-top:110px}}
-@media (prefers-reduced-transparency:reduce){.hd,.hd-nav{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+.hd-badge{display:flex;align-items:center;height:44px}.hd-badge img{height:32px;width:auto;display:block}
+@media (max-width:720px){.hd-badge{display:none}}
+@media (pointer:coarse){.hd-lang a{min-width:44px}}
+@media (max-width:600px){.hd{border-bottom:1px solid var(--line)}.hd-in{flex-wrap:wrap;min-height:0}.hd-mark{height:56px}.hd-mark img{height:24px}.hd-lang a{min-width:44px}
+  .hd-nav{order:3;flex:0 0 auto;width:calc(100% + var(--gl) + var(--gr));margin:0 calc(-1*var(--gr)) 0 calc(-1*var(--gl));padding:0 calc(var(--gr) - 10px) 0 calc(var(--gl) - 10px);border-top:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .hd-nav::-webkit-scrollbar{display:none}
+  .hd-nav a[aria-current]{background:linear-gradient(var(--coral),var(--coral)) 10px 100%/calc(100% - 20px) 2px no-repeat}
+  html{scroll-padding-top:118px}}
+@media (prefers-reduced-transparency:reduce){.hd{background:#EEE7DB!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.hd{background:rgba(238,231,219,.97)}}
 /* page head */
-.ph{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-right,0px)) 32px max(24px,env(safe-area-inset-left,0px))}
+.ph{max-width:1120px;margin:0 auto;padding:72px var(--gr) 32px var(--gl)}
+.ph-tabs{padding-top:40px;padding-bottom:0}.ph-tabs~[data-doc] .ph{padding-top:52px}
 .eb{display:flex;align-items:center;gap:12px;margin:0;font:800 13px/1.2 Figtree,'PingFang SC',sans-serif;letter-spacing:.16em;color:var(--rust)}
 .eb::before{content:'';width:28px;height:2px;border-radius:1px;background:var(--coral);flex:none}
-.eb a{color:inherit;text-decoration:none}
+.eb a{position:relative;color:inherit;text-decoration:none}
+.eb a::after{content:'';position:absolute;inset:-15px -8px}
 h1.t{margin:18px 0 0;font:400 clamp(40px,7vw,72px)/1.12 '851 GBai Marker','PingFang SC',sans-serif;letter-spacing:-.005em;text-wrap:balance}
-h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
+h1.t:lang(zh){font-family:Figtree,'PingFang SC','Noto Sans SC',sans-serif;font-weight:700}
 .lead{max-width:680px;margin:22px 0 0;font-size:19px;line-height:1.75;color:var(--ink2);text-wrap:pretty}
 .meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;padding:0;list-style:none;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+@media (max-width:600px){.ph{padding-top:44px}.ph-tabs{padding-top:24px}.ph-tabs~[data-doc] .ph{padding-top:40px}.lead{font-size:18px}}
 /* body: text column + table of contents */
-.wrap{max-width:1120px;margin:0 auto;padding:16px max(24px,env(safe-area-inset-right,0px)) 96px max(24px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:64px;align-items:start}
+.wrap{max-width:1120px;margin:0 auto;padding:16px var(--gr) 96px var(--gl);display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:clamp(40px,5vw,64px);align-items:start}
 .wrap.solo{grid-template-columns:minmax(0,1fr)}
 .toc{position:sticky;top:96px;font:600 14px/1.5 Figtree,'PingFang SC',sans-serif;order:2}
-.toc p{margin:0 0 10px;font-size:12px;letter-spacing:.14em;color:var(--ink3);text-transform:uppercase}
+.toc p{margin:0 0 10px;font-size:13px;letter-spacing:.12em;color:var(--ink3);text-transform:uppercase}
 .toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;border-left:2px solid var(--line)}
 .toc a{display:block;padding-left:14px;margin-left:-2px;border-left:2px solid transparent;color:var(--ink2);text-decoration:none}
 .toc a[aria-current]{border-color:var(--coral);color:var(--ink)}
 @media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}.toc{position:static;order:0}
-  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}.toc a{padding:6px 12px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}}
-.doc{min-width:0;max-width:760px}
+  .toc ol{flex-direction:row;flex-wrap:wrap;gap:8px;border:0}
+  .toc a{position:relative;display:flex;align-items:center;min-height:36px;padding:4px 14px;margin:0;border:0;border-radius:999px;background:rgba(32,30,29,.06)}
+  .toc a::after{content:'';position:absolute;inset:-4px 0}}
+/* a touch screen wide enough for the side list (an iPad on its side): rows a finger can hit */
+@media (pointer:coarse) and (min-width:961px){.toc ol{gap:0}.toc a{display:flex;align-items:center;min-height:44px}}
+.doc{min-width:0;max-width:760px;overflow-wrap:break-word}
+.doc.wide{max-width:none}.doc.wide>p{max-width:760px}
 .doc section{margin:0 0 56px}
 .doc h2{margin:0 0 14px;font:700 28px/1.3 Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;text-wrap:balance}
 .doc h3{margin:30px 0 8px;font:700 20px/1.4 Figtree,'PingFang SC','Noto Sans SC',sans-serif}
@@ -79,17 +98,27 @@ h1.t:lang(zh){font-family:'PingFang SC','Noto Sans SC',sans-serif;font-weight:70
 .doc ul,.doc ol{margin:0 0 18px;padding-left:1.3em}
 .doc li+li{margin-top:6px}
 .doc b,.doc strong{color:var(--ink);font-weight:700}
-.doc code{font:500 .9em/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
+.doc code{font:500 max(13px,.9em)/1.4 ui-monospace,Menlo,monospace;background:rgba(32,30,29,.07);padding:2px 6px;border-radius:6px;color:var(--ink)}
 .doc pre{margin:0 0 18px;padding:16px 18px;border-radius:14px;background:#2A2522;color:#F2EBDF;font:500 14px/1.6 ui-monospace,Menlo,monospace;overflow-x:auto}
-.doc kbd{font:600 .85em/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
+.doc kbd{font:600 max(13px,.85em)/1 Figtree,sans-serif;padding:3px 7px;border-radius:6px;background:#F9F4ED;border:1px solid var(--line)}
 ol.steps{list-style:none;padding:0;counter-reset:st;display:flex;flex-direction:column;gap:14px}
 ol.steps>li{position:relative;padding-left:46px;counter-increment:st;margin:0}
 ol.steps>li::before{content:counter(st);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F9F4ED;font:700 14px/1 Figtree,sans-serif}
 .note{margin:0 0 20px;padding:18px 22px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--ink2)}
 .note p:last-child{margin:0}
-.note strong:first-child{display:block;margin-bottom:4px;font:800 12px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.14em;color:var(--rust)}
-.tbl{margin:0 0 20px;overflow-x:auto;border-radius:16px;background:rgba(255,255,255,.55)}
-.tbl table{width:100%;min-width:520px;border-collapse:collapse;font-size:15px;line-height:1.6}
+.note strong:first-child{display:block;margin-bottom:4px;font:800 13px/1.4 Figtree,'PingFang SC',sans-serif;letter-spacing:.12em;color:var(--rust)}
+/* tables: the card, ground and all, fades out at an edge while there is more that way (.tbl-s is added
+   at render time; data-l / data-r follow the scroll position; without script a wide table on a phone keeps the right fade) */
+.tbl{margin:0 0 20px;border-radius:16px;overflow:hidden}
+.tbl-s,.tbl>table{background:rgba(255,255,255,.55)}
+.tbl-s{overflow-x:auto;border-radius:16px;transition:--fl .18s,--fr .18s;
+  -webkit-mask-image:linear-gradient(90deg,transparent calc(var(--fl,0px) - 40px),#000 var(--fl,0px),#000 calc(100% - var(--fr,0px)),transparent calc(100% - var(--fr,0px) + 40px));
+  mask-image:linear-gradient(90deg,transparent calc(var(--fl,0px) - 40px),#000 var(--fl,0px),#000 calc(100% - var(--fr,0px)),transparent calc(100% - var(--fr,0px) + 40px))}
+.tbl-s[data-l]{--fl:40px}.tbl-s[data-r]{--fr:40px}
+@media (max-width:567px){.tbl.wide .tbl-s:not([data-js]){--fr:40px}}
+.tbl-s:focus-visible{outline:2px solid var(--rust);outline-offset:-2px}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.6}
+.tbl.wide table{min-width:520px}
 .tbl th,.tbl td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
 .tbl tr:last-child td{border-bottom:0}
 .tbl th{font-weight:700;color:var(--ink)}
@@ -105,47 +134,67 @@ details summary::-webkit-details-marker{display:none}
 details summary::after{content:'+';position:absolute;right:20px;top:13px;font:400 24px/1 Figtree,sans-serif;color:var(--rust)}
 details[open] summary::after{content:'–'}
 details>div{padding:0 20px 6px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 24px;padding:0;list-style:none}
+/* cards: one column on a phone, two from 600 px (a row of two never leaves a dead third column) */
+.cards,.doc ul.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin:0 0 24px;padding:0;list-style:none}
+.doc .cards li{margin:0}
 .cards a{display:flex;flex-direction:column;gap:6px;height:100%;padding:22px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--ink);text-decoration:none}
 .cards a:hover{background:rgba(255,255,255,.8)}
 .cards b{font:700 19px/1.4 Figtree,'PingFang SC',sans-serif}
 .cards span{font-size:15px;line-height:1.6;color:var(--ink2)}
-.cards em{font:800 11.5px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.14em;color:var(--rust)}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
-.tabs a{padding:8px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.cards em{font:800 13px/1.4 Figtree,'PingFang SC',sans-serif;font-style:normal;letter-spacing:.1em;color:var(--rust)}
+.cards small{margin-top:auto;padding-top:10px;font:600 13.5px/1.5 Figtree,'PingFang SC',sans-serif;color:var(--ink3)}
+@media (min-width:600px){.cards,.doc ul.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* the guide index: each group is a row — its number and name, then its guides — across the whole content width */
+.gi{display:grid;gap:40px;margin:32px 0 0}
+.doc .gi-g{margin:0}
+.gi-n{display:flex;align-items:center;gap:10px;margin:0 0 8px;font:800 13px/1.2 Figtree,sans-serif;letter-spacing:.16em;color:var(--rust)}
+.gi-n::before{content:'';width:20px;height:2px;border-radius:1px;background:var(--coral)}
+.doc .gi-g h2{margin:0 0 16px}
+.doc .gi-g .cards{margin:0}
+@media (min-width:961px){.gi{gap:16px}.gi-g{display:grid;grid-template-columns:208px minmax(0,1fr);gap:24px;align-items:start}
+  .gi-h{padding-top:22px}.doc .gi-g h2{margin:0;font-size:26px}}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.tabs a{position:relative;display:flex;align-items:center;min-height:38px;padding:4px 16px;border-radius:999px;background:rgba(32,30,29,.07);color:var(--ink);text-decoration:none;font:700 14.5px/1.3 Figtree,'PingFang SC',sans-serif}
+.tabs a::after{content:'';position:absolute;inset:-3px 0}
 .tabs a[aria-current]{background:var(--ink);color:#F9F4ED}
 [data-doc][hidden]{display:none!important}
+.doc a.lk{position:relative}.doc a.lk::after{content:'';position:absolute;inset:-12px 0}
 .next{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.pv-rule{max-width:1120px;margin:0 auto;padding:0 var(--gr) 0 var(--gl)}.pv-rule::before{content:'';display:block;border-top:1px solid var(--line)}
 /* footer: the homepage's dark end */
-.ft{background:#1B1714;color:#F2EBDF;padding:56px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
-.ft-in{max-width:1120px;margin:0 auto}
+.ft{background:#1B1714;color:#F2EBDF;padding:56px var(--gr) calc(40px + env(safe-area-inset-bottom,0px)) var(--gl)}
+.ft-in{max-width:1072px;margin:0 auto}
 .ft-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
 .ft-brand img.w{height:30px;width:auto;display:block}
-.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 12px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
+.ft-by{display:flex;align-items:center;gap:8px;margin-top:8px;font:600 13px/1 Figtree,sans-serif;color:rgba(242,235,223,.6)}
 .ft-by img{height:22px;width:auto}
 .ft-links{display:flex;flex-wrap:wrap;gap:10px 24px;font:600 14px/1.4 Figtree,'PingFang SC',sans-serif}
 .ft-links a{color:#F2EBDF;text-decoration:none}
-.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:12px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.5);text-decoration:none}
-.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;line-height:1.7;color:rgba(242,235,223,.6)}
+.ft-reg{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font-size:13px;line-height:1.6}.ft-reg a{color:rgba(242,235,223,.55);text-decoration:none}
+.ft-note{margin:36px 0 0;padding-top:22px;border-top:1px solid rgba(242,235,223,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:13px;line-height:1.7;color:rgba(242,235,223,.6)}
+@media (max-width:960px),(pointer:coarse){.ft-top{gap:16px 28px}.ft-links{gap:0 24px}.ft-links a,.ft-reg a{position:relative;display:flex;align-items:center;min-height:44px}.ft-links a::after,.ft-reg a::after{content:'';position:absolute;inset:0 -8px}.ft-reg{gap:0 20px;margin-top:4px}.ft-note{margin-top:20px}}
 /* zh titles drawn as SVG */
 .zh-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.zh-p{display:inline-block;max-width:100%}
 .zh-g{white-space:nowrap}
+.zh-s{display:inline-block;width:0.16em}
+.zh-l{font-family:'851 GBai Marker',sans-serif;font-weight:400;letter-spacing:0}
 svg.zg{position:static!important;display:inline-block!important;fill:currentColor;overflow:visible!important}
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.tbl-s{transition:none}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="zg-4ece" d="M84 -173Q50 -190 45 -220Q41 -244 80 -303Q100 -332 128 -388Q155 -445 170 -489Q187 -534 201 -589Q215 -644 223 -692Q227 -712 232 -730Q236 -748 238 -754Q245 -766 259 -774Q272 -781 288 -781Q304 -781 324 -771Q344 -761 355 -748Q364 -737 366 -730Q368 -724 368 -705Q368 -664 334 -561Q330 -549 328 -538Q325 -528 326 -526Q327 -523 335 -520Q343 -518 355 -516Q388 -510 424 -492Q428 -489 432 -494Q436 -500 446 -522Q482 -601 498 -689Q508 -744 513 -762Q518 -786 537 -803Q555 -820 574 -820Q599 -820 633 -791Q648 -778 657 -762Q665 -746 665 -731Q665 -708 625 -605Q607 -561 600 -538Q595 -522 595 -516Q595 -511 599 -502Q608 -485 651 -453Q694 -421 739 -398Q770 -383 787 -383Q797 -383 805 -379Q813 -375 830 -362Q857 -342 865 -331Q869 -326 870 -322Q871 -318 870 -309L864 -281Q854 -232 847 -210Q839 -187 832 -183Q828 -181 816 -180Q803 -178 788 -178Q764 -178 756 -180Q747 -181 735 -188Q728 -192 697 -220Q666 -249 630 -285Q542 -371 538 -371Q536 -371 533 -365Q530 -359 527 -351Q520 -330 501 -292Q481 -254 464 -228Q445 -199 436 -196Q426 -194 409 -196Q391 -198 368 -206Q345 -215 339 -221Q333 -227 333 -236Q333 -240 341 -258Q348 -275 358 -295Q384 -345 384 -348Q384 -352 375 -352Q365 -352 346 -358Q327 -364 308 -373Q286 -383 282 -382Q277 -381 267 -357Q254 -327 217 -264Q179 -202 165 -186Q152 -173 146 -170Q140 -166 125 -165Q113 -164 105 -166Q96 -168 84 -173Z"/><path id="zg-6587" d="M136 -110Q127 -115 109 -133Q92 -151 92 -154Q92 -157 97 -162Q102 -166 109 -170Q117 -174 131 -186Q146 -199 159 -212Q181 -235 228 -292Q275 -349 282 -362Q285 -367 283 -372Q282 -377 275 -388Q255 -420 247 -444Q239 -467 245 -478Q251 -490 264 -502Q277 -513 288 -516Q302 -520 313 -516Q324 -513 342 -500Q360 -488 366 -488Q372 -488 380 -515Q389 -544 391 -557Q393 -570 388 -570Q383 -570 359 -559Q299 -531 190 -503Q148 -493 134 -491Q121 -489 111 -492Q97 -496 81 -509Q66 -522 56 -539Q38 -567 50 -578Q55 -582 82 -592Q109 -601 140 -614Q177 -630 249 -667Q322 -704 322 -707Q322 -710 313 -727Q302 -746 294 -778Q286 -809 286 -832Q287 -858 290 -868Q296 -882 307 -897Q318 -912 328 -918L341 -926L374 -916Q417 -903 438 -886Q460 -869 465 -845Q467 -833 462 -809Q458 -785 450 -766Q442 -746 444 -744Q447 -741 513 -758Q541 -764 569 -770Q598 -775 611 -776L641 -778L657 -764Q671 -751 684 -727Q697 -703 697 -690Q697 -677 687 -670Q677 -664 621 -646Q566 -628 556 -623Q550 -620 546 -613Q542 -606 537 -593Q531 -573 518 -525Q506 -477 498 -438Q493 -415 492 -408Q492 -401 496 -396Q513 -369 679 -320Q696 -315 711 -309Q727 -303 733 -299Q750 -288 755 -274Q761 -259 761 -227Q761 -181 750 -156Q739 -130 715 -121Q704 -117 671 -117Q652 -117 640 -119Q629 -121 615 -127Q577 -142 443 -222Q391 -254 388 -254Q385 -254 344 -220Q247 -138 208 -119Q190 -111 167 -108Q145 -105 136 -110Z"/><path id="zg-4ef6" d="M584 -85Q579 -91 573 -103Q567 -115 564 -125Q558 -143 557 -165Q556 -187 556 -274L557 -361Q556 -387 555 -392Q554 -398 549 -398Q542 -398 518 -390Q494 -381 466 -367Q440 -356 422 -354Q405 -351 392 -358Q379 -364 368 -374Q359 -383 350 -398Q342 -412 342 -419Q342 -423 354 -435Q365 -447 380 -456Q394 -466 434 -486Q474 -505 506 -517Q543 -532 546 -534Q549 -537 546 -557Q544 -568 542 -572Q540 -577 535 -577Q526 -579 506 -569Q486 -559 465 -543Q455 -535 446 -529Q436 -523 432 -523Q425 -523 408 -536Q392 -548 384 -560Q379 -568 378 -576Q377 -584 379 -607Q381 -648 392 -690Q402 -733 413 -750Q422 -763 433 -771Q440 -776 445 -776Q450 -777 466 -774Q487 -769 502 -762Q517 -754 521 -746Q525 -739 526 -721Q526 -703 531 -701Q534 -700 538 -700Q541 -701 544 -704Q546 -706 548 -716Q549 -726 549 -750Q549 -791 545 -833Q541 -870 544 -886Q547 -902 561 -915Q583 -936 607 -932Q623 -929 639 -918Q655 -908 662 -897Q670 -883 676 -852Q682 -820 681 -793L680 -764L702 -765Q719 -766 724 -764Q729 -762 740 -751Q749 -742 753 -734Q757 -727 758 -717Q765 -673 746 -650Q741 -643 729 -635Q717 -627 703 -620Q683 -609 677 -604Q671 -599 669 -591Q665 -579 668 -575Q671 -571 683 -572Q695 -573 728 -579Q781 -590 790 -590Q799 -590 812 -577Q824 -564 833 -544Q842 -525 842 -503Q842 -481 837 -471Q836 -467 831 -462Q826 -458 821 -456Q809 -450 746 -440Q684 -429 677 -427Q674 -426 672 -420Q671 -415 671 -395L672 -333Q675 -240 671 -190Q668 -159 666 -146Q663 -132 656 -119Q646 -98 628 -84Q621 -78 614 -74Q606 -70 603 -70Q600 -70 594 -74Q589 -79 584 -85ZM241 -171Q222 -189 216 -201Q209 -217 207 -244Q205 -267 205 -328Q206 -420 206 -426Q205 -431 200 -428Q195 -424 182 -407Q165 -386 143 -370Q121 -355 100 -350Q80 -344 72 -346Q63 -349 53 -362Q45 -372 45 -388Q45 -400 54 -438Q63 -476 72 -497Q78 -514 156 -667Q206 -767 224 -798Q241 -829 254 -842Q266 -855 273 -859Q280 -863 287 -863Q314 -863 346 -834Q364 -817 374 -800Q385 -782 385 -768Q385 -734 340 -665Q310 -620 302 -604Q294 -587 296 -574Q298 -561 311 -520Q320 -491 322 -474Q324 -457 325 -408Q327 -351 324 -298Q320 -246 312 -216Q307 -196 293 -174Q279 -151 272 -150Q264 -148 241 -171Z"/><path id="zg-5939" d="M117 -70Q104 -78 104 -88Q104 -98 117 -114Q136 -140 150 -162Q165 -183 185 -217Q233 -298 233 -302Q233 -306 222 -303Q210 -300 181 -288Q141 -271 126 -266Q110 -261 102 -264Q93 -266 76 -282Q60 -299 52 -314Q45 -328 45 -337Q45 -341 48 -346Q51 -351 54 -354Q71 -370 122 -396Q173 -423 227 -444Q245 -451 247 -456Q249 -461 234 -461Q225 -461 220 -464Q214 -466 207 -472Q198 -481 186 -504Q175 -528 172 -542Q169 -555 176 -563Q187 -574 219 -580Q251 -585 265 -578Q274 -573 289 -560Q301 -549 306 -547Q311 -545 313 -552Q315 -559 315 -578Q315 -591 314 -600Q313 -610 312 -611Q308 -613 293 -609Q278 -605 241 -597L179 -586Q165 -583 159 -583Q153 -583 150 -586Q147 -588 142 -598Q138 -607 135 -618Q129 -637 129 -642Q129 -648 134 -657Q137 -662 144 -668Q152 -675 159 -680Q170 -686 224 -710Q278 -735 308 -747L322 -753L319 -875Q319 -891 320 -897Q322 -903 327 -910Q337 -924 350 -933Q365 -943 387 -941Q409 -939 430 -926Q450 -913 459 -894Q467 -879 470 -847L471 -837Q472 -824 474 -820Q475 -816 480 -816Q486 -815 503 -817L515 -819Q534 -821 548 -817Q561 -813 574 -802Q586 -790 591 -778Q596 -767 596 -751Q596 -713 563 -699Q546 -691 543 -687Q542 -685 546 -680Q549 -676 555 -670Q581 -650 592 -636Q602 -621 600 -608Q597 -595 582 -578Q569 -564 548 -550Q528 -536 512 -531Q497 -526 475 -523Q461 -521 460 -520Q459 -520 470 -520Q480 -520 502 -525Q525 -530 588 -547Q618 -555 628 -555Q649 -555 667 -521Q678 -501 682 -484Q686 -468 682 -460Q678 -453 662 -445Q645 -437 606 -424Q569 -412 493 -390Q465 -382 462 -380Q460 -377 463 -372Q466 -368 531 -338Q596 -307 634 -293Q664 -282 672 -280Q681 -278 688 -281Q692 -283 696 -284Q701 -285 703 -284Q710 -281 720 -258Q729 -234 735 -206Q741 -174 743 -134Q745 -112 744 -104Q744 -96 742 -94Q739 -92 732 -93Q728 -94 715 -87Q705 -83 700 -83Q696 -83 685 -89Q668 -97 653 -99Q646 -101 636 -105Q626 -109 618 -114Q580 -137 498 -202Q415 -268 387 -296Q372 -313 370 -312Q367 -312 333 -245Q319 -217 302 -188Q286 -160 277 -148Q268 -136 256 -123Q244 -110 235 -103Q215 -87 191 -76Q167 -65 149 -64Q138 -63 131 -64Q124 -65 117 -70ZM450 -553Q455 -573 467 -601Q479 -629 488 -644Q498 -658 498 -662Q498 -665 487 -664Q476 -663 467 -658Q461 -655 457 -650Q453 -644 450 -632Q444 -612 440 -585Q437 -558 438 -541Q438 -524 442 -528Q444 -530 450 -553Z"/><path id="zg-5230" d="M153 -96Q134 -106 116 -120Q99 -134 82 -156Q64 -177 66 -183Q67 -189 87 -194Q123 -202 188 -244Q213 -260 222 -270Q230 -280 227 -288Q226 -291 222 -292Q218 -293 210 -291Q179 -286 171 -286Q163 -286 152 -292Q141 -299 129 -313Q117 -327 114 -338Q111 -346 119 -357Q123 -361 138 -372Q154 -383 173 -395Q218 -424 222 -434Q225 -443 224 -454Q224 -465 219 -467Q217 -468 211 -466Q205 -465 199 -462Q184 -454 171 -451Q163 -450 158 -452Q152 -455 138 -467Q130 -475 122 -484Q115 -494 113 -499Q109 -508 110 -514Q111 -521 117 -541Q127 -570 144 -610Q162 -650 162 -652Q162 -654 156 -655Q151 -656 144 -656Q133 -656 125 -658Q117 -661 107 -668Q89 -679 72 -694Q56 -709 50 -720Q45 -730 45 -740Q45 -751 58 -764Q70 -777 85 -781Q170 -805 266 -850Q344 -886 356 -888Q368 -891 382 -882Q395 -872 408 -851Q420 -830 420 -813Q420 -806 418 -797Q416 -788 414 -782Q411 -777 397 -762Q383 -747 366 -731Q325 -693 299 -655Q287 -639 280 -625Q272 -611 272 -607Q272 -603 274 -604Q276 -605 285 -613Q299 -627 317 -653Q331 -673 342 -681Q354 -689 372 -689Q377 -689 384 -687Q390 -685 394 -682Q413 -670 429 -632Q445 -593 442 -568Q441 -550 430 -539Q413 -522 393 -518Q373 -513 363 -523Q361 -527 356 -529Q350 -531 346 -531Q338 -531 325 -526Q312 -520 309 -515Q307 -513 321 -493Q335 -473 338 -473Q341 -473 367 -482Q393 -492 401 -492Q409 -492 416 -482Q422 -472 423 -455Q424 -442 422 -435Q421 -428 414 -416Q410 -409 402 -400Q393 -390 385 -384Q342 -349 342 -339Q342 -332 348 -332Q355 -333 370 -340Q377 -344 388 -347Q398 -350 406 -350Q426 -352 433 -346Q440 -340 440 -321Q440 -311 437 -303Q434 -295 428 -285Q416 -267 386 -238Q356 -210 320 -183Q284 -156 232 -121Q180 -86 176 -86Q172 -86 153 -96ZM695 -110Q639 -140 612 -170Q601 -183 588 -210Q576 -236 576 -247Q576 -250 582 -256Q589 -263 598 -270Q619 -285 625 -294Q632 -305 636 -343Q639 -381 639 -459Q639 -579 643 -706Q647 -833 651 -859L654 -882Q655 -889 654 -892Q652 -895 647 -898Q639 -903 639 -912Q639 -922 648 -928Q653 -931 658 -932Q663 -932 671 -929Q687 -925 712 -908Q736 -890 746 -876Q753 -866 756 -856Q759 -847 761 -829Q767 -768 771 -586Q773 -485 769 -368Q765 -251 758 -199Q754 -165 744 -136Q733 -106 726 -102Q718 -98 695 -110ZM516 -381Q501 -386 488 -400Q474 -413 470 -428Q466 -443 471 -520Q473 -551 476 -580Q479 -608 481 -616Q484 -628 488 -634Q493 -641 501 -646Q507 -650 514 -653Q521 -656 524 -656Q528 -656 534 -652Q541 -648 547 -643Q568 -621 578 -584Q588 -548 589 -490Q589 -466 588 -454Q586 -442 580 -428Q573 -410 558 -392Q544 -375 537 -375Q531 -375 516 -381Z"/><path id="zg-6d77" d="M600 -55Q571 -61 556 -68Q541 -76 523 -95Q488 -132 486 -162Q485 -179 487 -183Q489 -187 497 -187Q508 -187 518 -182Q528 -176 536 -176Q544 -176 547 -183Q550 -192 551 -215Q553 -238 550 -240Q548 -241 523 -234Q499 -228 466 -218Q385 -194 374 -197Q364 -200 340 -218Q316 -235 311 -243Q307 -251 307 -256Q308 -262 314 -279Q322 -304 322 -309Q322 -313 314 -314Q306 -315 284 -315L246 -314L240 -291Q233 -268 225 -234Q215 -196 203 -160Q192 -125 188 -121Q184 -117 176 -117Q169 -117 132 -136Q96 -154 79 -166Q71 -172 63 -180Q56 -187 53 -193Q46 -203 45 -218Q45 -234 50 -246Q55 -259 73 -276Q91 -294 116 -311Q137 -325 156 -344Q176 -364 188 -383Q196 -396 211 -423L234 -464Q242 -478 247 -480Q253 -481 252 -472Q251 -462 244 -444Q237 -427 236 -416Q236 -406 241 -406Q247 -406 275 -416Q303 -426 322 -434Q344 -444 347 -449Q351 -454 360 -514Q369 -575 367 -578Q365 -581 346 -584Q328 -586 322 -590Q319 -592 318 -601Q317 -610 317 -634Q317 -666 322 -692Q327 -719 348 -795Q361 -845 366 -861Q372 -881 376 -889Q380 -897 388 -904Q399 -917 414 -920Q429 -923 450 -918Q467 -914 482 -904Q497 -893 504 -878Q510 -867 511 -847Q511 -838 512 -832Q514 -826 516 -826Q520 -826 549 -840Q579 -855 605 -862Q623 -866 628 -866Q634 -866 643 -861Q658 -852 666 -838Q674 -825 674 -809Q674 -768 638 -744Q623 -735 600 -724Q577 -714 496 -681Q453 -663 437 -654Q430 -650 421 -642Q413 -635 407 -628Q396 -613 386 -598Q377 -582 380 -582Q383 -582 402 -597Q448 -631 514 -664Q592 -703 618 -703Q637 -703 655 -686Q674 -670 690 -641Q695 -630 697 -618Q699 -606 700 -577L702 -545Q703 -535 704 -534Q706 -532 711 -533Q719 -536 746 -538Q766 -539 771 -538Q776 -537 784 -529Q794 -518 808 -496Q817 -484 819 -476Q822 -467 822 -456Q822 -438 814 -428Q808 -421 800 -418Q793 -416 770 -414Q734 -410 712 -410Q695 -410 692 -408Q690 -407 690 -399Q690 -388 687 -364L685 -340L749 -342L764 -325Q775 -313 777 -308Q780 -303 778 -292Q775 -271 759 -261Q744 -251 710 -248Q682 -245 678 -242Q676 -241 674 -234Q672 -227 670 -218Q654 -127 644 -92Q635 -58 625 -55Q617 -52 600 -55ZM461 -319Q466 -321 467 -333Q468 -345 463 -356Q459 -367 449 -367Q443 -367 440 -364Q437 -362 433 -354Q428 -340 428 -328Q428 -320 430 -318Q432 -316 441 -316Q455 -316 461 -319ZM560 -331Q566 -335 568 -343Q570 -351 571 -372L574 -407L556 -406Q545 -405 542 -403Q539 -401 538 -396Q537 -392 538 -386Q540 -381 543 -377Q549 -367 548 -360Q548 -354 539 -348Q531 -341 529 -335Q528 -329 534 -327Q548 -321 560 -331ZM120 -421Q107 -428 96 -438Q86 -448 72 -466Q58 -485 54 -500Q51 -516 57 -534Q67 -565 91 -576Q103 -582 122 -582Q142 -583 155 -577Q169 -571 185 -556Q198 -542 204 -526Q210 -510 207 -495Q204 -480 191 -462Q178 -444 158 -427Q147 -418 139 -416Q131 -415 120 -421ZM472 -499Q472 -516 465 -523Q461 -527 459 -527Q458 -527 455 -522Q452 -518 451 -502Q451 -486 454 -483Q457 -480 465 -481Q470 -482 471 -486Q473 -489 472 -499ZM575 -501Q580 -505 580 -551Q580 -570 579 -584Q578 -598 576 -600Q574 -601 552 -590Q530 -579 528 -575Q527 -573 531 -568Q535 -564 541 -559Q550 -552 553 -546Q557 -541 557 -534Q556 -521 550 -514Q545 -506 545 -501Q545 -496 558 -496Q571 -496 575 -501ZM141 -658Q126 -664 105 -680Q84 -696 75 -708Q57 -731 72 -762Q79 -776 93 -790Q108 -805 118 -809Q128 -813 144 -812Q158 -812 185 -807Q213 -802 225 -798Q245 -790 260 -769Q275 -748 275 -729Q275 -714 259 -696Q243 -677 217 -664Q201 -655 179 -654Q157 -652 141 -658Z"/><path id="zg-62a5" d="M242 -114Q198 -147 184 -158Q170 -170 158 -179Q151 -184 148 -189Q146 -194 146 -203Q146 -209 144 -216Q143 -222 141 -225Q137 -230 134 -228Q131 -227 119 -216Q102 -199 99 -199Q86 -199 74 -219Q61 -239 58 -263Q56 -277 58 -284Q59 -292 66 -305Q72 -318 85 -331Q98 -344 135 -375Q194 -424 204 -435Q210 -443 212 -449Q213 -455 211 -472Q208 -497 206 -504Q204 -512 198 -512Q192 -512 171 -501L149 -491L125 -499Q106 -507 84 -521Q61 -535 52 -546Q49 -550 47 -556Q45 -563 45 -570Q45 -576 48 -582Q51 -587 59 -595Q65 -601 76 -608Q87 -616 97 -621Q168 -655 194 -664L209 -669L206 -750Q204 -830 208 -845Q212 -857 226 -870Q239 -882 250 -885Q268 -890 294 -874Q319 -858 331 -835Q335 -825 338 -813Q340 -801 341 -778L343 -738L358 -730Q370 -724 382 -708Q395 -691 400 -673Q403 -665 402 -660Q402 -655 396 -645Q387 -631 358 -600Q338 -578 334 -572Q330 -565 330 -551Q330 -531 331 -531Q332 -531 355 -539Q378 -547 380 -545Q382 -543 374 -509Q365 -475 362 -461Q360 -447 344 -414L328 -381L330 -318Q333 -225 332 -190Q330 -155 324 -138Q318 -121 306 -102Q293 -82 289 -82Q285 -82 242 -114ZM818 -131Q781 -137 701 -167Q644 -188 634 -194Q624 -199 618 -199Q611 -199 606 -192Q601 -184 592 -180Q583 -176 573 -176Q557 -176 538 -181Q520 -186 513 -192Q504 -199 501 -199Q498 -199 494 -184Q489 -170 477 -154Q465 -137 458 -137Q451 -137 426 -160Q402 -183 397 -195Q393 -203 392 -228Q390 -252 389 -316Q388 -380 389 -410Q390 -440 394 -463Q403 -521 408 -582Q412 -644 410 -690Q408 -737 410 -752Q413 -768 425 -781Q435 -791 507 -839Q579 -887 610 -903Q645 -921 654 -918Q664 -916 689 -891Q714 -866 720 -851Q724 -844 726 -834Q728 -824 728 -816Q728 -803 716 -756Q705 -708 687 -649Q675 -611 664 -596Q653 -580 630 -571Q613 -563 601 -564Q589 -566 578 -577Q567 -588 558 -608Q549 -629 549 -642Q549 -652 552 -658Q554 -663 562 -672Q575 -686 584 -716Q588 -728 590 -738Q592 -747 591 -748Q587 -752 574 -745Q561 -738 547 -725L528 -709L523 -639Q517 -568 512 -533Q507 -498 509 -495Q510 -494 521 -500Q532 -505 546 -513Q608 -553 642 -568Q677 -584 691 -580Q701 -578 719 -562Q737 -546 742 -535Q750 -521 748 -492Q745 -462 732 -409Q715 -342 715 -333Q715 -329 716 -325Q718 -321 721 -320Q726 -317 774 -299Q811 -285 826 -276Q840 -268 846 -257Q850 -249 856 -215Q861 -181 861 -162Q861 -144 857 -136Q854 -131 846 -130Q837 -129 818 -131ZM205 -228Q213 -236 219 -248Q223 -254 223 -258Q223 -263 221 -268Q217 -277 214 -277Q208 -277 188 -255Q180 -246 179 -242Q178 -239 181 -231Q183 -226 186 -222Q189 -219 192 -219Q197 -219 205 -228ZM538 -259Q553 -274 553 -279Q553 -282 548 -287Q543 -292 536 -296Q519 -308 512 -316Q504 -324 500 -324Q496 -324 496 -316Q495 -307 496 -282Q499 -240 500 -235Q501 -232 504 -232Q506 -232 513 -236Q523 -243 538 -259ZM620 -388Q623 -398 622 -414Q622 -430 620 -432Q617 -433 588 -419Q558 -405 550 -398Q537 -387 561 -386Q578 -386 586 -382Q594 -379 606 -379Q613 -379 616 -381Q619 -383 620 -388Z"/><path id="zg-5899" d="M468 -103Q445 -111 428 -132Q410 -152 400 -183Q392 -207 382 -254Q373 -300 373 -317Q373 -342 388 -360Q404 -378 443 -400Q492 -428 563 -452Q634 -477 690 -484Q715 -488 730 -484Q746 -479 763 -464Q777 -450 794 -428Q810 -405 819 -386Q832 -355 821 -303Q817 -285 806 -250Q796 -214 788 -192Q781 -171 768 -154Q754 -138 739 -130Q726 -123 715 -121Q704 -119 672 -119Q625 -118 592 -110Q562 -102 522 -100Q482 -97 468 -103ZM131 -179Q117 -192 104 -206Q92 -220 88 -228Q82 -239 81 -244Q80 -249 84 -258Q88 -267 102 -282Q117 -296 150 -324Q162 -334 172 -344Q181 -354 183 -358Q187 -367 182 -407L177 -446L165 -444Q139 -439 128 -438Q117 -438 109 -443Q96 -449 76 -468Q56 -487 50 -497Q45 -507 45 -519Q45 -531 60 -543Q76 -555 123 -578L174 -604L171 -643Q168 -682 168 -721Q168 -749 170 -756Q171 -764 178 -772Q198 -793 222 -793Q245 -793 265 -782Q285 -770 293 -752Q298 -740 301 -702L304 -663L326 -641Q349 -618 355 -601Q360 -589 360 -583Q359 -577 354 -570Q349 -562 336 -547Q319 -529 309 -514Q303 -505 301 -497Q299 -489 299 -474Q299 -464 300 -456Q301 -448 303 -447Q309 -444 316 -454Q323 -465 330 -487Q335 -504 338 -510Q342 -516 347 -517L373 -523Q394 -527 442 -542Q491 -556 503 -561L519 -568L516 -619Q513 -670 511 -683L509 -696L489 -693Q469 -689 442 -690Q414 -690 406 -696Q397 -702 396 -721Q397 -731 399 -736Q401 -742 406 -747Q415 -756 466 -783L518 -811L515 -857Q514 -888 515 -898Q516 -909 520 -918Q529 -933 540 -940Q552 -947 571 -947Q612 -947 628 -917Q636 -902 638 -884Q640 -865 644 -860Q647 -856 665 -858Q678 -860 684 -858Q689 -856 701 -847Q715 -837 724 -823Q732 -809 732 -798Q732 -787 726 -776Q719 -765 708 -760Q698 -754 695 -750Q694 -748 698 -745Q702 -742 709 -739Q723 -733 732 -722Q740 -710 740 -699Q740 -685 733 -666Q726 -647 717 -639Q705 -627 705 -624Q705 -622 728 -625Q757 -630 778 -624Q799 -618 808 -603Q820 -586 824 -558Q829 -530 821 -524Q816 -520 793 -516Q743 -508 682 -496Q622 -485 602 -480Q581 -475 490 -446Q398 -418 376 -409Q365 -405 353 -391Q341 -377 322 -346Q282 -277 219 -205L179 -159Q170 -148 167 -148Q164 -148 131 -179ZM555 -180Q661 -210 671 -215Q674 -217 678 -224Q681 -230 683 -238Q689 -259 694 -298Q698 -338 697 -367L695 -400L683 -402Q666 -403 622 -390Q580 -377 540 -358Q498 -339 486 -326Q480 -319 478 -313Q477 -307 478 -288Q479 -262 486 -228Q494 -193 502 -180L503 -179Q507 -172 510 -170Q513 -169 522 -171Q528 -172 550 -178ZM535 -203Q523 -210 514 -222Q506 -234 498 -256Q490 -277 490 -288Q490 -322 573 -357Q601 -369 620 -370Q638 -372 654 -364Q671 -356 674 -346Q676 -335 668 -305Q658 -267 644 -244Q631 -222 612 -213Q603 -208 580 -202Q558 -196 551 -195Q547 -195 535 -203ZM572 -269Q578 -272 583 -284Q588 -296 588 -305Q588 -313 580 -312Q573 -312 567 -297Q562 -285 561 -276Q560 -266 562 -266Q565 -266 572 -269ZM428 -587Q416 -609 410 -632Q403 -654 406 -663Q407 -666 412 -670Q417 -674 424 -676Q437 -680 462 -679Q486 -678 491 -672Q496 -667 498 -635Q499 -603 495 -590Q491 -576 479 -568Q467 -559 454 -559Q447 -559 442 -564Q438 -569 428 -587ZM637 -667Q647 -713 651 -724Q655 -734 652 -738Q648 -743 640 -739Q626 -731 621 -663Q620 -641 620 -631Q621 -621 625 -621Q626 -621 637 -667Z"/></defs></svg>
 <a class="skip" href="#main">跳到正文</a>
-<header class="hd">
+<header class="hd"><div class="hd-in">
   <a class="hd-mark" href="/nsuve/" aria-label="Nsuve"><img src="/home-assets/brand/nsuve-ink.svg" alt="Nsuve" width="90" height="28"></a>
   <nav class="hd-nav" aria-label="主导航"><a href="/nsuve/">首页</a><a href="/guides/" aria-current="page">使用攻略</a><a href="/support.html">支持</a><a href="/privacy.html#zh-hans">隐私</a></nav>
   <div class="hd-lang"><a href="/guides/build-your-library.html?lang=zh" lang="zh-CN" hreflang="zh-Hans" aria-current="true">中</a><a href="/guides/en/build-your-library.html?lang=en" lang="en" hreflang="en">EN</a></div>
   <a class="hd-badge" href="https://apps.apple.com/app/id6763750134?mt=12"><img src="/home-assets/web/badge-mas-zh.svg" alt="在 Mac App Store 下载" width="108" height="32"></a>
-</header>
+</div></header>
 <div class="pg"><div class="ph">
   <p class="eb"><a href="/guides/">使用攻略</a> · 开始使用</p>
-  <h1 class="t"><span class="zh-vh">从文件夹到海报墙</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.916em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 916 1000"><use href="#zg-4ece"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.806em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 806 1000"><use href="#zg-6587"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.887em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 887 1000"><use href="#zg-4ef6"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.79em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 790 1000"><use href="#zg-5939"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.817em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 817 1000"><use href="#zg-5230"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.867em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 867 1000"><use href="#zg-6d77"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.906em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 906 1000"><use href="#zg-62a5"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.871em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 871 1000"><use href="#zg-5899"/></svg></span></span></h1>
+  <h1 class="t"><span class="zh-vh">从文件夹到海报墙</span><span aria-hidden="true"><span class="zh-p"><span class="zh-g"><svg class="zg" style="width:0.916em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 916 1000"><use href="#zg-4ece"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.806em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 806 1000"><use href="#zg-6587"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.887em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 887 1000"><use href="#zg-4ef6"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.79em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 790 1000"><use href="#zg-5939"/></svg></span></span><span class="zh-p"><span class="zh-g"><svg class="zg" style="width:0.817em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 817 1000"><use href="#zg-5230"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.867em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 867 1000"><use href="#zg-6d77"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.906em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 906 1000"><use href="#zg-62a5"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.871em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 871 1000"><use href="#zg-5899"/></svg></span></span></span></h1>
   <p class="lead">告诉 Nsuve 片子在哪，它会读目录、认片、配上海报。文件留在原处，一个都不搬。</p>
   <ul class="meta"><li>约 7 分钟读完</li><li>适用 Mac、iPhone、iPad</li></ul>
 </div>
@@ -184,14 +233,14 @@ svg.zg{position:static!important;display:inline-block!important;fill:currentColo
 </ul>
 <p>一个文件夹里混放几部电影时，用和视频同名的文件，比如 <code>Interstellar.2014.nfo</code>、<code>Interstellar.2014-poster.jpg</code>，免得被当成整个文件夹共用的资料。</p>
 <p>本地资料和联网资料怎么搭配，由「资料从哪来」决定：</p>
-<div class="tbl"><table>
+<div class="tbl wide"><div class="tbl-s"><table>
 <thead><tr><th>选项</th><th>适合</th><th>会怎样</th></tr></thead>
 <tbody>
 <tr><td>本地优先（默认）</td><td>有一部分 NFO 和图片</td><td>有 NFO 和图片就用，缺的联网补。</td></tr>
 <tr><td>联网优先</td><td>想主要用资料库的资料</td><td>先联网查，片名、简介和海报用资料库的。</td></tr>
 <tr><td>只用本地</td><td>资料已经齐全，或者不想联网</td><td>不联网，只用 NFO、图片和文件名。</td></tr>
 </tbody>
-</table></div>
+</table></div></div>
 <p>在 Mac 上，每个文件夹在「加入清单的文件夹…」里单独选。在 iPhone、iPad 上，每台 NAS 在「编辑媒体源…」的「识别方式」里选。</p>
 <p>想把整理好的资料留给别的软件用：Mac 上「设置 → 整理媒体库」里有「给影片生成 NFO 文件」，电影写 <code>movie.nfo</code>，剧集写 <code>tvshow.nfo</code> 再每集一份，Kodi、Jellyfin 能直接读。</p>
 </section>
@@ -243,6 +292,11 @@ svg.zg{position:static!important;display:inline-block!important;fill:currentColo
 <script>(function(){var l=[].slice.call(document.querySelectorAll('.toc a'));if(!l.length||!('IntersectionObserver' in window))return;
 var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var cur=null;
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(cur)cur.removeAttribute('aria-current');cur=m[e.target.id];if(cur)cur.setAttribute('aria-current','true')}})},{rootMargin:'-20% 0px -70% 0px'});
-l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script>
+l.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)io.observe(s)});})();</script><script>(function(){var s=[].slice.call(document.querySelectorAll('.tbl-s'));if(!s.length)return;
+function u(e){var m=e.scrollWidth-e.clientWidth,x=e.scrollLeft;e.setAttribute('data-js','');
+e.toggleAttribute('data-l',m>1&&x>1);e.toggleAttribute('data-r',m>1&&x<m-1);if(m>1)e.tabIndex=0;else e.removeAttribute('tabindex')}
+s.forEach(function(e){e.addEventListener('scroll',function(){u(e)},{passive:true});u(e)});
+if('ResizeObserver' in window){var ro=new ResizeObserver(function(es){es.forEach(function(x){u(x.target)})});s.forEach(function(e){ro.observe(e)})}
+else window.addEventListener('resize',function(){s.forEach(u)});})();</script>
 </body>
 </html>
