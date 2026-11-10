@@ -3726,32 +3726,50 @@ class WPSite {
     this.line = live.querySelector('.wp-collect-line');
     this.seg = Array.from(sec.querySelectorAll('.wp-collect-seg button'));
     this.p = 0; this.on = false; this.hover = false; this.waiting = false; this.until = 0;
+    this.seen = !window.IntersectionObserver; this.going = false;
     if (kit.long) return;
     this.seg.forEach((b) => kit.on(b, 'click', () => this.choose(b.dataset.to === 'after' ? 1 : 0)));
-    // hovering the stage holds whichever state it is in (a flight already under way still lands)
+    // the pointer on the stage holds the tidy shelves so they can be looked at. It never holds the pile: a pointer
+    // that just rests in the window must not keep the flight from starting.
     const hz = sec.querySelector('.wp-collect-hz');
     kit.on(hz, 'pointerenter', (e) => { if (e.pointerType !== 'touch') this.hover = true; });
     kit.on(hz, 'pointerleave', () => { this.hover = false; if (this.waiting && this.on) this.hold(700); });
     this.p = kit.reduced ? 1 : 0;                      // reduced motion: 收拾后, and no loop
     this.render(this.p); this.mark(this.p);
+    // the wait before the flight counts from when the stage is on screen, not from when the section's heading is:
+    // "on screen" = the stage covers the window's middle line; "gone" = none of it shows
+    if (!kit.reduced && window.IntersectionObserver) {
+      this.io = [
+        new IntersectionObserver((es) => this.watch(es[es.length - 1].isIntersecting, false), { rootMargin: '-49% 0px -50% 0px' }),
+        new IntersectionObserver((es) => { if (!es[es.length - 1].isIntersecting) this.watch(false, true); }),
+      ];
+      this.io.forEach((o) => o.observe(hz));
+    }
   }
   // the loop runs only while the section is on screen (the page calls leave() when the tab hides); each visit starts at 收拾前
   enter() {
     this.on = true;
     if (this.kit.long || this.kit.reduced) return;
-    this.g.clear(); this.until = 0;
-    this.p = 0; this.render(0); this.mark(0);
-    this.hold(2200);
+    this.reset();
+    if (this.seen) this.start();
   }
-  leave() { this.on = false; this.waiting = false; this.g.clear(); }
-  destroy() { this.leave(); }
+  leave() { this.on = false; this.waiting = false; this.going = false; this.g.clear(); }
+  destroy() { this.leave(); if (this.io) this.io.forEach((o) => o.disconnect()); }
+  reset() { this.g.clear(); this.until = 0; this.waiting = false; this.going = false; this.p = 0; this.render(0); this.mark(0); }
+  start() { this.going = true; this.hold(2500); }
+  watch(seen, gone) {
+    this.seen = seen;
+    if (!this.on) return;
+    if (seen && !this.going) this.start();
+    else if (gone && this.going) this.reset();         // scrolled past the stage: the next look starts at the pile again
+  }
 
   hold(ms) { this.waiting = false; this.g.later(() => this.next(), Math.max(0, ms)); }
   next() {
     if (!this.on) return;
     const wait = this.until - Date.now();
     if (wait > 0) { this.hold(wait); return; }        // a click asked for a pause
-    if (this.hover) { this.waiting = true; return; }  // pointerleave resumes
+    if (this.hover && this.p > 0.5) { this.waiting = true; return; }   // 收拾后 under the pointer: pointerleave resumes
     this.fly(this.p > 0.5 ? 0 : 1);
   }
   // time drives p: 0 → 1 in 2400 ms, 1 → 0 in 1400 ms (from wherever it is, so a click mid-flight just turns round)
@@ -3766,13 +3784,13 @@ class WPSite {
       this.p = from + (to - from) * k;
       this.render(this.p);
       if (k < 1) this.g.frame(step);
-      else { this.p = to; this.hold(to === 1 ? 4000 : 2200); }
+      else { this.p = to; this.hold(to === 1 ? 4000 : 2500); }
     };
     this.g.frame(step);
   }
   choose(to) {
     if (this.kit.reduced) { this.p = to; this.render(to); this.mark(to); return; }   // instant
-    this.until = Date.now() + 8000;
+    this.until = Date.now() + 8000; this.going = true;
     if (this.p === to) { this.g.clear(); this.mark(to); if (this.on) this.hold(8000); return; }
     this.fly(to);
   }
@@ -4757,6 +4775,7 @@ class WMSite {
     });
     this.seg = Array.from(sec.querySelectorAll('.wm-collect-seg button'));
     this.on = false; this.until = 0; this.rt = 0;
+    this.seen = !window.IntersectionObserver; this.going = false;
     this.seg.forEach((b) => kit.on(b, 'click', () => this.choose(b.dataset.to === 'after' ? 1 : 0)));
     this.stage.dataset.state = 'live';
     this.p = kit.reduced ? 1 : 0;                      // reduced motion: 收拾后, and no loop
@@ -4764,18 +4783,34 @@ class WMSite {
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this.layout());
     let w = window.innerWidth;
     kit.on(window, 'resize', () => { if (window.innerWidth === w) return; w = window.innerWidth; clearTimeout(this.rt); this.rt = setTimeout(() => this.layout(), 150); });
+    // the wait before the flight counts from when the stage is on screen, not from when the section's heading is:
+    // "on screen" = the stage covers the window's middle line; "gone" = none of it shows
+    if (!kit.reduced && window.IntersectionObserver) {
+      this.io = [
+        new IntersectionObserver((es) => this.watch(es[es.length - 1].isIntersecting, false), { rootMargin: '-49% 0px -50% 0px' }),
+        new IntersectionObserver((es) => { if (!es[es.length - 1].isIntersecting) this.watch(false, true); }),
+      ];
+      this.io.forEach((o) => o.observe(this.stage));
+    }
   }
   // the loop runs only while the section is on screen (the page calls leave() when the tab hides); each visit starts at 收拾前
   enter() {
     this.on = true;
     if (this.lw !== this.stage.clientWidth || this.lh !== this.stage.clientHeight) this.layout();
     if (this.kit.reduced) return;
-    this.g.clear(); this.until = 0;
-    this.p = 0; this.render(0); this.mark(0);
-    this.hold(2200);
+    this.reset();
+    if (this.seen) this.start();
   }
-  leave() { this.on = false; this.g.clear(); }
-  destroy() { this.leave(); clearTimeout(this.rt); }
+  leave() { this.on = false; this.going = false; this.g.clear(); }
+  destroy() { this.leave(); clearTimeout(this.rt); if (this.io) this.io.forEach((o) => o.disconnect()); }
+  reset() { this.g.clear(); this.until = 0; this.going = false; this.p = 0; this.render(0); this.mark(0); }
+  start() { this.going = true; this.hold(2500); }
+  watch(seen, gone) {
+    this.seen = seen;
+    if (!this.on) return;
+    if (seen && !this.going) this.start();
+    else if (gone && this.going) this.reset();         // scrolled past the stage: the next look starts at the pile again
+  }
 
   hold(ms) { this.g.later(() => this.next(), Math.max(0, ms)); }
   next() {
@@ -4795,13 +4830,13 @@ class WMSite {
       this.p = from + (to - from) * k;
       this.render(this.p);
       if (k < 1) this.g.frame(step);
-      else { this.p = to; this.hold(to === 1 ? 4000 : 2200); }
+      else { this.p = to; this.hold(to === 1 ? 4000 : 2500); }
     };
     this.g.frame(step);
   }
   choose(to) {
     if (this.kit.reduced) { this.p = to; this.render(to); this.mark(to); return; }   // instant
-    this.until = Date.now() + 8000;
+    this.until = Date.now() + 8000; this.going = true;
     if (this.p === to) { this.g.clear(); this.mark(to); if (this.on) this.hold(8000); return; }
     this.fly(to);
   }
