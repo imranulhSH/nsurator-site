@@ -1553,7 +1553,12 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 .wm-sources-ftag{margin:0;max-width:100%;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px;border-radius:999px;border:1px solid rgba(242,235,223,.24);font:700 13px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:#F2EBDF;white-space:nowrap;overflow:hidden}
 .wm-sources-ftag i{flex:none;width:6px;height:6px;border-radius:50%;background:#D9523F}
 .wm-sources-ftitle{margin:10px 0 0;font:800 26px/30px Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;color:#F9F4ED;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wm-sources-ftitle.wm-sources-long{font-size:19px}
+/* a long title (EN 「Everything Everywhere All at Once」) takes two short lines over the shaded left instead of one line across the frame's
+   subject; the margins give back what the second line takes, so the Play button stays clear of the rows */
+.wm-sources-ftitle.wm-sources-long{margin-top:6px;max-width:11.5em;font-size:19px;line-height:21px;white-space:normal;text-wrap:balance;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.wm-sources-ftitle.wm-sources-long~.wm-sources-fmeta{margin-top:4px}
+.wm-sources-ftitle.wm-sources-long~.wm-sources-fbtns{margin-top:8px}
+@media (max-width:379px){.wm-sources-ftitle.wm-sources-long{font-size:17px;line-height:20px}}
 .wm-sources-fmeta{margin:5px 0 0;font:600 13px/16px Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:rgba(242,235,223,.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wm-sources-fbtns{margin-top:12px;display:flex;align-items:center;gap:10px}
 .wm-sources .wm-sources-play{height:44px;padding:0 21px 0 17px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;background:#D9523F;color:#F9F4ED;font:700 14px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-tap-highlight-color:transparent}
@@ -1642,7 +1647,7 @@ html[lang=en] .wm-eb{text-transform:uppercase}
   .wm-sources-lights i{width:10px;height:10px}
   .wm-sources-ftxt{top:18px}
   .wm-sources-ftitle{font-size:32px;line-height:36px}
-  .wm-sources-ftitle.wm-sources-long{font-size:24px}
+  .wm-sources-ftitle.wm-sources-long{font-size:24px;line-height:27px}
   .wm-sources-fmeta{font-size:14px;line-height:18px;margin-top:6px}
   .wm-sources-fbtns{margin-top:14px}
   .wm-sources-tiles{gap:14px}
@@ -1774,6 +1779,8 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 /* 4 · AI agents */
 .wm-more-ex{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
 .wm-more .wm-more-exb{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid rgba(32,30,29,.3);font:700 14px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:#474238;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s,border-color .2s}
+/* under 380 wide the three pills (291 px with gaps) no longer fit the row: one row, sharing its width */
+@media (max-width:379px){.wm-more-ex{flex-wrap:nowrap;gap:6px}.wm-more .wm-more-exb{flex:1 1 auto;min-width:0;padding:0 8px;white-space:nowrap}}
 .wm-more .wm-more-exb[aria-selected=true]{background:#201E1D;border-color:#201E1D;color:#F9F4ED}
 .wm-more .wm-more-exb:focus-visible{outline:2px solid #D9523F;outline-offset:2px}
 .wm-more-rcs{box-sizing:border-box;margin-top:14px;padding:14px 14px 16px;border-radius:7px;background:#F9F4ED;border:1px solid rgba(32,30,29,.12)}
@@ -1886,7 +1893,9 @@ html[lang=en] .wm-eb{text-transform:uppercase}
   .wm-more-agent>.wm-more-tt,.wm-more-agent>.wm-more-ln,.wm-more-agent>.wm-more-ex{grid-column:1}
   .wm-more-agent>.wm-more-ln{margin-bottom:0}
   .wm-more-agent>.wm-more-rcs{grid-column:2;grid-row:1/-1;margin-top:4px;padding:18px 18px 20px}
-  .wm-more-ex{margin-top:20px}
+  /* the column beside the terminal is narrow (≈ 275 px at 820 wide): the three examples keep to one row and share its width */
+  .wm-more-ex{margin-top:20px;flex-wrap:nowrap;gap:6px}
+  .wm-more .wm-more-exb{flex:1 1 auto;min-width:0;padding:0 8px;white-space:nowrap}
   .wm-more-tile .wm-more-apnote{left:auto;right:26px;bottom:9px;text-align:right}
   .wm-more-touch{margin:20px auto 26px}
   .wm-more-cards{margin-top:36px;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 26px}
@@ -1906,6 +1915,9 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 .wm-more-tt{font-size:25px}
 .wm-more-ibh1,.wm-more-ibh1 b,.wm-more-lsc b{font-family:Figtree,'PingFang SC','Noto Sans SC',sans-serif}
 .wm-more-plb{letter-spacing:.06em}
+/* the three examples keep to one row: short names (mchip), and the pills share the width; the full names wrapped onto a second row */
+.wm-more-ex{flex-wrap:nowrap;gap:6px}
+.wm-more .wm-more-exb{flex:1 1 auto;min-width:0;padding:0 6px;white-space:nowrap}
 
 /* ===== phone pricing ===== */
 /* the faq below is on the same ground with no seam between: the two sections meet a little closer than two full pads */
@@ -2687,7 +2699,7 @@ html[data-layout=phone] body{background:#EEE7DB}
       </div>
     </div>
   </div>
-  <ul class="wp-more-cards wp-rv wp-rv-up" style="--wp-d:700ms;left:64px;top:806px"><li><b>Continue watching</b><span>Resumes where you stopped, then plays the next.</span></li><li><b>People</b><span>Open a cast member: photo, films and bio.</span></li><li><b>Duplicates</b><span>Compares copies; the weaker go to the Trash.</span></li><li><b>Backup & move</b><span>Packs up the library, not the videos.</span></li></ul>
+  <ul class="wp-more-cards wp-rv wp-rv-up" style="--wp-d:700ms;left:64px;top:806px"><li><b>Continue watching</b><span>Resumes where you stopped, then plays the next.</span></li><li><b>People</b><span>Open a cast member: photo, films and bio.</span></li><li><b>Duplicates</b><span>Compares copies; the extras go to the Trash.</span></li><li><b>Backup & move</b><span>Packs up the library, not the videos.</span></li></ul>
 </section>
 </div>
 <div class="wps-band wps-band-light" data-band="pricing">
@@ -2797,7 +2809,7 @@ html[data-layout=phone] body{background:#EEE7DB}
     <div class="wp-end-rule"></div>
     <div class="wp-end-credits">
       <p class="wp-end-tmdb"><a class="wp-end-tmdb-a" href="https://www.themoviedb.org/"><img loading="lazy" decoding="async" src="/home-assets/web/tmdb.svg" alt="TMDB" draggable="false"></a><span>Film and TV data and images come from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</span></p>
-      <p>Film posters and stills on this page come from TMDB and belong to their studios; they are shown for illustration. Pictures inside the device screenshots come from Blender Studio’s open films and David Revoy’s <i>Pepper &amp; Carrot</i> (CC BY).</p>
+      <p>Film posters and stills on this page come from TMDB and belong to their studios; they are shown for illustration.</p>
     </div>
     <p class="wp-end-copy">© 2026 Nsurator</p>
   </footer>
@@ -3201,7 +3213,7 @@ html[data-layout=phone] body{background:#EEE7DB}
         <svg class="wm-more-paper" viewBox="0 0 360 600" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0L8.1 -2L23.1 0.4L32 -2.2L47.7 -0.1L59.8 1.8L70.9 4.1L79 1.6L95.8 -0.1L109.6 -2.5L125.2 -3.1L136.3 -1.6L143.2 -1.4L154.3 -5.4L164.7 -6.1L172.3 -7L187 -3.1L196.3 -2.6L211.6 -4.2L221.8 -5.9L231.7 -5.5L245 -4.8L260.9 -3.2L276.3 -4.7L286.1 -2.7L295 -4.6L310.2 -3L325.4 2.4L341 0.6L349.9 0.3L360 0L360.9 9.8L361.7 20.1L359.3 36.8L360 44.6L363.7 60.3L366.8 75.1L365.9 90.1L364.1 101.7L364.8 111.8L366.8 125.5L366.1 136.2L364.2 144.5L363.3 155L361.7 168.3L361 182.5L362.8 190.1L364 199.4L362.9 206.4L361.4 219.6L360.5 226.1L358.8 236.7L360.6 246.5L361.1 254L359.4 262.9L358.5 274.9L357 283.2L356 299.3L357.9 306.4L360.3 314.8L362.3 327.6L363.2 342.7L360.6 351.7L363.2 358.2L364.1 370.8L367.9 379.2L366.5 393.9L365.2 405.7L363.6 415.2L362 428.2L364.4 442.8L364.7 454L363.8 463.2L362 479L362.4 492.5L363.3 508.5L362.9 517.5L362.8 527.2L359.1 539.9L358.2 553L359.6 562L358.6 571.3L359.9 586.1L360 593.7L360 600L343.8 600.8L327.1 596.9L314.1 597.9L306.3 600.9L291.6 598.7L279.2 599.6L263.2 600.8L256.7 602.1L241.6 603.9L232.6 605.1L217.7 604.2L205.9 601.6L198.6 601.4L190.3 603.9L181 605.3L172.6 606.5L166.2 606.5L156.5 605.1L149 603.7L141.6 605.2L128.9 604.2L114.6 606.8L98.7 605.5L85.2 602.1L78.7 601.5L63 599.1L51.6 601L42.5 600.2L36.2 599L30.2 598.8L16.2 599.6L0 600L-1.9 592.8L-1.2 585.7L-3.6 573.8L-2.8 559L0.1 547.6L-1.3 537L-2.3 527.5L-7.2 511.2L-7.1 496L-4.3 482.3L-3.8 473.9L-7 465.8L-7.2 450.4L-4.4 436.1L0.1 423.6L-1 407.3L-1.8 393.4L-1.4 386.6L-0.7 380.5L0.4 366L1.1 351.1L0.9 336.5L-1.9 329.1L-1.1 319.4L-1.9 310.5L1.8 298.5L0.8 286.6L2.2 278.8L-3.5 262.2L-3.7 250.5L-2.8 238.5L-4 230.6L-3.7 218.9L-4.8 206.5L-9.1 198.4L-7.8 182.1L-4.4 169.7L-2.2 155.2L-3.3 141.7L-4.3 131.3L-2.5 118.3L0.1 105.4L0.2 99.4L0.4 85.9L-1.6 79.7L-3.1 71.4L-3.5 64L-0.1 55L0.2 48.7L1 32.6L1.8 25.7L0.2 16.4Z" fill="#F9F4ED"/><path d="M0 0L8.1 0.8L23.1 3.1L32 0.9L47.7 0.9L59.8 2.8L70.9 5.3L79 3.4L95.8 1.9L109.6 0L125.2 1L136.3 1.8L143.2 1.2L154.3 -2L164.7 -2.8L172.3 -4.7L187 -2.4L196.3 -1.7L211.6 -3.3L221.8 -3.7L231.7 -4.3L245 -2.6L260.9 0.2L276.3 -0.5L286.1 0.4L295 -1.1L310.2 0.1L325.4 3.9L341 2.4L349.9 0.9L360 0L360 9.8L359.9 20.1L357.5 36.8L358.1 44.6L361.4 60.3L364 75.1L362.4 90.1L361.4 101.7L361.6 111.8L364.7 125.5L364.7 136.2L363.3 144.5L362.4 155L361 168.3L360.1 182.5L360.2 190.1L361.5 199.4L360.1 206.4L357.8 219.6L356.5 226.1L355.6 236.7L357.7 246.5L358.8 254L357.5 262.9L356.8 274.9L356 283.2L355.6 299.3L357.4 306.4L359.3 314.8L361.4 327.6L360.6 342.7L358.6 351.7L360.7 358.2L360.9 370.8L364.2 379.2L363.4 393.9L363.1 405.7L361.3 415.2L361.3 428.2L363.5 442.8L364.3 454L363.2 463.2L359.9 479L359.7 492.5L360.3 508.5L359.5 517.5L359.5 527.2L355.9 539.9L356.5 553L357 562L356.6 571.3L358.6 586.1L359.7 593.7L360 600L343.8 598.6L327.1 596.2L314.1 596.2L306.3 598.8L291.6 597.3L279.2 597.1L263.2 597.8L256.7 599L241.6 601.3L232.6 602.7L217.7 601.8L205.9 599.6L198.6 600.7L190.3 603.1L181 604.9L172.6 605.7L166.2 604.6L156.5 603.1L149 601.1L141.6 602.1L128.9 601.5L114.6 602.9L98.7 602.1L85.2 599.8L78.7 598.3L63 597.2L51.6 598.9L42.5 598.7L36.2 598L30.2 598L16.2 597.5L0 600L0.7 592.8L0.5 585.7L-1.4 573.8L-1.2 559L0.5 547.6L-0.2 537L-0.8 527.5L-5.5 511.2L-3.5 496L-1.1 482.3L-1.3 473.9L-3.1 465.8L-4.7 450.4L-2.6 436.1L1 423.6L0.1 407.3L-0.9 393.4L0.5 386.6L1.4 380.5L3.2 366L5.4 351.1L3.9 336.5L1.3 329.1L1.7 319.4L1.4 310.5L4 298.5L2.2 286.6L2.6 278.8L-1.8 262.2L-1.5 250.5L-1.1 238.5L-1.2 230.6L-0.6 218.9L-2.1 206.5L-5.2 198.4L-4.9 182.1L-1.2 169.7L-0.7 155.2L-1.2 141.7L-2.5 131.3L-1.4 118.3L1.9 105.4L1.5 99.4L2.5 85.9L0.9 79.7L0.8 71.4L0 64L2.5 55L3.1 48.7L3.8 32.6L3.9 25.7L2.2 16.4Z" fill="#FFE1D0"/></svg>
         <h3 class="wm-more-tt">AI agents<span class="wm-more-pro">Pro</span></h3>
         <p class="wm-more-ln">Say it in any AI tool with MCP: find, play, tidy up. It stays on this Mac.</p>
-        <div class="wm-more-ex" role="tablist" aria-label="Pick an example"><button type="button" class="wm-more-exb" role="tab" data-i="0" aria-selected="true">New collection</button><button type="button" class="wm-more-exb" role="tab" data-i="1" aria-selected="false">Play from NAS</button><button type="button" class="wm-more-exb" role="tab" data-i="2" aria-selected="false">Duplicates</button></div>
+        <div class="wm-more-ex" role="tablist" aria-label="Pick an example"><button type="button" class="wm-more-exb" role="tab" data-i="0" aria-selected="true">Collection</button><button type="button" class="wm-more-exb" role="tab" data-i="1" aria-selected="false">New on NAS</button><button type="button" class="wm-more-exb" role="tab" data-i="2" aria-selected="false">Duplicates</button></div>
         <div class="wm-more-rcs">
           <div class="wm-more-rc" data-ex="col" role="tabpanel" aria-label="Example: ask for a collection of sci-fi films since 2010; after Allow, it holds 12 films">
             <div class="wm-more-rr wm-more-rhd wm-more-on"><span><b>Claude Code</b> · MCP · local</span><span>Private Space · excluded</span></div>
@@ -3230,7 +3242,7 @@ html[data-layout=phone] body{background:#EEE7DB}
       </div>
     </div>
     </div>
-    <ul class="wm-more-cards wm-rv"><li><b>Continue watching</b><span>Resumes where you stopped, then plays the next.</span></li><li><b>People</b><span>Open a cast member: photo, films and bio.</span></li><li><b>Duplicates</b><span>Compares copies; the weaker go to the Trash.</span></li><li><b>Backup & move</b><span>Packs up the library, not the videos.</span></li></ul>
+    <ul class="wm-more-cards wm-rv"><li><b>Continue watching</b><span>Resumes where you stopped, then plays the next.</span></li><li><b>People</b><span>Open a cast member: photo, films and bio.</span></li><li><b>Duplicates</b><span>Compares copies; the extras go to the Trash.</span></li><li><b>Backup & move</b><span>Packs up the library, not the videos.</span></li></ul>
   </div>
 </section>
 <section class="wm-sec wm-light wm-pricing" data-key="pricing" data-nav="pricing" data-tone="light">
@@ -3343,7 +3355,7 @@ html[data-layout=phone] body{background:#EEE7DB}
       <nav class="wm-end-links" aria-label="Footer"><ul><li><a href="/support.html?lang=en">Support</a></li><li><a href="/privacy.html?lang=en#english">Privacy</a></li><li><a href="/support.html?lang=en&amp;doc=terms">Terms</a></li><li><a href="/guides/en/">Guides</a></li><li><a href="/support.html?lang=en&amp;doc=oss">Open source</a></li><li><a href="/credits.html?lang=en">Credits</a></li></ul></nav>
       <div class="wm-end-rule"></div>
       <p class="wm-end-tmdb"><a class="wm-end-tmdb-a" href="https://www.themoviedb.org/"><img src="/home-assets/web/tmdb.svg" alt="TMDB" width="152" height="11" loading="lazy" draggable="false"></a><span>Film and TV data and images come from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</span></p>
-      <p class="wm-end-cc">Film posters and stills on this page come from TMDB and belong to their studios; they are shown for illustration. Pictures inside the device screenshots come from Blender Studio’s open films and David Revoy’s <i>Pepper &amp; Carrot</i> (CC BY).</p>
+      <p class="wm-end-cc">Film posters and stills on this page come from TMDB and belong to their studios; they are shown for illustration.</p>
       <p class="wm-end-copy">© 2026 Nsurator</p>
     </footer>
   </div>

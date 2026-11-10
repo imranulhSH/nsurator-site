@@ -1499,7 +1499,12 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 .wm-sources-ftag{margin:0;max-width:100%;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px;border-radius:999px;border:1px solid rgba(242,235,223,.24);font:700 13px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:#F2EBDF;white-space:nowrap;overflow:hidden}
 .wm-sources-ftag i{flex:none;width:6px;height:6px;border-radius:50%;background:#D9523F}
 .wm-sources-ftitle{margin:10px 0 0;font:800 26px/30px Figtree,'PingFang SC','Noto Sans SC',sans-serif;letter-spacing:-.01em;color:#F9F4ED;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wm-sources-ftitle.wm-sources-long{font-size:19px}
+/* a long title (EN 「Everything Everywhere All at Once」) takes two short lines over the shaded left instead of one line across the frame's
+   subject; the margins give back what the second line takes, so the Play button stays clear of the rows */
+.wm-sources-ftitle.wm-sources-long{margin-top:6px;max-width:11.5em;font-size:19px;line-height:21px;white-space:normal;text-wrap:balance;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.wm-sources-ftitle.wm-sources-long~.wm-sources-fmeta{margin-top:4px}
+.wm-sources-ftitle.wm-sources-long~.wm-sources-fbtns{margin-top:8px}
+@media (max-width:379px){.wm-sources-ftitle.wm-sources-long{font-size:17px;line-height:20px}}
 .wm-sources-fmeta{margin:5px 0 0;font:600 13px/16px Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:rgba(242,235,223,.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wm-sources-fbtns{margin-top:12px;display:flex;align-items:center;gap:10px}
 .wm-sources .wm-sources-play{height:44px;padding:0 21px 0 17px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;background:#D9523F;color:#F9F4ED;font:700 14px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;-webkit-tap-highlight-color:transparent}
@@ -1588,7 +1593,7 @@ html[lang=en] .wm-eb{text-transform:uppercase}
   .wm-sources-lights i{width:10px;height:10px}
   .wm-sources-ftxt{top:18px}
   .wm-sources-ftitle{font-size:32px;line-height:36px}
-  .wm-sources-ftitle.wm-sources-long{font-size:24px}
+  .wm-sources-ftitle.wm-sources-long{font-size:24px;line-height:27px}
   .wm-sources-fmeta{font-size:14px;line-height:18px;margin-top:6px}
   .wm-sources-fbtns{margin-top:14px}
   .wm-sources-tiles{gap:14px}
@@ -1713,6 +1718,8 @@ html[lang=en] .wm-eb{text-transform:uppercase}
 /* 4 · AI agents */
 .wm-more-ex{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
 .wm-more .wm-more-exb{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid rgba(32,30,29,.3);font:700 14px/1 Figtree,'PingFang SC','Noto Sans SC',sans-serif;color:#474238;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s,border-color .2s}
+/* under 380 wide the three pills (291 px with gaps) no longer fit the row: one row, sharing its width */
+@media (max-width:379px){.wm-more-ex{flex-wrap:nowrap;gap:6px}.wm-more .wm-more-exb{flex:1 1 auto;min-width:0;padding:0 8px;white-space:nowrap}}
 .wm-more .wm-more-exb[aria-selected=true]{background:#201E1D;border-color:#201E1D;color:#F9F4ED}
 .wm-more .wm-more-exb:focus-visible{outline:2px solid #D9523F;outline-offset:2px}
 .wm-more-rcs{box-sizing:border-box;margin-top:14px;padding:14px 14px 16px;border-radius:7px;background:#F9F4ED;border:1px solid rgba(32,30,29,.12)}
@@ -1825,7 +1832,9 @@ html[lang=en] .wm-eb{text-transform:uppercase}
   .wm-more-agent>.wm-more-tt,.wm-more-agent>.wm-more-ln,.wm-more-agent>.wm-more-ex{grid-column:1}
   .wm-more-agent>.wm-more-ln{margin-bottom:0}
   .wm-more-agent>.wm-more-rcs{grid-column:2;grid-row:1/-1;margin-top:4px;padding:18px 18px 20px}
-  .wm-more-ex{margin-top:20px}
+  /* the column beside the terminal is narrow (≈ 275 px at 820 wide): the three examples keep to one row and share its width */
+  .wm-more-ex{margin-top:20px;flex-wrap:nowrap;gap:6px}
+  .wm-more .wm-more-exb{flex:1 1 auto;min-width:0;padding:0 8px;white-space:nowrap}
   .wm-more-tile .wm-more-apnote{left:auto;right:26px;bottom:9px;text-align:right}
   .wm-more-touch{margin:20px auto 26px}
   .wm-more-cards{margin-top:36px;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 26px}
@@ -2597,7 +2606,7 @@ html[data-layout=phone] body{background:#EEE7DB}
       </div>
     </div>
   </div>
-  <ul class="wp-more-cards wp-rv wp-rv-up" style="--wp-d:700ms;left:64px;top:806px"><li><b>剧集接着看</b><span>从上次停下的地方接着看，播完自动下一集。</span></li><li><b>人物</b><span>点开演职人员，看这个人的照片、作品和简介。</span></li><li><b>重复项</b><span>副本放在一起比，较差的移到废纸篓。</span></li><li><b>备份与搬家</b><span>资料库打成一个包带走，不含视频本身。</span></li></ul>
+  <ul class="wp-more-cards wp-rv wp-rv-up" style="--wp-d:700ms;left:64px;top:806px"><li><b>剧集接着看</b><span>从上次停下的地方接着看，播完自动下一集。</span></li><li><b>人物</b><span>点开演职人员，看这个人的照片、作品和简介。</span></li><li><b>重复项</b><span>副本放在一起比，多余的移到废纸篓。</span></li><li><b>备份与搬家</b><span>资料库打成一个包带走，不含视频本身。</span></li></ul>
 </section>
 </div>
 <div class="wps-band wps-band-light" data-band="pricing">
@@ -2707,7 +2716,7 @@ html[data-layout=phone] body{background:#EEE7DB}
     <div class="wp-end-rule"></div>
     <div class="wp-end-credits">
       <p class="wp-end-tmdb"><a class="wp-end-tmdb-a" href="https://www.themoviedb.org/"><img loading="lazy" decoding="async" src="/home-assets/web/tmdb.svg" alt="TMDB" draggable="false"></a><span>影视资料与图片来自 TMDB。本产品使用 TMDB API，但未经 TMDB 认可或认证。</span></p>
-      <p>页面里的电影海报和剧照来自 TMDB，版权归各片方所有，只作展示；设备截图里的画面来自 Blender Studio 的开放电影和 David Revoy 的《Pepper &amp; Carrot》（CC BY）。</p>
+      <p>页面里的电影海报和剧照来自 TMDB，版权归各片方所有，只作展示。</p>
     </div>
     <p class="wp-end-copy">© 2026 Nsurator</p>
   </footer>
@@ -3140,7 +3149,7 @@ html[data-layout=phone] body{background:#EEE7DB}
       </div>
     </div>
     </div>
-    <ul class="wm-more-cards wm-rv"><li><b>剧集接着看</b><span>从上次停下的地方接着看，播完自动下一集。</span></li><li><b>人物</b><span>点开演职人员，看这个人的照片、作品和简介。</span></li><li><b>重复项</b><span>副本放在一起比，较差的移到废纸篓。</span></li><li><b>备份与搬家</b><span>资料库打成一个包带走，不含视频本身。</span></li></ul>
+    <ul class="wm-more-cards wm-rv"><li><b>剧集接着看</b><span>从上次停下的地方接着看，播完自动下一集。</span></li><li><b>人物</b><span>点开演职人员，看这个人的照片、作品和简介。</span></li><li><b>重复项</b><span>副本放在一起比，多余的移到废纸篓。</span></li><li><b>备份与搬家</b><span>资料库打成一个包带走，不含视频本身。</span></li></ul>
   </div>
 </section>
 <section class="wm-sec wm-light wm-pricing" data-key="pricing" data-nav="pricing" data-tone="light">
@@ -3253,7 +3262,7 @@ html[data-layout=phone] body{background:#EEE7DB}
       <nav class="wm-end-links" aria-label="页脚"><ul><li><a href="/support.html?lang=zh">支持</a></li><li><a href="/privacy.html?lang=zh#zh-hans">隐私</a></li><li><a href="/support.html?lang=zh&amp;doc=terms">使用条款</a></li><li><a href="/guides/">使用攻略</a></li><li><a href="/support.html?lang=zh&amp;doc=oss">开源许可</a></li><li><a href="/credits.html?lang=zh">素材署名</a></li></ul></nav>
       <div class="wm-end-rule"></div>
       <p class="wm-end-tmdb"><a class="wm-end-tmdb-a" href="https://www.themoviedb.org/"><img src="/home-assets/web/tmdb.svg" alt="TMDB" width="152" height="11" loading="lazy" draggable="false"></a><span>影视资料与图片来自 TMDB。本产品使用 TMDB API，但未经 TMDB 认可或认证。</span></p>
-      <p class="wm-end-cc">页面里的电影海报和剧照来自 TMDB，版权归各片方所有，只作展示；设备截图里的画面来自 Blender Studio 的开放电影和 David Revoy 的《Pepper &amp; Carrot》（CC BY）。</p>
+      <p class="wm-end-cc">页面里的电影海报和剧照来自 TMDB，版权归各片方所有，只作展示。</p>
       <p class="wm-end-copy">© 2026 Nsurator</p>
     </footer>
   </div>
