@@ -1,12 +1,12 @@
 {
   "format": 1,
-  "说明": "Nsuve 购买开关，iPhone、iPad 和 Mac 都读这一个文件；nsurator.com 和 www.nsurator.com.cn 的 /app/nsuve-purchase.json 放同一份。早鸟结束：先把 earlyBird 改成 false，再让 App Store Connect 的原价生效。Mac 版上线那天：把 lifetime.mac、lifetime.all、upgrade.all 改成 true。App 只认 earlyBird 和 onSale；格式写错时继续用上次读到的。",
+  "说明": "Nsuve 购买开关，iPhone、iPad 和 Mac 都读这一个文件；nsurator.com 和 www.nsurator.com.cn 的 /app/nsuve-purchase.json 放同一份。四个端一起审核、同一天上架（负责人 11-14：「我会保证四个端一起审核通过同步上架的」），所以 lifetime.mac、lifetime.all、upgrade.all 现在就开着，App 审核时才看得到这几件。早鸟结束：先把 earlyBird 改成 false，再让 App Store Connect 的原价生效。某件要停卖就把它的 onSale 改成 false。App 只认 earlyBird 和 onSale；格式写错时继续用上次读到的。",
   "earlyBird": true,
   "onSale": {
     "com.nsurator.nsuve.pro.yearly": true,
     "com.nsurator.nsuve.pro.lifetime.mobile": true,
-    "com.nsurator.nsuve.pro.lifetime.mac": false,
-    "com.nsurator.nsuve.pro.lifetime.all": false,
-    "com.nsurator.nsuve.pro.upgrade.all": false
+    "com.nsurator.nsuve.pro.lifetime.mac": true,
+    "com.nsurator.nsuve.pro.lifetime.all": true,
+    "com.nsurator.nsuve.pro.upgrade.all": true
   }
 }

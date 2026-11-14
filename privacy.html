@@ -196,7 +196,7 @@ svg.zg{position:static!important;display:inline-block!important;fill:currentColo
   <p class="eb">法律 · 简体中文</p>
   <h1 class="t"><span class="zh-vh">隐私政策</span><span aria-hidden="true"><span class="zh-g"><svg class="zg" style="width:0.9em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 900 1000"><use href="#zg-9690"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.893em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 893 1000"><use href="#zg-79c1"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.921em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 921 1000"><use href="#zg-653f"/></svg></span><span class="zh-g"><svg class="zg" style="width:0.755em;height:1em;vertical-align:-0.1em" viewBox="0 -1000 755 1000"><use href="#zg-7b56"/></svg></span></span></h1>
   <p class="lead">Nsuve 是 Nsurator 的 App。这份政策说明 Nsuve 在 Mac、iPhone、iPad 上会处理哪些数据：哪些只留在你的设备上，哪些会离开、发去哪里、保存多久。</p>
-  <ul class="meta"><li>生效日期 2026-11-09</li><li>最后更新 2026-11-09</li></ul>
+  <ul class="meta"><li>生效日期 2026-11-09</li><li>最后更新 2026-11-14</li></ul>
 </div>
 <div class="wrap"><nav class="toc" aria-label="本篇内容"><p>本篇内容</p><ol><li><a href="#zh-scope">1. 适用范围</a></li><li><a href="#zh-device">2. 留在你设备上的资料</a></li><li><a href="#zh-files">3. 文件与权限</a></li><li><a href="#zh-library">4. 认片：Nsurator 资料库与你的 TMDB 密钥</a></li><li><a href="#zh-reports">5. 问题报告</a></li><li><a href="#zh-sources">6. NAS、媒体服务器与网盘</a></li><li><a href="#zh-icloud">7. iCloud 同步</a></li><li><a href="#zh-other">8. 其他联网功能</a></li><li><a href="#zh-tracking">9. 我们不做的事，以及旧版试用</a></li><li><a href="#zh-retention">10. 保存期限与安全</a></li><li><a href="#zh-choices">11. 你的选择与权利</a></li><li><a href="#zh-contact">12. 未成年人、政策变更与联系</a></li></ol></nav><main class="doc" id="main"><section id="zh-scope">
 <h2>1. 适用范围</h2>
@@ -278,10 +278,11 @@ svg.zg{position:static!important;display:inline-block!important;fill:currentColo
 <h2>7. iCloud 同步</h2>
 <p>同步的数据存在你自己 iCloud 账户里 Nsuve 的私有数据库中，我们读不到；Apple 按它的隐私政策处理 iCloud 数据。</p>
 <ul>
-<li><b>iPhone、iPad</b>：在「管理 → 影视资料」打开「在我的设备间同步」后，同步哪个文件是哪部片子、手动修正、版本合并、每台 NAS 的识别方式，以及 NAS 上的片子看到哪儿；NAS 和文件名只以哈希形式存放。海报、扫描清单、NAS 的地址和密码、你的 TMDB 密钥和「问哪边」、私密空间里的东西都不同步。点「删除 iCloud 里的识别结果」可以把它们从 iCloud 删掉，这台设备上的不受影响。</li>
+<li><b>iPhone、iPad 的影视资料</b>：在「管理 → 影视资料」打开「在我的设备间同步」后，同步哪个文件是哪部片子、手动修正、版本合并、每台 NAS 的识别方式，以及 NAS 上的片子看到哪儿；NAS 和文件名只以哈希形式存放。海报、扫描清单、NAS 的地址和密码、你的 TMDB 密钥和「问哪边」、私密空间里的东西都不在这项同步里。点「删除 iCloud 里的识别结果」可以把它们从 iCloud 删掉，这台设备上的不受影响。NAS 等媒体源的地址和密码怎么同步，见下一条。</li>
+<li><b>iPhone、iPad 的媒体源</b>：新添加的媒体源默认经 iCloud 同步到同一个 Apple 账户下你的其他 iPhone、iPad，同步的是地址、名称、线路等设置。只想把它留在这台设备上，就在这个媒体源的「同步到其他设备」里关掉「用 iCloud 同步这个媒体源」。「密码也一起同步」默认打开：这时它的密码等登录信息存进 iCloud 钥匙串，由 Apple 端到端加密，我们读不到。SFTP 的私钥从不同步。在这项功能推出前保存的媒体源不会同步，除非你自己把它的同步打开。</li>
 <li><b>Mac</b>：「已反馈的问题」列表经你的 iCloud 同步，文字存在加密字段里。</li>
 </ul>
-<p>iCloud 里都不放密码、私密空间、图片、诊断、日志和截图。</p>
+<p>iCloud 里 Nsuve 的私有数据库不放密码、私密空间、图片、诊断、日志和截图。媒体源的密码只在这个媒体源同步、并且打开了「密码也一起同步」时，才存进 iCloud 钥匙串。</p>
 </section>
 
 <section id="zh-other">
@@ -339,7 +340,7 @@ svg.zg{position:static!important;display:inline-block!important;fill:currentColo
   <p class="eb">Legal · English</p>
   <h1 class="t">Privacy Policy</h1>
   <p class="lead">Nsuve is an app by Nsurator. This policy explains what data Nsuve processes on Mac, iPhone and iPad: what stays on your device, and what leaves it, where it goes and how long it is kept.</p>
-  <ul class="meta"><li>Effective November 9, 2026</li><li>Last updated November 9, 2026</li></ul>
+  <ul class="meta"><li>Effective November 9, 2026</li><li>Last updated November 14, 2026</li></ul>
 </div>
 <div class="wrap"><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#en-scope">1. Scope</a></li><li><a href="#en-device">2. What stays on your device</a></li><li><a href="#en-files">3. Files and permissions</a></li><li><a href="#en-library">4. Recognition: Nsurator Library DB and your TMDB key</a></li><li><a href="#en-reports">5. Problem reports</a></li><li><a href="#en-sources">6. NAS, media servers and cloud drives</a></li><li><a href="#en-icloud">7. iCloud sync</a></li><li><a href="#en-other">8. Other online features</a></li><li><a href="#en-tracking">9. What we don't do, and legacy trial builds</a></li><li><a href="#en-retention">10. Retention and security</a></li><li><a href="#en-choices">11. Your choices and rights</a></li><li><a href="#en-contact">12. Children, changes and contact</a></li></ol></nav><main class="doc"><section id="en-scope">
 <h2>1. Scope</h2>
@@ -421,10 +422,11 @@ svg.zg{position:static!important;display:inline-block!important;fill:currentColo
 <h2>7. iCloud sync</h2>
 <p>Synced data is kept in Nsuve's private database in your own iCloud account, which we cannot read; Apple processes iCloud data under its own privacy policy.</p>
 <ul>
-<li><b>iPhone and iPad</b>: when you turn on Sync Across My Devices in Manage → Movie &amp; Show Info, Nsuve syncs which file is which title, your manual corrections, merged versions, how each NAS is recognized, and how far you've watched titles on a NAS; NAS and file names are stored only as hashes. Posters, scan lists, NAS addresses and passwords, your TMDB key and Ask setting, and anything in Private Space are not synced. Delete Recognition Results from iCloud removes them from iCloud without touching this device.</li>
+<li><b>Movie &amp; Show Info on iPhone and iPad</b>: when you turn on Sync Across My Devices in Manage → Movie &amp; Show Info, Nsuve syncs which file is which title, your manual corrections, merged versions, how each NAS is recognized, and how far you've watched titles on a NAS; NAS and file names are stored only as hashes. Posters, scan lists, NAS addresses and passwords, your TMDB key and Ask setting, and anything in Private Space are not part of this sync. Delete Recognition Results from iCloud removes them from iCloud without touching this device. How the address and password of a NAS or other media source sync is described in the next item.</li>
+<li><b>Media sources on iPhone and iPad</b>: a media source you add syncs through iCloud by default to your other iPhones and iPads on the same Apple Account, with its address, name, routes and other settings. To keep a source on this device only, turn off Sync This Source with iCloud on that source's Sync to Other Devices page. Sync Passwords Too is on by default; while it is on, the source's password and other sign-in details are stored in iCloud Keychain, which Apple encrypts end to end and we cannot read. An SFTP private key never syncs. Sources saved before this feature existed don't sync unless you turn syncing on for them.</li>
 <li><b>Mac</b>: the Sent Reports list syncs through your iCloud, with its text in encrypted fields.</li>
 </ul>
-<p>Nothing in iCloud includes passwords, Private Space, images, diagnostics, logs or screenshots.</p>
+<p>Nothing in Nsuve's private database in iCloud includes passwords, Private Space, images, diagnostics, logs or screenshots. A media source's password goes into iCloud Keychain only when that source syncs with Sync Passwords Too turned on.</p>
 </section>
 
 <section id="en-other">
